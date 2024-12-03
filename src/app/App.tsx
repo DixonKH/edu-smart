@@ -8,18 +8,20 @@ import MyPage from "../components/MyPage/MyPage";
 import Footer from "../components/Footer/Footer";
 import { Route, Routes } from "react-router";
 function App() {
-  return (<div className="container">
-    <Navbar ></Navbar>
-    <Routes>
-      <Route path="/" index element={<MainPage />}/>
-      <Route path="/lessons" element={<Lessons />}/>
-      <Route path="/ourteachers" element={<OurTeachers />}/>
-      <Route path='/community' element={<Community/>}/>
-      <Route path='/mypage' element={<MyPage/>}/>
-    </Routes>
-    <Footer />
-    {/* <PopUp orderPopup={orderPopup} setOrderPopup={setOrderPopup} /> */}
+  return (
+    <div className="container">
+      <Navbar></Navbar>
+      <Routes>
+        <Route path="/" index element={<MainPage />} />
+        <Route path="/lessons" element={<Lessons />} />
+        <Route path="/ourteachers" element={<OurTeachers />} />
+        <Route path="/community" element={<Community />} />
+        <Route path="/mypage" element={<MyPage />} />
+      </Routes>
+      <Footer />
+      {/* <PopUp orderPopup={orderPopup} setOrderPopup={setOrderPopup} /> */}
     </div>
-)}
+  );
+}
 
 export default App;
