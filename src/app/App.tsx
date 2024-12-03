@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "../components/Navbar/Navbar";
 import MainPage from "../components/MainPage/MainPage";
 import Lessons from "../components/Lessons/Lessons";
