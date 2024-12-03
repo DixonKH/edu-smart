@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import { MdCastForEducation } from "react-icons/md";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
