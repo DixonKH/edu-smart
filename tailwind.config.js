@@ -6,8 +6,17 @@ export default {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: '1rem',
+          md: '3rem'
+        }
+      },
       colors: {
         green: "#00b796",
+        green1: "#0b736b",
+        bgGreen: "#3d8e86",
         purple: "#3a00b7",
         yellow: "#f4ce14",
         royalBlue:"#4379f2",
