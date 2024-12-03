@@ -12,6 +12,7 @@ import WhyChooseUs from "./WhyChooseUs";
 import OurLatestAhievement from "./OurLatestAhievement";
 import OurProcess from "./OurProcess";
 import ContactUs from "./ContactUs";
+import Testimonial from "./Testimonial";
 
 type Props = {};
 
@@ -137,6 +138,9 @@ const MainPage = (props: Props) => {
       </div>
       <div>
         <ContactUs/>
+      </div>
+      <div>
+        <Testimonial/>
       </div>
     </div>
   );
