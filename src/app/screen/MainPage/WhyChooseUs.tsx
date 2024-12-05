@@ -5,12 +5,8 @@ import { IoIosPricetags } from "react-icons/io";
 import { BiLogoMicrosoftTeams } from "react-icons/bi";
 import { FaBagShopping } from "react-icons/fa6";
 import { BsAwardFill } from "react-icons/bs";
-<<<<<<< HEAD:src/components/MainPage/WhyChooseUs.tsx
-import Teaching from "./../../../public/images/Teaching.jpg";
 import Line from "./Line";
-=======
 import Teaching from "/public/images/Teaching.jpg";
->>>>>>> origin:src/app/screen/MainPage/WhyChooseUs.tsx
 
 type Props = {};
 

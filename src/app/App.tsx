@@ -9,22 +9,20 @@ import LessonsPage from "./screen/LessonsPage";
 import ChoosenLesson from "./screen/LessonsPage/ChoosenLesson";
 function App() {
   return (
-<<<<<<< HEAD
-    <div >
-=======
     <div>
->>>>>>> origin
-      <Navbar></Navbar>
-      <Routes>
-        <Route path="/" index element={<MainPage />} />
-        <Route path="/lessons" element={<LessonsPage />} />
-        <Route path="/ourteachers" element={<OurTeachers />} />
-        <Route path="/community" element={<Community />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/lessons/:lessonId" element={<ChoosenLesson />} />
-      </Routes>
-      <Footer />
-      {/* <PopUp orderPopup={orderPopup} setOrderPopup={setOrderPopup} /> */}
+      <div>
+        <Navbar></Navbar>
+        <Routes>
+          <Route path="/" index element={<MainPage />} />
+          <Route path="/lessons" element={<LessonsPage />} />
+          <Route path="/ourteachers" element={<OurTeachers />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/lessons/:lessonId" element={<ChoosenLesson />} />
+        </Routes>
+        <Footer />
+        {/* <PopUp orderPopup={orderPopup} setOrderPopup={setOrderPopup} /> */}
+      </div>
     </div>
   );
 }

@@ -10,15 +10,9 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-<<<<<<< HEAD:src/components/Footer/Footer.tsx
-    <div className="bg-green1 text-white">
-      <div className="container">
-        <div className="grid grid-cols-6 p-10 gap-5">
-=======
     <div>
       <div className="bg-green1 text-white">
         <div className=" container grid grid-cols-6 p-10 gap-5">
->>>>>>> origin:src/app/components/Footer/Footer.tsx
           <div className="col-span-2 gap-4">
             <div className="flex justify-start items-center gap-4 p-3">
               <div className="flex items-center justify-center rounded-full w-10 h-10 bg-yellow">
@@ -53,11 +47,19 @@ const Footer = (props: Props) => {
           <div className="col-span-1">
             <p className="text-2xl p-3">Company</p>
             <ul className="inline-block">
-              <li className="p-2 hover:text-[18px] hover:text-yellow">Our Team</li>
-              <li className="p-2 hover:text-[18px] hover:text-yellow">Pricing</li>
-              <li className="p-2 hover:text-[18px] hover:text-yellow">Testimonial</li>
+              <li className="p-2 hover:text-[18px] hover:text-yellow">
+                Our Team
+              </li>
+              <li className="p-2 hover:text-[18px] hover:text-yellow">
+                Pricing
+              </li>
+              <li className="p-2 hover:text-[18px] hover:text-yellow">
+                Testimonial
+              </li>
               <li className="p-2 hover:text-[18px] hover:text-yellow">FAQs</li>
-              <li className="p-2 hover:text-[18px] hover:text-yellow">Contact Us</li>
+              <li className="p-2 hover:text-[18px] hover:text-yellow">
+                Contact Us
+              </li>
             </ul>
           </div>
 
@@ -87,8 +89,8 @@ const Footer = (props: Props) => {
           <div className="flex justify-between items-center ">
             <div className="flex justify-between items-center gap-3 p-1">
               <p className="text-black flex justify-center items-center">
-                Copyright  <FaRegCopyright className="mx-3" /> 2024 Jeonbuk Korean Learning
-                Center. All rights Reserved.
+                Copyright <FaRegCopyright className="mx-3" /> 2024 Jeonbuk
+                Korean Learning Center. All rights Reserved.
               </p>
             </div>
             <div>
