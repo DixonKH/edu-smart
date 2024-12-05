@@ -1,4 +1,4 @@
-import React from "react";
+
 import { IoMdEye } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import { FaBookReader } from "react-icons/fa";
