@@ -24,7 +24,9 @@ export default function LessonCard(props: any) {
             </div>
           </div>
           <div className="flex flex-row items-center justify-between gap-4 w-full h-8 py-1 ">
-            <div className="leading-4 text-sm overflow-hidden">{props.lesson.desc} </div>
+            <div className={`leading-4 text-sm overflow-hidden p-1 px-2 rounded ${props.lesson.category === "Beginner" ? "bg-yellow" : "bg-green"}`}>
+              {props.lesson.category} 
+              </div>
             <div className="text-[12px] text-slate-600">
               {props.lesson.create}
             </div>

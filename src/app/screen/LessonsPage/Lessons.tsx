@@ -15,6 +15,7 @@ export default function Lessons() {
     {
       id: 1,
       title: "Koreys Alifbosi va ularning qollanish usullari",
+      category: "Beginner",
       desc: "This is the Desc",
       create: "12/07/2024",
       owner: "Meloboyev A",
@@ -24,6 +25,7 @@ export default function Lessons() {
     {
       id: 2,
       title: "Lesson 2",
+      category: "Elementry",
       desc: "This is the Desc",
       create: "12/07/2024",
       owner: "Abdurakhmonov B",
@@ -32,6 +34,7 @@ export default function Lessons() {
     },
     {
       id: 3,
+      category: "Intermediate",
       title: "Lesson 3",
       desc: "This is the Desc",
       create: "12/07/2024",
@@ -42,6 +45,7 @@ export default function Lessons() {
     {
       id: 4,
       title: "Lesson 4",
+      category: "Advanced",
       desc: "This is the Desc",
       create: "12/07/2024",
       owner: "Abdurakhmonov B",
@@ -51,6 +55,7 @@ export default function Lessons() {
     {
       id: 5,
       title: "Lesson 5",
+      category: "Elementry",
       desc: "This is the Desc",
       create: "12/07/2024",
       owner: "Abdurakhmonov B",
@@ -60,6 +65,7 @@ export default function Lessons() {
     {
       id: 6,
       title: "Lesson 3",
+      category: "Beginner",
       desc: "This is the Desc",
       create: "12/07/2024",
       owner: "Xasanov D",
@@ -69,6 +75,7 @@ export default function Lessons() {
     {
       id: 7,
       title: "Lesson 4",
+      category: "Beginner",
       desc: "This is the Desc",
       create: "12/07/2024",
       owner: "Abdurakhmonov B",
@@ -78,6 +85,7 @@ export default function Lessons() {
     {
       id: 8,
       title: "Lesson 5",
+      category: "Elementry",
       desc: "This is the Desc",
       create: "12/07/2024",
       owner: "Abdurakhmonov B",
@@ -99,9 +107,10 @@ export default function Lessons() {
           <div>
             <select className="border rounded-lg p-2 w-48 text-lg outline-none ">
               <option value="1">Category</option>
-              <option value="2">Genereal Korean</option>
-              <option value="3">Topic I</option>
-              <option value="4">Topic II</option>
+              <option value="2">Beginner</option>
+              <option value="3">Elementry</option>
+              <option value="4">Intermediate</option>
+              <option value="5">Advanced</option>
             </select>
           </div>
           <div>
