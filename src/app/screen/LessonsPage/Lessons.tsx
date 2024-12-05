@@ -1,5 +1,14 @@
 import LessonCard from "./LessonCard";
 import { FaSearch } from "react-icons/fa";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 export default function Lessons() {
   const lessons: any = [
@@ -89,18 +98,18 @@ export default function Lessons() {
         <div className="flex flex-row mt-4 gap-4 items-center justify-between w-full h-auto mb-5">
           <div>
             <select className="border rounded-lg p-2 w-48 text-lg outline-none ">
-              <option value="1">Korean</option>
-              <option value="2">English</option>
-              <option value="3">Math</option>
-              <option value="4">Science</option>
+              <option value="1">Category</option>
+              <option value="2">Genereal Korean</option>
+              <option value="3">Topic I</option>
+              <option value="4">Topic II</option>
             </select>
           </div>
           <div>
             <select className="border rounded-lg p-2 w-48 text-lg outline-none ">
-              <option value="1">General Korean</option>
-              <option value="2">Topic I</option>
-              <option value="3">Topic II</option>
-              <option value="4">KIIP</option>
+              <option value="1">Sort by</option>
+              <option value="2">Recently added</option>
+              <option value="3">Old</option>
+              <option value="4">More viewed</option>
             </select>
           </div>
           <form className="flex w-full items-center justify-end">
@@ -121,6 +130,24 @@ export default function Lessons() {
           {lessons.map((lesson: any) => {
             return <LessonCard key={lesson.id} lesson={lesson} />;
           })}
+        </div>
+        <div className="my-3">
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious href="#" />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">1</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext href="#" />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
         </div>
       </div>
     </div>
