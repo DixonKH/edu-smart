@@ -1,0 +1,4 @@
+dist/
+path/to/specific/file.js
+**/*.ts
+**/*.tsx
