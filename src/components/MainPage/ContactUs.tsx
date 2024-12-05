@@ -2,13 +2,14 @@ import React from "react";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaFacebook, FaPinterest, FaStar, FaTwitter, FaYoutube } from "react-icons/fa6";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import Line from "./Line";
 
 type Props = {};
 
 function ContactUs({}: Props) {
   return (
     <div>
-      <div className="grid grid-cols-2">
+      <div className="grid container grid-cols-2">
         <div>
           <div className="">
             <div className=" gap-4 pt-8 p-6">
@@ -121,40 +122,7 @@ function ContactUs({}: Props) {
           </div>
         </div>
       </div>
-      <div className=" gap-5 bg-green1 my-8 py-3 ">
-        <div className="flex justify-between items-center mx-5">
-          <div className="flex justify-start items-center gap-2   px-1  ">
-            <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
-              <FaStar className="text-3xl text-yellow" />
-            </div>
-            <p className="text-xl">Lorem Ipsum</p>
-          </div>
-          <div className="flex justify-start items-center gap-2  px-1   ">
-            <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
-              <FaStar className="text-xl text-yellow" />
-            </div>
-            <p className="text-xl">Lorem Ipsum</p>
-          </div>
-          <div className="flex justify-start items-center gap-2   px-1 ">
-            <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
-              <FaStar className="text-xl text-yellow" />
-            </div>
-            <p className="text-xl">Lorem Ipsum</p>
-          </div>
-          <div className="flex justify-start items-center gap-2   px-1  ">
-            <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
-              <FaStar className="text-xl text-yellow" />
-            </div>
-            <p className="text-xl">Lorem Ipsum</p>
-          </div>
-          <div className="flex justify-start items-center gap-2   px-1 ">
-            <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
-              <FaStar className="text-xl text-yellow" />
-            </div>
-            <p className="text-xl">Lorem Ipsum</p>
-          </div>
-        </div>
-      </div>
+      <Line/>
     </div>
   );
 }

@@ -9,7 +9,7 @@ import Footer from "../components/Footer/Footer";
 import { Route, Routes } from "react-router";
 function App() {
   return (
-    <div className="container">
+    <div >
       <Navbar></Navbar>
       <Routes>
         <Route path="/" index element={<MainPage />} />

@@ -10,6 +10,7 @@ type Props = {};
 function OurProcess({}: Props) {
   return (
     <div className="mb-2">
+      <div className="container">
       <div>
         <div className="flex justify-center items-center gap-4 pt-8 p-6">
           <p className="text-3xl text-black">- Our Process -</p>
@@ -24,8 +25,10 @@ function OurProcess({}: Props) {
         <div>
           <div className=" flex  items-start justify-evenly">
             <div className=" relative z-40 flex justify-end items-start  text-white p-4">
-              <div className="border rounded-full bg-green1  drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover">
+              <div
+                className="border rounded-full bg-green1  drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                    object-cover"
+              >
                 <MdOutlineHomeRepairService className="text-7xl p-3"></MdOutlineHomeRepairService>
               </div>
               <div className="absolute z-50 bg-yellow border text-xl rounded-full">
@@ -33,9 +36,7 @@ function OurProcess({}: Props) {
               </div>
             </div>
           </div>
-          <p className="text-xl bold mx-auto m-5 text-center">
-            Book Courses
-          </p>
+          <p className="text-xl bold mx-auto m-5 text-center">Book Courses</p>
           <p className="text-md bold mx-auto m-3 text-center">
             Lorem Ipsum is Lorem Ipsum is simply dummy text of the printing and
             typesetting industry.
@@ -44,8 +45,10 @@ function OurProcess({}: Props) {
         <div>
           <div className=" flex  items-start justify-evenly">
             <div className=" relative z-40 flex justify-end items-start  text-white p-4">
-              <div className="border rounded-full bg-green1 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover">
+              <div
+                className="border rounded-full bg-green1 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                    object-cover"
+              >
                 <SiMicrosoftteams className="text-7xl p-3"></SiMicrosoftteams>
               </div>
               <div className="absolute z-50 bg-yellow border text-xl rounded-full">
@@ -53,9 +56,7 @@ function OurProcess({}: Props) {
               </div>
             </div>
           </div>
-          <p className="text-xl bold mx-auto m-5 text-center">
-            Team Contact
-          </p>
+          <p className="text-xl bold mx-auto m-5 text-center">Team Contact</p>
           <p className="text-md bold mx-auto m-3 text-center">
             Lorem Ipsum is Lorem Ipsum is simply dummy text of the printing and
             typesetting industry.
@@ -64,8 +65,10 @@ function OurProcess({}: Props) {
         <div>
           <div className=" flex  items-start justify-evenly">
             <div className=" relative z-40 flex justify-end items-start  text-white p-4">
-              <div className="border rounded-full bg-green1 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover">
+              <div
+                className="border rounded-full bg-green1 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                    object-cover"
+              >
                 <FaBook className="text-7xl p-3"></FaBook>
               </div>
               <div className="absolute z-50 bg-yellow border text-xl rounded-full">
@@ -73,9 +76,7 @@ function OurProcess({}: Props) {
               </div>
             </div>
           </div>
-          <p className="text-xl bold mx-auto m-5 text-center">
-            Interview
-          </p>
+          <p className="text-xl bold mx-auto m-5 text-center">Interview</p>
           <p className="text-md bold mx-auto m-3 text-center">
             Lorem Ipsum is Lorem Ipsum is simply dummy text of the printing and
             typesetting industry.
@@ -84,8 +85,10 @@ function OurProcess({}: Props) {
         <div>
           <div className=" flex  items-start justify-evenly">
             <div className=" relative z-40 flex justify-end items-start  text-white p-4">
-              <div className="border rounded-full bg-green1 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover">
+              <div
+                className="border rounded-full bg-green1 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                    object-cover"
+              >
                 <FaSmile className="text-7xl p-3"></FaSmile>
               </div>
               <div className="absolute z-50 bg-yellow border text-xl rounded-full">
@@ -93,34 +96,37 @@ function OurProcess({}: Props) {
               </div>
             </div>
           </div>
-          <p className="text-xl bold mx-auto m-5 text-center">
-            Final Result
-          </p>
+          <p className="text-xl bold mx-auto m-5 text-center">Final Result</p>
           <p className="text-md bold mx-auto m-3 text-center">
             Lorem Ipsum is Lorem Ipsum is simply dummy text of the printing and
             typesetting industry.
           </p>
         </div>
       </div>
+      </div>
       <div className="bg-green1">
-      <div className="flex items-center justify-between">
+        <div className="container">
           <div className="flex items-center justify-between">
-            <div className="flex items-center">
-                <p className="ml-5 pl-5 pb-5 text-8xl text-yellow">
-                    |
-                </p>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <p className="ml-5 pl-5 pb-5 text-8xl text-yellow">|</p>
+              </div>
+              <p className="text-4xl  text-white p-5">
+                <span className="text-yellow flex items-center justify-center">
+                  Book Affordable Courses:
+                </span>
+                Save Time And Money With Us!
+              </p>
             </div>
-            <p className="text-4xl  text-white p-5">
-              <span className="text-yellow flex items-center justify-center">Book Affordable Courses:</span>Save
-              Time And Money With Us!
-            </p>
-          </div>
-          <div className="p-5 mx-auto">
-            <button className="flex items-center justify-between border px-3 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover py-1 hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl ">
-              View all Services
-              <IoIosArrowRoundForward />
-            </button>
+            <div className="p-5 mx-auto">
+              <button
+                className="flex items-center justify-between border px-3 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                    object-cover py-1 hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl "
+              >
+                View all Services
+                <IoIosArrowRoundForward />
+              </button>
+            </div>
           </div>
         </div>
       </div>

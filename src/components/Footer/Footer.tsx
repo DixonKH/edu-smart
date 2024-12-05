@@ -5,18 +5,19 @@ import { FaPinterest } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
+import { FaRegCopyright } from "react-icons/fa";
 type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <div>
-      <div className="bg-green1 text-white">
+    <div className="bg-green1 text-white">
+      <div className="container">
         <div className="grid grid-cols-6 p-10 gap-5">
           <div className="col-span-2 gap-4">
             <div className="flex justify-start items-center gap-4 p-3">
               <div className="flex items-center justify-center rounded-full w-10 h-10 bg-yellow">
                 <MdCastForEducation className="text-xl text-bgGreen" />
-                </div>
+              </div>
               <p className="text-2xl">Edu-Smart</p>
             </div>
             <p className="p-3">
@@ -25,7 +26,6 @@ const Footer = (props: Props) => {
               ultricies. Vivamus sed diam non et justo just
             </p>
             <div className="flex justify-evenly items-center gap-1 p-2">
-            
               <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
                 <FaFacebook className="text-xl text-white" />
               </div>
@@ -72,6 +72,25 @@ const Footer = (props: Props) => {
                 placeholder=""
               />
               <IoSend className="text-2xl text-black  rounded-r-md bg-yellow" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-yellow">
+        <div className="container">
+          <div className="flex justify-between items-center ">
+            <div className="flex justify-between items-center gap-3 p-1">
+              <p className="text-black flex justify-center items-center">
+                Copyright  <FaRegCopyright className="mx-3" /> 2024 Jeonbuk Korean Learning
+                Center. All rights Reserved.
+              </p>
+            </div>
+            <div>
+              <div className="flex justify-evenly items-center gap-4 py-2 px-4">
+                <p className="text-black">
+                  User Terms & Conditions | Privacy Policy
+                </p>
+              </div>
             </div>
           </div>
         </div>

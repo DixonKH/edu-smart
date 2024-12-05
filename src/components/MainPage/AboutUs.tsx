@@ -5,7 +5,7 @@ type Props = {};
 
 const AboutUs = (props: Props) => {
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid container grid-cols-2">
       <div className="m-20">
         <div className="flex drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover justify-start items-center gap-2 absolute px-1 z-40 bg-yellow  boder rounded-xl">
