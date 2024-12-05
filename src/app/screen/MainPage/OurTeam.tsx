@@ -1,7 +1,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa6";
 import VideContent from "../../../public/images/videocontent.png";
-import Person1 from "../../../public/images/person1.jpg";
+import Person1 from "/public/images/person1.jpg";
 
 type Props = {};
 

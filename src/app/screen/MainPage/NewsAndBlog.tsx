@@ -1,6 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa6";
-import Teaching from "./../../../public/images/Teaching.jpg";
+import Teaching from "/public/images/Teaching.jpg";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { Link } from "react-router";
 import Line from "./Line";
