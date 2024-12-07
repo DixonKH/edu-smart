@@ -10,18 +10,18 @@ type Props = {};
 function OurProcess({}: Props) {
   return (
     <div className="mb-2">
-      <div className="container">
+      <div className="lg:container md:mx-10 sm:mx-5 mx-1">
       <div>
-        <div className="flex justify-center items-center gap-4 pt-8 p-6">
-          <p className="text-3xl text-black">- Our Process -</p>
+        <div className="flex justify-start items-center pt-1  md:pt-5 lg:pb-6">
+          <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">- Our Process -</p>
         </div>
-        <div className="flex items-center justify-center">
-          <p className=" text-4xl   p-3 pl-10">
+        <div className="lg:flex items-center justify-center">
+          <p className=" lg:text-4xl md:text-3xl sm:text-2xl text-xl lg:p-5 md:p-2 p-1">
             <span className="text-green1">Here's How We </span>Teach
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-4 pt-5 gap-5">
+      <div className="grid md:grid-cols-4 lg:grid-cols-4 grid-cols-2 sm:grid-cols-2 pt-5 gap-5">
         <div>
           <div className=" flex  items-start justify-evenly">
             <div className=" relative z-40 flex justify-end items-start  text-white p-4">
@@ -36,8 +36,8 @@ function OurProcess({}: Props) {
               </div>
             </div>
           </div>
-          <p className="text-xl bold mx-auto m-5 text-center">Book Courses</p>
-          <p className="text-md bold mx-auto m-3 text-center">
+          <p className="lg:p-5 md:p-2 p-1 text-sm md:text-lg bold mx-auto lg:m-5 text-center">Book Courses</p>
+          <p className="lg:p-5 md:p-2 p-1 text-xs md:text-base bold mx-auto m-3 text-center">
             Lorem Ipsum is Lorem Ipsum is simply dummy text of the printing and
             typesetting industry.
           </p>
@@ -56,8 +56,8 @@ function OurProcess({}: Props) {
               </div>
             </div>
           </div>
-          <p className="text-xl bold mx-auto m-5 text-center">Team Contact</p>
-          <p className="text-md bold mx-auto m-3 text-center">
+          <p className="lg:p-5 md:p-2 p-1 text-sm md:text-lg bold mx-auto lg:m-5 text-center">Team Contact</p>
+          <p className="lg:p-5 md:p-2 p-1 text-xs md:text-base bold mx-auto m-3 text-center">
             Lorem Ipsum is Lorem Ipsum is simply dummy text of the printing and
             typesetting industry.
           </p>
@@ -76,8 +76,8 @@ function OurProcess({}: Props) {
               </div>
             </div>
           </div>
-          <p className="text-xl bold mx-auto m-5 text-center">Interview</p>
-          <p className="text-md bold mx-auto m-3 text-center">
+          <p className="lg:p-5 md:p-2 p-1 text-sm md:text-lg bold mx-auto lg:m-5 text-center">Interview</p>
+          <p className="lg:p-5 md:p-2 p-1 text-xs md:text-base bold mx-auto m-3 text-center">
             Lorem Ipsum is Lorem Ipsum is simply dummy text of the printing and
             typesetting industry.
           </p>
@@ -96,8 +96,8 @@ function OurProcess({}: Props) {
               </div>
             </div>
           </div>
-          <p className="text-xl bold mx-auto m-5 text-center">Final Result</p>
-          <p className="text-md bold mx-auto m-3 text-center">
+          <p className="lg:p-5 md:p-2 p-1 text-sm md:text-lg bold mx-auto lg:m-5 text-center">Final Result</p>
+          <p className="lg:p-5 md:p-2 p-1 text-xs md:text-base bold mx-auto m-3 text-center">
             Lorem Ipsum is Lorem Ipsum is simply dummy text of the printing and
             typesetting industry.
           </p>
@@ -105,23 +105,23 @@ function OurProcess({}: Props) {
       </div>
       </div>
       <div className="bg-green1">
-        <div className="container">
-          <div className="flex items-center justify-between">
+        <div className="lg:container md:mx-10 sm:mx-5 m-3">
+          <div className="md:flex items-center justify-between">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <p className="ml-5 pl-5 pb-5 text-8xl text-yellow">|</p>
+                <p className="lg:ml-5 lg:pl-5 ml-1 pl-1 pb-5 lg:text-9xl md:text-4xl sm:text-4xl text-4xl lg:p-5 md:p-2 p-1 text-yellow">|</p>
               </div>
-              <p className="text-4xl  text-white p-5">
+              <p className="lg:text-4xl md:text-3xl sm:text-2xl text-xl lg:p-5 md:p-2 p-0  text-white ">
                 <span className="text-yellow flex items-center justify-center">
                   Book Affordable Courses:
                 </span>
                 Save Time And Money With Us!
               </p>
             </div>
-            <div className="p-5 mx-auto">
+            <div className=" lg:mt-[200px] flex justify-start lg:p-5 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
               <button
-                className="flex items-center justify-between border px-3 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover py-1 hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl "
+                className="flex items-center justify-between drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                    object-cover border px-3 py-1 hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl"
               >
                 View all Services
                 <IoIosArrowRoundForward />

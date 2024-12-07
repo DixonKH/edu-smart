@@ -9,30 +9,30 @@ type Props = {};
 function ContactUs({}: Props) {
   return (
     <div>
-      <div className="grid container grid-cols-2">
+      <div className="grid lg:container md:mx-10 sm:mx-5 mx-1 md:grid-cols-2">
         <div>
           <div className="">
-            <div className=" gap-4 pt-8 p-6">
-              <p className="text-2xl text-black">- Contact Us -</p>
+            <div className=" flex justify-start items-center pt-1  md:pt-5 lg:pb-6">
+              <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">- Contact Us -</p>
             </div>
-            <div className="">
-              <p className=" text-3xl   p-3 pl-10">
+            <div className="g:flex items-center justify-cente">
+              <p className=" lg:text-4xl md:text-3xl sm:text-2xl text-xl lg:p-5 md:p-2 p-1">
                 Get your
                 <span className="text-green1">Free Quote today </span>
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-2 p-5 gap-5">
+          <div className="grid md:grid-cols-2 lg:p-5 lg:gap-5">
             <div>
-              <div className="p-3">
-                <p>Your name*</p>
+              <div className="lg:p-3 p-1">
+                <p className="">Your name*</p>
                 <input
                   type="text"
                   className="border px-3 py-1 rounded-2xl w-full"
                   placeholder="Ex.John Doe"
                 />
               </div>
-              <div className="p-3">
+              <div className="lg:p-3 p-1">
                 <p>Phone*</p>
                 <input
                   type="text"
@@ -42,7 +42,7 @@ function ContactUs({}: Props) {
               </div>
             </div>
             <div>
-              <div className="p-3">
+              <div className="lg:p-3 p-1">
                 <p>Email*</p>
                 <input
                   type="text"
@@ -50,7 +50,7 @@ function ContactUs({}: Props) {
                   placeholder="example@example.com"
                 />
               </div>
-              <div className="p-3">
+              <div className="lg:p-3 p-1">
                 <p>Service*</p>
                 <select className="border px-3 py-1 rounded-2xl w-full">
                   <option value="1">Service 1</option>
@@ -60,7 +60,7 @@ function ContactUs({}: Props) {
               </div>
             </div>
           </div>
-          <div className="p-5">
+          <div className="lg:p-3 p-1">
             <p>Your Message*</p>
             <input
               type="text"
@@ -68,9 +68,11 @@ function ContactUs({}: Props) {
             />
           </div>
           <div>
-            <div className="p-5 mx-auto">
-              <button className="flex items-center drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover justify-between border px-3 py-1 hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl ">
+          <div className=" lg:mt-[200px] flex justify-start lg:p-5 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
+              <button
+                className="flex items-center justify-between drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                    object-cover border px-3 py-1 hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl"
+              >
                 View all Services
                 <IoIosArrowRoundForward />
               </button>
@@ -78,25 +80,25 @@ function ContactUs({}: Props) {
           </div>
         </div>
         <div className="bg-green1 border rounded-3xl text-white">
-          <div className="m-8">
+          <div className="lg:m-8">
             <p className="p-5 text-xl">Address</p>
             <p className="px-5 text-md">4517, Washington Ave. <br/>Manchester, Kentucky</p>
           </div>
-          <div className="m-8">
+          <div className="lg:m-8">
             <p className="p-5 text-xl">Contact</p>
             <p className="px-5 text-md">Phone: +82101234567 <br/>Email: example@example.com</p>
           </div>
-          <div className="m-8">
+          <div className="lg:m-8">
             <p className="p-5 text-xl">Open Time</p>
             <p className="px-5 text-md">
               Monday-Friday: 12:00 - 18:00 <br/> Saturday: 10:00 - 16:00 Sunday:
               Closed
             </p>
           </div>
-          <div className="m-8">
-            <p className="p-5 text-xl">Stay Connected</p>
-            <div className="px-5 text-md">
-              <div className="flex justify-start gap-8 items-center">
+          <div className="lg:m-8">
+            <p className="lg:p-5 p-3 text-xl">Stay Connected</p>
+            <div className="p-5 text-md">
+              <div className="flex  justify-center lg:gap-8 md:gap-5 sm:gap-3 gap-3 items-center">
                 <div className="flex items-center justify-center drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover rounded-full w-10 h-10 bg-yellow">
                   <FaFacebook className="text-xl text-black" />
