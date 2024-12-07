@@ -13,7 +13,7 @@ type Props = {};
 const Testimonial = (props: Props) => {
   return (
     <div>
-      <div className="lg:container md:mx-10 sm:mx-5 mx-1">
+      <div className="lg:container md:px-10 sm:px-5 px-1">
         <div className="flex justify-start items-center pt-1  md:pt-5 lg:pb-6">
           <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
             - Testimonial -
@@ -26,7 +26,7 @@ const Testimonial = (props: Props) => {
           </p>
         </div>
       </div>
-      <div className="lg:container md:mx-10 sm:mx-5 mx-1">
+      <div className="lg:container md:px-10 sm:px-5 px-1">
         <div className="grid md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1  gap-5">
           <div
             className=" lg:m-5 lg:py-5  md:m-3 md:py-3 sm:m-1 sm:py-1  bg-bgGreen    hover:bg-background rounded-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]

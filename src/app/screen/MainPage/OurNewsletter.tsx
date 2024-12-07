@@ -6,7 +6,7 @@ type Props = {};
 
 const OurNewsletter = (props: Props) => {
   return (
-    <div className="container">
+    <div className="lg:container md:px-10 sm:px-5 px-1">
       <div>
         <div>
           <div className="flex justify-center items-center gap-4 pt-8 p-6">

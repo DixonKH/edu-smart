@@ -9,7 +9,7 @@ type Props = {};
 const OurLatestAhievement = (props: Props) => {
   return (
     <div>
-      <div className="lg:container md:mx-10 sm:mx-5 mx-1">
+      <div className="lg:container md:px-10 sm:px-5 px-1">
         <div>
           <div className="md:flex items-center justify-between">
             <div>

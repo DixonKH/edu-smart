@@ -5,8 +5,8 @@ type Props = {};
 
 const AboutUs = (props: Props) => {
   return (
-    <div className="lg:container md:mx-10 sm:mx-5 mx-1">
-      <div className="flex  flex-col-reverse  sm:flex-col-reverse  md:flex-row lg:flex-row">
+    <div className="lg:container md:px-10 sm:px-5 px-1">
+      <div className="grid    sm:grid-cols-1   lg:grid-cols-2">
         <div className="flex items-center justify-center">
           <div className="relative  flex items-start justify-center  sm:z-30">
             <div

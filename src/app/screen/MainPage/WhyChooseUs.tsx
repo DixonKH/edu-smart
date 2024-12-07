@@ -13,7 +13,7 @@ type Props = {};
 const WhyChooseUs = (props: Props) => {
   return (
     <div className="">
-      <div className="lg:container md:mx-10 sm:mx-5 mx-1">
+      <div className="lg:container md:px-10 sm:px-5 px-1">
         <div className="md:flex items-center justify-between">
           <div>
             <div className="flex justify-start items-center pt-1  md:pt-5 lg:pb-6">

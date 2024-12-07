@@ -9,7 +9,7 @@ type Props = {};
 function ContactUs({}: Props) {
   return (
     <div>
-      <div className="grid lg:container md:mx-10 sm:mx-5 mx-1 md:grid-cols-2">
+      <div className="grid lg:container md:px-10 sm:px-5 px-1 md:grid-cols-2">
         <div>
           <div className="">
             <div className=" flex justify-start items-center pt-1  md:pt-5 lg:pb-6">

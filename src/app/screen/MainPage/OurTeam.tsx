@@ -9,7 +9,7 @@ const OurTeam = (props: Props) => {
   return (
     <div>
       <div>
-        <div className="lg:container md:mx-10 sm:mx-5 mx-1">
+        <div className="lg:container md:px-10 sm:px-5 px-1">
           <div className="flex justify-start items-center pt-1  md:pt-5 lg:pb-6">
             <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
               - Our Team -
@@ -23,7 +23,7 @@ const OurTeam = (props: Props) => {
           </div>
         </div>
       </div>
-      <div className="lg:container md:mx-10 sm:mx-5 mx-1">
+      <div className="lg:container md:px-10 sm:px-5 px-1">
         <div className="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-1 grid-cols-1">
           <div
             className=" m-5 py-5  bg-background rounded-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]

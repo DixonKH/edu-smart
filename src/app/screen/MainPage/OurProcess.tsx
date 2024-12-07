@@ -10,7 +10,7 @@ type Props = {};
 function OurProcess({}: Props) {
   return (
     <div className="mb-2">
-      <div className="lg:container md:mx-10 sm:mx-5 mx-1">
+      <div className="lg:container md:px-10 sm:px-5 px-1">
       <div>
         <div className="flex justify-start items-center pt-1  md:pt-5 lg:pb-6">
           <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">- Our Process -</p>
@@ -105,7 +105,7 @@ function OurProcess({}: Props) {
       </div>
       </div>
       <div className="bg-green1">
-        <div className="lg:container md:mx-10 sm:mx-5 m-3">
+        <div className="lg:container md:px-10 sm:px-5 px-1">
           <div className="md:flex items-center justify-between">
             <div className="flex items-center justify-between">
               <div className="flex items-center">

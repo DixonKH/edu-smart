@@ -26,7 +26,7 @@ type Props = {};
 const MainPage = (props: Props) => {
   return (
     <div>
-      <div className="lg:container md:mx-10 sm:mx-5 mx-1">
+      <div className="lg:container md:px-10 sm:px-5 px-1">
         <div className="grid sm:grid-cols-1  md:grid-cols-2">
           <div className="lg:px-5 px-2 py-3 lg:py-10">
             <div className="flex justify-start items-center lg:gap-4 md:gap-1 gap-1 pt-1  md:pt-5 lg:pb-6">
