@@ -7,9 +7,9 @@ import video from "/videos/lesson.mp4";
 export default function LessonCard(props: any) {
   return (
     <>
-      <div className="flex flex-col align-middle justify-items-start w-64 h-auto border-solid border rounded-lg">
+      <div className="flex flex-col align-middle justify-items-start w-full h-auto border-solid border rounded-lg">
         <div>
-          <video width="320" height="240" className="rounded-md" controls>
+          <video className="rounded-md" controls>
             <source src={video} type="video/mp4" />
           </video>
         </div>

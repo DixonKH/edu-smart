@@ -69,7 +69,7 @@ export default {
         sm: "375px",
         base: "480px",
         md: "768px",
-        lg: "1060px",
+        lg: "1300px",
       },
       content: {
         view: "url(./assets/View.jpg)",

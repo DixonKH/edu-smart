@@ -12,39 +12,39 @@ const Footer = (props: Props) => {
   return (
     <div>
       <div className="bg-green1 text-white">
-        <div className="bg-green1 text-white lg:container md:px-10 sm:px-5 px-1">
-          <div className=" grid md:grid-cols-6 lg:grid-cols-6 p-5 gap-5">
-            <div className="col-span-2 gap-4">
-              <div className="flex justify-start items-center gap-4 p-3">
-                <div className="flex items-center justify-center rounded-full w-10 h-10 bg-yellow">
-                  <MdCastForEducation className="text-xl text-bgGreen" />
-                </div>
-                <p className="text-2xl">Edu-Smart</p>
+        <div className=" container grid md:grid-cols-6 p-10 gap-5">
+          <div className="col-span-2 gap-4">
+            <div className="flex justify-start items-center gap-4 p-3">
+              <div className="flex items-center justify-center rounded-full w-10 h-10 bg-yellow">
+                <MdCastForEducation className="text-xl text-bgGreen" />
               </div>
-              <p className="p-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
-                quam et sapien sed magna placerat. Donec vel neque et nunc
-                gravida ultricies. Vivamus sed diam non et justo just
-              </p>
-              <div className="sm:flex justify-evenly items-center gap-1 p-2">
-                <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
-                  <FaFacebook className="text-xl text-white" />
-                </div>
-                <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
-                  <FaTwitter className="text-xl text-white" />
-                </div>
-                <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
-                  <FaPinterest className="text-xl text-white" />
-                </div>
-                <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
-                  <FaInstagramSquare className="text-xl text-white" />
-                </div>
-                <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
-                  <FaYoutube className="text-xl text-white" />
-                </div>
+              <p className="text-2xl">Edu-Smart</p>
+            </div>
+            <p className="p-3">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+              quam et sapien sed magna placerat. Donec vel neque et nunc gravida
+              ultricies. Vivamus sed diam non et justo just
+            </p>
+            <div className="sm:flex justify-evenly items-center gap-1 p-2">
+              <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
+                <FaFacebook className="text-xl text-white" />
+              </div>
+              <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
+                <FaTwitter className="text-xl text-white" />
+              </div>
+              <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
+                <FaPinterest className="text-xl text-white" />
+              </div>
+              <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
+                <FaInstagramSquare className="text-xl text-white" />
+              </div>
+              <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
+                <FaYoutube className="text-xl text-white" />
               </div>
             </div>
-            <div className="col-span-1">
+          </div>
+          <div>
+            <div className="">
               <p className="text-2xl p-3">Company</p>
               <ul className="inline-block">
                 <li className="p-2 hover:text-[18px] hover:text-yellow">

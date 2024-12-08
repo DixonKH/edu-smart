@@ -1,15 +1,13 @@
-import React from "react";
+//import React from "react";
 import { FaBook } from "react-icons/fa";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import MainImage from "/public/images/mainpageimage.jpg";
 import { RiTeamFill } from "react-icons/ri";
 import { MdPriceChange } from "react-icons/md";
 import TeamGirls from "/public/images/teamgirls.jpg";
-import { FaStar } from "react-icons/fa6";
 import AboutUs from "./AboutUs";
 import OurServices from "./OurServices";
 import WhyChooseUs from "./WhyChooseUs";
-import OurLatestAhievement from "./OurLatestAchievement";
 import OurProcess from "./OurProcess";
 import ContactUs from "./ContactUs";
 import Testimonial from "./Testimonial";
@@ -21,9 +19,7 @@ import NewsAndBlog from "./NewsAndBlog";
 import Faqs from "./Faqs";
 import OurNewsletter from "./OurNewsletter";
 
-type Props = {};
-
-const MainPage = (props: Props) => {
+const MainPage = () => {
   return (
     <div>
       <div className="lg:container md:px-10 sm:px-5 px-1">
