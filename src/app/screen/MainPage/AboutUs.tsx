@@ -11,7 +11,7 @@ const AboutUs = (props: Props) => {
           <div className="relative  flex items-start justify-center  sm:z-30">
             <div
               className="flex items-center drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)] md:text-sm lg:text-sm text-xs sm:text-xs 
-                    object-cover justify-start gap-2 absolute px-1 z-40 bg-yellow  boder rounded-xl"
+                    object-cover justify-start gap-2 absolute px-1 z-30 bg-yellow  boder rounded-xl"
             >
               <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                 <FaStar className="text-sm text-white" />

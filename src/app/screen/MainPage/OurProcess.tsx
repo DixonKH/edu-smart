@@ -1,6 +1,6 @@
 import { MdOutlineHomeRepairService } from "react-icons/md";
-import { SiMicrosoftteams } from "react-icons/si";
 import { FaBook } from "react-icons/fa6";
+import { BiLogoMicrosoftTeams } from "react-icons/bi";
 import { FaSmile } from "react-icons/fa";
 import { IoIosArrowRoundForward } from "react-icons/io";
 
@@ -23,7 +23,7 @@ function OurProcess({}: Props) {
       <div className="grid md:grid-cols-4 lg:grid-cols-4 grid-cols-2 sm:grid-cols-2 pt-5 gap-5">
         <div>
           <div className="flex items-start justify-evenly">
-            <div className=" relative z-40 flex justify-end items-start  text-white p-4">
+            <div className=" relative z-30 flex justify-end items-start  text-white p-4">
               <div
                 className="border rounded-full bg-green1  drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover"
@@ -43,12 +43,12 @@ function OurProcess({}: Props) {
         </div>
         <div>
           <div className=" flex  items-start justify-evenly">
-            <div className=" relative z-40 flex justify-end items-start  text-white p-4">
+            <div className=" relative z-30 flex justify-end items-start  text-white p-4">
               <div
                 className="border rounded-full bg-green1 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover"
               >
-                <SiMicrosoftteams className="text-7xl p-3"></SiMicrosoftteams>
+                <BiLogoMicrosoftTeams className="text-7xl p-3"></BiLogoMicrosoftTeams>
               </div>
               <div className="absolute z-50 bg-yellow border text-xl rounded-full">
                 <p>02</p>
@@ -63,7 +63,7 @@ function OurProcess({}: Props) {
         </div>
         <div>
           <div className=" flex  items-start justify-evenly">
-            <div className=" relative z-40 flex justify-end items-start  text-white p-4">
+            <div className=" relative z-30 flex justify-end items-start  text-white p-4">
               <div
                 className="border rounded-full bg-green1 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover"
@@ -83,7 +83,7 @@ function OurProcess({}: Props) {
         </div>
         <div>
           <div className=" flex  items-start justify-evenly">
-            <div className=" relative z-40 flex justify-end items-start  text-white p-4">
+            <div className=" relative z-30 flex justify-end items-start  text-white p-4">
               <div
                 className="border rounded-full bg-green1 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover"
