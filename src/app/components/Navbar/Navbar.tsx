@@ -86,7 +86,7 @@ const Navbar = (props: Props) => {
                       <MdCastForEducation className="text-xl text-bgGreen" />
                     </div>
                     <p
-                      className="md:text-2xl text-xl text-white sm:text-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                      className="md:text-2xl text-xl text-white lg:text-black md:text-black sm:text-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover"
                     >
                       Edu-Smart
