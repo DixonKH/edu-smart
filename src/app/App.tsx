@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 import { Route, Routes } from "react-router";
 import LessonsPage from "./screen/LessonsPage";
 import ChoosenLesson from "./screen/LessonsPage/ChoosenLesson";
+import TeacherDetail from "./screen/OurTeachers/TeacherDetail";
 function App() {
   return (
     <div>
@@ -19,6 +20,7 @@ function App() {
           <Route path="/community" element={<Community />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/lessons/:lessonId" element={<ChoosenLesson />} />
+          <Route path="/ourteachers/:teacherId" element={<TeacherDetail />} />
         </Routes>
         <Footer />
         {/* <PopUp orderPopup={orderPopup} setOrderPopup={setOrderPopup} /> */}

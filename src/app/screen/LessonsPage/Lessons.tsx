@@ -12,88 +12,6 @@ import {
 } from "@/components/ui/pagination";
 
 export default function Lessons() {
-  const lessons: any = [
-    {
-      id: 1,
-      title: "Koreys Alifbosi va ularning qollanish usullari",
-      category: "Beginner",
-      desc: "This is the Desc",
-      create: "12/07/2024",
-      owner: "Meloboyev A",
-      view: "2",
-      like: "true",
-    },
-    {
-      id: 2,
-      title: "Lesson 2",
-      category: "Elementry",
-      desc: "This is the Desc",
-      create: "12/07/2024",
-      owner: "Abdurakhmonov B",
-      view: "3",
-      like: "true",
-    },
-    {
-      id: 3,
-      category: "Intermediate",
-      title: "Lesson 3",
-      desc: "This is the Desc",
-      create: "12/07/2024",
-      owner: "Xasanov D",
-      view: "5",
-      like: "false",
-    },
-    {
-      id: 4,
-      title: "Lesson 4",
-      category: "Advanced",
-      desc: "This is the Desc",
-      create: "12/07/2024",
-      owner: "Abdurakhmonov B",
-      view: "3",
-      like: "true",
-    },
-    {
-      id: 5,
-      title: "Lesson 5",
-      category: "Elementry",
-      desc: "This is the Desc",
-      create: "12/07/2024",
-      owner: "Abdurakhmonov B",
-      view: "1",
-      like: "false",
-    },
-    {
-      id: 6,
-      title: "Lesson 3",
-      category: "Beginner",
-      desc: "This is the Desc",
-      create: "12/07/2024",
-      owner: "Xasanov D",
-      view: "5",
-      like: "false",
-    },
-    {
-      id: 7,
-      title: "Lesson 4",
-      category: "Beginner",
-      desc: "This is the Desc",
-      create: "12/07/2024",
-      owner: "Abdurakhmonov B",
-      view: "3",
-      like: "true",
-    },
-    {
-      id: 8,
-      title: "Lesson 5",
-      category: "Elementry",
-      desc: "This is the Desc",
-      create: "12/07/2024",
-      owner: "Abdurakhmonov B",
-      view: "1",
-      like: "false",
-    },
-  ];
   return (
     <div className="container">
       <div>
@@ -141,9 +59,7 @@ export default function Lessons() {
           </form>
         </div>
         <div className="grid justify-center ms:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 grid-flow-row gap-4 mt-4 w-full  h-auto mb-5">
-          {lessons.map((lesson: any) => {
-            return <LessonCard key={lesson.id} lesson={lesson} />;
-          })}
+          <LessonCard />;
         </div>
         <div className="my-3">
           <Pagination>

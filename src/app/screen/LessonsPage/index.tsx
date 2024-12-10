@@ -7,7 +7,7 @@ export default function LessonsPage() {
     <div>
       <Routes>
         <Route path="/" element={<Lessons />} />
-        {/* <Route path="/lessons/:id" element={<ChoosenLesson />} /> */}
+        <Route path="/lessons/:id" element={<ChoosenLesson />} />
       </Routes>
       
     </div>
