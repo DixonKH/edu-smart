@@ -1,5 +1,4 @@
 import React from "react";
-import { FaStar } from "react-icons/fa6";
 import Teaching from "/public/images/Teaching.jpg";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { Link } from "react-router";
@@ -10,26 +9,23 @@ type Props = {};
 const NewsAndBlog = (props: Props) => {
   return (
     <div>
-      <div className="lg:container md:px-10 sm:px-5 px-1">
+      <div className="lg:container md:px-10 sm:px-5 px-1 mt-20">
         <div className=" items-center justify-between">
-          <div>
-            <div className="flex justify-start items-center pt-1  md:pt-5 lg:pb-6">
-              <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
-                - News & Blog -
-              </p>
-            </div>
+          <div className="lg:text-left text-center">
+            <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
+              - News & Blog -
+            </p>
             <div className="lg:flex items-center justify-centerr">
-              <p className=" lg:text-4xl md:text-3xl sm:text-2xl text-xl lg:p-5 md:p-2 p-1">
+              <p className=" lg:text-4xl lg:font-medium md:text-3xl sm:text-2xl text-xl lg:p-5 md:p-2 sm:mb-4 lg:mb-0">
                 Our Latest
                 <span className="text-green1"> News & Blog</span>
               </p>
             </div>
           </div>
           <div>
-            <div className="  flex justify-start lg:p-5 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
+            <div className="flex justify-start lg:p-5 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
               <button
-                className="flex items-center justify-between drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover border px-3 py-1 hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl"
+                className="flex items-center justify-between shadow-xl border px-4 p-2  hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl"
               >
                 View all Classes
                 <IoIosArrowRoundForward />
@@ -37,8 +33,8 @@ const NewsAndBlog = (props: Props) => {
             </div>
           </div>
         </div>
-        <div className="md:grid grid-cols-3">
-          <div className="m-5">
+        <div className="md:grid grid-cols-3 mb-10">
+          <div className="m-5 border shadow-xl rounded-xl p-3 pb-8 cursor-pointer hover:shadow-xl transition-all duration-300 hover:bg-blue hover:text-white">
             <div className="realtive  flex items-end justify-center">
               <img
                 src={Teaching}
@@ -73,7 +69,7 @@ const NewsAndBlog = (props: Props) => {
                     object-cover px-3 "
               >
                 <Link
-                  className="hover:border-green1 border-black border-b-2 hover:text-green1"
+                  className="hover:border-green1 border-black border-b-2 "
                   to=""
                 >
                   {" "}
@@ -82,8 +78,8 @@ const NewsAndBlog = (props: Props) => {
               </div>
             </div>
           </div>
-          <div className="m-5">
-            <div className="realtive   flex items-end justify-center">
+          <div className="m-5 border shadow-xl rounded-xl p-3 pb-8 cursor-pointer hover:shadow-xl transition-all duration-300 hover:bg-iris hover:text-white">
+            <div className="realtive flex items-end justify-center">
               <img
                 src={Teaching}
                 alt="VideContent"
@@ -126,7 +122,7 @@ const NewsAndBlog = (props: Props) => {
               </div>
             </div>
           </div>
-          <div className="m-5">
+          <div className="m-5 border shadow-xl rounded-xl p-3 pb-8 cursor-pointer hover:shadow-xl transition-all duration-300 hover:bg-bgGreen hover:text-white">
             <div className="realtive  flex items-end justify-center">
               <img
                 src={Teaching}

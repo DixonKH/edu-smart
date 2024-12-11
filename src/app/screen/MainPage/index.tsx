@@ -6,11 +6,9 @@ import OurProcess from "./OurProcess";
 import ContactUs from "./ContactUs";
 import Testimonial from "./Testimonial";
 import OurLatestAchievement from "./OurLatestAchievement";
-import Line from "./Line";
 import OurTeam from "./OurTeam";
 import PricingTable from "./PricingTable";
 import NewsAndBlog from "./NewsAndBlog";
-import Faqs from "./Faqs";
 import OurNewsletter from "./OurNewsletter";
 
 const MainPage = () => {
@@ -27,7 +25,6 @@ const MainPage = () => {
       <OurTeam />
       <PricingTable />
       <NewsAndBlog />
-      <Faqs />
       <OurNewsletter />
     </div>
   );

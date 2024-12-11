@@ -4,51 +4,50 @@ import { FaTwitter } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
-import { IoSend } from "react-icons/io5";
+import { PiSneakerMoveFill } from "react-icons/pi";
 import { FaRegCopyright } from "react-icons/fa";
-type Props = {};
 
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <div>
       <div className="bg-green1 text-white">
         <div className=" container md:px-10 sm:px-5 px-1  ">
           <div className="grid lg:grid-cols-6 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 p-10">
             <div className="col-span-2 gap-4">
-              <div className="flex justify-start items-center gap-2 p-3">
+              <div className="flex lg:justify-start justify-center items-center gap-2 p-3">
                 <div className="flex items-center justify-center rounded-full w-10 h-10 bg-yellow">
-                  <MdCastForEducation className="text-xl text-bgGreen" />
+                  <MdCastForEducation className="text-xl text-green1" />
                 </div>
                 <p className="text-2xl">Edu-Smart</p>
               </div>
-              <p className="p-3">
+              <p className="p-3 text-center lg:text-left">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
                 quam et sapien sed magna placerat. Donec vel neque et nunc
                 gravida ultricies. Vivamus sed diam non et justo just
               </p>
               <div className="sm:flex flex justify-evenly items-center gap-1 p-2">
-                <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
+                <div className="flex items-center justify-center rounded-full w-10 h-10 cursor-pointer hover:w-12 hover:h-12 transition-all duration-300 bg-bgGreen">
                   <FaFacebook className="text-xl text-white" />
                 </div>
-                <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
+                <div className="flex items-center justify-center rounded-full w-10 h-10 cursor-pointer hover:w-12 hover:h-12 transition-all duration-300 bg-bgGreen">
                   <FaTwitter className="text-xl text-white" />
                 </div>
-                <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
+                <div className="flex items-center justify-center rounded-full w-10 h-10 cursor-pointer hover:w-12 hover:h-12 transition-all duration-300 bg-bgGreen">
                   <FaPinterest className="text-xl text-white" />
                 </div>
-                <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
+                <div className="flex items-center justify-center rounded-full w-10 h-10 cursor-pointer hover:w-12 hover:h-12 transition-all duration-300 bg-bgGreen">
                   <FaInstagramSquare className="text-xl text-white" />
                 </div>
-                <div className="flex items-center justify-center rounded-full w-10 h-10 bg-bgGreen">
+                <div className="flex items-center justify-center rounded-full w-10 h-10 cursor-pointer hover:w-12 hover:h-12 transition-all duration-300 bg-bgGreen">
                   <FaYoutube className="text-xl text-white" />
                 </div>
               </div>
             </div>
             <div className="col-span-2">
               <div className="lg:flex">
-                <div className="">
+                <div className=" text-center lg:text-left mb-4">
                   <p className="text-2xl p-3">Company</p>
-                  <ul className="inline-block">
+                  <ul className="inline-block cursor-pointer">
                     <li className="p-2 hover:text-[18px] hover:text-yellow">
                       Our Team
                     </li>
@@ -67,7 +66,7 @@ const Footer = (props: Props) => {
                   </ul>
                 </div>
 
-                <div className="">
+                <div className=" text-center lg:text-left">
                   <p className="text-2xl p-3">Contact</p>
                   <ul className="inline-block">
                     <li className="p-2">+82101234567</li>
@@ -81,11 +80,11 @@ const Footer = (props: Props) => {
               <p className="p-3  text-2xl">Get the latest information</p>
               <div className="flex items-center p-3 ">
                 <input
-                  className="rounded-l-md w-full bg-white text-black"
+                  className="rounded-l-md w-full h-10 px-3 text-lg text-black outline-none"
                   type="text"
-                  placeholder=""
+                  placeholder="Search something..."
                 />
-                <IoSend className="text-2xl text-black  rounded-r-md bg-yellow" />
+                <PiSneakerMoveFill className="text-2xl text-green1 size-10 rounded-r-md bg-yellow" />
               </div>
             </div>
           </div>

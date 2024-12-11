@@ -8,98 +8,93 @@ type Props = {};
 const PricingTable = (props: Props) => {
   return (
     <div>
-      <div className="p-5 bg-background">
-        <div className=" lg:container md:px-10 sm:px-5 px-1">
-          <div className="flex justify-start items-center pt-1  md:pt-5 lg:pb-6">
-            <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
-              - Our Pricing Table -
-            </p>
-          </div>
-          <div className="lg:flex items-center justify-centerr">
-            <p className=" lg:text-4xl md:text-3xl sm:text-2xl text-xl lg:p-5 md:p-2 p-1">
-              <span className="text-green1"> Our Pricing</span>Model
-            </p>
-          </div>
+      <div className="p-5 bg-background mt-20">
+        <div className=" lg:container md:px-10 sm:px-5 px-1 mb-2">
+          <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
+            - Our Pricing Table -
+          </p>
+          <p className=" lg:text-4xl md:text-3xl sm:text-2xl text-xl lg:p-5 md:p-2 font-medium">
+            <span className="text-green1"> Our Pricing</span>Model
+          </p>
         </div>
-        <div className="lg:container md:px-10 sm:px-5 px-1">
-          <div className="grid md:grid-cols-3 gap-5">
+        <div className="container md:px-10 sm:px-5 px-1">
+          <div className="grid grid-cols-1 md:grid-flow-row lg:grid-cols-3 justify-center items-start gap-8">
             <div
-              className="hover:bg-green1 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover  border-black border rounded-3xl hover:text-white"
+              className="hover:bg-green1 w-full shadow-xl border rounded-3xl p-5 hover:text-white transition-all duration-300 cursor-pointer"
             >
               <div className="m-3">
                 <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
                   Basic
                 </p>
-                <p className="px-3 text-md">
+                <p className="px-3 text-md my-2">
                   <span className="lg:text-5xl md:text-3xl base:text-2xl sm:text-xl text-lg">
                     $99
                   </span>{" "}
                   /Service
                 </p>
               </div>
-              <div className="pl-4 ">
+              <div className="pl-4">
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                     <SiTicktick className="text-sm text-white" />
                   </div>
-                  <p className="  p-1 text-xs md:text-base bold mx-auto  text-center">
-                    Lorem Ips incorrectly called
-                  </p>
-                </div>
-                <div className="  flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
-                    <SiTicktick className="text-sm text-white" />
-                  </div>
-                  <p className="  p-1 text-xs md:text-base bold mx-auto ß text-center">
-                    Lorem Ips incorrectly called
+                  <p className="p-1 ml-2 text-lg md:text-base bold">
+                    Lorem Ips incorrectly called large
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                     <SiTicktick className="text-sm text-white" />
                   </div>
-                  <p className="  p-1 text-xs md:text-base bold mx-auto ß text-center">
-                    Lorem Ips incorrectly called
+                  <p className="  p-1 ml-2 text-lg md:text-base bold">
+                    Lorem Ips incorrectly called small desc
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                     <SiTicktick className="text-sm text-white" />
                   </div>
-                  <p className="  p-1 text-xs md:text-base bold mx-auto ß text-center">
-                    Lorem Ips incorrectly called
+                  <p className="  p-1 ml-2 text-lg md:text-base bold">
+                    Lorem Ips incorrectly called medium
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                     <SiTicktick className="text-sm text-white" />
                   </div>
-                  <p className="  p-1 text-xs md:text-base bold mx-auto ß text-center">
+                  <p className="  p-1 ml-2 text-lg md:text-base bold">
                     Lorem Ips incorrectly called
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                     <SiTicktick className="text-sm text-white" />
                   </div>
-                  <p className="  p-1 text-xs md:text-base bold mx-auto ß text-center">
+                  <p className="  p-1 ml-2 text-lg md:text-base bold">
+                    Lorem Ips incorrectly called table 
+                  </p>
+                </div>
+                <div className=" flex justify-start my-1 sm:my-2  items-center">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                    <SiTicktick className="text-sm text-white" />
+                  </div>
+                  <p className="  p-1 ml-2 text-lg md:text-base bold">
                     Lorem Ips incorrectly called
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                     <SiTicktick className="text-sm text-white" />
                   </div>
-                  <p className="  p-1 text-xs md:text-base bold mx-auto ß text-center">
-                    Lorem Ips incorrectly called
+                  <p className="  p-1 ml-2 text-lg md:text-base bold">
+                    Lorem Ips incorrectly called form range
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                     <SiTicktick className="text-sm text-white" />
                   </div>
-                  <p className="  p-1 text-xs md:text-base bold mx-auto ß text-center">
+                  <p className="  p-1 ml-2 text-lg md:text-base bold">
                     Lorem Ips incorrectly called
                   </p>
                 </div>
@@ -108,8 +103,7 @@ const PricingTable = (props: Props) => {
                 <div className="flex items-center justify-center px-3 text-md">
                   <div className="  flex justify-start lg:p-5 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
                     <button
-                      className="flex items-center justify-between drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover border px-3 py-1 hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl"
+                      className="flex items-center justify-between  px-4 py-2 hover:bg-bgGreen text-white bg-green3 rounded-2xl shadow-xl2"
                     >
                       View all Services
                       <IoIosArrowRoundForward />
@@ -118,25 +112,23 @@ const PricingTable = (props: Props) => {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="w-full">
               <div className="flex items-center justify-center">
                 <div
-                  className="flex drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover items-center gap-2 absolute px-1 z-30 bg-yellow  boder rounded-xl"
+                  className="flex shadow-xl items-center gap-2 px-4 py-2 absolute z-30 bg-yellow rounded-3xl"
                 >
                   <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <FaStar className="text-sm text-white" />
                   </div>
-                  <p className="text-sm">Most Popular</p>
+                  <p className="text-md font-medium">Most Popular</p>
                 </div>
               </div>
               <div
-                className="hover:bg-green1 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover  border-black border rounded-3xl hover:text-white"
+                className="hover:bg-green1 border shadow-xl rounded-3xl hover:text-white p-5 transition-all duration-300 cursor-pointer"
               >
                 <div className="m-3">
-                  <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
-                    Basic
+                  <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black my-2">
+                    Premium
                   </p>
                   <p className="px-3 text-md">
                     <span className="lg:text-5xl md:text-3xl base:text-2xl sm:text-xl text-lg">
@@ -147,66 +139,66 @@ const PricingTable = (props: Props) => {
                 </div>
                 <div className="pl-4 ">
                   <div className=" flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                       <SiTicktick className="text-sm text-white" />
                     </div>
-                    <p className="  p-1 text-xs md:text-base bold mx-auto  text-center">
+                    <p className="  p-1 ml-2 text-lg md:text-base bold">
                       Lorem Ips incorrectly called
                     </p>
                   </div>
                   <div className="  flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                       <SiTicktick className="text-sm text-white" />
                     </div>
-                    <p className="  p-1 text-xs md:text-base bold mx-auto  text-center">
+                    <p className="  p-1 ml-2 text-lg md:text-base bold">
                       Lorem Ips incorrectly called
                     </p>
                   </div>
                   <div className=" flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                       <SiTicktick className="text-sm text-white" />
                     </div>
-                    <p className="  p-1 text-xs md:text-base bold mx-auto ß text-center">
+                    <p className="  p-1 ml-2 text-lg md:text-base bold">
                       Lorem Ips incorrectly called
                     </p>
                   </div>
                   <div className=" flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                       <SiTicktick className="text-sm text-white" />
                     </div>
-                    <p className="  p-1 text-xs md:text-base bold mx-auto ß text-center">
+                    <p className="  p-1 ml-2 text-lg md:text-base bold">
                       Lorem Ips incorrectly called
                     </p>
                   </div>
                   <div className=" flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                       <SiTicktick className="text-sm text-white" />
                     </div>
-                    <p className="  p-1 text-xs md:text-base bold mx-auto ß text-center">
+                    <p className="  p-1 ml-2 text-lg md:text-base bold">
                       Lorem Ips incorrectly called
                     </p>
                   </div>
                   <div className=" flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                       <SiTicktick className="text-sm text-white" />
                     </div>
-                    <p className="  p-1 text-xs md:text-base bold mx-auto ß text-center">
+                    <p className="  p-1 ml-2 text-lg md:text-base bold">
                       Lorem Ips incorrectly called
                     </p>
                   </div>
                   <div className=" flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                       <SiTicktick className="text-sm text-white" />
                     </div>
-                    <p className="  p-1 text-xs md:text-base bold mx-auto ß text-center">
+                    <p className="  p-1 ml-2 text-lg md:text-base bold">
                       Lorem Ips incorrectly called
                     </p>
                   </div>
                   <div className=" flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                       <SiTicktick className="text-sm text-white" />
                     </div>
-                    <p className="  p-1 text-xs md:text-base bold mx-auto ß text-center">
+                    <p className="  p-1 ml-2 text-lg md:text-base bold">
                       Lorem Ips incorrectly called
                     </p>
                   </div>
@@ -215,8 +207,7 @@ const PricingTable = (props: Props) => {
                   <div className="flex items-center justify-center px-3 text-md">
                     <div className="  flex justify-start lg:p-5 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
                       <button
-                        className="flex items-center justify-between drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover border px-3 py-1 hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl"
+                        className="flex items-center justify-between shadow-xl2 px-4 py-2 bg-green3 text-white rounded-2xl"
                       >
                         View all Services
                         <IoIosArrowRoundForward />
@@ -227,14 +218,13 @@ const PricingTable = (props: Props) => {
               </div>
             </div>
             <div
-              className="hover:bg-green1 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover  border-black border rounded-3xl hover:text-white"
+              className="hover:bg-green1 w-full shadow-xl p-5 border rounded-3xl hover:text-white transition-all duration-300 cursor-pointer"
             >
               <div className="m-3">
                 <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
-                  Basic
+                  Gold
                 </p>
-                <p className="px-3 text-md">
+                <p className="px-3 text-md my-2">
                   <span className="lg:text-5xl md:text-3xl base:text-2xl sm:text-xl text-lg">
                     $299
                   </span>{" "}
@@ -243,67 +233,67 @@ const PricingTable = (props: Props) => {
               </div>
               <div className="pl-4 ">
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                     <SiTicktick className="text-sm text-white" />
                   </div>
-                  <p className=" p-1 text-xs md:text-base bold mx-auto  text-center">
-                    Lorem Ips incorrectly called
+                  <p className=" p-1 ml-2 text-lg md:text-base bold">
+                    Lorem Ips incorrectly called flex
                   </p>
                 </div>
                 <div className="  flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                     <SiTicktick className="text-sm text-white" />
                   </div>
-                  <p className=" p-1 text-xs md:text-base bold mx-auto ß text-center">
+                  <p className=" p-1 ml-2 text-lg md:text-base bold">
+                    Lorem Ips incorrectly called medium
+                  </p>
+                </div>
+                <div className=" flex justify-start my-1 sm:my-2  items-center">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                    <SiTicktick className="text-sm text-white" />
+                  </div>
+                  <p className=" p-1 ml-2 text-lg md:text-base bold">
+                    Lorem Ips incorrectly called rounded
+                  </p>
+                </div>
+                <div className=" flex justify-start my-1 sm:my-2  items-center">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                    <SiTicktick className="text-sm text-white" />
+                  </div>
+                  <p className=" p-1 ml-2 text-lg md:text-base bold">
                     Lorem Ips incorrectly called
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                     <SiTicktick className="text-sm text-white" />
                   </div>
-                  <p className=" p-1 text-xs md:text-base bold mx-auto ß text-center">
+                  <p className=" p-1 ml-2 text-lg md:text-base bold">
                     Lorem Ips incorrectly called
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                     <SiTicktick className="text-sm text-white" />
                   </div>
-                  <p className=" p-1 text-xs md:text-base bold mx-auto ß text-center">
-                    Lorem Ips incorrectly called
+                  <p className=" p-1 ml-2 text-lg md:text-base bold">
+                    Lorem Ips incorrectly called flexible
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                     <SiTicktick className="text-sm text-white" />
                   </div>
-                  <p className=" p-1 text-xs md:text-base bold mx-auto ß text-center">
-                    Lorem Ips incorrectly called
+                  <p className=" p-1 ml-2 text-lg md:text-base bold">
+                    Lorem Ips incorrectly cal
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
                     <SiTicktick className="text-sm text-white" />
                   </div>
-                  <p className=" p-1 text-xs md:text-base bold mx-auto ß text-center">
-                    Lorem Ips incorrectly called
-                  </p>
-                </div>
-                <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
-                    <SiTicktick className="text-sm text-white" />
-                  </div>
-                  <p className=" p-1 text-xs md:text-base bold mx-auto ß text-center">
-                    Lorem Ips incorrectly called
-                  </p>
-                </div>
-                <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
-                    <SiTicktick className="text-sm text-white" />
-                  </div>
-                  <p className=" p-1 text-xs md:text-base bold mx-auto ß text-center">
-                    Lorem Ips incorrectly called
+                  <p className=" p-1 ml-2 text-lg md:text-base bold">
+                    Lorem Ips incorrectly called small
                   </p>
                 </div>
               </div>
@@ -311,8 +301,7 @@ const PricingTable = (props: Props) => {
                 <div className="flex items-center justify-center px-3 text-md">
                   <div className="  flex justify-start lg:p-5 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
                     <button
-                      className="flex items-center justify-between drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover border px-3 py-1 hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl"
+                      className="flex items-center justify-between px-4 py-2 bg-green3 text-white rounded-2xl shadow-xl2"
                     >
                       View all Services
                       <IoIosArrowRoundForward />
