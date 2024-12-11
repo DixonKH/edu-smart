@@ -81,7 +81,7 @@ const Footer = (props: Props) => {
               <p className="p-3  text-2xl">Get the latest information</p>
               <div className="flex items-center p-3 ">
                 <input
-                  className="rounded-l-md w-full bg-bgGreen"
+                  className="rounded-l-md w-full bg-white text-black"
                   type="text"
                   placeholder=""
                 />

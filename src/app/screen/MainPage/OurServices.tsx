@@ -32,7 +32,7 @@ const OurServices = (props: Props) => {
         </div>
         <div className="grid md:grid-cols-3 xs:grid-cols-1 base:grid-cols-2 sm:grid-cols-1 grid-cols-1">
           <div
-            className=" m-5 py-5  bg-bgGreen  hover:bg-background rounded-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+            className=" m-5 py-5  hover:bg-bgGreen  bg-white rounded-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover"
           >
             <div className=" ">
@@ -66,7 +66,7 @@ const OurServices = (props: Props) => {
             </div>
           </div>
           <div
-            className=" m-5 py-5  bg-bgGreen  hover:bg-background rounded-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+            className=" m-5 py-5  hover:bg-bgGreen  bg-white rounded-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover"
           >
             <div className=" ">
@@ -100,7 +100,7 @@ const OurServices = (props: Props) => {
             </div>
           </div>
           <div
-            className=" m-5 py-5  bg-bgGreen  hover:bg-background rounded-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+            className=" m-5 py-5  hover:bg-bgGreen  bg-white rounded-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover"
           >
             <div className=" ">

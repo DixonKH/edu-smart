@@ -6,7 +6,7 @@ import { FaEye } from "react-icons/fa6";
 
 type Props = {};
 
-const FreeBoard = (props: Props) => {
+const MyLesson = (props: Props) => {
   return (
     <div>
       <div className="m-2 grid base:grid-cols-1  lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
@@ -320,4 +320,4 @@ const FreeBoard = (props: Props) => {
   );
 };
 
-export default FreeBoard;
+export default MyLesson;

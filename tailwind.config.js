@@ -13,8 +13,9 @@ export default {
       },
       colors: {
         green: "#00b796",
-        green1: "#0b736b",
-        bgGreen: "#3d8e86",
+        green2: "#0b736b",
+        green1: "#00b796",
+        bgGreen: "#1eba9e",
         purple: "#3a00b7",
         yellow: "#f4ce14",
         royalBlue: "#4379f2",

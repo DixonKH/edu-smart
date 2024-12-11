@@ -1,61 +1,137 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { MdCastForEducation } from "react-icons/md";
+import { MdOutlinePlayLesson } from "react-icons/md";
+import { MdPlayLesson } from "react-icons/md";
+import { FaHeart } from "react-icons/fa6";
+import { MdArticle } from "react-icons/md";
+import { PiArticleNyTimes } from "react-icons/pi";
+import { CgProfile } from "react-icons/cg";
+import { IoMdLogOut } from "react-icons/io";
+import AddLesson from "./AddLesson";
+import MyLesson from "./MyLesson";
+import Login from "./Login";
 
 type Props = {};
 
 const MyPage = (props: Props) => {
+  const [showComponent, setShowComponent] = useState(1);
+
+  const RenderComponent = () => {
+    switch (showComponent) {
+      case 1:
+        return;
+        break;
+      case 2:
+        return;
+        break;
+      case 3:
+        return;
+        break;
+    }
+  };
   return (
     <div className="lg:container md:px-10 sm:px-5 px-1">
       <div>
-        <div>
-            <div className="flex items-start justify-start">
-            <div className="col-span-1 h-[350px] lg:h-[350px] w-[300px] sm:h-[250px] md:w-[230px] py-2 border-green1 border m-1 rounded-xl">
-              <div
-                className="flex drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)] mx-auto
-                    object-cover items-center justify-center rounded-full size-10 bg-yellow"
-              >
+        <div className="grid lg:grid-cols-5 md:grid-cols-3 ">
+          <div className="flex items-start justify-center">
+            <div className="col-span-1  md:h-[630px] sm:h-[500px]  h-[500px] lg:h-[630px] w-[300px] sm:w-[200px]  md:w-[230px] py-5 border-green1 border m-2 rounded-xl">
+              <div className="flex  mx-auto items-center justify-center rounded-full size-10 bg-yellow">
                 <div>
                   <MdCastForEducation className="text-xl  text-bgGreen" />
                 </div>
               </div>
-              <p
-                className="md:text-2xl text-center text-xl sm:text-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover"
-              >
+              <p className="md:text-2xl text-center text-xl sm:text-xl">
                 Edu-Smart
               </p>
-              <div className="">
-                <div className="  flex justify-start lg:p-3 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
+
+              <div>
+                <p className="md:text-2xl pt-4 pl-2 flex text-center lg:text-xl sm:text-xl italic">
+                  Manage Listing:
+                </p>
+                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-3 md:p-2 text-xs md:text-base  ">
                   <button
-                    className="flex items-center justify-between mx-auto drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover border px-3 py-1 hover:bg-bgGreen hover:text-white bg-yellow rounded-xl"
+                    onClick={() => setShowComponent(1)}
+                    className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
                   >
-                    Free Board
-                    <IoIosArrowRoundForward />
+                    <MdOutlinePlayLesson />
+                    Add Lesson
                   </button>
                 </div>
-                <div className="  flex justify-start lg:p-3 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
+                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-3 md:p-2 text-xs md:text-base  ">
                   <button
-                    className="flex items-center justify-between text-center mx-auto drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover border px-3 py-1 hover:bg-bgGreen hover:text-white bg-yellow rounded-xl"
+                    onClick={() => setShowComponent(1)}
+                    className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
                   >
-                    Recomendation
+                    <MdPlayLesson />
+                    My Lesson
                   </button>
                 </div>
-                <div className="  flex justify-start lg:p-3 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
+                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-3 md:p-2 text-xs md:text-base  ">
                   <button
-                    className="flex items-center justify-between mx-auto drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover border px-3 py-1 hover:bg-bgGreen hover:text-white bg-yellow rounded-xl"
+                    onClick={() => setShowComponent(1)}
+                    className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
                   >
-                    News
+                    <FaHeart />
+                    My Favourites
+                  </button>
+                </div>
+              </div>
+              <div>
+                <p className="md:text-2xl pt-4 pl-2 flex text-center lg:text-xl sm:text-xl italic">
+                  Community:
+                </p>
+                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-3 md:p-2 text-xs md:text-base  ">
+                  <button
+                    onClick={() => setShowComponent(1)}
+                    className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
+                  >
+                    <MdArticle />
+                    Articles
+                  </button>
+                </div>
+                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-3 md:p-2 text-xs md:text-base  ">
+                  <button
+                    onClick={() => setShowComponent(1)}
+                    className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
+                  >
+                    <PiArticleNyTimes />
+                    Write Articles
+                  </button>
+                </div>
+              </div>
+              <div>
+                <p className="md:text-2xl pt-4 pl-2 flex text-center lg:text-xl sm:text-xl italic">
+                  Manage Account:
+                </p>
+                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center lg:p-3 md:p-2 text-xs md:text-base  ">
+                  <button
+                    onClick={() => setShowComponent(1)}
+                    className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
+                  >
+                    <CgProfile />
+                    My Profile
+                  </button>
+                </div>
+                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center lg:p-3 md:p-2 text-xs md:text-base  ">
+                  <button
+                    onClick={() => setShowComponent(1)}
+                    className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
+                  >
+                    <IoMdLogOut />
+                    Logout
                   </button>
                 </div>
               </div>
             </div>
           </div>
+          <div className="lg:col-span-4 md:col-span-2">
+            <AddLesson />
+            <MyLesson />
+          </div>
         </div>
       </div>
+      <Login />
     </div>
   );
 };
