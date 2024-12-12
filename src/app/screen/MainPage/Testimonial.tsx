@@ -1,7 +1,6 @@
 import React from "react";
 import { FaStar } from "react-icons/fa6";
 import { MdOutlineHomeRepairService } from "react-icons/md";
-import { SiMicrosoftteams } from "react-icons/si";
 import VideoContent from "/public/images/videocontent.png";
 import Person from "/public/images/person0.jpg";
 import Person1 from "/public/images/person1.jpg";
@@ -29,13 +28,13 @@ const Testimonial = (props: Props) => {
       <div className="lg:container md:px-10 sm:px-5 px-1">
         <div className="grid md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1  gap-5">
           <div
-            className=" lg:m-5 lg:py-5  md:m-3 md:py-3 sm:m-1 sm:py-1  bg-bgGreen    hover:bg-background rounded-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+            className=" lg:m-5 lg:py-5  md:m-3 md:py-3 sm:m-1 sm:py-1  bg-white    hover:bg-background rounded-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover"
           >
             <div className=" ">
               <div className="lg:flex items-center justify-start">
                 <div className="">
-                  <div className="relative flex justify-evenly gap-5 mx-auto p-5   z-30">
+                  <div className="relative flex border rounded-r-full bg-green justify-evenly gap-5 mx-auto p-5   z-30">
                     <div className="">
                       <div className="flex justify-end items-center gap-2 absolute px-1 z-40 bg-bgGreen   rounded-xl">
                         <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
@@ -45,7 +44,7 @@ const Testimonial = (props: Props) => {
                       <img
                         src={Person}
                         alt="VideContent"
-                        className="border-black sm:w-[130px] sm:h-[130px] w-[100px] md:w-[200px] base:w-[200px] md:h-[200px] lg:w-[130px] lg:h-[130px] base:h-[200px] h-[100px] rounded-sm drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                        className="border-black sm:w-[130px] sm:h-[130px] w-[100px] md:w-[200px] base:w-[200px] md:h-[200px] lg:w-[130px] lg:h-[130px] base:h-[200px] h-[100px] rounded-full drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                         object-cover"
                       />
                     </div>
@@ -96,13 +95,13 @@ const Testimonial = (props: Props) => {
             </div>
           </div>
           <div
-            className=" lg:m-5 lg:py-5  md:m-3 md:py-3 sm:m-1 sm:py-1 bg-bgGreen    hover:bg-background rounded-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+            className=" lg:m-5 lg:py-5  md:m-3 md:py-3 sm:m-1 sm:py-1 bg-white    hover:bg-background rounded-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover"
           >
             <div className=" ">
               <div className="lg:flex justify-start items-center">
                 <div className="">
-                  <div className="relative flex justify-evenly gap-5 mx-auto p-5   z-30">
+                  <div className="relative border border-green bg-green rounded-r-full flex justify-evenly gap-5 mx-auto p-5   z-30">
                     <div className="">
                       <div className="flex justify-end items-center gap-2 absolute px-1 z-40 bg-bgGreen   rounded-xl">
                         <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
@@ -112,7 +111,7 @@ const Testimonial = (props: Props) => {
                       <img
                         src={Person1}
                         alt="VideContent"
-                        className="border-black sm:w-[130px] sm:h-[130px] w-[100px] md:w-[200px] base:w-[200px] md:h-[200px] lg:w-[130px] lg:h-[130px] base:h-[200px] h-[100px] rounded-sm drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                        className="border-black sm:w-[130px] sm:h-[130px] w-[100px] md:w-[200px] base:w-[200px] md:h-[200px] lg:w-[130px] lg:h-[130px] base:h-[200px] h-[100px] rounded-full drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                         object-cover"
                       />
                     </div>

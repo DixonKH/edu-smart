@@ -62,7 +62,7 @@ const AddLesson = (props: Props) => {
                 ></input>
               </div>
               <div className="mx-auto text-center flex items-center justify-center  lg:p-3 md:p-2 text-xs md:text-base  ">
-                <button className=" w-[200px] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm">
+                <button className=" w-[200px] sm:w-[150px] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm">
                  + Add Lesson
                 </button>
               </div>

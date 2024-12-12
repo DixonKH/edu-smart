@@ -1,12 +1,12 @@
 import React from "react";
 import { BsChatRightQuoteFill } from "react-icons/bs";
+import { FaEye } from "react-icons/fa6";
 import { SlLike } from "react-icons/sl";
 import Teaching from "/public/images/Teaching.jpg";
-import { FaEye } from "react-icons/fa6";
 
 type Props = {};
 
-const MyLesson = (props: Props) => {
+const MyFavourites = (props: Props) => {
   return (
     <div>
       <div className="m-2 grid base:grid-cols-1  lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
@@ -76,4 +76,4 @@ const MyLesson = (props: Props) => {
   );
 };
 
-export default MyLesson;
+export default MyFavourites;

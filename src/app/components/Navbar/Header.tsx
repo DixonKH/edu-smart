@@ -24,12 +24,12 @@ const Header: React.FC<MainHeaderImageProps> = ({ header }) => {
   let paragraph2 = "";
   let text = "";
   HeaderData.filter((item) => item.id === header).forEach((item) => {
-    backgroundImage1 = item.imageUrl1 || "";
-    backgroundImage2 = item.imageUrl2 || "";
-    title = item.title || "";
-    paragraph1 = item.paragraph1 || "";
-    paragraph2 = item.paragraph2 || "";
-    text = item.text || "";
+    backgroundImage1 = item.imageUrl1;
+    backgroundImage2 = item.imageUrl2;
+    title = item.title ;
+    paragraph1 = item.paragraph1;
+    paragraph2 = item.paragraph2;
+    text = item.text;
   });
 
   return (
