@@ -87,7 +87,7 @@ const Navbar = (props: Props) => {
                       className="flex drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover items-center justify-center rounded-full size-10 bg-yellow"
                     >
-                      <MdCastForEducation className="text-xl text-bgGreen" />
+                      <MdCastForEducation className="text-xl text-green" />
                     </div>
                     <p
                       className="md:text-2xl text-xl text-white lg:text-black md:text-black sm:text-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
