@@ -1,171 +1,98 @@
 import React from "react";
 import { FaStar } from "react-icons/fa6";
-import { MdOutlineHomeRepairService } from "react-icons/md";
-import { SiMicrosoftteams } from "react-icons/si";
-import VideoContent from "/public/images/videocontent.png";
 import Person from "/public/images/person0.jpg";
 import Person1 from "/public/images/person1.jpg";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import { IoStarSharp } from "react-icons/io5";
-import Line from "./Line";
+import { SiComma } from "react-icons/si";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 type Props = {};
+
+const testimonalData = [
+  {
+    id: 1,
+    image: Person,
+    name: "Juliana",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non quam et sapien sed magna placerat. Vivamus sed diam nonum et justo er",
+    rating: "5",
+  },
+  {
+    id: 2,
+    image: Person1,
+    name: "John Doe",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non quam et sapien sed magna placerat. Vivamus sed diam nonum et justo er",
+    rating: "4",
+  },
+  {
+    id: 3,
+    image: Person1,
+    name: "John Doe",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non quam et sapien sed magna placerat. Vivamus sed diam nonum et justo er",
+    rating: "6",
+  },
+];
 
 const Testimonial = (props: Props) => {
   return (
-    <div>
-      <div className="lg:container md:px-10 sm:px-5 px-1">
-        <div className="flex justify-start items-center pt-1  md:pt-5 lg:pb-6">
-          <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
-            - Testimonial -
-          </p>
-        </div>
-        <div className="lg:flex items-center justify-centerr">
-          <p className=" lg:text-4xl md:text-3xl sm:text-2xl text-xl lg:p-5 md:p-2 p-1">
-            What our
-            <span className="text-green1"> Clients Say</span>
-          </p>
-        </div>
+    <div className="lg:container">
+      <div className="text-center lg:text-left lg:p-0  md:px-10 mb-5 mt-20">
+        <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
+          - Testimonial -
+        </p>
+        <p className=" lg:text-4xl md:text-3xl sm:text-2xl text-xl lg:p-5 md:p-2 -mt-2 font-medium">
+          What our
+          <span className="text-green1"> Clients Say</span>
+        </p>
       </div>
-      <div className="lg:container md:px-10 sm:px-5 px-1">
-        <div className="grid md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1  gap-5">
-          <div
-            className=" lg:m-5 lg:py-5  md:m-3 md:py-3 sm:m-1 sm:py-1  bg-bgGreen    hover:bg-background rounded-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover"
-          >
-            <div className=" ">
-              <div className="lg:flex items-center justify-start">
-                <div className="">
-                  <div className="relative flex justify-evenly gap-5 mx-auto p-5   z-30">
-                    <div className="">
-                      <div className="flex justify-end items-center gap-2 absolute px-1 z-40 bg-bgGreen   rounded-xl">
-                        <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
-                          <FaStar className="text-sm text-white" />
-                        </div>
-                      </div>
-                      <img
-                        src={Person}
-                        alt="VideContent"
-                        className="border-black sm:w-[130px] sm:h-[130px] w-[100px] md:w-[200px] base:w-[200px] md:h-[200px] lg:w-[130px] lg:h-[130px] base:h-[200px] h-[100px] rounded-sm drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                        object-cover"
-                      />
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <RiDoubleQuotesL className="text-7xl lg:hidden sm:flex md:hidden border bg-yellow rounded-full ml-5"></RiDoubleQuotesL>
-                    </div>
+      <Carousel className=" lg:-mt-5">
+        <CarouselContent className="flex items-center justify-start gap-5 w-full p-3 pb-6">
+          {testimonalData.map((item) => (
+            <CarouselItem
+              key={item.id}
+              className="flex flex-col items-start p-4 px-6 justify-center md:basis-1/2 basis-full rounded-2xl shadow-xl"
+            >
+              <div className="flex w-full flex-row items-center justify-between">
+                <div className="flex items-center justify-center gap-4">
+                  <div className="flex w-24 h-24 items-center justify-center bg-green1 p-3 rounded-r-full rounded-tl-full">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-full h-full rounded-full border-4 border-white"
+                    />
+                  </div>
+                  <div className="flex flex-col items-start justify-center text-lg">
+                    <p>{item.name}</p>
+                    <p className="text-gray-500 italic">Our Student</p>
+                    <p className="flex items-center justify-center gap-2 mt-2 text-lg">
+                      <FaStar className="text-yellow" />
+                      <FaStar className="text-yellow" />
+                      <FaStar className="text-yellow" />
+                      <FaStar className="text-yellow" />
+                      <FaStar className="text-yellow" />
+                    </p>
                   </div>
                 </div>
-
-                <div>
-                  <p className="lg:p-3 p-1 text-xl">Lasile Alexander</p>
-                  <p className="lg:p-3 p-1 text-md">CEO, Software Company</p>
-                  <div className="sm:flex flex base:justify-evenly items-center justify-between">
-                    <IoStarSharp
-                      className="m-2 text-yellow text-2xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover"
-                    />
-                    <IoStarSharp
-                      className="m-2 text-yellow text-2xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover"
-                    />
-                    <IoStarSharp
-                      className="m-2 text-yellow text-2xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover"
-                    />
-                    <IoStarSharp
-                      className="m-2 text-yellow text-2xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover"
-                    />
-                    <IoStarSharp
-                      className="m-2 text-yellow text-2xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover"
-                    />
-                    <p className="m-2 text-2xl">5.0</p>
-                  </div>
-                </div>
-                <div>
-                  <RiDoubleQuotesL className="sm:hidden    hidden text-7xl border bg-yellow rounded-full"></RiDoubleQuotesL>
+                <div className="flex items-center justify-center bg-[#f5f5f5] rounded-full w-12 h-12 mb-10">
+                  <SiComma className="text-green1 text-xl transform -rotate-180" />
+                  <SiComma className="text-green1 text-xl transform rotate-180 -ml-1" />
                 </div>
               </div>
-              <div className=" text-center text-bold text-black">
-                <p className="lg:p-5 md:p-2 p-1 text-xs md:text-base bold mx-auto m-3 text-center">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  non quam et sapien sed magna placerat. Vivamus sed diam nonum
-                  et justo er
-                </p>
-              </div>
-            </div>
-          </div>
-          <div
-            className=" lg:m-5 lg:py-5  md:m-3 md:py-3 sm:m-1 sm:py-1 bg-bgGreen    hover:bg-background rounded-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover"
-          >
-            <div className=" ">
-              <div className="lg:flex justify-start items-center">
-                <div className="">
-                  <div className="relative flex justify-evenly gap-5 mx-auto p-5   z-30">
-                    <div className="">
-                      <div className="flex justify-end items-center gap-2 absolute px-1 z-40 bg-bgGreen   rounded-xl">
-                        <div className="flex items-center justify-center rounded-full w-6 h-6 bg-yellow">
-                          <FaStar className="text-sm text-white" />
-                        </div>
-                      </div>
-                      <img
-                        src={Person1}
-                        alt="VideContent"
-                        className="border-black sm:w-[130px] sm:h-[130px] w-[100px] md:w-[200px] base:w-[200px] md:h-[200px] lg:w-[130px] lg:h-[130px] base:h-[200px] h-[100px] rounded-sm drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                        object-cover"
-                      />
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <RiDoubleQuotesL className="text-7xl lg:hidden sm:flex md:hidden border bg-yellow rounded-full ml-5"></RiDoubleQuotesL>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <p className="lg:p-3 p-1 text-xl">Lasile Alexander</p>
-                  <p className="lg:p-3 p-1 text-md">CEO, Software Company</p>
-                  <div className="sm:flex flex base:justify-evenly items-center justify-between">
-                    <IoStarSharp
-                      className="m-2 text-yellow text-2xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover"
-                    />
-                    <IoStarSharp
-                      className="m-2 text-yellow text-2xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover"
-                    />
-                    <IoStarSharp
-                      className="m-2 text-yellow text-2xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover"
-                    />
-                    <IoStarSharp
-                      className="m-2 text-yellow text-2xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover"
-                    />
-                    <IoStarSharp
-                      className="m-2 text-yellow text-2xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover"
-                    />
-                    <p className="m-2 text-2xl">5.0</p>
-                  </div>
-                </div>
-                <div>
-                  <RiDoubleQuotesL className="sm:hidden md:hidden  lg:hidden hidden text-7xl border bg-yellow rounded-full"></RiDoubleQuotesL>
-                </div>
-              </div>
-              <div className=" text-center text-bold text-black">
-                <p className="lg:p-5 md:p-2 p-1 text-xs md:text-base bold mx-auto m-3 text-center">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  non quam et sapien sed magna placerat. Vivamus sed diam nonum
-                  et justo er
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <Line />
+              <p className="text-lg mt-4">{item.description}</p>
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious className="hidden md:flex" />
+        <CarouselNext className="hidden md:flex" />
+      </Carousel>
     </div>
   );
 };

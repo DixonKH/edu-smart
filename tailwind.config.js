@@ -17,6 +17,7 @@ export default {
         green2: "#008e72",
         green3: "#0ba88d",
         bgGreen: "#1eba9e",
+        red:"#b81343",
         blue: "#4379F2",
         yellow: "#f4ce14",
         royalBlue: "#4379f2",

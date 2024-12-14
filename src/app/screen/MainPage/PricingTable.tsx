@@ -9,7 +9,7 @@ const PricingTable = (props: Props) => {
   return (
     <div>
       <div className="p-5 bg-background mt-20">
-        <div className=" lg:container md:px-10 sm:px-5 px-1 mb-2">
+        <div className=" lg:container md:px-10 sm:px-5 text-center lg:text-left px-1 mb-2">
           <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
             - Our Pricing Table -
           </p>
