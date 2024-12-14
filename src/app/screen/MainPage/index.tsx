@@ -16,7 +16,6 @@ const MainPage = () => {
     <div>
       
       <AboutUs />
-      <OurServices />
       <WhyChooseUs />
       <OurLatestAchievement />
       <OurProcess />

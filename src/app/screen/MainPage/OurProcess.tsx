@@ -10,7 +10,7 @@ function OurProcess({}: Props) {
   return (
     <div className="mb-10 mt-20">
       <div className="lg:container md:px-10 sm:px-5 px-1">
-        <div>
+        <div className="text-center lg:text-left lg:p-0  md:px-10 mb-5 mt-20">
           <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
             - Our Process -
           </p>
