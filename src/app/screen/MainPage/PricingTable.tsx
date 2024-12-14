@@ -20,10 +20,10 @@ const PricingTable = (props: Props) => {
         <div className="container md:px-10 sm:px-5 px-1">
           <div className="grid grid-cols-1 md:grid-flow-row lg:grid-cols-3 justify-center items-start gap-8">
             <div
-              className="hover:bg-green1 w-full shadow-xl border rounded-3xl p-5 hover:text-white transition-all duration-300 cursor-pointer"
+              className="hover:bg-orange w-full shadow-xl border rounded-3xl p-5 hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer"
             >
               <div className="m-3">
-                <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
+                <p className="lg:text-2xl md:text-xl text-base sm:text-xl">
                   Basic
                 </p>
                 <p className="px-3 text-md my-2">
@@ -35,7 +35,7 @@ const PricingTable = (props: Props) => {
               </div>
               <div className="pl-4">
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className="p-1 ml-2 text-lg md:text-base bold">
@@ -43,7 +43,7 @@ const PricingTable = (props: Props) => {
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -51,7 +51,7 @@ const PricingTable = (props: Props) => {
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -59,7 +59,7 @@ const PricingTable = (props: Props) => {
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -67,7 +67,7 @@ const PricingTable = (props: Props) => {
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -75,7 +75,7 @@ const PricingTable = (props: Props) => {
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -83,7 +83,7 @@ const PricingTable = (props: Props) => {
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -91,7 +91,7 @@ const PricingTable = (props: Props) => {
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -103,8 +103,8 @@ const PricingTable = (props: Props) => {
                 <div className="flex items-center justify-center px-3 text-md">
                   <div className="  flex justify-start lg:p-5 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
                     <button
-                      className="flex items-center justify-between  px-4 py-2 hover:bg-bgGreen text-white bg-green3 rounded-2xl shadow-xl2"
-                    >
+                      className="flex items-center justify-between px-4 py-2 border-2 bg-white border-bgGreen text-black rounded-2xl shadow-xl shadow-bgGreen hover:bg-white"
+                      >
                       View all Services
                       <IoIosArrowRoundForward />
                     </button>
@@ -124,10 +124,10 @@ const PricingTable = (props: Props) => {
                 </div>
               </div>
               <div
-                className="hover:bg-green1 border shadow-xl rounded-3xl hover:text-white p-5 transition-all duration-300 cursor-pointer"
+                className="hover:bg-blue border shadow-xl rounded-3xl hover:text-white hover:scale-105 p-5 transition-all duration-300 cursor-pointer"
               >
                 <div className="m-3">
-                  <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black my-2">
+                  <p className="lg:text-2xl md:text-xl text-base sm:text-xl my-2">
                     Premium
                   </p>
                   <p className="px-3 text-md">
@@ -139,7 +139,7 @@ const PricingTable = (props: Props) => {
                 </div>
                 <div className="pl-4 ">
                   <div className=" flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                       <SiTicktick className="text-sm text-white" />
                     </div>
                     <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -147,7 +147,7 @@ const PricingTable = (props: Props) => {
                     </p>
                   </div>
                   <div className="  flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                       <SiTicktick className="text-sm text-white" />
                     </div>
                     <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -155,7 +155,7 @@ const PricingTable = (props: Props) => {
                     </p>
                   </div>
                   <div className=" flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                       <SiTicktick className="text-sm text-white" />
                     </div>
                     <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -163,7 +163,7 @@ const PricingTable = (props: Props) => {
                     </p>
                   </div>
                   <div className=" flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                       <SiTicktick className="text-sm text-white" />
                     </div>
                     <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -171,7 +171,7 @@ const PricingTable = (props: Props) => {
                     </p>
                   </div>
                   <div className=" flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                       <SiTicktick className="text-sm text-white" />
                     </div>
                     <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -179,7 +179,7 @@ const PricingTable = (props: Props) => {
                     </p>
                   </div>
                   <div className=" flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                       <SiTicktick className="text-sm text-white" />
                     </div>
                     <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -187,7 +187,7 @@ const PricingTable = (props: Props) => {
                     </p>
                   </div>
                   <div className=" flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                       <SiTicktick className="text-sm text-white" />
                     </div>
                     <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -195,7 +195,7 @@ const PricingTable = (props: Props) => {
                     </p>
                   </div>
                   <div className=" flex justify-start my-1 sm:my-2  items-center">
-                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                    <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                       <SiTicktick className="text-sm text-white" />
                     </div>
                     <p className="  p-1 ml-2 text-lg md:text-base bold">
@@ -207,7 +207,7 @@ const PricingTable = (props: Props) => {
                   <div className="flex items-center justify-center px-3 text-md">
                     <div className="  flex justify-start lg:p-5 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
                       <button
-                        className="flex items-center justify-between shadow-xl2 px-4 py-2 bg-green3 text-white rounded-2xl"
+                      className="flex items-center justify-between px-4 py-2 border-2 bg-white border-bgGreen text-black rounded-2xl shadow-xl shadow-bgGreen hover:bg-white"
                       >
                         View all Services
                         <IoIosArrowRoundForward />
@@ -218,10 +218,10 @@ const PricingTable = (props: Props) => {
               </div>
             </div>
             <div
-              className="hover:bg-green1 w-full shadow-xl p-5 border rounded-3xl hover:text-white transition-all duration-300 cursor-pointer"
+              className="hover:bg-red w-full shadow-xl p-5 border rounded-3xl hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer"
             >
               <div className="m-3">
-                <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
+                <p className="lg:text-2xl md:text-xl text-base sm:text-xl">
                   Gold
                 </p>
                 <p className="px-3 text-md my-2">
@@ -233,7 +233,7 @@ const PricingTable = (props: Props) => {
               </div>
               <div className="pl-4 ">
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className=" p-1 ml-2 text-lg md:text-base bold">
@@ -241,7 +241,7 @@ const PricingTable = (props: Props) => {
                   </p>
                 </div>
                 <div className="  flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className=" p-1 ml-2 text-lg md:text-base bold">
@@ -249,7 +249,7 @@ const PricingTable = (props: Props) => {
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className=" p-1 ml-2 text-lg md:text-base bold">
@@ -257,7 +257,7 @@ const PricingTable = (props: Props) => {
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className=" p-1 ml-2 text-lg md:text-base bold">
@@ -265,7 +265,7 @@ const PricingTable = (props: Props) => {
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className=" p-1 ml-2 text-lg md:text-base bold">
@@ -273,7 +273,7 @@ const PricingTable = (props: Props) => {
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className=" p-1 ml-2 text-lg md:text-base bold">
@@ -281,7 +281,7 @@ const PricingTable = (props: Props) => {
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className=" p-1 ml-2 text-lg md:text-base bold">
@@ -289,7 +289,7 @@ const PricingTable = (props: Props) => {
                   </p>
                 </div>
                 <div className=" flex justify-start my-1 sm:my-2  items-center">
-                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-green">
+                  <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <SiTicktick className="text-sm text-white" />
                   </div>
                   <p className=" p-1 ml-2 text-lg md:text-base bold">
@@ -301,7 +301,7 @@ const PricingTable = (props: Props) => {
                 <div className="flex items-center justify-center px-3 text-md">
                   <div className="  flex justify-start lg:p-5 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
                     <button
-                      className="flex items-center justify-between px-4 py-2 bg-green3 text-white rounded-2xl shadow-xl2"
+                      className="flex items-center justify-between px-4 py-2 border-2 bg-white border-bgGreen text-black rounded-2xl shadow-xl shadow-bgGreen hover:bg-white"
                     >
                       View all Services
                       <IoIosArrowRoundForward />

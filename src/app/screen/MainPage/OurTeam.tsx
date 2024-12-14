@@ -56,7 +56,7 @@ const OurTeam = (props: Props) => {
   return (
     <div className="lg:container">
       <div>
-        <div className="sm:text-center lg:text-left md:px-10 mb-4 md:mb-0 lg:mb-0 px-1 mt-20">
+        <div className="sm:text-center lg:text-left md:px-10 mb-4 lg:mb-0 px-1 mt-20">
           <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
             - Our Team -
           </p>
@@ -93,8 +93,8 @@ const OurTeam = (props: Props) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="hidden md:flex" />
-        <CarouselNext className="hidden md:flex" />
+        <CarouselPrevious className="hidden lg:flex" />
+        <CarouselNext className="hidden lg:flex" />
       </Carousel>
     </div>
   );
