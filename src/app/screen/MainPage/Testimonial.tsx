@@ -2,8 +2,6 @@ import React from "react";
 import { FaStar } from "react-icons/fa6";
 import Person from "/public/images/person0.jpg";
 import Person1 from "/public/images/person1.jpg";
-import { RiDoubleQuotesL } from "react-icons/ri";
-import { IoStarSharp } from "react-icons/io5";
 import { SiComma } from "react-icons/si";
 import {
   Carousel,
@@ -12,7 +10,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-type Props = {};
+
+type Props = React.JSX.IntrinsicAttributes;
 
 const testimonalData = [
   {
@@ -79,6 +78,7 @@ const Testimonial = (props: Props) => {
                       <FaStar className="text-yellow" />
                       <FaStar className="text-yellow" />
                     </p>
+
                   </div>
                 </div>
                 <div className="flex items-center justify-center bg-[#f5f5f5] rounded-full w-12 h-12 mb-10">

@@ -34,7 +34,7 @@ const NewsAndBlog = (props: Props) => {
           </div>
         </div>
         <div className="md:grid grid-cols-3 mb-10">
-          <div className="m-5 border shadow-xl rounded-xl p-3 pb-8 cursor-pointer hover:shadow-xl transition-all duration-300 hover:bg-blue hover:text-white">
+          <div className="m-5 border shadow-xl rounded-xl p-3 pb-8 cursor-pointer hover:shadow-xl transition-all duration-300 hover:bg-green hover:text-white">
             <div className="realtive  flex items-end justify-center">
               <img
                 src={Teaching}
@@ -78,7 +78,7 @@ const NewsAndBlog = (props: Props) => {
               </div>
             </div>
           </div>
-          <div className="m-5 border shadow-xl rounded-xl p-3 pb-8 cursor-pointer hover:shadow-xl transition-all duration-300 hover:bg-iris hover:text-white">
+          <div className="m-5 border shadow-xl rounded-xl p-3 pb-8 cursor-pointer hover:shadow-xl transition-all duration-300 hover:bg-green hover:text-white">
             <div className="realtive flex items-end justify-center">
               <img
                 src={Teaching}
@@ -122,7 +122,7 @@ const NewsAndBlog = (props: Props) => {
               </div>
             </div>
           </div>
-          <div className="m-5 border shadow-xl rounded-xl p-3 pb-8 cursor-pointer hover:shadow-xl transition-all duration-300 hover:bg-bgGreen hover:text-white">
+          <div className="m-5 border shadow-xl rounded-xl p-3 pb-8 cursor-pointer hover:shadow-xl transition-all duration-300 hover:bg-green hover:text-white">
             <div className="realtive  flex items-end justify-center">
               <img
                 src={Teaching}

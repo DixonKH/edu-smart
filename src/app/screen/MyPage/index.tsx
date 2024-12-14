@@ -11,6 +11,7 @@ import { IoMdLogOut } from "react-icons/io";
 import AddLesson from "./AddLesson";
 import MyLesson from "./MyLesson";
 import Login from "./Login";
+import MyFavourites from "./MyFavourites";
 
 type Props = {};
 
@@ -20,13 +21,13 @@ const MyPage = (props: Props) => {
   const RenderComponent = () => {
     switch (showComponent) {
       case 1:
-        return;
+        return <AddLesson />;
         break;
       case 2:
-        return;
+        return <MyLesson />;
         break;
       case 3:
-        return;
+        return <MyFavourites/>
         break;
     }
   };
@@ -60,7 +61,7 @@ const MyPage = (props: Props) => {
                 </div>
                 <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-3 md:p-2 text-xs md:text-base  ">
                   <button
-                    onClick={() => setShowComponent(1)}
+                    onClick={() => setShowComponent(2)}
                     className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
                   >
                     <MdPlayLesson />
@@ -69,7 +70,7 @@ const MyPage = (props: Props) => {
                 </div>
                 <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-3 md:p-2 text-xs md:text-base  ">
                   <button
-                    onClick={() => setShowComponent(1)}
+                    onClick={() => setShowComponent(3)}
                     className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
                   >
                     <FaHeart />
@@ -126,8 +127,7 @@ const MyPage = (props: Props) => {
             </div>
           </div>
           <div className="lg:col-span-4 md:col-span-2">
-            <AddLesson />
-            <MyLesson />
+            <RenderComponent />
           </div>
         </div>
       </div>
