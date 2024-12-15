@@ -5,8 +5,7 @@
     "paragraph1": "Professional",
     "paragraph2": "Affordable Education Provider",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non quam et sapien sed magna placerat. Donec vel neque et nunc gravida ultricies. Vivamus sed diam non",
-    "imageUrl1": "./../../../../public/images/mainpageimage.jpg",
-    "imageUrl2": "./../../../../public/images/teamgirls.jpg"
+    "imageUrl1": "./../../../../public/images/Header1.png"
   },
   {
     "id": 2,
@@ -14,8 +13,7 @@
     "paragraph1": "Well Prepared",
     "paragraph2": "Lessons and Courses",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non quam et sapien sed magna placerat. Donec vel neque et nunc gravida ultricies. Vivamus sed diam non",
-    "imageUrl1": "  ./../../../../public/images/person2.jpg",
-    "imageUrl2": "./../../../../public/images/person1.jpg"
+    "imageUrl1": "  ./../../../../public/images/Header3.png"
   },
   {
     "id": 3,
@@ -23,8 +21,7 @@
     "paragraph1": "High Qualified Teachers",
     "paragraph2": "will be glad to help",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non quam et sapien sed magna placerat. Donec vel neque et nunc gravida ultricies. Vivamus sed diam non",
-    "imageUrl1": " ./../../../../public/images/user.jpeg",
-    "imageUrl2": "./../../../../public/images/person3.jpg"
+    "imageUrl1": " ./../../../../public/images/Header2.png"
   },
   {
     "id": 4,
@@ -32,7 +29,6 @@
     "paragraph1": "Skill Sharing",
     "paragraph2": "Band",
     "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non quam et sapien sed magna placerat. Donec vel neque et nunc gravida ultricies. Vivamus sed diam non",
-    "imageUrl1": "  ./../../../../public/images/user3.jpeg",
-    "imageUrl2": "./../../../../public/images/user5.webp"
+    "imageUrl1": "  ./../../../../public/images/Header6.png"
   }
 ]

@@ -9,7 +9,7 @@ import { TfiWrite } from "react-icons/tfi";
 type Props = {};
 
 const Community = (props: Props) => {
-  const [showComponent, setShowComponent] = useState(Number);
+  const [showComponent, setShowComponent] = useState(1);
   const [selectedId, setSelectedId] = useState(undefined);
 
   const RenderComponent = () => {

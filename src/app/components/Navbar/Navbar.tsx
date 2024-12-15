@@ -199,8 +199,6 @@ const Navbar = (props: Props) => {
           </div>
         </div>
       </div>
-      <Header header={header}/>
-      <Line />
     </div>
   );
 };
