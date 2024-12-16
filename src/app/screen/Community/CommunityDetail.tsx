@@ -4,12 +4,14 @@ import { SlLike } from "react-icons/sl";
 import { FaRegComments } from "react-icons/fa";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import Community from "./Community.json";
+import { useParams } from "react-router";
+import CommunityHeader from "./CommunityHeader";
+import Line from "../MainPage/Line";
 
-type Props = {
-  showComponent: Number;
-};
+type Props = {};
 
-const CommunityDetail = ({showComponent}: Props) => {
+const CommunityDetail = () => {
+  const { communityId } = useParams<{ communityId: string }>();
 
   let cName = "";
   let image = "";
@@ -18,24 +20,29 @@ const CommunityDetail = ({showComponent}: Props) => {
   let date = "";
   let likes = 0;
 
-
-  Community.filter(item => item.id === showComponent).forEach((item, index) => {
-    cName = item.name;
-    image = item.image;
-    comments = item.comments;
-    seen = item.seen;
-    date = item.date;
-    likes = item.likes;
-
-  })
+  Community.filter((item) => item.id === Number(communityId)).forEach(
+    (item, index) => {
+      cName = item.name;
+      image = item.image;
+      comments = item.comments;
+      seen = item.seen;
+      date = item.date;
+      likes = item.likes;
+    }
+  );
 
   return (
-    <ul className=" ">
+    <div className="">
+      <CommunityHeader />
+      <Line />
+      <ul className=" lg:container md:px-10 sm:px-5 px-1">
         <li className="">
-          <div className="p-2 w-full border">
+          <div className="p-2 mx-auto border">
             <div>
               <p className="lg:p-1 md:p-0 p-1 text-xs md:text-sm  px-1 italic bold">
-                <span>" </span>{comments}<span> "</span>
+                <span>" </span>
+                {comments}
+                <span> "</span>
               </p>
             </div>
             <div className="lg:flex md:flex sm:flex flex items-center justify-between">
@@ -104,7 +111,8 @@ const CommunityDetail = ({showComponent}: Props) => {
             </div>
           </div>
         </li>
-    </ul>
+      </ul>
+    </div>
   );
 };
 

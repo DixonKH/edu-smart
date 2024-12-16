@@ -1,6 +1,7 @@
 import React from "react";
 import AddFiles from "./AddFiles";
 
+
 type Props = {};
 
 const AddLesson = (props: Props) => {
@@ -13,37 +14,45 @@ const AddLesson = (props: Props) => {
               data-aos="fade-up"
               className="lg:container md:px-10 sm:px-5 px-1 shadow-xl border rounded-xl   border-green my-1 sm:my-2 gap-2 sm:gap-3 p-1 justify-around"
             >
-              <div className="p-1 ">
-                <label className="text-xs md:text-base">Lesson</label>
-                <input
-                  type="text"
-                  placeholder="Name of Lesson"
-                  className="sm:w-full w-[100%] text-xs md:text-base rounded-sm border border-gray-300
-                        focus:outline-none focus:border-1 focus:border-green"
-                />
+              <div className="flex justify-center items-center">
+                <h1 className="text-lg italic underline">
+                  Here add your Lesson*
+                </h1>
               </div>
-              <div className="flex  items-center">
-                <div className="p-1 w-[50%]">
-                  <label className="text-xs md:text-base">Description</label>
+              <div className="w-full flex md:flex-row flex-col justify-between ">
+                <div className="lg:p-3 p-1 w-full">
+                  <p className="">Teacher name*</p>
                   <input
                     type="text"
-                    placeholder="Description of Lesson"
-                    className="sm:w-full w-[100%] text-xs md:text-base rounded-sm border border-gray-300
-                        focus:outline-none focus:border-1 focus:border-green"
+                    className="border px-3 py-1 rounded-2xl w-full p-2 h-14 text-lg outline-none"
+                    placeholder="Ex.John Doe"
                   />
                 </div>
-                <div className="p-1 w-[50%]">
-                  <label className="text-xs md:text-base">Category</label>
-                  <select
-                    className="sm:w-full w-[100%] text-xs md:text-base rounded-sm border border-gray-300
-                        focus:outline-none focus:border-1 focus:border-green"
-                  >
-                    <option value="beginner">Beginner</option>
-                    <option value="elementary">Elementary</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="advanced">Advanced</option>
-                  </select>
+                <div className="lg:p-3 p-1 w-full">
+                  <p>Phone*</p>
+                  <input
+                    type="number"
+                    className="border px-3 py-1 rounded-2xl w-full p-2 h-14 text-lg outline-none"
+                    placeholder="+82101234567"
+                  />
                 </div>
+              </div>
+              <div className="lg:p-3 p-1">
+                <p>Email*</p>
+                <input
+                  type="email"
+                  className="border px-3 py-1 rounded-2xl w-full outline-none p-2 h-14 text-lg"
+                  placeholder="Example@example.com"
+                />
+              </div>
+              <label className="lg:p-3 p-1">Category</label>
+              <div className="sm:hidden lg:flex fex-row gap-4 hidden">
+                <select className="border  px-3 py-1 rounded-2xl    h-14 w-full  p-2 text-lg outline-none ">
+                  <option value="2">Beginner</option>
+                  <option value="3">Elementry</option>
+                  <option value="4">Intermediate</option>
+                  <option value="5">Advanced</option>
+                </select>
               </div>
               <div className="p-1">
                 <label className="text-xs md:text-base">File</label>

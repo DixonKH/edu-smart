@@ -3,71 +3,50 @@ import { BsChatRightQuoteFill } from "react-icons/bs";
 import { SlLike } from "react-icons/sl";
 import Teaching from "/public/images/Teaching.jpg";
 import { FaEye } from "react-icons/fa6";
+import { IoReaderOutline } from "react-icons/io5";
+import { IoMdEye } from "react-icons/io";
+import { FaBookReader } from "react-icons/fa";
+import { CiHeart } from "react-icons/ci";
+import Video from "./../../../../public/videos/lesson.mp4";
 
 type Props = {};
 
 const MyLesson = (props: Props) => {
   return (
     <div>
+      <div className="flex justify-center items-center">
+          <h1 className="text-lg italic underline">My Lessons</h1>
+        </div>
       <div className="m-2 grid base:grid-cols-1  lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
-        <div className="flex justify-center items-center">
-          <div className="border m-2 border-green1 bg-green rounded-lg ">
-            <div className="relative p-3   flex items-end justify-center">
-              <img
-                src={Teaching}
-                alt="VideContent"
-                className="border-black hover:bg-background  drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover w-[500px]  rounded-3xl"
-              />
-              <div className="absolute  w-full px-5">
-                <div className=" bg-gray-100 border w-full rounded-xl  flex items-center justify-between   p-1 text-black ">
-                  <div>
-                    <p className="lg:p-1 md:p-0 p-1 text-xs md:text-sm  px-1 italic">
-                      Johnny Wilson
-                    </p>
-                  </div>
-                  <div className="flex  justify-between items-center gap-1">
-                    <div className="w-10 h-8">
-                      <div className="absolute border rounded-full ">
-                        <p className="text-[8px] text-center  border  px-2 rounded-full">
-                          1
-                        </p>
-                      </div>
-                      <div
-                        className="flex justify-center pt-3 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                        object-cover items-end"
-                      >
-                        <FaEye className="text-xl relative bg-green border-white text-white border rounded-full" />
-                      </div>
-                    </div>
-
-                    <div className="w-10 h-8">
-                      <div className="absolute border rounded-full ">
-                        <p className="text-[8px] text-center  border  px-2 rounded-full">
-                          1
-                        </p>
-                      </div>
-                      <div
-                        className="flex justify-center pt-3 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover items-end"
-                      >
-                        <SlLike className="text-xl relative bg-green border-white text-white border rounded-full" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <div className="flex flex-col align-middle justify-between items-start w-full h-auto border-solid border rounded-lg">
+          <div>
+            <video className="rounded-md" controls>
+              <source src={Video} type="video/mp4" />
+            </video>
+          </div>
+          <div className="p-1 mt-1 w-full">
+            <div className="flex flex-row items-center justify-between gap-4 w-full h-8 py-1 ">
+              <div className="leading-5">
+                <span className="inline-block text-green1">
+                  <IoReaderOutline />Lesson
+                </span>
+              </div>
+              <div>
+                <IoMdEye className="text-slate-500 size-5" />
               </div>
             </div>
-            <div className="flex">
-              <div>
-                <BsChatRightQuoteFill className="m-1 text-xl" />
+            <div className="flex flex-row items-center justify-between gap-4 w-full h-8 py-1 ">
+              <div className={`leading-4 text-sm overflow-hidden p-1 px-2 rounded ${"Beginner" === "Beginner" ? "bg-yellow" : "bg-green"}`}>
+              Beginner 
               </div>
-              <p className="p-2 text-xs md:text-sm lg:text-sm ">
-                Perfectly teaching method
-              </p>
-              <p className="lg:p-2 border-l-2 border-black p-2 text-[10px]  text-center italic">
-                12.01.25
-              </p>
+              <div className="text-[12px] text-slate-600">12.07.2024</div>
+            </div>
+            <div className="flex items-center justify-between mt-2">
+              <div className="flex flex-row items-center justify-start gap-1 text-slate-600 text-sm">
+                <FaBookReader className="text-green1" />
+                Teacher: Lorem Ipsum
+              </div>
+              <CiHeart className="size-5" />
             </div>
           </div>
         </div>

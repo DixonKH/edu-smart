@@ -11,6 +11,7 @@ import TeacherDetail from "./screen/OurTeachers/TeacherDetail";
 import AdminLayout from "./layouts/AdminLayout";
 import MainLayout from "./layouts/MainLayout";
 import AdminPage from "./admin";
+import CommunityDetail from "./screen/Community/CommunityDetail";
 function App() {
   return (
     <Routes>
@@ -23,6 +24,7 @@ function App() {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/lessons/:lessonId" element={<ChoosenLesson />} />
         <Route path="/ourteachers/:teacherId" element={<TeacherDetail />} />
+        <Route path="/community/:communityId" element={<CommunityDetail />} />
       </Route>
 
       {/* Admin Routes */}

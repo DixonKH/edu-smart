@@ -4,6 +4,7 @@ import { SlLike } from "react-icons/sl";
 import Teaching from "/public/images/Teaching.jpg";
 import { FaEye } from "react-icons/fa6";
 import Community from "./Community.json";
+import { Link } from "react-router";
 
 type Props = {
   showComponent: Number;
@@ -19,8 +20,8 @@ const FreeBoard = ({ showComponent, setShowComponent }: Props) => {
     <div>
       <ul className="m-2 grid base:grid-cols-1  lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         {Community.map((item, index) => (
-          <li
-            onClick={() => selectedId(item.id)}
+          <Link
+            to={`/community/${item.id}`}
             key={index}
             className="flex justify-center items-center"
           >
@@ -83,7 +84,7 @@ const FreeBoard = ({ showComponent, setShowComponent }: Props) => {
                 </p>
               </div>
             </div>
-          </li>
+          </Link>
         ))}
       </ul>
     </div>

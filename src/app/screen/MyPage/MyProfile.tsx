@@ -6,7 +6,9 @@ const MyProfile = (props: Props) => {
   return (
     <div className="lg:container md:px-10 sm:px-5 px-1">
       <div>
-        <div className="text-xs md:text-base text-center  italic">My Profile</div>
+        <div className="flex justify-center items-center">
+          <h1 className="text-lg italic underline">My Profile</h1>
+        </div>
         <div className="flex justify-center items-center m-3 p-3">
           <div>
             <div className="flex justify-center ">
@@ -16,47 +18,50 @@ const MyProfile = (props: Props) => {
                 className=" border-2 m-3 p-3 border-green rounded-full w-24 h-24"
               />
             </div>
-            <p className="flex justify-center text-xs md:text-base">UserName: John Doe</p>
-            <p className="flex justify-center text-xs md:text-base">Email: johndoe@example.com</p>
-            <p className="flex justify-center text-xs md:text-base">Phone: 123-456-7890</p>
+            <p className="flex justify-center text-xs md:text-base">
+              UserName: John Doe
+            </p>
+            <p className="flex justify-center text-xs md:text-base">
+              Email: johndoe@example.com
+            </p>
+            <p className="flex justify-center text-xs md:text-base">
+              Phone: 123-456-7890
+            </p>
           </div>
         </div>
         <div>
-          <div className="p-2 ">
-            <label className="text-xs md:text-base">UserName:</label>
+          <div className="w-full flex md:flex-row flex-col justify-between ">
+            <div className="lg:p-3 p-1 w-full">
+              <p className="">Your name*</p>
+              <input
+                type="text"
+                className="border px-3 py-1 rounded-2xl w-full p-2 h-14 text-lg outline-none"
+                placeholder="Ex.John Doe"
+              />
+            </div>
+            <div className="lg:p-3 p-1 w-full">
+              <p>Phone*</p>
+              <input
+                type="text"
+                className="border px-3 py-1 rounded-2xl w-full p-2 h-14 text-lg outline-none"
+                placeholder="+82101234567"
+              />
+            </div>
+          </div>
+          <div className="lg:p-3 p-1">
+            <p>Email*</p>
             <input
               type="text"
-              placeholder="UserName"
-              className="sm:w-full w-[100%] text-xs md:text-base rounded-sm border border-gray-300
-                        focus:outline-none focus:border-1 focus:border-green"
+              className="border px-3 py-1 rounded-2xl w-full outline-none p-2 h-14 text-lg"
+              placeholder="Example@example.com"
             />
           </div>
-          <div className="flex  items-center">
-            <div className="p-2 w-[50%]">
-              <label className="text-xs md:text-base">Email:</label>
-              <input
-                type="text"
-                placeholder="Email"
-                className="sm:w-full w-[100%] text-xs md:text-base rounded-sm border border-gray-300
-                        focus:outline-none focus:border-1 focus:border-green"
-              />
-            </div>
-            <div className="p-2 w-[50%]">
-              <label className="text-xs md:text-base">Phone:</label>
-              <input
-                type="text"
-                placeholder="Phone"
-                className="sm:w-full w-[100%] text-xs md:text-base rounded-sm border border-gray-300
-                        focus:outline-none focus:border-1 focus:border-green"
-              />
-            </div>
-            
+
+          <div className="mx-auto text-center flex items-center justify-center m-2  lg:p-3 md:p-2   ">
+            <button className=" w-[200px] sm:w-[150px] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm">
+              + Save Changes
+            </button>
           </div>
-          <div className="mx-auto text-center flex items-center justify-center  lg:p-3 md:p-2 text-xs md:text-base  ">
-              <button className=" w-[200px] sm:w-[150px] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm">
-                + Save Changes
-              </button>
-            </div>
         </div>
       </div>
     </div>

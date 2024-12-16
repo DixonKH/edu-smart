@@ -42,11 +42,11 @@ const MyPage = (props: Props) => {
     }
   };
   return (
-    <div className="lg:container md:px-10 sm:px-5 px-1">
+    <div className="lg:container md:px-10 sm:px-5 px-1 pt-[150px]">
       <div>
         <div className="grid lg:grid-cols-5 base:grid-cols-2 md:grid-cols-3 ">
           <div className="flex items-start justify-center">
-            <div className="col-span-1  md:h-[630px] sm:h-[500px]  h-[500px] lg:h-[550px] w-[200px] sm:w-[200px]  md:w-[230px] py-5 border-green1 border m-2 rounded-xl">
+            <div className="col-span-1  md:h-[630px] sm:h-[530px]  h-[530px] lg:h-[550px] w-[250px] sm:w-[250px]  md:w-[230px] py-5 border-green1 border m-2 rounded-xl">
               <div className="flex  mx-auto items-center justify-center rounded-full size-10 bg-yellow">
                 <div>
                   <MdCastForEducation className="text-xl  text-bgGreen" />
@@ -57,10 +57,10 @@ const MyPage = (props: Props) => {
               </p>
 
               <div>
-                <p className="md:text-2xl pt-4 pl-2 flex text-center lg:text-xl sm:text-xl italic">
+                <p className=" pt-4 pl-2 flex text-center lg:text-xl sm:text-xl italic">
                   Manage Listing:
                 </p>
-                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2 text-xs md:text-base  ">
+                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2  ">
                   <button
                     onClick={() => setShowComponent(1)}
                     className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
@@ -69,7 +69,7 @@ const MyPage = (props: Props) => {
                     Add Lesson
                   </button>
                 </div>
-                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2 text-xs md:text-base  ">
+                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2   ">
                   <button
                     onClick={() => setShowComponent(2)}
                     className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
@@ -78,7 +78,7 @@ const MyPage = (props: Props) => {
                     My Lesson
                   </button>
                 </div>
-                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2 text-xs md:text-base  ">
+                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2   ">
                   <button
                     onClick={() => setShowComponent(3)}
                     className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
@@ -89,10 +89,10 @@ const MyPage = (props: Props) => {
                 </div>
               </div>
               <div>
-                <p className="md:text-2xl pt-4 pl-2 flex text-center lg:text-xl sm:text-xl italic">
+                <p className=" pt-4 pl-2 flex text-center  italic">
                   Community:
                 </p>
-                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2 text-xs md:text-base  ">
+                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2   ">
                   <button
                     onClick={() => setShowComponent(4)}
                     className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
@@ -101,7 +101,7 @@ const MyPage = (props: Props) => {
                     Articles
                   </button>
                 </div>
-                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2 text-xs md:text-base  ">
+                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2   ">
                   <button
                     onClick={() => setShowComponent(5)}
                     className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
@@ -112,10 +112,10 @@ const MyPage = (props: Props) => {
                 </div>
               </div>
               <div>
-                <p className="md:text-2xl pt-4 pl-2 flex text-center lg:text-xl sm:text-xl italic">
+                <p className=" pt-4 pl-2 flex text-center  italic">
                   Manage Account:
                 </p>
-                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center lg:p-1 md:p-2 text-xs md:text-base  ">
+                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center lg:p-1 md:p-2   ">
                   <button
                     onClick={() => setShowComponent(6)}
                     className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
@@ -124,7 +124,7 @@ const MyPage = (props: Props) => {
                     My Profile
                   </button>
                 </div>
-                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center lg:p-1 md:p-2 text-xs md:text-base  ">
+                <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center lg:p-1 md:p-2   ">
                   <button
                     onClick={() => setShowComponent(7)}
                     className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"

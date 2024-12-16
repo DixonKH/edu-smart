@@ -17,10 +17,8 @@ import { useState } from "react";
 import { RiTeamFill } from "react-icons/ri";
 
 import Line from "@/app/screen/MainPage/Line";
-import Header from "./Header";
 
 type Props = {
-  header?: number;
 };
 
 const Navbar = (props: Props) => {
@@ -147,7 +145,7 @@ const Navbar = (props: Props) => {
               className={
                 !nav
                   ? `fixed z-50  left-0 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover top-[9.5%] w-full sm:w-full base:w-[50%]  text-black   bg-green/20 
+                    object-cover top-[8%] w-full sm:w-full base:w-[50%]  text-black   bg-green/20 
                 backdrop-blur-xl h-[80%] border-b rounded-b-md border-green ease-in-out duration-300`
                   : "fixed top-[-90%]"
               }
