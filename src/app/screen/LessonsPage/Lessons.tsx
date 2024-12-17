@@ -52,13 +52,13 @@ export default function Lessons() {
             />
             <button
               type="submit"
-              className="flex items-center justify-center bg-green1 lg:gap-2 lg:text-lg text-white p-2 rounded-lg ml-2 w-wull"
+              className="flex items-center justify-center bg-green lg:gap-2 lg:text-lg text-white p-2 rounded-lg ml-2 w-wull"
             >
               <FaSearch /> Search
             </button>
           </form>
         </div>
-        <div className="grid justify-center ms:grid-cols-1 md:grid-cols-2 lg:grid-cols-5 grid-flow-row gap-4 mt-4 w-full  h-auto mb-5">
+        <div className="grid justify-center ms:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 grid-flow-row gap-4 mt-4 w-full  h-auto mb-5">
           <LessonCard />;
         </div>
         <div className="my-3">

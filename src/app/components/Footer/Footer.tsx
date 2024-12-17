@@ -77,7 +77,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="px-3 col-span-2">
-              <p className="p-3  text-2xl">Get the latest information</p>
+              <p className="p-3 w-full text-xl lg:text-2xl text-center lg:text-left">Get the latest information</p>
               <div className="flex items-center p-3 ">
                 <input
                   className="rounded-l-md w-full h-10 px-3 text-lg text-black outline-none"

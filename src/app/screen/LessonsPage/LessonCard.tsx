@@ -94,16 +94,16 @@ export default function LessonCard() {
       {
         lessons.map((lesson: any) => {
           return (
-            <div key={lesson.id} className="flex flex-col align-middle justify-items-start w-full h-auto border-solid border rounded-lg">
-        <div>
+            <div key={lesson.id} className="flex flex-col align-middle justify-items-start w-full h-auto border-solid border rounded-lg cursor-pointer">
+        <div className="w-full h-auto">
           <video className="rounded-md" controls>
             <source src={video} type="video/mp4" />
           </video>
         </div>
-        <div className="p-1 mt-1">
-          <div className="flex flex-row items-center justify-between gap-4 w-full h-8 py-1 ">
+        <div className="p-2 mt-1">
+          <div className="flex flex-row items-start justify-between gap-4 w-full h-8 mb-2">
             <div className="leading-5">
-              <span className="inline-block text-green1"><IoReaderOutline /></span>
+              <span className="inline-block text-green mr-1"><IoReaderOutline /></span>
               {lesson.title}
             </div>
             <div>
@@ -111,7 +111,7 @@ export default function LessonCard() {
             </div>
           </div>
           <div className="flex flex-row items-center justify-between gap-4 w-full h-8 py-1 ">
-            <div className={`leading-4 text-sm overflow-hidden p-1 px-2 rounded ${lesson.category === "Beginner" ? "bg-yellow" : "bg-green"}`}>
+            <div className={`leading-4 text-sm overflow-hidden p-1 px-2 rounded ${lesson.category === "Beginner" ? "bg-red text-white" : lesson.categoty === "Elementry" ? "bg-green text-white" : lesson.category === "Intermediate" ? "bg-blue text-white" : lesson.category === "Advanced" ? "bg-bgGreen text-white" : "bg-orange text-white"}`}>
               {lesson.category} 
               </div>
             <div className="text-[12px] text-slate-600">
@@ -120,7 +120,7 @@ export default function LessonCard() {
           </div>
           <div className="flex items-center justify-between mt-2">
             <div className="flex flex-row items-center justify-start gap-1 text-slate-600 text-sm">
-              <FaBookReader className="text-green1" />
+              <FaBookReader className="text-green" />
               Teacher: {lesson.owner}
             </div>
             <CiHeart className="size-5" />
