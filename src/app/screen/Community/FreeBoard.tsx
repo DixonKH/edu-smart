@@ -4,6 +4,7 @@ import { SlLike } from "react-icons/sl";
 import Teaching from "/public/images/Teaching.jpg";
 import { FaEye } from "react-icons/fa6";
 import Community from "./Community.json";
+import { Link } from "react-router";
 
 type Props = {
   showComponent: Number;
@@ -19,8 +20,8 @@ const FreeBoard = ({ showComponent, setShowComponent }: Props) => {
     <div>
       <ul className="m-2 grid base:grid-cols-1  lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         {Community.map((item, index) => (
-          <li
-            onClick={() => selectedId(item.id)}
+          <Link
+            to={`/community/${item.id}`}
             key={index}
             className="flex justify-center items-center"
           >
@@ -30,10 +31,10 @@ const FreeBoard = ({ showComponent, setShowComponent }: Props) => {
                   src={item.image}
                   alt="VideContent"
                   className="border-black hover:bg-background  drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover w-[500px]  rounded-3xl"
+                    object-cover w-[300px]  rounded-xl"
                 />
                 <div className="absolute  w-full px-5">
-                  <div className=" bg-gray-100 border w-full rounded-xl  flex items-center justify-between   p-1 text-black ">
+                  <div className=" bg-gray-100 border w-full   flex items-center justify-between   p-1 text-black ">
                     <div>
                       <p className="lg:p-1 md:p-0 p-1 text-xs md:text-sm  px-1 italic">
                         {item.name}
@@ -73,17 +74,17 @@ const FreeBoard = ({ showComponent, setShowComponent }: Props) => {
               </div>
               <div className="flex">
                 <div>
-                  <BsChatRightQuoteFill className="m-1 text-xl" />
+                  <BsChatRightQuoteFill className="m-1 text-yellow text-xl" />
                 </div>
-                <p className="p-2 text-xs md:text-sm lg:text-sm ">
-                  {item.comments}
+                <p className="p-2 text-xs text-white md:text-sm lg:text-sm ">
+                  {item.comments}<button className="px-2 text-black underline">Read more...</button>
                 </p>
-                <p className="lg:p-2 border-l-2 border-black p-2 text-[10px]  text-center italic">
+                <p className="lg:p-2 border-l-2 text-white border-black p-2 text-[10px]  text-center italic">
                   {item.date}
                 </p>
               </div>
             </div>
-          </li>
+          </Link>
         ))}
       </ul>
     </div>

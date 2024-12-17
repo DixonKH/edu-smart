@@ -1,4 +1,6 @@
 import React from "react";
+import AddFiles from "./AddFiles";
+
 
 type Props = {};
 
@@ -10,50 +12,54 @@ const AddLesson = (props: Props) => {
           <form>
             <div
               data-aos="fade-up"
-              className="lg:container md:px-10 sm:px-5 px-1 shadow-xl border rounded-xl grid sm:grid-cols-2  border-green my-1 sm:my-2 gap-2 sm:gap-3 p-1 justify-around"
+              className="lg:container md:px-10 sm:px-5 px-1 shadow-xl border rounded-xl   border-green my-1 sm:my-2 gap-2 sm:gap-3 p-1 justify-around"
             >
-              <div className="p-1 ">
-                <label className="text-xs sm:text-xl">Lesson</label>
+              <div className="flex justify-center items-center">
+                <h1 className="text-lg italic underline">
+                  Here add your Lesson*
+                </h1>
+              </div>
+              <div className="w-full flex md:flex-row flex-col justify-between ">
+                <div className="lg:p-3 p-1 w-full">
+                  <p className="">Teacher name*</p>
+                  <input
+                    type="text"
+                    className="border px-3 py-1 rounded-2xl w-full p-2 h-14 text-lg outline-none"
+                    placeholder="Ex.John Doe"
+                  />
+                </div>
+                <div className="lg:p-3 p-1 w-full">
+                  <p>Phone*</p>
+                  <input
+                    type="number"
+                    className="border px-3 py-1 rounded-2xl w-full p-2 h-14 text-lg outline-none"
+                    placeholder="+82101234567"
+                  />
+                </div>
+              </div>
+              <div className="lg:p-3 p-1">
+                <p>Email*</p>
                 <input
-                  type="text"
-                  placeholder="Name of Lesson"
-                  className="sm:w-full w-[100%] text-xs sm:text-xl rounded-sm border border-gray-300
-                        focus:outline-none focus:border-1 focus:border-green"
+                  type="email"
+                  className="border px-3 py-1 rounded-2xl w-full outline-none p-2 h-14 text-lg"
+                  placeholder="Example@example.com"
                 />
               </div>
-              <div className="p-1">
-                <label className="text-xs sm:text-xl">
-                  Description
-                </label>
-                <input
-                  type="text"
-                  placeholder="Description of Lesson"
-                  className="sm:w-full w-[100%] text-xs sm:text-xl rounded-sm border border-gray-300
-                        focus:outline-none focus:border-1 focus:border-green"
-                />
-              </div>
-              <div className="p-1">
-                <label className="text-xs sm:text-xl">Category</label>
-                <select
-                  className="sm:w-full w-[100%] text-xs sm:text-xl rounded-sm border border-gray-300
-                        focus:outline-none focus:border-1 focus:border-green"
-                >
-                  <option value="elementary">Elementary</option>
-                  <option value="intermediate">Intermediate</option>
-                  <option value="advanced">Advanced</option>
+              <label className="lg:p-3 p-1">Category</label>
+              <div className="sm:hidden lg:flex fex-row gap-4 hidden">
+                <select className="border  px-3 py-1 rounded-2xl    h-14 w-full  p-2 text-lg outline-none ">
+                  <option value="2">Beginner</option>
+                  <option value="3">Elementry</option>
+                  <option value="4">Intermediate</option>
+                  <option value="5">Advanced</option>
                 </select>
               </div>
               <div className="p-1">
-                <label className="text-xs sm:text-xl">File</label>
-                <input
-                  type="file"
-                  placeholder="Lesson File"
-                  className="sm:w-full w-[100%] text-xs sm:text-xl rounded-sm border border-gray-300
-                        focus:outline-none focus:border-1 focus:border-green"
-                />
+                <label className="text-xs md:text-base">File</label>
+                <AddFiles />
               </div>
-              <div className="flex items-center justify-center gap-5">
-                <label className="text-xs sm:text-xl">Availibility</label>
+              <div className="flex items-center justify-center gap-5 m-1">
+                <label className="text-xs md:text-base">Availibility</label>
                 <input
                   role="switch"
                   id="isAvailable"
@@ -63,7 +69,7 @@ const AddLesson = (props: Props) => {
               </div>
               <div className="mx-auto text-center flex items-center justify-center  lg:p-3 md:p-2 text-xs md:text-base  ">
                 <button className=" w-[200px] sm:w-[150px] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm">
-                 + Add Lesson
+                  + Add Lesson
                 </button>
               </div>
             </div>
