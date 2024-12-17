@@ -1,80 +1,47 @@
 import NavbarItems from "./Navbar.json";
 import { Link } from "react-router";
-import { MdCastForEducation, MdPriceChange } from "react-icons/md";
-import { IoLogInOutline, IoPerson } from "react-icons/io5";
-import { IoIosArrowRoundForward, IoIosCall, IoMdSearch } from "react-icons/io";
-import {
-  FaLocationArrow,
-  FaMessage,
-} from "react-icons/fa6";
-import { FaFacebook, FaMobileAlt } from "react-icons/fa";
+import { MdCastForEducation } from "react-icons/md";
+import { FaUser } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
-import { RiTeamFill } from "react-icons/ri";
+import uzbFlag from "../../../../public/icons/world.png";
+import koreanFlag from "../../../../public/icons/south-korea.png";
+import englishFlag from "../../../../public/icons/united-kingdom.png";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-import Line from "@/app/screen/MainPage/Line";
+import MiniNavbar from "./MiniNavbar";
 
-type Props = {
-};
+type Props = {};
 
 const Navbar = (props: Props) => {
   const [nav, setNav] = useState(true);
-  const [header, setHeader]=useState(1);
-  console.log(header);
-
-  
+  const [header, setHeader] = useState(1);
+  const [user, setUser] = useState(true);
 
   const handleNav = () => setNav(!nav);
 
   return (
-    <div>
-      <div className="bg-green1 fixed z-50 w-[100%] hidden lg:flex md:flex sm:hidden">
-        <div className="lg:container md:px-10 w-[100%]  sm:px-5 px-1 ">
-          <div className=" md:flex flex lg:flex  justify-between  items-center ">
-            <div className="flex justify-between items-center gap-3 p-1">
-              <div className="flex items-center justify-start">
-                <div className="flex items-center  justify-between rounded-full w-5 h-5 bg-green1">
-                  <IoIosCall className="text-xl  text-yellow" />
-                </div>
-                <p className="text-white">+82101234567</p>
-              </div>
-              <div className="flex items-center justify-start">
-                <div className="flex items-center  justify-between rounded-full w-5 h-5 bg-green1">
-                  <FaMessage className="text-xl px-1 text-yellow" />
-                </div>
-                <p className="text-white">example@gmail.com</p>
-              </div>
-            </div>
-            <div className="flex justify-end items-center">
-              <div className="flex justify-evenly items-center gap-4 py-2 px-4">
-                <div className="flex items-center  justify-center rounded-full w-5 h-5 bg-green1">
-                  <FaFacebook className="text-xl text-yellow" />
-                </div>
-                <div className="flex items-center justify-center rounded-full w-5 h-5 bg-green1">
-                  <FaTwitter className="text-xl text-yellow" />
-                </div>
-                <div className="flex items-center justify-center rounded-full w-5 h-5 bg-green1">
-                  <FaPinterest className="text-xl text-yellow" />
-                </div>
-                <div className="flex items-center justify-center rounded-full w-5 h-5 bg-green1">
-                  <FaInstagramSquare className="text-xl text-yellow" />
-                </div>
-                <div className="flex items-center justify-center rounded-full w-5 h-5 bg-green1">
-                  <FaYoutube className="text-xl text-yellow" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="w-full">
+      <div className="bg-green1 fixed z-50 w-[100%] hidden lg:flex md:flex sm:hidden top-0">
+        <MiniNavbar />
       </div>
-      <div className="lg:bg-background md:bg-background shadow-xl border-b border-green1 bg-green1  z-40 lg:pt-10 md:pt-10 fixed w-full sm:bg-green1">
+      <div className="shadow-xl2 md:bg-background2 fixed z-40 w-full bg-green1 top-0 md:top-8 h-16">
         <div className="lg:container md:px-10 sm:px-5 px-1">
-          <div className="flex  lg:justify-between md:justify-between  items-center p-2">
-            <div className="flex justify-between items-center w-full">
+          <div className="flex md:justify-between items-center px-2">
+            <div className="flex justify-between items-center w-full z-50">
               <div className="flex items-center  justify-start">
                 <div>
                   <Link
@@ -96,18 +63,18 @@ const Navbar = (props: Props) => {
                   </Link>
                 </div>
               </div>
-              <div className="hidden sm:hidden md:flex  lg:flex justify-end items-center">
+              <div className="hidden md:flex justify-between items-center h-16">
                 <div className="sm:flex  justify-end items-center gap-5">
                   <ul className="md:flex  items-center gap-5 md:gap-2 text-xl">
                     {NavbarItems.map((item, index) => (
                       <li
-                        className=" font-nunito  drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover px-3 "
+                        className="drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                    object-cover px-3"
                         key={index}
                       >
                         <Link
-                        onClick={() => setHeader(item.id) }
-                          className="hover:border-green1 md:text-sm text-xl sm:text-xl lg:text-xl hover:border-b-2 hover:text-green1"
+                          onClick={() => setHeader(item.id)}
+                          className="hover:border-green1 lg:text-xl text-base hover:border-b-2 hover:text-green1"
                           to={item.link}
                         >
                           {item.name}
@@ -115,22 +82,101 @@ const Navbar = (props: Props) => {
                       </li>
                     ))}
                   </ul>
+                  {user && (
+                    <Link
+                      to="mypage"
+                      className="flex items-center justify-between gap-2 py-1 px-3 rounded-xl"
+                    >
+                      <span
+                        className="drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                    object-cover hover:border-green1 lg:text-xl text-base hover:border-b-2 hover:text-green1"
+                      >
+                        My Page
+                      </span>
+                    </Link>
+                  )}
                   <Link
-                    to="mypage"
-                    className="flex drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover items-center justify-between gap-2 bg-yellow py-1 px-3 rounded-xl hover:border-green1 hover:border-b-2 hover:text-green1"
+                    to="login"
+                    className="flex items-center justify-between gap-2 py-1 px-3 rounded-xl"
                   >
-                    <IoPerson className="text-xl text-bgGreen" />
-                    <span className="text-black md:text-sm text-xl lg:text-xl sm:text-xl font-semibold">
-                      My Page
-                    </span>
+                    <FaUser className="text-xl text-green cursor-pointer" />
                   </Link>
                 </div>
+                <Select defaultValue="UZ">
+                  <SelectTrigger className="flex items-center justify-between w-18 outline-none border-none bg-transparent font-bold">
+                    <SelectValue placeholder="UZ" />
+                  </SelectTrigger>
+                  <SelectContent className="w-14">
+                    <SelectGroup>
+                      <SelectItem value="UZ">
+                        {" "}
+                        <img
+                          src={uzbFlag}
+                          alt="UZ"
+                          className="size-5 inline-block mr-2"
+                        />
+                        UZ
+                      </SelectItem>
+                      <SelectItem value="KR">
+                        {" "}
+                        <img
+                          src={koreanFlag}
+                          alt="KR"
+                          className="size-5 inline-block mr-2"
+                        />
+                        KR
+                      </SelectItem>
+                      <SelectItem value="EN">
+                        <img
+                          src={englishFlag}
+                          alt="EN"
+                          className="size-5 inline-block mr-2"
+                        />
+                        EN
+                      </SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </div>
-              <div className="flex items-center lg:hidden  md:hidden justify-end">
+              <div className="flex items-center md:hidden justify-end h-16">
+                <Select defaultValue="UZ">
+                  <SelectTrigger className="flex items-center justify-between w-18 outline-none border-none text-white bg-transparent font-bold">
+                    <SelectValue placeholder="UZ" />
+                  </SelectTrigger>
+                  <SelectContent className="w-14">
+                    <SelectGroup>
+                      <SelectItem value="UZ">
+                        {" "}
+                        <img
+                          src={uzbFlag}
+                          alt="UZ"
+                          className="size-5 inline-block mr-2"
+                        />
+                        UZ
+                      </SelectItem>
+                      <SelectItem value="KR">
+                        {" "}
+                        <img
+                          src={koreanFlag}
+                          alt="KR"
+                          className="size-5 inline-block mr-2"
+                        />
+                        KR
+                      </SelectItem>
+                      <SelectItem value="EN">
+                        <img
+                          src={englishFlag}
+                          alt="EN"
+                          className="size-5 inline-block mr-2"
+                        />
+                        EN
+                      </SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
                 <div
                   className="drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover text-white"
+                    object-cover text-white cursor-pointer ml-2"
                   onClick={handleNav}
                 >
                   {!nav ? (
@@ -144,52 +190,42 @@ const Navbar = (props: Props) => {
             <div
               className={
                 !nav
-                  ? `fixed z-50  left-0 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover top-[8%] w-full sm:w-full base:w-[50%]  text-black   bg-green/20 
-                backdrop-blur-xl h-[80%] border-b rounded-b-md border-green ease-in-out duration-300`
-                  : "fixed top-[-90%]"
+                  ? `fixed z-10  left-0  top-[7%] w-full text-black bg-white/10
+                backdrop-blur-2xl border-b rounded-b-md ease-in-out duration-500 cursor-pointer`
+                  : "fixed top-[-100%]"
               }
             >
-              <div className="flex mt-5  items-center text-center justify-center">
-                <ul className="pt-15 px-8 w-[70%]  text-white bg-bgGreen font-bold-100">
+              <div className="flex flex-col items-center text-center justify-center h-96">
+                <ul className="flex flex-col items-center justify-center px-8 w-[80%]  text-white bg-bgGreen font-bold-100 rounded-2xl h-72">
                   {NavbarItems.map((item) => (
                     <li
                       key={item?.id}
-                      className="p-4 border-b-2   border-gray-900"
+                      onClick={handleNav}
+                      className="p-4 border-b border-white w-full rounded-2xl"
                     >
                       <Link to={item.link}>{item.name}</Link>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="w-full p-2">
+              <div className="w-full mb-8">
                 <div className="flex justify-center items-center">
                   <div className="flex justify-evenly items-center gap-4 py-2 px-4">
-                    <div className="flex items-center  justify-center rounded-full w-7 h-7 bg-green1">
-                      <FaFacebook className="text-xl text-yellow" />
+                    <div className="flex items-center  justify-center rounded-full p-2 bg-bgGreen hover:scale-110 hover:bg-yellow hover:transition-all hover:duration-300">
+                      <FaFacebook className="text-xl text-white size-7" />
                     </div>
-                    <div className="flex items-center justify-center rounded-full w-7 h-7 bg-green1">
-                      <FaTwitter className="text-xl text-yellow" />
+                    <div className="flex items-center justify-center rounded-full p-2 bg-bgGreen hover:scale-110 hover:bg-yellow hover:transition-all hover:duration-300">
+                      <FaTwitter className="text-xl text-white size-7" />
                     </div>
-                    <div className="flex items-center justify-center rounded-full w-7 h-7 bg-green1">
-                      <FaPinterest className="text-xl text-yellow" />
+                    <div className="flex items-center justify-center rounded-full p-2 bg-bgGreen hover:scale-110 hover:bg-yellow hover:transition-all hover:duration-300">
+                      <FaPinterest className="text-xl text-white size-6" />
                     </div>
-                    <div className="flex items-center justify-center rounded-full w-7 h-7 bg-green1">
-                      <FaInstagramSquare className="text-xl text-yellow" />
+                    <div className="flex items-center justify-center rounded-full p-2 bg-bgGreen hover:scale-110 hover:bg-yellow hover:transition-all hover:duration-300">
+                      <FaInstagramSquare className="text-xl text-white size-6" />
                     </div>
-                    <div className="flex items-center justify-center rounded-full w-7 h-7 bg-green1">
-                      <FaYoutube className="text-xl text-yellow" />
+                    <div className="flex items-center justify-center rounded-full p-2 bg-bgGreen hover:scale-110 hover:bg-yellow hover:transition-all hover:duration-300">
+                      <FaYoutube className="text-xl text-white size-6" />
                     </div>
-                  </div>
-                </div>
-                <div className="   text-white bg-bgGreen mt-6 p-3">
-                  <div className="flex  items-center gap-3">
-                    <FaLocationArrow />
-                    <p>example@gmail.com</p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <FaMobileAlt />
-                    <p>+821234567</p>
                   </div>
                 </div>
               </div>

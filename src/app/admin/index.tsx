@@ -34,8 +34,8 @@ export default function AdminPage() {
     }
   };
   return (
-    <div className="flex flex-row justify-between items-start gap-5">
-      <div className="flex flex-col justify-start items-center gap-5 w-1/5">
+    <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-5">
+      <div className="flex flex-row lg:flex-col lg:justify-start justify-center items-center gap-5 lg:w-1/5">
         <div className="flex  justify-center items-center gap-3 shadow-md p-3 rounded-xl my-8 w-72 border-b-2 border-green">
           <img
             src={person1}
@@ -50,26 +50,26 @@ export default function AdminPage() {
         <div>
           <button 
             onClick={() => setShowComponent(0)}
-            className=" px-4 py-2 text-3xl font-menium w-72 h-16 border-b-2 rounded-2xl border-green text-green shadow-md hover:bg-green hover:text-white transition-all duration-300">
+            className=" px-4 py-2 text-2xl lg:text-3xl font-menium lg:w-72 h-16 border-b-2 rounded-2xl border-green text-green shadow-md hover:bg-green hover:text-white transition-all duration-300">
             Users
           </button>
         </div>
         <div>
           <button 
             onClick={() => setShowComponent(1)}
-            className=" px-4 py-2 text-3xl font-menium w-72 h-16 border-b-2 rounded-2xl border-green text-green shadow-md hover:bg-green hover:text-white transition-all duration-300">
+            className=" px-4 py-2 text-2xl lg:text-3xl font-menium lg:w-72 h-16 border-b-2 rounded-2xl border-green text-green shadow-md hover:bg-green hover:text-white transition-all duration-300">
             Lessons
           </button>
         </div>
         <div>
           <button
             onClick={() => setShowComponent(2)}
-            className=" px-4 py-2 text-3xl font-menium w-72 h-16 border-b-2 rounded-2xl border-green text-green shadow-md hover:bg-green hover:text-white transition-all duration-300">
+            className=" px-4 py-2 text-2xl lg:text-3xl font-menium lg:w-72 h-16 border-b-2 rounded-2xl border-green text-green shadow-md hover:bg-green hover:text-white transition-all duration-300">
             Articles
           </button>
         </div>
       </div>
-      <div className="w-4/5 mt-16">
+      <div className="lg:w-4/5 mt-16">
         <RenderComponent />
       </div>
     </div>

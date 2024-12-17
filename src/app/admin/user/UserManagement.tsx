@@ -148,7 +148,7 @@ export default function UserManagement() {
         </div>
   
         {/* Table */}
-        <div className="border rounded-lg">
+        <div className="border rounded-lg overflow-x-scroll w-full">
           <Table>
             <TableHeader>
               <TableRow className="text-lg h-14">
