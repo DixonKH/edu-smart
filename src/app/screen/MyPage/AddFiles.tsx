@@ -14,7 +14,7 @@ export default function App() {
   return (
     <div
     
-      className="border h-[180px] text-xs lg:text-xl sm:text-sm w-[100px] lg:h-[200px] border-green p-5 rounded-md"
+      className="border h-[180px] text-xs lg:text-xl sm:text-sm w-[100px] lg:h-[240px] border-green p-5 rounded-md"
       style={{
         display: "flex",
         alignItems: "center",

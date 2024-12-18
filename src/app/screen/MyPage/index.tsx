@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { IoIosArrowRoundForward } from "react-icons/io";
 import { MdCastForEducation } from "react-icons/md";
 import { MdOutlinePlayLesson } from "react-icons/md";
 import { MdPlayLesson } from "react-icons/md";
@@ -13,6 +12,7 @@ import MyLesson from "./MyLesson";
 import Login from "./Login";
 import MyFavourites from "./MyFavourites";
 import MyProfile from "./MyProfile";
+import Validation from "./Validation";
 
 type Props = {};
 
@@ -46,7 +46,7 @@ const MyPage = (props: Props) => {
       <div>
         <div className="grid lg:grid-cols-5 base:grid-cols-2 md:grid-cols-3 ">
           <div className="flex items-start justify-center">
-            <div className="col-span-1  md:h-[630px] sm:h-[530px]  h-[530px] lg:h-[550px] w-[250px] sm:w-[250px]  md:w-[230px] py-5 border-green1 border m-2 rounded-xl">
+            <div className="col-span-1  md:h-[660px] sm:h-[590px]  h-[600px] lg:h-[580px] w-[250px] sm:w-[250px]  md:w-[230px] py-5 border-green1 border m-2 rounded-xl">
               <div className="flex  mx-auto items-center justify-center rounded-full size-10 bg-yellow">
                 <div>
                   <MdCastForEducation className="text-xl  text-bgGreen" />
@@ -63,7 +63,7 @@ const MyPage = (props: Props) => {
                 <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2  ">
                   <button
                     onClick={() => setShowComponent(1)}
-                    className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
+                    className=" w-[90%] border border-green px-3 py-2 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
                   >
                     <MdOutlinePlayLesson />
                     Add Lesson
@@ -72,7 +72,7 @@ const MyPage = (props: Props) => {
                 <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2   ">
                   <button
                     onClick={() => setShowComponent(2)}
-                    className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
+                    className=" w-[90%] border border-green px-3 py-2 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
                   >
                     <MdPlayLesson />
                     My Lesson
@@ -81,7 +81,7 @@ const MyPage = (props: Props) => {
                 <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2   ">
                   <button
                     onClick={() => setShowComponent(3)}
-                    className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
+                    className=" w-[90%] border border-green px-3 py-2 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
                   >
                     <FaHeart />
                     My Favourites
@@ -95,7 +95,7 @@ const MyPage = (props: Props) => {
                 <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2   ">
                   <button
                     onClick={() => setShowComponent(4)}
-                    className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
+                    className=" w-[90%] border border-green px-3 py-2 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
                   >
                     <MdArticle />
                     Articles
@@ -104,7 +104,7 @@ const MyPage = (props: Props) => {
                 <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2   ">
                   <button
                     onClick={() => setShowComponent(5)}
-                    className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
+                    className=" w-[90%] border border-green px-3 py-2 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
                   >
                     <PiArticleNyTimes />
                     Write Articles
@@ -118,7 +118,7 @@ const MyPage = (props: Props) => {
                 <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center lg:p-1 md:p-2   ">
                   <button
                     onClick={() => setShowComponent(6)}
-                    className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
+                    className=" w-[90%] border border-green px-3 py-2 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
                   >
                     <CgProfile />
                     My Profile
@@ -127,7 +127,7 @@ const MyPage = (props: Props) => {
                 <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center lg:p-1 md:p-2   ">
                   <button
                     onClick={() => setShowComponent(7)}
-                    className=" w-[90%] border border-green px-3 py-1 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
+                    className=" w-[90%] border border-green px-3 py-2 flex items-center justify-evenly hover:italic hover:bg-green hover:text-white  rounded-sm"
                   >
                     <IoMdLogOut />
                     Logout
@@ -141,6 +141,7 @@ const MyPage = (props: Props) => {
           </div>
         </div>
       </div>
+      <Validation />
       <Login />
     </div>
   );
