@@ -1,25 +1,24 @@
 import React from "react";
-import { FaStar } from "react-icons/fa6";
-import { IoIosArrowRoundForward } from "react-icons/io";
 import { IoIosPricetags } from "react-icons/io";
 import { BiLogoMicrosoftTeams } from "react-icons/bi";
 import { FaBagShopping } from "react-icons/fa6";
 import { BsAwardFill } from "react-icons/bs";
 import Line from "./Line";
 import Teaching from "/public/images/Teaching.jpg";
+import { useTranslation } from "react-i18next";
 
 const WhyChooseUs = () => {
+  const { t } = useTranslation();
   return (
     <div className="">
       <div className="md:container my-20">
         <div className="flex flex-col items-center justify-center mb-6">
           <div className="w-full flex flex-col gap-2 text-center lg:text-left">
             <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
-              - Why Choose Us -
+              - {t("why_choose_us_h1")} -
             </p>
             <p className="lg:text-4xl md:text-3xl sm:text-2xl ml-4 text-xl font-medium">
-              <span className="text-green1">Why choose </span>our efficient
-              learning Center
+              <span className="text-green">{t("why_choose_us_h2")}</span>
             </p>
           </div>
         </div>
@@ -70,11 +69,10 @@ const WhyChooseUs = () => {
                 <IoIosPricetags className="lg:text-6xl text-2xl md:text-5xl text-blue" />
               </div>
               <p className="text-md md:text-lg font-bold text-center mt-4 text-blue">
-                Affordable price
+                {t("why_choose_us_price")}
               </p>
               <p className="text-md md:text-base bold text-center p-2">
-                Lorem Ipsum is Lorem Ipsum is simply dummy text of the printing
-                and typesetting industry.
+                  {t("why_choose_us_p")}
               </p>
             </div>
             <div className="flex flex-col items-center justify-center hover:rounded-xl hover:shadow-xl p-2 transition-all duration-300">
@@ -83,11 +81,10 @@ const WhyChooseUs = () => {
                   <BiLogoMicrosoftTeams className="lg:text-5xl text-2xl md:text-3xl text-red" />
                 </div>
                 <p className="text-md md:text-lg font-bold text-center mt-4 text-red">
-                  Professional Team
+                  {t("why_choose_us_team")}
                 </p>
                 <p className="text-md md:text-base bold text-center p-2">
-                  Lorem Ipsum is Lorem Ipsum is simply dummy text of the
-                  printing and typesetting industry.
+                  {t("why_choose_us_p")}
                 </p>
               </div>
             </div>
@@ -97,11 +94,10 @@ const WhyChooseUs = () => {
                   <FaBagShopping className="lg:text-5xl text-2xl md:text-3xl text-green" />
                 </div>
                 <p className="text-md md:text-lg font-bold text-center mt-4 text-green">
-                  10+ years Experience
+                 {t("why_choose_us_experience")}
                 </p>
                 <p className="text-md md:text-base bold text-center p-2">
-                  Lorem Ipsum is Lorem Ipsum is simply dummy text of the
-                  printing and typesetting industry.
+                  {t("why_choose_us_p")}
                 </p>
               </div>
             </div>
@@ -111,11 +107,10 @@ const WhyChooseUs = () => {
                   <BsAwardFill className="lg:text-5xl text-2xl md:text-3xl text-yellow" />
                 </div>
                 <p className="text-md md:text-lg font-bold text-center mt-4 text-yellow">
-                  Award Winning
+                  {t("why_choose_us_award")}
                 </p>
                 <p className="text-md md:text-base bold text-center p-2">
-                  Lorem Ipsum is Lorem Ipsum is simply dummy text of the
-                  printing and typesetting industry.
+                  {t("why_choose_us_p")}
                 </p>
               </div>
             </div>

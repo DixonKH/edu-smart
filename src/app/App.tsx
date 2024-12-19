@@ -12,9 +12,11 @@ import AdminLayout from "./layouts/AdminLayout";
 import MainLayout from "./layouts/MainLayout";
 import AdminPage from "./admin";
 import CommunityDetail from "./screen/Community/CommunityDetail";
+import { Suspense } from "react";
 function App() {
   return (
-    <Routes>
+   <Suspense fallback={<div>Loading...</div>}>
+     <Routes>
       {/* Main Routes */}
       <Route path="/" element={<MainLayout />}>
         <Route path="/" index element={<MainPage />} />
@@ -32,6 +34,7 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
       </Route>
     </Routes>
+   </Suspense>
   );
 }
 

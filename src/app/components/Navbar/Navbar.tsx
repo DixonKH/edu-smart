@@ -17,10 +17,11 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { LANGUAGES } from "../../../constants";
+import { useTranslation } from "react-i18next";
 
 import MiniNavbar from "./MiniNavbar";
 
@@ -30,6 +31,12 @@ const Navbar = (props: Props) => {
   const [nav, setNav] = useState(true);
   const [header, setHeader] = useState(1);
   const [user, setUser] = useState(true);
+  const { i18n, t } = useTranslation();
+
+  const onChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const lang_code = e.target.value;
+    i18n.changeLanguage(lang_code);
+  };
 
   const handleNav = () => setNav(!nav);
 
@@ -77,7 +84,7 @@ const Navbar = (props: Props) => {
                           className="hover:border-green1 lg:text-xl text-base hover:border-b-2 hover:text-green1"
                           to={item.link}
                         >
-                          {item.name}
+                          {t(`${item.name}`)}
                         </Link>
                       </li>
                     ))}
@@ -91,7 +98,7 @@ const Navbar = (props: Props) => {
                         className="drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover hover:border-green1 lg:text-xl text-base hover:border-b-2 hover:text-green1"
                       >
-                        My Page
+                        {t("my_page")}
                       </span>
                     </Link>
                   )}
@@ -102,75 +109,59 @@ const Navbar = (props: Props) => {
                     <FaUser className="text-xl text-green cursor-pointer" />
                   </Link>
                 </div>
-                <Select defaultValue="UZ">
-                  <SelectTrigger className="flex items-center justify-between w-18 outline-none border-none bg-transparent font-bold">
-                    <SelectValue placeholder="UZ" />
+                <Select defaultValue={i18n.language} onValueChange={(value) => i18n.changeLanguage(value)}>
+                  <SelectTrigger
+                    className="flex items-center justify-between w-18 outline-none border-none bg-transparent font-bold"
+                  >
+                    <SelectValue placeholder={LANGUAGES[0].label} />
                   </SelectTrigger>
                   <SelectContent className="w-14">
                     <SelectGroup>
-                      <SelectItem value="UZ">
-                        {" "}
-                        <img
-                          src={uzbFlag}
-                          alt="UZ"
-                          className="size-5 inline-block mr-2"
-                        />
-                        UZ
-                      </SelectItem>
-                      <SelectItem value="KR">
-                        {" "}
-                        <img
-                          src={koreanFlag}
-                          alt="KR"
-                          className="size-5 inline-block mr-2"
-                        />
-                        KR
-                      </SelectItem>
-                      <SelectItem value="EN">
-                        <img
-                          src={englishFlag}
-                          alt="EN"
-                          className="size-5 inline-block mr-2"
-                        />
-                        EN
-                      </SelectItem>
+                      {LANGUAGES.map((item) => (
+                        <SelectItem value={item.code} key={item.code}>
+                          {" "}
+                          <img
+                            src={
+                              item.code === "uz"
+                                ? uzbFlag
+                                : item.code === "kr"
+                                ? koreanFlag
+                                : englishFlag
+                            }
+                            alt={item.code}
+                            className="size-5 inline-block mr-2"
+                          />
+                          {item.label}
+                        </SelectItem>
+                      ))}
                     </SelectGroup>
                   </SelectContent>
                 </Select>
               </div>
               <div className="flex items-center md:hidden justify-end h-16">
-                <Select defaultValue="UZ">
+                <Select defaultValue={i18n.language} onValueChange={(value) => i18n.changeLanguage(value)}>
                   <SelectTrigger className="flex items-center justify-between w-18 outline-none border-none text-white bg-transparent font-bold">
-                    <SelectValue placeholder="UZ" />
+                    <SelectValue placeholder={LANGUAGES[0].label} />
                   </SelectTrigger>
                   <SelectContent className="w-14">
                     <SelectGroup>
-                      <SelectItem value="UZ">
-                        {" "}
-                        <img
-                          src={uzbFlag}
-                          alt="UZ"
-                          className="size-5 inline-block mr-2"
-                        />
-                        UZ
-                      </SelectItem>
-                      <SelectItem value="KR">
-                        {" "}
-                        <img
-                          src={koreanFlag}
-                          alt="KR"
-                          className="size-5 inline-block mr-2"
-                        />
-                        KR
-                      </SelectItem>
-                      <SelectItem value="EN">
-                        <img
-                          src={englishFlag}
-                          alt="EN"
-                          className="size-5 inline-block mr-2"
-                        />
-                        EN
-                      </SelectItem>
+                      {LANGUAGES.map((item) => (
+                        <SelectItem value={item.code} key={item.code}>
+                          {" "}
+                          <img
+                            src={
+                              item.code === "uz"
+                                ? uzbFlag
+                                : item.code === "kr"
+                                ? koreanFlag
+                                : englishFlag
+                            }
+                            alt={item.code}
+                            className="size-5 inline-block mr-2"
+                          />
+                          {item.label}
+                        </SelectItem>
+                      ))}
                     </SelectGroup>
                   </SelectContent>
                 </Select>
@@ -203,7 +194,7 @@ const Navbar = (props: Props) => {
                       onClick={handleNav}
                       className="p-4 border-b border-white w-full rounded-2xl"
                     >
-                      <Link to={item.link}>{item.name}</Link>
+                      <Link to={item.link}>{t(`${item.name}`)}</Link>
                     </li>
                   ))}
                 </ul>
