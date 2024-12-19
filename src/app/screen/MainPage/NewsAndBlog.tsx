@@ -3,22 +3,23 @@ import Teaching from "/public/images/Teaching.jpg";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { Link } from "react-router";
 import Line from "./Line";
+import { useTranslation } from "react-i18next";
 
 type Props = {};
 
 const NewsAndBlog = (props: Props) => {
+  const { t } = useTranslation();
   return (
     <div>
       <div className="lg:container md:px-10 sm:px-5 px-1 mt-20">
         <div className=" items-center justify-between">
           <div className="lg:text-left text-center">
             <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
-              - News & Blog -
+              - {t("news")} -
             </p>
             <div className="lg:flex items-center justify-centerr">
               <p className=" lg:text-4xl lg:font-medium md:text-3xl sm:text-2xl text-xl lg:p-5 md:p-2 sm:mb-4 lg:mb-0">
-                Our Latest
-                <span className="text-green1"> News & Blog</span>
+                <span className="text-green1"> {t("news_h1")}</span>
               </p>
             </div>
           </div>
@@ -27,7 +28,7 @@ const NewsAndBlog = (props: Props) => {
               <button
                 className="flex items-center justify-between shadow-xl border px-4 p-2  hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl"
               >
-                View all Classes
+                {t("news_btn")}
                 <IoIosArrowRoundForward />
               </button>
             </div>
@@ -45,12 +46,12 @@ const NewsAndBlog = (props: Props) => {
                 <div className="lg:flex items-center   justify-between">
                   <div className="gap-2   p-1 text-white  ">
                     <p className="text-sm  border px-1 rounded-xl">
-                      House Cleaning
+                      Beginner
                     </p>
                   </div>
                   <div className="gap-2  p-1 text-white  ">
                     <p className="text-sm border px-1 rounded-xl">
-                      Kitchen Cleaning
+                      Elementry
                     </p>
                   </div>
                 </div>
@@ -73,7 +74,7 @@ const NewsAndBlog = (props: Props) => {
                   to=""
                 >
                   {" "}
-                  Read More...
+                  {t("news_more")}...
                 </Link>
               </div>
             </div>
@@ -89,12 +90,12 @@ const NewsAndBlog = (props: Props) => {
                 <div className="lg:flex items-center   justify-between">
                   <div className="gap-2   p-1 text-white  ">
                     <p className="text-sm  border px-1 rounded-xl">
-                      House Cleaning
+                      Beginner
                     </p>
                   </div>
                   <div className="gap-2  p-1 text-white  ">
                     <p className="text-sm border px-1 rounded-xl">
-                      Kitchen Cleaning
+                      Elementry
                     </p>
                   </div>
                 </div>
@@ -117,7 +118,7 @@ const NewsAndBlog = (props: Props) => {
                   to=""
                 >
                   {" "}
-                  Read More...
+                  {t("news_more")}...
                 </Link>
               </div>
             </div>
@@ -133,12 +134,12 @@ const NewsAndBlog = (props: Props) => {
                 <div className="lg:flex  items-center  justify-between">
                   <div className="gap-2   p-1 text-white  ">
                     <p className="text-sm  border px-1 rounded-xl">
-                      House Cleaning
+                      Beginner
                     </p>
                   </div>
                   <div className="gap-2  p-1 text-white  ">
                     <p className="text-sm border px-1 rounded-xl">
-                      Kitchen Cleaning
+                      Elementry
                     </p>
                   </div>
                 </div>
@@ -161,7 +162,7 @@ const NewsAndBlog = (props: Props) => {
                   to=""
                 >
                   {" "}
-                  Read More...
+                  {t("news_more")}...
                 </Link>
               </div>
             </div>

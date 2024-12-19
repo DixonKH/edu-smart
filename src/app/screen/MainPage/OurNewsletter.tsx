@@ -1,21 +1,23 @@
 import React from "react";
 import { IoSend } from "react-icons/io5";
 import { FaEnvelope } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 type Props = {};
 
 const OurNewsletter = (props: Props) => {
+  const { t } = useTranslation();
   return (
     <div className="lg:container md:px-10 sm:px-5 px-1 mt-20">
       <div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center text-center">
           <p className=" md:text-4xl text-2xl font-medium  p-2">
-            Stay Update with
+            {t("faq")} <br />
             <span className="text-green1">
               {" "}
-              Our Courses <br /> Tips & Offers!{" "}
+              {t("faq_p")} <br />
             </span>
-            Subscribe Now!
+            {t("faq_p1")}
           </p>
         </div>
 

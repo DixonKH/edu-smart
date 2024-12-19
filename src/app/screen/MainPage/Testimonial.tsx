@@ -10,6 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useTranslation } from "react-i18next";
 
 type Props = React.JSX.IntrinsicAttributes;
 
@@ -41,15 +42,15 @@ const testimonalData = [
 ];
 
 const Testimonial = (props: Props) => {
+  const { t } = useTranslation();
   return (
     <div className="lg:container">
       <div className="text-center lg:text-left lg:p-0  md:px-10 mb-5 mt-20">
         <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
-          - Testimonial -
+          - {t("testimonal")} -
         </p>
         <p className=" lg:text-4xl md:text-3xl sm:text-2xl text-xl lg:p-5 md:p-2 -mt-2 font-medium">
-          What our
-          <span className="text-green1"> Clients Say</span>
+          <span className="text-green1"> {t("testimonal_h1")}</span>
         </p>
       </div>
       <Carousel className=" lg:-mt-5">

@@ -2,12 +2,10 @@ import React from "react";
 import { FaBook } from "react-icons/fa6";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import HeaderImg from "./../../../../public/images/Header1.png";
-import graphic from "./../../../../public/images/graph.png";
 import { useTranslation } from "react-i18next";
+import graphic from "./../../../../public/images/graph.png";
 
-interface MainHeaderImageProps {
-  
-}
+interface MainHeaderImageProps {}
 
 type Props = {};
 
@@ -36,28 +34,28 @@ const Header: React.FC<MainHeaderImageProps> = ({}) => {
               {t("header_p")}
             </p>
             <div className="flex md:justify-start justify-center lg:p-5 md:p-2 p-1 text-xs md:text-base items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
-              <button
-                className="flex md:text-xl text-base items-center justify-between border px-4 p-2 hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl "
-              >
+              <button className="flex md:text-xl text-base items-center justify-between border px-4 p-2 hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl ">
                 {t("header_button")}
                 <IoIosArrowRoundForward />
               </button>
             </div>
           </div>
           <div className="flex justify-center items-center">
-            <div className="lg:p-5 md:p-3 sm:p-2 p-1  flex md:items-center relative">
-              <div className="realtive pl-10 sm:w-[350px]  w-[500px] flex items-center justify-center  z-20">
-                <img
-                  src={HeaderImg}
-                  alt="Main image"
-                  className="bg-contain z-20 drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-            object-cover "
-                />
+            <div className="lg:p-5 md:p-3 sm:p-2 p-1">
+              <div className="absolute z-20 pl-0">
                 <img
                   src={graphic}
                   alt="Main image"
-                  className="bg-contain absolute bottom-4 z-2 w-[450px] h-[450px]"
-                /> 
+                  className="lg:w-[400px] md:h-[500px] md:w-[400px] sm:h-[500px] sm:w-[400px] h-[340px] w-[400px] lg:h-[500px] rotate-12"
+                ></img>
+              </div>
+              <div className="relative flex items-center justify-center  z-20">
+                <img
+                  src={HeaderImg}
+                  alt="Main image"
+                  className="bg-contain sm:ml-[50px]  pb-[50px] lg:h-[400px] lg:w-[300px] md:h-[400px] md:w-[300px] sm:h-[400px] sm:w-[300px] h-[300px] w-[200px] drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                     object-cover "
+                />
               </div>
             </div>
           </div>

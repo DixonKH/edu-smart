@@ -29,6 +29,67 @@
   "why_choose_us_team": "O'qituvchilar",
   "why_choose_us_experience": "10+ yillik tajriba",
   "why_choose_us_award": "Sertifikatlar",
-  "why_choose_us_p": "Biz talabalarga o'z maqsadlariga erishishda yordam berishga ishtiyoqli tajribali o'qituvchilar jamoasimiz. Biz yangi boshlanuvchilardan tortib to eng yuqori darajaga"
-}
+  "why_choose_us_p": "Biz talabalarga o'z maqsadlariga erishishda yordam berishga ishtiyoqli tajribali o'qituvchilar jamoasimiz. Biz yangi boshlanuvchilardan tortib to eng yuqori darajaga",
 
+  "our_achievement": "Bizning eng so'nggi yutuqlarimiz",
+  "our_achievement_h1": "Tanlangan sinflar, portfelimizni o'rganing",
+  "our_achievement_btn": "Barchasini ko'rish",
+
+  "our_process": "Bizning ishlari",
+  "our_process_h1": "Bizning ishlari",
+  "our_process_h2": "Kurslar",
+  "our_process_h3": "O'qituvchilar",
+  "our_process_h4": "Taklif",
+  "our_process_h5": "Natija",
+  "our_process_p": "Biz talabalarga o'z maqsadlariga erishishda yordam berishga ishtiyoqli tajribali o'qituvchilar jamoasimiz.",
+
+  "our_process_bookig": "Kurslarni qulay tarzda bron qiling",
+  "our_process_booking_h1": "vaqtingizni va pulingizni tejang",
+  "our_process_booking_btn": "Barchasini ko'rish",
+
+  "contact": "Biz bilan bog'lanish",
+  "contact_h1": "Bugungi murojaat",
+  "contact_label1": "Ismingiz",
+  "contact_label2": "Telefon raqamingiz",
+  "contact_label3": "Email",
+  "contact_label4": "Xabar",
+  "contact_address": "Manzil",
+  "contact_Contact": "Aloqa uchun",
+  "contact_time": "Aloqa Vaqt",
+  "contact_stay": "Ijtimoy tarmoqlarimiz",
+
+  "testimonal": "Jamiyat",
+  "testimonal_h1": "Bizning talabalarning fikrlari",
+
+  "team": "Bizning jamoa",
+  "team_h1": "Bizning Professional jamoamiz",
+  "team_exp": "yillik tajriba",
+  "team_teacher": "O'qituvchi",
+
+  "price": "Bizning narxlar",
+  "price_h1": "Bizning Kurslar Modeli",
+  "price_basic": "Standart",
+  "price_gold": "Gold",
+  "price_premium": "Premium",
+  "price_popular": "Eng Mashxur",
+  "price_btn": "Sotib olish",
+
+  "news": "Yangiliklar va bloglar",
+  "news_h1": "Bizning eng so'nggi yangiliklarimiz va bloglarimiz",
+  "news_btn": "Barcha yangiliklar",
+  "news_more": "Batafsil",
+
+  "faq": "Bizning",
+  "faq_p": "kurslar, fikrlar va offerlar",
+  "faq_p1": "Abuna qo'ling!",
+
+  "footer_p": "Biz talabalarga o'z maqsadlariga erishishda yordam berishga ishtiyoqli tajribali o'qituvchilar jamoasimiz. Biz yangi boshlanuvchilardan tortib to eng yuqori darajaga",
+  "footer_p1": "Kompaniya",
+  "footer_p2": "Bizning jamoa",
+  "footer_p3": "Bizning kurslar",
+  "footer_p4": "Bizning fikrlar",
+  "footer_p5": "Bizning offerlar",
+  "footer_p6": "Bizning bloglar",
+  "footer_p7": "Bizning yangiliklar",
+  "footer_p8": "Bizning eng so'nggi yangiliklarimiz"
+}

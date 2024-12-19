@@ -7,6 +7,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useTranslation } from "react-i18next";
+
 const teachers = [
   {
     id: 1,
@@ -53,16 +55,16 @@ const teachers = [
 type Props = {};
 
 const OurTeam = (props: Props) => {
+  const { t } = useTranslation();
   return (
     <div className="lg:container">
       <div>
         <div className="sm:text-center lg:text-left md:px-10 mb-4 lg:mb-0 px-1 mt-20">
           <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
-            - Our Team -
+            - {t("team")} -
           </p>
           <p className=" lg:text-4xl md:text-3xl sm:text-2xl text-xl lg:p-5 p-2 -mt-2 font-medium">
-            Meet Our
-            <span className="text-green1"> Professional Team</span>
+            <span className="text-green1">{} {t("team_h1")}</span>
           </p>
         </div>
       </div>
@@ -81,13 +83,13 @@ const OurTeam = (props: Props) => {
                 />
                 <p className="flex items-center gap-1 text-md text-white absolute bottom-6 bg-green p-2 rounded-r-lg">
                   <FaStar className="text-yellow" />
-                  {teacher.experience} years of experience
+                  {teacher.experience} {t("team_exp")}
                 </p>
               </div>
               <div className="flex flex-col items-center justify-center w-full h-auto">
                 <h1 className="text-2xl font-bold">{teacher.name}</h1>
                 <p className="text-md text-white">
-                  {teacher.teachCategory} Teacher
+                  {teacher.teachCategory} {t("team_teacher")}
                 </p>
               </div>
             </CarouselItem>

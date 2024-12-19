@@ -2,19 +2,21 @@ import React from "react";
 import { FaStar } from "react-icons/fa6";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { SiTicktick } from "react-icons/si";
+import { useTranslation } from "react-i18next";
 
 type Props = {};
 
 const PricingTable = (props: Props) => {
+  const { t } = useTranslation();
   return (
     <div>
       <div className="p-5 bg-background mt-20">
         <div className=" lg:container md:px-10 sm:px-5 text-center lg:text-left px-1 mb-2">
           <p className="lg:text-2xl md:text-xl text-base sm:text-xl text-black">
-            - Our Pricing Table -
+            - {t("price")} -
           </p>
           <p className=" lg:text-4xl md:text-3xl sm:text-2xl text-xl lg:p-5 md:p-2 font-medium">
-            <span className="text-green1"> Our Pricing</span>Model
+            <span className="text-green1"> {t("price_h1")}</span>
           </p>
         </div>
         <div className="container md:px-10 sm:px-5 px-1">
@@ -24,13 +26,13 @@ const PricingTable = (props: Props) => {
             >
               <div className="m-3">
                 <p className="lg:text-2xl md:text-xl text-base sm:text-xl">
-                  Basic
+                  {t("price_basic")}
                 </p>
                 <p className="px-3 text-md my-2">
                   <span className="lg:text-5xl md:text-3xl base:text-2xl sm:text-xl text-lg">
                     $99
                   </span>{" "}
-                  /Service
+                  /in a month
                 </p>
               </div>
               <div className="pl-4">
@@ -105,7 +107,7 @@ const PricingTable = (props: Props) => {
                     <button
                       className="flex items-center justify-between px-4 py-2 border-2 bg-white border-bgGreen text-black rounded-2xl shadow-xl shadow-bgGreen hover:bg-white"
                       >
-                      View all Services
+                      {t("price_btn")}
                       <IoIosArrowRoundForward />
                     </button>
                   </div>
@@ -120,7 +122,7 @@ const PricingTable = (props: Props) => {
                   <div className="flex items-center justify-center rounded-full w-6 h-6 bg-bgGreen">
                     <FaStar className="text-sm text-white" />
                   </div>
-                  <p className="text-md font-medium">Most Popular</p>
+                  <p className="text-md font-medium">{t("price_popular")}</p>
                 </div>
               </div>
               <div
@@ -128,13 +130,13 @@ const PricingTable = (props: Props) => {
               >
                 <div className="m-3">
                   <p className="lg:text-2xl md:text-xl text-base sm:text-xl my-2">
-                    Premium
+                    {t("price_premium")}
                   </p>
                   <p className="px-3 text-md">
                     <span className="lg:text-5xl md:text-3xl base:text-2xl sm:text-xl text-lg">
                       $199
                     </span>{" "}
-                    /Service
+                    /in a month
                   </p>
                 </div>
                 <div className="pl-4 ">
@@ -209,7 +211,7 @@ const PricingTable = (props: Props) => {
                       <button
                       className="flex items-center justify-between px-4 py-2 border-2 bg-white border-bgGreen text-black rounded-2xl shadow-xl shadow-bgGreen hover:bg-white"
                       >
-                        View all Services
+                        {t("price_btn")}
                         <IoIosArrowRoundForward />
                       </button>
                     </div>
@@ -222,13 +224,13 @@ const PricingTable = (props: Props) => {
             >
               <div className="m-3">
                 <p className="lg:text-2xl md:text-xl text-base sm:text-xl">
-                  Gold
+                  {t("price_gold")}
                 </p>
                 <p className="px-3 text-md my-2">
                   <span className="lg:text-5xl md:text-3xl base:text-2xl sm:text-xl text-lg">
                     $299
                   </span>{" "}
-                  /Service
+                  /in a month
                 </p>
               </div>
               <div className="pl-4 ">
@@ -303,7 +305,7 @@ const PricingTable = (props: Props) => {
                     <button
                       className="flex items-center justify-between px-4 py-2 border-2 bg-white border-bgGreen text-black rounded-2xl shadow-xl shadow-bgGreen hover:bg-white"
                     >
-                      View all Services
+                      {t("price_btn")}
                       <IoIosArrowRoundForward />
                     </button>
                   </div>

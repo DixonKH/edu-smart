@@ -29,6 +29,67 @@
   "why_choose_us_team": "전문가 팀",
   "why_choose_us_experience": "10년 이상의 경력",
   "why_choose_us_award": "수상 경력",
-  "why_choose_us_p": "우리는 경험이 풍부한 교육자 팀입니다. 학생들이 목표를 달성하도록 돕는 데 열정을 가진 경험이 풍부한 교육자 팀입니다"
-}
+  "why_choose_us_p": "우리는 경험이 풍부한 교육자 팀입니다. 학생들이 목표를 달성하도록 돕는 데 열정을 가진 경험이 풍부한 교육자 팀입니다",
 
+  "our_achievement": "우리의 최근 성과",
+  "our_achievement_h1": "추천 클래스 포트폴리오를 살펴보세요",
+  "our_achievement_btn": "모든 수업 보기",
+
+  "our_process": "우리의 과정",
+  "our_process_h1": "우리는 학생들을 위한 과정을 제공하는 과정이다",
+  "our_process_h2": "총정보",
+  "our_process_h3": "팀 연렴",
+  "our_process_h4": "인터뷰",
+  "our_process_h5": "최종 결과",
+  "our_process_p": "저희는 학생들이 자신의 목표를 달성하도록 돕는 데 열정을 가진 경험이 풍부한 교육자들로 구성된 팀입니다.",
+
+  "our_process_bookig": "총정보",
+  "our_process_booking_h1": "추천 클래스 포트폴리오를 살펴보세요",
+  "our_process_booking_btn": "모든 수업 보기",
+
+  "contact": "총정보",
+  "contact_h1": "오늘 무료 견적을 받으세요",
+  "contact_label1": "당신의 이름",
+  "contact_label2": "핸드폰",
+  "contact_label3": "이메일",
+  "contact_label4": "당신의 메시지",
+  "contact_address": "주소",
+  "contact_Contact": "연락하다",
+  "contact_time": "오픈 타임",
+  "contact_stay": "연결 상태를 유지하세요",
+
+  "testimonal": "테스트imonial",
+  "testimonal_h1": "학생들의 미준",
+
+  "team": "우리의 팀",
+  "team_h1": "우리의 전문가 팀이다",
+  "team_exp": "경험",
+  "team_teacher": "선생님",
+
+  "price": "우리의 가격 테이블",
+  "price_h1": "우리의 과정 모델",
+  "price_basic": "기초",
+  "price_gold": "금",
+  "price_premium": "폼",
+  "price_popular": "좋은",
+  "price_btn": "구매하기",
+
+  "news": "뉴스 & 블로그",
+  "news_h1": "최신 뉴스 및 블로그",
+  "news_btn": "더 보기",
+  "news_more": "더 읽어보세요",
+
+  "faq": "우리의 과정를 살펴보세요",
+  "faq_p": "코스 팁과 혜택!",
+  "faq_p1": "지금 구독하세요",
+
+  "footer_p": "우리는 경험이 풍부한 교육자 팀입니다. 학생들이 목표를 달성하도록 돕는 데 열정을 가진 경험이 풍부한 교육자 팀입니다",
+  "footer_p1": "회사",
+  "footer_p2": "우리 팀",
+  "footer_p3": "가격",
+  "footer_p4": "추천사",
+  "footer_p5": "FAQs",
+  "footer_p6": "문의하기",
+  "footer_p7": "연락하다",
+  "footer_p8": "최신 정보를 얻으세요"
+}

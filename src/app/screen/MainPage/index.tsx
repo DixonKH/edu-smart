@@ -23,7 +23,7 @@ const MainPage = () => {
       <OurLatestAchievement />
       <OurProcess />
       <ContactUs />
-      <Testimonial />
+      <Testimonial /> 
       <OurTeam />
       <PricingTable />
       <NewsAndBlog />

@@ -9,10 +9,12 @@ import {
 } from "react-icons/fa6";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import Line from "./Line";
+import { useTranslation } from "react-i18next";
 
 type Props = {};
 
 function ContactUs({}: Props) {
+  const { t } = useTranslation();
   return (
     <div>
       <div className="grid my-20 lg:container md:px-10 sm:px-5 px-1 md:grid-cols-2 gap-5">
@@ -20,19 +22,18 @@ function ContactUs({}: Props) {
           <div className="text-center md:text-left">
             <div className=" flex justify-start items-center pt-1  md:pt-5 lg:pb-6">
               <p className="lg:text-2xl md:text-xl text-base text-center md:text-left w-full sm:text-xl text-black">
-                - Contact Us -
+                - {t("contact")} -
               </p>
             </div>
             <div className="g:flex items-center justify-cente">
               <p className=" lg:text-4xl md:text-3xl sm:text-2xl text-xl lg:p-5 md:p-2 p-1 font-medium">
-                Get your
-                <span className="text-green1">Free Quote today </span>
+                <span className="text-green1"> {t("contact_h1")} </span>
               </p>
             </div>
           </div>
           <div className="w-full flex md:flex-row flex-col justify-between ">
             <div className="lg:p-3 p-1 w-full">
-              <p className="">Your name*</p>
+              <p className="">{t("contact_label1")}*</p>
               <input
                 type="text"
                 className="border px-3 py-1 rounded-2xl w-full p-2 h-14 text-lg outline-none"
@@ -40,7 +41,7 @@ function ContactUs({}: Props) {
               />
             </div>
             <div className="lg:p-3 p-1 w-full">
-              <p>Phone*</p>
+              <p>{t("contact_label2")}*</p>
               <input
                 type="text"
                 className="border px-3 py-1 rounded-2xl w-full p-2 h-14 text-lg outline-none"
@@ -49,7 +50,7 @@ function ContactUs({}: Props) {
             </div>
           </div>
           <div className="lg:p-3 p-1">
-            <p>Email*</p>
+            <p>{t("contact_label3")}*</p>
             <input
               type="text"
               className="border px-3 py-1 rounded-2xl w-full outline-none p-2 h-14 text-lg"
@@ -57,42 +58,42 @@ function ContactUs({}: Props) {
             />
           </div>
           <div className="lg:p-3 p-1">
-            <p>Your Message*</p>
+            <p>{t("contact_label4")}*</p>
             <textarea className="border px-3 py-1 rounded-2xl w-full outline-none p-2 h-48 text-lg" />
           </div>
           <div className="  flex justify-start lg:p-5 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
             <button
               className="flex items-center justify-between shadow-xl border p-2 px-3 text-lg hover:bg-bgGreen hover:text-white bg-yellow rounded-3xl"
             >
-              View all Services
+              {t("our_process_booking_btn")}
               <IoIosArrowRoundForward />
             </button>
           </div>
         </div>
         <div className="bg-green1 border rounded-3xl text-white text-lg">
           <div className="lg:m-8">
-            <p className="p-5 text-2xl">Address</p>
+            <p className="p-5 text-2xl">{t("contact_address")}</p>
             <p className="px-5 text-md text-slate-300">
               4517, Washington Ave. <br />
               Manchester, Kentucky
             </p>
           </div>
           <div className="lg:m-8">
-            <p className="p-5 text-2xl">Contact</p>
+            <p className="p-5 text-2xl">{t("contact_Contact")}</p>
             <p className="px-5 text-md text-slate-300">
               Phone: +82101234567 <br />
               Email: example@example.com
             </p>
           </div>
           <div className="lg:m-8">
-            <p className="p-5 text-2xl">Open Time</p>
+            <p className="p-5 text-2xl">{t("contact_time")}</p>
             <p className="px-5 text-md text-slate-300">
               Monday-Friday: 12:00 - 18:00 <br /> Saturday: 10:00 - 16:00
               Sunday: Closed
             </p>
           </div>
           <div className="lg:m-8">
-            <p className="lg:p-5 p-3 text-2xl font-medium">Stay Connected</p>
+            <p className="lg:p-5 p-3 text-2xl font-medium">{t("contact_stay")}</p>
             <div className="p-5 text-md">
               <div className="flex  justify-center lg:gap-8 md:gap-5 sm:gap-3 gap-3 items-center">
                 <div
