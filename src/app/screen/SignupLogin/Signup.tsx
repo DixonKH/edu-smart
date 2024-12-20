@@ -130,7 +130,7 @@ const Signup = (props: Props) => {
   return (
     <div>
       <div>
-        <div className="lg:container md:px-10 sm:px-5 px-1">
+        <div className="lg:container mt-[90px] md:px-10 sm:px-5 px-1">
           <div className="  rounded-xl border-black">
             <div className="h-full w-full">
               <div className=" items-center justify-center">
@@ -240,12 +240,4 @@ const Signup = (props: Props) => {
     </div>
   );
 };
-
 export default Signup;
-function setPassword(value: any) {
-  throw new Error("Function not implemented.");
-}
-
-function setPasswordValid(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}

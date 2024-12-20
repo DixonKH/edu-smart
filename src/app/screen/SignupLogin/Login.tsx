@@ -2,12 +2,13 @@ import React from "react";
 import { SiApple } from "react-icons/si";
 import { FcGoogle, FcAddressBook } from "react-icons/fc";
 import { MdCastForEducation } from "react-icons/md";
+import { Link } from "react-router";
 
 type Props = {};
 
 const Login = (props: Props) => {
   return (
-    <div className="lg:container md:px-10 sm:px-5 px-1">
+    <div className="lg:container mt-[90px] md:px-10 sm:px-5 px-1">
       <div className="  rounded-xl border-black">
         <div className="h-full w-full">
           <div className=" items-center justify-center">
@@ -51,9 +52,12 @@ const Login = (props: Props) => {
                   </button>
                 </div>
                 <div className="flex justify-center text-center items-center py-2">
-                  <button className="flex items-center justify-between shadow-xl border lg:py-2 lg:px-5 md:px-5 py-1 px-2 text-lg hover:bg-bgGreen hover:text-white bg-yellow rounded-3xl">
+                  <Link
+                    to={"/signup"}
+                    className="flex items-center justify-between shadow-xl border lg:py-2 lg:px-5 md:px-5 py-1 px-2 text-lg hover:bg-bgGreen hover:text-white bg-yellow rounded-3xl"
+                  >
                     Signup
-                  </button>
+                  </Link>
                 </div>
               </div>
             </form>
