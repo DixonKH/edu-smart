@@ -2,6 +2,7 @@
 import { Routes, Route, useLocation } from "react-router";
 import TeacherDetail from "./TeacherDetail";
 import Teachers from "./Teachers";
+import TeacherHeader from "./TeacherHeader";
 
 const teachers = [
   {
@@ -58,9 +59,12 @@ export default function () {
   const location = useLocation();
   console.log("location", location);
   return (
+    <>
+    <TeacherHeader />
     <Routes>
       <Route path="/" element={<Teachers teachers={teachers} />} />
       <Route path={`:id`} element={<TeacherDetail />} />
     </Routes>
+    </>
   );
 }

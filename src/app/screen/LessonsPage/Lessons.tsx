@@ -13,7 +13,7 @@ import {
 
 export default function Lessons() {
   return (
-    <div className="container">
+    <div className="container mt-10">
       <div>
         <h1 className="text-xl text-center sm:text-center sm:text-2xl lg:text-left lg:text-3xl my-5">
           - Our Teacher's Lessons -
