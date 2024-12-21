@@ -9,7 +9,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoMdLogOut } from "react-icons/io";
 import AddLesson from "./AddLesson";
 import MyLesson from "./MyLesson";
-import Login from "./Login";
+import Login from "../SignupLogin/Login";
 import MyFavourites from "./MyFavourites";
 import MyProfile from "./MyProfile";
 import Validation from "./Validation";
