@@ -13,6 +13,7 @@ import Login from "../SignupLogin/Login";
 import MyFavourites from "./MyFavourites";
 import MyProfile from "./MyProfile";
 import Validation from "./Validation";
+import WriteArticle from "./WriteArticle";
 
 type Props = {};
 
@@ -34,7 +35,7 @@ const MyPage = (props: Props) => {
         return <MyFavourites />;
         break;
       case 5:
-        return <MyFavourites />;
+        return <WriteArticle />
         break;
       case 6:
         return <MyProfile />;
