@@ -3,8 +3,10 @@ import student from "/images/student.png";
 import { FaBook } from "react-icons/fa6";
 import Line from "../MainPage/Line";
 import graphic from "./../../../../public/images/graph.png";
+import {useTranslation} from "react-i18next";
 
 export default function LessonHeader() {
+  const { t } = useTranslation();
   return (
     <>
       <div className="flex flex-col lg:flex-row items-center justify-between mt-28 pt-4 w-full h-auto container gap-6">
@@ -26,19 +28,14 @@ export default function LessonHeader() {
               <FaBook className="md:text-xl lg:text-xl sm:text-xl text-base text-white" />
             </div>
             <p className="lg:text-2xl md:text-xl text-center md:text-left text-xl">
-              Korean Language Lessons 
+              {t("lesson")}
             </p>
           </div>
           <h1 className="lg:text-5xl text-2xl lg:text-left text-center font-bold text-green2 mb-4 lg:mt-0 mt-8">
-            Korean Language Lessons{" "}
-            <span className="text-gray-600">from Beginners</span>{" "}
-            <span className="text-gray-600">to Advanced Learners</span>
+            {t("lesson_title")}
           </h1>
           <p className="lg:text-xl sm:text-md text-gray-600 lg:text-left text-center lg:mb-0 mb-4 w-full">
-            Discover the beauty of Korean language with our lessons and courses.
-            We will provide you with a comprehensive understanding of Korean
-            culture and grammar, allowing you to communicate effectively in this
-            fascinating language.
+            {t("lesson_p")}
           </p>
         </div>
       </div>

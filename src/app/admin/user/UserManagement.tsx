@@ -27,7 +27,7 @@ import {
 import { FiSearch } from 'react-icons/fi'
 import { MoreHorizontal } from 'lucide-react'
 
-interface User {
+interface User { 
   id: string
   nickname: string
   avatar?: string

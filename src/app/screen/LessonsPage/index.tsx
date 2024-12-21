@@ -6,7 +6,7 @@ export default function LessonsPage() {
     
   return (
     <div>
-      <LessonHeader />
+      <LessonHeader /> 
       <Routes>
         <Route path="/" element={<Lessons />} />
         <Route path="/lessons/:id" element={<ChoosenLesson />} />

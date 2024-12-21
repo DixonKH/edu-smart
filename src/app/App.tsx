@@ -1,10 +1,8 @@
-import Navbar from "./components/Navbar/Navbar";
 import MainPage from "./screen/MainPage";
 import OurTeachers from "./screen/OurTeachers";
 import Community from "./screen/Community";
 import MyPage from "./screen/MyPage";
-import Footer from "./components/Footer/Footer";
-import { Route, Router, Routes } from "react-router";
+import { Route, Routes } from "react-router";
 import LessonsPage from "./screen/LessonsPage";
 import ChoosenLesson from "./screen/LessonsPage/ChoosenLesson";
 import TeacherDetail from "./screen/OurTeachers/TeacherDetail";
