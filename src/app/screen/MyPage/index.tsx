@@ -46,7 +46,7 @@ const MyPage = (props: Props) => {
       <div>
         <div className="grid lg:grid-cols-5 base:grid-cols-2 md:grid-cols-3 ">
           <div className="flex items-start justify-center">
-            <div className="col-span-1  md:h-[660px] sm:h-[590px]  h-[600px] lg:h-[580px] w-[250px] sm:w-[250px]  md:w-[230px] py-5 border-green1 border m-2 rounded-xl">
+            <div className="col-span-1  md:h-[660px] sm:h-[590px]  h-[600px] lg:h-[580px] w-full sm:w-[250px]  md:w-[230px] py-5 border-green1 lg:border md:border border-t border-b m-2 lg:rounded-xl md:rounded-xl">
               <div className="flex  mx-auto items-center justify-center rounded-full size-10 bg-yellow">
                 <div>
                   <MdCastForEducation className="text-xl  text-bgGreen" />

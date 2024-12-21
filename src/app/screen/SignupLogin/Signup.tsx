@@ -2,6 +2,7 @@ import React, { useEffect, useReducer, useState } from "react";
 import { FcAddressBook, FcGoogle } from "react-icons/fc";
 import { MdCastForEducation } from "react-icons/md";
 import { SiApple } from "react-icons/si";
+import { Link } from "react-router";
 
 type Props = {};
 
@@ -57,7 +58,7 @@ const Signup = (props: Props) => {
   });
 
   useEffect(() => {
-    console.log("Enter")
+    console.log("Enter");
     setFormValid(
       (inputs.email.includes("@") &&
         inputs.email.includes(".") &&
@@ -196,6 +197,14 @@ const Signup = (props: Props) => {
                       <button className="flex items-center justify-between shadow-xl border lg:py-2 lg:px-3 py-1 px-2 text-lg hover:bg-bgGreen hover:text-white bg-yellow rounded-3xl">
                         Sign Up
                       </button>
+                    </div>
+                    <div className="flex justify-center text-center items-center py-2">
+                      <Link
+                        to="/login"
+                        className="flex items-center justify-between shadow-xl border lg:py-2 lg:px-3 py-1 px-2 text-lg hover:bg-bgGreen hover:text-white bg-yellow rounded-3xl"
+                      >
+                        Login
+                      </Link>
                     </div>
                   </div>
                 </form>
