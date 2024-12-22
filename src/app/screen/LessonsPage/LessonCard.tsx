@@ -5,94 +5,11 @@ import { FaBookReader } from "react-icons/fa";
 import { IoReaderOutline } from "react-icons/io5";
 import video from "/videos/lesson.mp4";
 
-const lessons: any = [
-  {
-    id: 1,
-    title: "Koreys Alifbosi va ularning qollanish usullari",
-    category: "Beginner",
-    desc: "This is the Desc",
-    create: "12/07/2024",
-    owner: "Meloboyev A",
-    view: "2",
-    like: "true",
-  },
-  {
-    id: 2,
-    title: "Lesson 2",
-    category: "Elementry",
-    desc: "This is the Desc",
-    create: "12/07/2024",
-    owner: "Abdurakhmonov B",
-    view: "3",
-    like: "true",
-  },
-  {
-    id: 3,
-    category: "Intermediate",
-    title: "Lesson 3",
-    desc: "This is the Desc",
-    create: "12/07/2024",
-    owner: "Xasanov D",
-    view: "5",
-    like: "false",
-  },
-  {
-    id: 4,
-    title: "Lesson 4",
-    category: "Advanced",
-    desc: "This is the Desc",
-    create: "12/07/2024",
-    owner: "Abdurakhmonov B",
-    view: "3",
-    like: "true",
-  },
-  {
-    id: 5,
-    title: "Lesson 5",
-    category: "Elementry",
-    desc: "This is the Desc",
-    create: "12/07/2024",
-    owner: "Abdurakhmonov B",
-    view: "1",
-    like: "false",
-  },
-  {
-    id: 6,
-    title: "Lesson 3",
-    category: "Beginner",
-    desc: "This is the Desc",
-    create: "12/07/2024",
-    owner: "Xasanov D",
-    view: "5",
-    like: "false",
-  },
-  {
-    id: 7,
-    title: "Lesson 4",
-    category: "Beginner",
-    desc: "This is the Desc",
-    create: "12/07/2024",
-    owner: "Abdurakhmonov B",
-    view: "3",
-    like: "true",
-  },
-  {
-    id: 8,
-    title: "Lesson 5",
-    category: "Elementry",
-    desc: "This is the Desc",
-    create: "12/07/2024",
-    owner: "Abdurakhmonov B",
-    view: "1",
-    like: "false",
-  },
-];
-
-export default function LessonCard() {
+export default function LessonCard(props: any) {
   return (
     <>
       {
-        lessons.map((lesson: any) => {
+        props.lessons.map((lesson: any) => {
           return (
             <div key={lesson.id} className="flex flex-col align-middle justify-items-start w-full h-auto border-solid border rounded-lg cursor-pointer">
         <div className="w-full h-auto">
@@ -111,7 +28,7 @@ export default function LessonCard() {
             </div>
           </div>
           <div className="flex flex-row items-center justify-between gap-4 w-full h-8 py-1 ">
-            <div className={`leading-4 text-sm overflow-hidden p-1 px-2 rounded ${lesson.category === "Beginner" ? "bg-red text-white" : lesson.categoty === "Elementry" ? "bg-green text-white" : lesson.category === "Intermediate" ? "bg-blue text-white" : lesson.category === "Advanced" ? "bg-bgGreen text-white" : "bg-orange text-white"}`}>
+            <div className={`leading-4 text-sm overflow-hidden p-1 px-2 rounded ${lesson.category === "BEGINNER" ? "bg-red text-white" : lesson.categoty === "ELEMENTARY" ? "bg-green text-white" : lesson.category === "INTERMEDIATE" ? "bg-blue text-white" : lesson.category === "ADVANCED" ? "bg-bgGreen text-white" : "bg-orange text-white"}`}>
               {lesson.category} 
               </div>
             <div className="text-[12px] text-slate-600">

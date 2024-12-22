@@ -27,8 +27,8 @@ const Header: React.FC<MainHeaderImageProps> = ({}) => {
                 {t("header1_h1")}
               </p>
             </div>
-            <p className="lg:text-4xl md:text-3xl sm:text-2xl text-center md:text-left text-xl md:p-2 p-1">
-              <span className="text-green">{t("header1_h2")}</span>
+            <p className="lg:text-5xl font-bold md:text-3xl sm:text-2xl text-center md:text-left text-xl md:p-2 p-1">
+              <span className="text-green2">{t("header1_h2")}</span>
             </p>
             <p className="text-gray-600 my-2 md:p-2 p-1 lg:text-xl text-center md:text-left md:text-base">
               {t("header_p")}
@@ -46,14 +46,14 @@ const Header: React.FC<MainHeaderImageProps> = ({}) => {
                 <img
                   src={graphic}
                   alt="Main image"
-                  className="lg:w-[400px] md:h-[500px] md:w-[400px] sm:h-[500px] sm:w-[400px] h-[340px] w-[400px] lg:h-[500px] rotate-12"
+                  className="lg:w-[480px] md:h-[500px] md:w-[400px] sm:h-[500px] sm:w-[400px] h-[340px] w-[400px] lg:h-[500px] rotate-24"
                 ></img>
               </div>
               <div className="relative flex items-center justify-center  z-20">
                 <img
                   src={HeaderImg}
                   alt="Main image"
-                  className="bg-contain sm:ml-[50px]  pb-[50px] lg:h-[400px] lg:w-[300px] md:h-[400px] md:w-[300px] sm:h-[400px] sm:w-[300px] h-[300px] w-[200px] drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                  className="bg-contain sm:ml-[50px]  pb-[50px] lg:h-[450px] lg:w-[350px] md:h-[400px] md:w-[300px] sm:h-[400px] sm:w-[300px] h-[300px] w-[200px] drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                      object-cover "
                 />
               </div>

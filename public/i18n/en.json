@@ -86,10 +86,23 @@
   "footer_p": "We are a team of experienced educators who are passionate about helping students achieve their goals. We offer a wide range of courses to suit all levels of learners",
   "footer_p1": "Company",
   "footer_p2": "Our Team",
-  "footer_p3": "Pricing",
+  "footer_p3": "Pricing", 
   "footer_p4": "Testimonals",
   "footer_p5": "FAQs",
   "footer_p6": "Contact Us",
   "footer_p7": "Contact",
-  "footer_p8": "Get the latest information"
+  "footer_p8": "Get the latest information",
+
+  "lesson": "Korean Language Lessons",
+  "lesson_title": "Korean Language Lessons from Beginners to Advanced Learners",
+  "lesson_p": "Discover the beauty of Korean language with our lessons and courses. We will provide you with a comprehensive understanding of Korean culture and grammar, allowing you to communicate effectively in this fascinating language.",
+  "lesson_h1": "Our Teacher's Lessons",
+  "lesson_p2": "We are offering various lessons to help you learn Korean. Please choose your favorite subject and level.",
+
+  "teacher": "Korean Language Lessons",
+  "teacher_h1": "Korean Language Lessons",
+  "teacher_h2": "from Beginners to Advanced Learners",
+  "teacher_p": "Discover the beauty of Korean language with our lessons and courses. We will provide you with a comprehensive understanding of Korean culture and grammar, allowing you to communicate effectively in this fascinating language.",
+  "teacher_p1": "Our Teachers",
+  "teacher_p2": "Our Teacher's Lessons and Language English Language Guides"
 }
