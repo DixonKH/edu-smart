@@ -181,7 +181,7 @@ const Navbar = (props: Props) => {
             <div
               className={
                 !nav
-                  ? `fixed z-10  left-0  top-[7%] w-full text-black bg-white/10
+                  ? `fixed z-10  left-0  top-[9%] w-full text-black bg-white/10
                 backdrop-blur-2xl border-b rounded-b-md ease-in-out duration-500 cursor-pointer`
                   : "fixed top-[-100%]"
               }
