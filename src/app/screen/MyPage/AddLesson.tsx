@@ -11,8 +11,7 @@ const AddLesson = (props: Props) => {
         <div>
           <form>
             <div
-              data-aos="fade-up"
-              className="lg:container md:px-10 sm:px-5 px-1 shadow-xl border rounded-xl   border-green my-1 sm:my-2 gap-2 sm:gap-3 p-1 justify-around"
+              className="lg:container md:px-10 w-full sm:px-5 px-1 shadow-xl lg:border  lg:rounded-xl md:border  md:rounded-xl base:border  base:rounded-xl border-t border-b   border-green my-1 sm:my-2 gap-2 sm:gap-3 p-1 justify-around"
             >
               <div className="flex justify-center items-center">
                 <h1 className="text-lg italic underline">

@@ -183,7 +183,7 @@ const Navbar = (props: Props) => {
                 !nav
                   ? `fixed z-10  left-0  top-[9%] w-full text-black bg-white/10
                 backdrop-blur-2xl border-b rounded-b-md ease-in-out duration-500 cursor-pointer`
-                  : "fixed top-[-100%]"
+                  : "fixed top-[-150%]"
               }
             >
               <div className="flex flex-col items-center text-center justify-center h-96">

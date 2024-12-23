@@ -2,6 +2,9 @@ import React, { useEffect, useReducer, useState } from "react";
 import { FcAddressBook, FcGoogle } from "react-icons/fc";
 import { MdCastForEducation } from "react-icons/md";
 import { SiApple } from "react-icons/si";
+import { Link } from "react-router";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 
 type Props = {};
 
@@ -22,6 +25,27 @@ const inputReducer = (state: any, action: any) => {
         ...state,
         password: action.payload,
       };
+    case "TOGGLE_TEACHER":
+      return {
+        ...state,
+        teacher: action.payload,
+      };
+    case "SET_ADDRESS":
+      return {
+        ...state,
+        address: action.payload,
+      };
+    case "SET_PHONE_NUMBER":
+      return {
+        ...state,
+        phoneNumber: action.payload,
+      };
+    case "SET_EXPERIENCE":
+      return {
+        ...state,
+        experience: action.payload,
+      };
+
     case "VALIDATE_USERNAME":
       return {
         ...state,
@@ -39,6 +63,22 @@ const inputReducer = (state: any, action: any) => {
         passwordValid:
           action.payload.includes("_") || action.payload.includes("-"),
       };
+    case "VALIDATE_ADDRESS":
+      return {
+        ...state,
+        addressValid: action.payload.trim().length >= 25,
+      };
+    case "VALIDATE_PHONE_NUMBER":
+      return {
+        ...state,
+        phoneNumberValid:
+          action.payload.length >= 10 && action.payload.includes("+"),
+      };
+    case "VALIDATE_EXPERIENCE":
+      return {
+        ...state,
+        experienceValid: action.payload.trim().length >= 50,
+      };
     default:
       return state;
   }
@@ -46,25 +86,42 @@ const inputReducer = (state: any, action: any) => {
 
 const Signup = (props: Props) => {
   let [formValid, setFormValid] = useState(false);
+  let [identifier, setIdentifier] = useState(false);
+  let [form, setItems] = useState({
+    email: "",
+    username: "",
+    password: "",
+    teacher: false,
+    address: "",
+    phoneNumber: "",
+    experience: "",
+  });
 
   let [inputs, inputsdispatcher] = useReducer(inputReducer, {
     email: "",
     username: "",
     password: "",
-    emailValid: false,
     usernameValid: false,
     passwordValid: false,
+    emailValid: false,
+    teacher: false,
+    address: "",
+    phoneNumber: "",
+    experience: "",
+    addressValid: false,
+    phoneNumberValid: false,
+    experienceValid: false,
   });
 
-  useEffect(() => {
-    console.log("Enter")
-    setFormValid(
-      (inputs.email.includes("@") &&
-        inputs.email.includes(".") &&
-        inputs.password.includes("_")) ||
-        (inputs.password.includes("-") && inputs.username.trim().length >= 6)
-    );
-  }, [inputs.email, inputs.username, inputs.password]);
+  useEffect(() => {}, [
+    inputs.usernameValid,
+    inputs.passwordValid,
+    inputs.emailValid,
+    inputs.teacher,
+    inputs.addressValid,
+    inputs.phoneNumberValid,
+    inputs.experienceValid,
+  ]);
 
   //getting values from input fields
 
@@ -72,13 +129,27 @@ const Signup = (props: Props) => {
     const value = event.target.value;
     inputsdispatcher({ payload: value, type: "SET_USERNAME" });
   }
+  function passwordChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const value = event.target.value;
+    inputsdispatcher({ payload: value, type: "SET_PASSWORD" });
+  }
   function emailChange(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.target.value;
     inputsdispatcher({ payload: value, type: "SET_EMAIL" });
   }
-  function passwordChange(event: React.ChangeEvent<HTMLInputElement>) {
+  // toggle switch
+
+  function addressChange(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.target.value;
-    inputsdispatcher({ payload: value, type: "SET_PASSWORD" });
+    inputsdispatcher({ payload: value, type: "SET_ADDRESS" });
+  }
+  function phoneNumberChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const value = event.target.value;
+    inputsdispatcher({ payload: value, type: "SET_PHONE_NUMBER" });
+  }
+  function experienceChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    const value = event.target.value;
+    inputsdispatcher({ payload: value, type: "SET_EXPERIENCE" });
   }
 
   // checking validation
@@ -103,29 +174,93 @@ const Signup = (props: Props) => {
     });
   }
 
+  function addressBlur() {
+    inputsdispatcher({
+      payload: inputs.address,
+      type: "VALIDATE_ADDRESS",
+    });
+  }
+  function phoneNumberBlur() {
+    inputsdispatcher({
+      payload: inputs.phoneNumber,
+      type: "VALIDATE_PHONE_NUMBER",
+    });
+  }
+  function experienceBlur() {
+    inputsdispatcher({
+      payload: inputs.experience,
+      type: "VALIDATE_EXPERIENCE",
+    });
+  }
+
   // submitting form
 
   function handleSubmit(event: { preventDefault: () => void }) {
     event.preventDefault();
-    if (!inputs.emailValid) {
+    if (!inputs.usernameValid) {
+      alert("Username should contain at least 6 characters");
+    } else if (!inputs.emailValid) {
       alert("Email should contain (@) and (.) characters");
-      return;
     } else if (!inputs.passwordValid) {
       alert("Password should contain  underscore (_) or hyphen (-)");
-      return;
-    } else if (!inputs.usernameValid) {
-      alert("Username should contain at least 6 characters");
-      return;
+    } else if (!inputs.emailValid) {
+      alert("Email should contain (@) and (.) characters");
+    } else if (inputs.teacher) {
+      if (!inputs.addressValid) {
+        alert("Address should contain at least 25 characters");
+      } else if (!inputs.phoneNumberValid) {
+        alert("Phone number should be more than 10 digits and include + sign");
+      } else if (!inputs.experienceValid) {
+        alert("Experience should contain at least 40 characters");
+      }
     }
-
-    if (formValid) {
-      console.log("Form submitted", {
-        username: inputs.username,
+    if (
+      inputs.usernameValid &&
+      inputs.passwordValid &&
+      inputs.emailValid &&
+      !inputs.teacher
+    ) {
+      setItems({
         email: inputs.email,
+        username: inputs.username,
         password: inputs.password,
+        teacher: inputs.teacher,
+        address: inputs.address,
+        phoneNumber: inputs.phoneNumber,
+        experience: inputs.experience,
       });
-    }
+    } else if (
+      inputs.usernameValid &&
+      inputs.passwordValid &&
+      inputs.emailValid &&
+      inputs.teacher &&
+      inputs.addressValid &&
+      inputs.phoneNumberValid &&
+      inputs.experienceValid
+    )
+    setItems({
+      email: inputs.email,
+      username: inputs.username,
+      password: inputs.password,
+      teacher: inputs.teacher,
+      address: inputs.address,
+      phoneNumber: inputs.phoneNumber,
+      experience: inputs.experience,
+    });
   }
+
+  function switcher(checked: boolean) {
+    setIdentifier(checked);
+    inputsdispatcher({
+      payload: checked,
+      type: "TOGGLE_TEACHER",
+    });
+  }
+  // function identifierUser(event: React.ChangeEvent<HTMLInputElement>) {
+  //   setIdentifier(false);
+  // }
+
+  console.log(form);
 
   return (
     <div>
@@ -185,17 +320,108 @@ const Signup = (props: Props) => {
                           placeholder="Email"
                           className={
                             inputs.emailValid
-                              ? "border-green  p-3 w-full lg:w-[50%] text-black rounded-full border  mb-4"
+                              ? "border-green  p-3 w-full  lg:w-[50%] text-black rounded-full border  mb-4"
                               : "border-red  p-3 w-full lg:w-[50%] text-black rounded-full border-2  mb-4"
                           }
                         />
                       </div>
+                      <div className="text-2xl m-2 p-2 md:w-[50%]  base:w-[50%]  w-[100%]   items-center justify-evenly gap-5 lg:w-[50%] mx-auto">
+                        <div className="flex m-2 items-center justify-between gap-3">
+                          <p>Who are you?</p>
+                        </div>
+                        <div className="flex  m-2 items-center gap-5 space-x-2">
+                          <Label htmlFor="user">
+                            <span
+                              className={
+                                identifier
+                                  ? "line-through  italic border   border-red rounded-xl bg-red px-2 text-xl text-white"
+                                  : "text-xl border text-white px-2 border-green rounded-xl bg-green"
+                              }
+                            >
+                              User
+                            </span>
+                          </Label>
+                          <Switch
+                            onCheckedChange={switcher}
+                            className=""
+                            id="teacherId"
+                          />
+                          <Label htmlFor="teacher">
+                            <span
+                              className={
+                                !identifier
+                                  ? "line-through px-2 border   border-red rounded-xl bg-red  italic text-xl text-white"
+                                  : "text-xl text-white border px-2 border-green rounded-xl bg-green"
+                              }
+                            >
+                              Teacher
+                            </span>
+                          </Label>
+                        </div>
+                      </div>
+                      {identifier && (
+                        <div>
+                          {" "}
+                          <div className="flex justify-center">
+                            <input
+                              id="address"
+                              type="text"
+                              value={inputs.address}
+                              onChange={addressChange}
+                              onBlur={addressBlur}
+                              placeholder="addresss"
+                              className={
+                                inputs.addressValid
+                                  ? "border-green  p-3 w-full lg:w-[50%] text-black rounded-full border  mb-4"
+                                  : "border-red  p-3 w-full lg:w-[50%] text-black rounded-full border-2  mb-4"
+                              }
+                            />
+                          </div>
+                          <div className="flex justify-center">
+                            <input
+                              id="phoneNumber"
+                              type="text"
+                              value={inputs.phoneNumber}
+                              onChange={phoneNumberChange}
+                              onBlur={phoneNumberBlur}
+                              placeholder="Phone Number"
+                              className={
+                                inputs.phoneNumberValid
+                                  ? "border-green  p-3 w-full lg:w-[50%] text-black rounded-full border  mb-4"
+                                  : "border-red  p-3 w-full lg:w-[50%] text-black rounded-full border-2  mb-4"
+                              }
+                            />
+                          </div>
+                          <div className="lg:p-3 p-1 lg:w-[50%]  mx-auto">
+                            <p>Experience*</p>
+                            <textarea
+                              id="experience"
+                              value={inputs.experience}
+                              onBlur={experienceBlur}
+                              onChange={experienceChange}
+                              className={
+                                inputs.experienceValid
+                                  ? "border-green   w-full border text-black  px-3 py-1 rounded-2xl outline-none p-2 h-48 text-lg   mb-4"
+                                  : "border-red   w-full border  px-3 py-1 rounded-2xl outline-none p-2 h-48 text-lg text-black   mb-4"
+                              }
+                            />
+                          </div>{" "}
+                        </div>
+                      )}
                     </div>
 
                     <div className="flex justify-center text-center items-center py-2">
                       <button className="flex items-center justify-between shadow-xl border lg:py-2 lg:px-3 py-1 px-2 text-lg hover:bg-bgGreen hover:text-white bg-yellow rounded-3xl">
                         Sign Up
                       </button>
+                    </div>
+                    <div className="flex justify-center text-center items-center py-2">
+                      <Link
+                        to="/login"
+                        className="flex items-center justify-between shadow-xl border lg:py-2 lg:px-3 py-1 px-2 text-lg hover:bg-bgGreen hover:text-white bg-yellow rounded-3xl"
+                      >
+                        Login
+                      </Link>
                     </div>
                   </div>
                 </form>
