@@ -40,10 +40,15 @@ const inputReducer = (state: any, action: any) => {
         ...state,
         phoneNumber: action.payload,
       };
-    case "SET_EXPERIENCE":
+    case "SET_YEAR_EXPERIENCE":
       return {
         ...state,
-        experience: action.payload,
+        yearExperience: action.payload,
+      };
+    case "SET_ABOUTME":
+      return {
+        ...state,
+        aboutme: action.payload,
       };
 
     case "VALIDATE_USERNAME":
@@ -74,10 +79,16 @@ const inputReducer = (state: any, action: any) => {
         phoneNumberValid:
           action.payload.length >= 10 && action.payload.includes("+"),
       };
-    case "VALIDATE_EXPERIENCE":
+    case "VALIDATE_YEAR_EXPERIENCE":
       return {
         ...state,
-        experienceValid: action.payload.trim().length >= 50,
+        yearExperienceValid:
+          action.payload.trim().length <= 2 && parseInt(action.payload) >= 0,
+      };
+    case "VALIDATE_ABOUTME":
+      return {
+        ...state,
+        aboutmeValid: action.payload.trim().length >= 40,
       };
     default:
       return state;
@@ -94,7 +105,8 @@ const Signup = (props: Props) => {
     teacher: false,
     address: "",
     phoneNumber: "",
-    experience: "",
+    yearExperience: "",
+    aboutme: "",
   });
 
   let [inputs, inputsdispatcher] = useReducer(inputReducer, {
@@ -107,10 +119,12 @@ const Signup = (props: Props) => {
     teacher: false,
     address: "",
     phoneNumber: "",
-    experience: "",
+    yearExperience: "",
+    aboutme: "",
     addressValid: false,
     phoneNumberValid: false,
-    experienceValid: false,
+    yearExperienceValid: false,
+    aboutmeValid: false,
   });
 
   useEffect(() => {}, [
@@ -120,7 +134,8 @@ const Signup = (props: Props) => {
     inputs.teacher,
     inputs.addressValid,
     inputs.phoneNumberValid,
-    inputs.experienceValid,
+    inputs.yearExperienceValid,
+    inputs.aboutmeValid,
   ]);
 
   //getting values from input fields
@@ -147,9 +162,13 @@ const Signup = (props: Props) => {
     const value = event.target.value;
     inputsdispatcher({ payload: value, type: "SET_PHONE_NUMBER" });
   }
-  function experienceChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
+  function yearExperienceChange(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.target.value;
-    inputsdispatcher({ payload: value, type: "SET_EXPERIENCE" });
+    inputsdispatcher({ payload: value, type: "SET_YEAR_EXPERIENCE" });
+  }
+  function aboutmeChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    const value = event.target.value;
+    inputsdispatcher({ payload: value, type: "SET_ABOUTME" });
   }
 
   // checking validation
@@ -186,10 +205,16 @@ const Signup = (props: Props) => {
       type: "VALIDATE_PHONE_NUMBER",
     });
   }
-  function experienceBlur() {
+  function yearExperienceBlur() {
     inputsdispatcher({
-      payload: inputs.experience,
-      type: "VALIDATE_EXPERIENCE",
+      payload: inputs.yearExperience,
+      type: "VALIDATE_YEAR_EXPERIENCE",
+    });
+  }
+  function aboutmeBlur() {
+    inputsdispatcher({
+      payload: inputs.aboutme,
+      type: "VALIDATE_ABOUTME",
     });
   }
 
@@ -210,8 +235,10 @@ const Signup = (props: Props) => {
         alert("Address should contain at least 25 characters");
       } else if (!inputs.phoneNumberValid) {
         alert("Phone number should be more than 10 digits and include + sign");
-      } else if (!inputs.experienceValid) {
-        alert("Experience should contain at least 40 characters");
+      } else if (!inputs.yearExperienceValid) {
+        alert("Year Of Experience should be only 2 digits");
+      } else if (!inputs.aboutmeValid) {
+        alert("About me should contain at least 40 characters");
       }
     }
     if (
@@ -227,7 +254,8 @@ const Signup = (props: Props) => {
         teacher: inputs.teacher,
         address: inputs.address,
         phoneNumber: inputs.phoneNumber,
-        experience: inputs.experience,
+        yearExperience: inputs.yearExperience,
+        aboutme: inputs.aboutme,
       });
     } else if (
       inputs.usernameValid &&
@@ -236,17 +264,19 @@ const Signup = (props: Props) => {
       inputs.teacher &&
       inputs.addressValid &&
       inputs.phoneNumberValid &&
-      inputs.experienceValid
+      inputs.yearExperienceValid &&
+      inputs.aboutmeValid
     )
-    setItems({
-      email: inputs.email,
-      username: inputs.username,
-      password: inputs.password,
-      teacher: inputs.teacher,
-      address: inputs.address,
-      phoneNumber: inputs.phoneNumber,
-      experience: inputs.experience,
-    });
+      setItems({
+        email: inputs.email,
+        username: inputs.username,
+        password: inputs.password,
+        teacher: inputs.teacher,
+        address: inputs.address,
+        phoneNumber: inputs.phoneNumber,
+        yearExperience: inputs.yearExperience,
+        aboutme: inputs.aboutme,
+      });
   }
 
   function switcher(checked: boolean) {
@@ -377,30 +407,49 @@ const Signup = (props: Props) => {
                               }
                             />
                           </div>
-                          <div className="flex justify-center">
-                            <input
-                              id="phoneNumber"
-                              type="text"
-                              value={inputs.phoneNumber}
-                              onChange={phoneNumberChange}
-                              onBlur={phoneNumberBlur}
-                              placeholder="Phone Number"
-                              className={
-                                inputs.phoneNumberValid
-                                  ? "border-green  p-3 w-full lg:w-[50%] text-black rounded-full border  mb-4"
-                                  : "border-red  p-3 w-full lg:w-[50%] text-black rounded-full border-2  mb-4"
-                              }
-                            />
+                          <div className="lg:flex md:flex base:flex justify-center items-center w-full mx-auto">
+                            <div className="lg:flex md:flex base:flex items-center lg:w-[50%] md:w-[100%] base:w-[100%] lg:gap-3 gap-1">
+                              <div className="flex justify-center  w-[100%]">
+                                <input
+                                  id="phoneNumber"
+                                  type="text"
+                                  value={inputs.phoneNumber}
+                                  onChange={phoneNumberChange}
+                                  onBlur={phoneNumberBlur}
+                                  placeholder="Phone Number"
+                                  className={
+                                    inputs.phoneNumberValid
+                                      ? "border-green  p-3 w-full lg:w-[100%] text-black rounded-full border  mb-4"
+                                      : "border-red  p-3 w-full lg:w-[100%] text-black rounded-full border-2  mb-4"
+                                  }
+                                />
+                              </div>
+                              <div className="flex justify-center  w-[100%]">
+                                <input
+                                  id="yearExperience"
+                                  type="text"
+                                  value={inputs.yearExperience}
+                                  onChange={yearExperienceChange}
+                                  onBlur={yearExperienceBlur}
+                                  placeholder="Year Of Experience"
+                                  className={
+                                    inputs.yearExperienceValid
+                                      ? "border-green  p-3 w-full lg:w-[100%] text-black rounded-full border  mb-4"
+                                      : "border-red  p-3 w-full lg:w-[100%] text-black rounded-full border-2  mb-4"
+                                  }
+                                />
+                              </div>
+                            </div>
                           </div>
                           <div className="lg:p-3 p-1 lg:w-[50%]  mx-auto">
-                            <p>Experience*</p>
+                            <p>About me*</p>
                             <textarea
-                              id="experience"
-                              value={inputs.experience}
-                              onBlur={experienceBlur}
-                              onChange={experienceChange}
+                              id="aboutme"
+                              value={inputs.aboutme}
+                              onBlur={aboutmeBlur}
+                              onChange={aboutmeChange}
                               className={
-                                inputs.experienceValid
+                                inputs.aboutmeValid
                                   ? "border-green   w-full border text-black  px-3 py-1 rounded-2xl outline-none p-2 h-48 text-lg   mb-4"
                                   : "border-red   w-full border  px-3 py-1 rounded-2xl outline-none p-2 h-48 text-lg text-black   mb-4"
                               }

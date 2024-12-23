@@ -169,8 +169,6 @@ const MyPage = (props: Props) => {
           </div>
         </div>
       </div>
-      <Validation />
-      <Login />
     </div>
   );
 };
