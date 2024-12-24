@@ -48,7 +48,7 @@ const Navbar = (props: Props) => {
       <div className="shadow-xl2 md:bg-background2 fixed z-40 w-full bg-green1 top-0 md:top-8 h-16">
         <div className="lg:container md:px-10 sm:px-5 px-1">
           <div className="flex md:justify-between items-center px-2">
-            <div className="flex justify-between items-center w-full z-50">
+            <div className="flex items-center justify-between w-full z-50">
               <div className="flex items-center  justify-start">
                 <div>
                   <Link
@@ -57,12 +57,12 @@ const Navbar = (props: Props) => {
                   >
                     <div
                       className="flex drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover items-center justify-center rounded-full size-10 bg-yellow"
+                    object-cover items-center justify-center rounded-full size-8 md:size-10 bg-yellow"
                     >
                       <MdCastForEducation className="text-xl text-green" />
                     </div>
                     <p
-                      className="md:text-2xl text-xl text-white lg:text-black md:text-black sm:text-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                      className="lg:text-2xl text-[16px] text-white lg:text-black md:text-black drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover"
                     >
                       Edu-Smart
@@ -70,118 +70,97 @@ const Navbar = (props: Props) => {
                   </Link>
                 </div>
               </div>
-              <div className="hidden md:flex justify-between items-center h-16">
-                <div className="sm:flex  justify-end items-center gap-5">
-                  <ul className="md:flex  items-center gap-5 md:gap-2 text-xl">
-                    {NavbarItems.map((item, index) => (
-                      <li
-                        className="drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+              <div className="flex items-center justify-center">
+                <div className="hidden md:flex justify-between items-center h-16">
+                  <div className="sm:flex  justify-end items-center">
+                    <ul className="md:flex  items-center justify-center text-xl">
+                      {NavbarItems.map((item, index) => (
+                        <li
+                          className="drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover px-3"
-                        key={index}
-                      >
-                        <Link
-                          onClick={() => setHeader(item.id)}
-                          className="hover:border-green1 lg:text-xl text-base hover:border-b-2 hover:text-green1"
-                          to={item.link}
+                          key={index}
                         >
-                          {t(`${item.name}`)}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  {user && (
-                    <Link
-                      to="mypage"
-                      className="flex items-center justify-between gap-2 py-1 px-3 rounded-xl"
-                    >
-                      <span
-                        className="drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover hover:border-green1 lg:text-xl text-base hover:border-b-2 hover:text-green1"
+                          <Link
+                            onClick={() => setHeader(item.id)}
+                            className="hover:border-green1 lg:text-xl text-base hover:border-b-2 hover:text-green1"
+                            to={item.link}
+                          >
+                            {t(`${item.name}`)}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    {user && (
+                      <Link
+                        to="mypage"
+                        className="flex items-center justify-between gap-2 py-1 px-3 rounded-xl"
                       >
-                        {t("my_page")}
-                      </span>
-                    </Link>
-                  )}
+                        <span
+                          className="drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                    object-cover hover:border-green1 lg:text-xl text-base hover:border-b-2 hover:text-green1"
+                        >
+                          {t("my_page")}
+                        </span>
+                      </Link>
+                    )}
+                  </div>
+                </div>
+                <div className="flex items-center justify-center">
                   <Link
                     to="login"
                     className="flex items-center justify-between gap-2 py-1 px-3 rounded-xl"
                   >
-                    <FaUser className="text-xl text-green cursor-pointer" />
+                    <FaUser className="lg:text-xl text-md md:text-green text-white cursor-pointer" />
                   </Link>
-                </div>
-                <Select defaultValue={i18n.language} onValueChange={(value) => i18n.changeLanguage(value)}>
-                  <SelectTrigger
-                    className="flex items-center justify-between w-18 outline-none border-none bg-transparent font-bold"
+                  <Select
+                    defaultValue={i18n.language}
+                    onValueChange={(value) => i18n.changeLanguage(value)}
                   >
-                    <SelectValue placeholder={LANGUAGES[0].label} />
-                  </SelectTrigger>
-                  <SelectContent className="w-14">
-                    <SelectGroup>
-                      {LANGUAGES.map((item) => (
-                        <SelectItem value={item.code} key={item.code}>
-                          {" "}
-                          <img
-                            src={
-                              item.code === "uz"
-                                ? uzbFlag
-                                : item.code === "kr"
-                                ? koreanFlag
-                                : englishFlag
-                            }
-                            alt={item.code}
-                            className="size-5 inline-block mr-2"
-                          />
-                          {item.label}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="flex items-center md:hidden justify-end h-16">
-                <Select defaultValue={i18n.language} onValueChange={(value) => i18n.changeLanguage(value)}>
-                  <SelectTrigger className="flex items-center justify-between w-18 outline-none border-none text-white bg-transparent font-bold">
-                    <SelectValue placeholder={LANGUAGES[0].label} />
-                  </SelectTrigger>
-                  <SelectContent className="w-14">
-                    <SelectGroup>
-                      {LANGUAGES.map((item) => (
-                        <SelectItem value={item.code} key={item.code}>
-                          {" "}
-                          <img
-                            src={
-                              item.code === "uz"
-                                ? uzbFlag
-                                : item.code === "kr"
-                                ? koreanFlag
-                                : englishFlag
-                            }
-                            alt={item.code}
-                            className="size-5 inline-block mr-2"
-                          />
-                          {item.label}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-                <div
-                  className="drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover text-white cursor-pointer ml-2"
-                  onClick={handleNav}
-                >
-                  {!nav ? (
-                    <AiOutlineClose className="lg:hidden " size={20} />
-                  ) : (
-                    <AiOutlineMenu className="lg:hideen" size={20} />
-                  )}
+                    <SelectTrigger className="flex items-center p-0 lg:px-2 justify-between w-18 outline-none md:text-black text-white border-none bg-transparent font-bold">
+                      <SelectValue placeholder={LANGUAGES[0].label} />
+                    </SelectTrigger>
+                    <SelectContent className="w-14">
+                      <SelectGroup>
+                        {LANGUAGES.map((item) => (
+                          <SelectItem value={item.code} key={item.code}>
+                            {" "}
+                            <img
+                              src={
+                                item.code === "uz"
+                                  ? uzbFlag
+                                  : item.code === "kr"
+                                  ? koreanFlag
+                                  : englishFlag
+                              }
+                              alt={item.code}
+                              className="lg:size-5 size-4 inline-block mr-2"
+                            />
+                            {item.label}
+                          </SelectItem>
+                        ))}
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
                 </div>
+              </div>
+            </div>
+            <div className="flex relative items-center md:hidden justify-end h-16">
+              <div
+                className="drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                    object-cover text-white cursor-pointer ml-2"
+                onClick={handleNav}
+              >
+                {!nav ? (
+                  <AiOutlineClose className="lg:hidden " size={20} />
+                ) : (
+                  <AiOutlineMenu className="lg:hideen" size={20} />
+                )}
               </div>
             </div>
             <div
               className={
                 !nav
-                  ? `fixed z-10  left-0  top-[9%] w-full text-black bg-white/10
+                  ? `fixed z-10  left-0  top-[8%] w-full text-black bg-white/10
                 backdrop-blur-2xl border-b rounded-b-md ease-in-out duration-500 cursor-pointer`
                   : "fixed top-[-150%]"
               }
