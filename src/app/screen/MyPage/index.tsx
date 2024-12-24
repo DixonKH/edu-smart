@@ -46,7 +46,7 @@ const MyPage = (props: Props) => {
   };
   const handleNav = () => setNav(!nav);
   return (
-    <div className="lg:container md:px-10 sm:px-5 px-1 pt-[150px]">
+    <div className="lg:container md:px-10 sm:px-5 px-1 pt-[120px]">
       <div>
         <div className="grid lg:grid-cols-5 base:grid-cols-2 md:grid-cols-3 ">
           <div
@@ -65,24 +65,35 @@ const MyPage = (props: Props) => {
               !nav
                 ? `lg:hidden base:hidden md:hidden fixed z-30  left-0 h-[86%]  top-[10%] w-[85%] text-black bg-green/30
                 backdrop-blur-2xl border-b rounded-b-md ease-in-out duration-500 cursor-pointer`
-                : "lg:relative lg:top-0 base:relative base:top-0 md:relative md:top-0 fixed bottom-[-120%] sm:fixed sm:bottom-[-120%]"
+                : "lg:relative lg:top-0 base:relative base:top-0 md:relative md:top-0 fixed lg:left-0 md:left-0 base:left-0 left-[-120%] sm:fixed sm:left-[-120%]"
             }
           >
             <div className="flex items-start justify-center">
               <div
-                className="col-span-1  md:h-[660px] sm:h-[590px]  h-[600px] lg:h-[580px] w-full 
-            sm:w-[250px]  md:w-[230px] py-5 border-green1 lg:border md:border 
+                className="col-span-1  md:h-[790px] base:h-[750px] sm:h-[590px]  h-[750px] lg:h-[750px] 
+             base:w-[240px] w-[250px] py-5 border-green1 lg:border md:border 
             border-t border-b m-2 lg:rounded-xl md:rounded-xl"
               >
-                {/* <div className="flex  mx-auto items-center justify-center rounded-full size-10 bg-yellow">
+                <div className="lg:flex justify-center  md:flex base:flex hidden items-center  p-0">
                   <div>
-                    <MdCastForEducation className="text-xl  text-bgGreen" />
+                    <div className="flex justify-center ">
+                      <img
+                        src="https://www.gravatar.com/avatar/205e460b479e2e5b48cfe37510df5244?s=32&amp;d=identicon&amp;r=PG"
+                        alt="User Avatar"
+                        className=" border-2 m-3 p-3 border-green rounded-full w-24 h-24"
+                      />
+                    </div>
+                    <p className="flex justify-center text-xs md:text-base">
+                      UserName: John Doe
+                    </p>
+                    <p className="flex justify-center text-xs md:text-base">
+                      Email: johndoe@example.com
+                    </p>
+                    <p className="flex justify-center text-xs md:text-base">
+                      Phone: 123-456-7890
+                    </p>
                   </div>
                 </div>
-                <p className="md:text-2xl text-center text-xl sm:text-xl">
-                  Edu-Smart
-                </p> */}
-
                 <div>
                   <p className=" pt-4 pl-2 flex text-center lg:text-xl sm:text-xl italic">
                     Manage Listing:
@@ -165,6 +176,26 @@ const MyPage = (props: Props) => {
             </div>
           </div>
           <div className="lg:col-span-4 md:col-span-2">
+          <div className="flex py-3 border border-black rounded-xl lg:hidden md:hidden base:hidden  justify-center items-center  p-0">
+                  <div>
+                    <div className="flex justify-center ">
+                      <img
+                        src="https://www.gravatar.com/avatar/205e460b479e2e5b48cfe37510df5244?s=32&amp;d=identicon&amp;r=PG"
+                        alt="User Avatar"
+                        className=" border-2 m-3 p-3 border-green rounded-full w-24 h-24"
+                      />
+                    </div>
+                    <p className="flex justify-center text-xs md:text-base">
+                      UserName: John Doe
+                    </p>
+                    <p className="flex justify-center text-xs md:text-base">
+                      Email: johndoe@example.com
+                    </p>
+                    <p className="flex justify-center text-xs md:text-base">
+                      Phone: 123-456-7890
+                    </p>
+                  </div>
+                </div>
             <RenderComponent />
           </div>
         </div>
