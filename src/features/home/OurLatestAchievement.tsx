@@ -1,33 +1,45 @@
 import React from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import Teaching from "/public/images/Teaching.jpg";
+<<<<<<< HEAD:src/features/home/OurLatestAchievement.tsx
 import Line from "../../features/home/Line";
+=======
+import Line from "./Line";
+import { MdGrade } from "react-icons/md";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+>>>>>>> d0e7753ef3d1749e96967a251e96ebbed4035e55:src/app/screen/MainPage/OurLatestAchievement.tsx
 import { useTranslation } from "react-i18next";
 
 const courses = [
   {
     id: 1,
     image: Teaching,
-    title: "Korean Language",
-    description: "Our Korean Language Class",
+    title: "John Smith",
+    description: "Level: 5",
   },
   {
     id: 2,
     image: Teaching,
-    title: "Korean Language",
-    description: "Our Korean Language Class",
+    title: "Jane Smith",
+    description: "Level: 5",
   },
   {
     id: 3,
     image: Teaching,
-    title: "Korean Language",
-    description: "Our Korean Language Class",
+    title: "Will Smith",
+    description: "Level: 6",
   },
   {
     id: 4,
     image: Teaching,
-    title: "Korean Language",
-    description: "Our Korean Language Class",
+    title: "Emily Browning",
+    description: "Level: 6",
   },
 ];
 
@@ -54,6 +66,7 @@ const OurLatestAhievement = () => {
             </button>
           </div>
         </div>
+<<<<<<< HEAD:src/features/home/OurLatestAchievement.tsx
         <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
           {courses.map((course) => (
             <div
@@ -77,12 +90,48 @@ const OurLatestAhievement = () => {
                   </div>
                   <div>
                     <IoIosArrowRoundForward className="text-5xl bg-green shadow-xl2 shadow-slate-500 hover:bg-yellow hover:scale-105 transition-all duration-300 text-white border rounded-full" />
+=======
+        <Carousel className="md:px-0 sm:px-0 px-1">
+          <CarouselContent className="flex items-center w-full justify-center h-auto gap-5 mb-8">
+            {courses.map((course) => (
+              <CarouselItem
+                key={course.id}
+                className="flex flex-col items-center justify-center px-0 w-full pb-3 md:basis-1/3 base:basis-2/4 lg:basis-1/4 h-auto border-2 bg-white text-white rounded-xl hover:shadow-2xl hover:scale-85 transition-all duration-300 cursor-pointer"
+              >
+                <img
+                  src={course.image}
+                  alt="VideContent"
+                  className="w-[350px] h-[350px] rounded-3xl object-cover hover:scale-105 transition-all duration-300"
+                />
+                <div className="absolute flex items-end justify-center w-full h-full  bottom-8 gap-2 cursor-pointer">
+                  <div className="rounded-full w-[280px] h-[70px] base:w-[250px] md:h-[80px] lg:w-[280px] lg:h-[60px] md:w-[220px] flex items-center justify-between p-4 bg-black/45 text-black ">
+                    <div className="flex justify-center items-center">
+                      <MdGrade className="text-3xl text-yellow" />
+                    </div>
+                    <div>
+                      <p className="lg:p-1 md:p-0 p-1 text-white text-xs md:text-lg font-medium  px-1 ">
+                        {t(`${course.title}`)}
+                      </p>
+                      <p className="lg:p-1 md:p-0 p-1 text-white text-lg italic">
+                        {t(`${course.description}`)}
+                      </p>
+                    </div>
+                    <div>
+                      <img
+                        src="/public/images/person1.jpg"
+                        alt="Right Arrow"
+                        className="w-20 h-20 rounded-full"
+                      />
+                    </div>
+>>>>>>> d0e7753ef3d1749e96967a251e96ebbed4035e55:src/app/screen/MainPage/OurLatestAchievement.tsx
                   </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden lg:flex" />
+          <CarouselNext className="hidden lg:flex" />
+        </Carousel>
       </div>
       <Line />
     </>
