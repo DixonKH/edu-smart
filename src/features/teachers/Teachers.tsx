@@ -10,17 +10,21 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useTranslation } from "react-i18next";
+import { useMemberStore } from "./model/store";
 
 export default function Teachers(props: any) {
   const { t } = useTranslation();
   const { teachers } = props;
   const [search, setSearch] = useState("");
+  const data = useMemberStore((state) => state.members);
+
   
   const filteredTeachers = teachers.filter((item: any) => {
     const matchSearch =item.name.toLowerCase().includes(search.toLowerCase())
     return matchSearch;
   }
   );
+
   return (
     <div className="container mt-8">
       <h1 className="text-center lg:text-3xl md:text-2xl text-xl lg:text-left mb-4">
@@ -53,7 +57,7 @@ export default function Teachers(props: any) {
         </div>
       </div>
       <div className="grid w-full h-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        {filteredTeachers.map((teacher: any) => (
+        {data.map((teacher: any) => (
           <div
             key={teacher.id}
             className="flex flex-col items-center justify-start pb-3 h-auto border-2 bg-green text-white rounded-xl hover:shadow-2xl cursor-pointer"

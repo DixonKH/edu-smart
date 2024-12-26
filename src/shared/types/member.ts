@@ -1,5 +1,6 @@
 import { MemberAuthType, MemberCategory, MemberStatus, MemberType } from "../enums/member.enum";
 
+
 export interface Member {
 	_id: string;
 	memberType: MemberType;
@@ -23,15 +24,6 @@ export interface Member {
 	accessToken?: string;
 }
 
-export interface TotalCounter {
-	total: number;
-}
-
-export interface Members {
-	list: Member[];
-	metaCounter: TotalCounter[];
-}
-
 export interface MemberInput {
     memberType?: MemberType;
     memberAuthType?: MemberAuthType;
@@ -52,6 +44,29 @@ export interface MemberInput {
 export interface LoginInput {
     memberPhone: string;
     memberPassword: string;
+}
+
+export interface MemberUpdateInput {
+	memberNick?: string;
+	memberPhone?: string;
+	memberPassword?: string;
+	memberAddress?: string;
+	memberDesc?: string;
+	memberImage?: string;
+	memberExperience?: string;
+	memberLinks?: string;
+	memberLocation?: string;
+	memberLessons?: string;
+	memberArticles?: string;
+  }
+
+export interface TotalCounter {
+	total: number;
+}
+
+export interface Members {
+	list: Member[];
+	metaCounter: TotalCounter[];
 }
 
 

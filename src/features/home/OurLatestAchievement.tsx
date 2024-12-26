@@ -1,10 +1,6 @@
 import React from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import Teaching from "/public/images/Teaching.jpg";
-<<<<<<< HEAD:src/features/home/OurLatestAchievement.tsx
-import Line from "../../features/home/Line";
-=======
-import Line from "./Line";
 import { MdGrade } from "react-icons/md";
 import {
   Carousel,
@@ -13,8 +9,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
->>>>>>> d0e7753ef3d1749e96967a251e96ebbed4035e55:src/app/screen/MainPage/OurLatestAchievement.tsx
+
 import { useTranslation } from "react-i18next";
+import Line from "./Line";
 
 const courses = [
   {
@@ -66,31 +63,6 @@ const OurLatestAhievement = () => {
             </button>
           </div>
         </div>
-<<<<<<< HEAD:src/features/home/OurLatestAchievement.tsx
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
-          {courses.map((course) => (
-            <div
-              key={course.id}
-              className="relative p-4 flex items-end justify-center"
-            >
-              <img
-                src={course.image}
-                alt="VideContent"
-                className="w-full rounded-3xl object-cover hover:scale-105 transition-all duration-300"
-              />
-              <div className="absolute w-4/5 bottom-8 gap-2 cursor-pointer">
-                <div className="rounded-xl flex items-center justify-between p-4 bg-white text-black ">
-                  <div>
-                    <p className="lg:p-1 md:p-0 p-1 text-xs md:text-lg font-medium  px-1 ">
-                      {t(`${course.title}`)}
-                    </p>
-                    <p className="lg:p-1 md:p-0 p-1 text-lg italic">
-                      {t(`${course.description}`)}
-                    </p>
-                  </div>
-                  <div>
-                    <IoIosArrowRoundForward className="text-5xl bg-green shadow-xl2 shadow-slate-500 hover:bg-yellow hover:scale-105 transition-all duration-300 text-white border rounded-full" />
-=======
         <Carousel className="md:px-0 sm:px-0 px-1">
           <CarouselContent className="flex items-center w-full justify-center h-auto gap-5 mb-8">
             {courses.map((course) => (
@@ -123,7 +95,6 @@ const OurLatestAhievement = () => {
                         className="w-20 h-20 rounded-full"
                       />
                     </div>
->>>>>>> d0e7753ef3d1749e96967a251e96ebbed4035e55:src/app/screen/MainPage/OurLatestAchievement.tsx
                   </div>
                 </div>
               </CarouselItem>

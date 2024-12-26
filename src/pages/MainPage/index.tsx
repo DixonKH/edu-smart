@@ -8,9 +8,9 @@ import OurNewsletter from "../../features/home/OurNewsletter";
 import Header1 from "../../features/home/Header1";
 import Line from "../../features/home/Line";
 import WhyChooseUs from "@/features/home/WhyChooseUs";
-import OurLatestAchievement from "@/features/home/OurLatestAchievement";
 import ContactUs from "@/features/home/ContactUs";
 import NewsAndBlog from "@/features/home/NewsAndBlog";
+import OurLatestAchievement from "../../features/home/OurLatestAchievement";
 
 const MainPage = () => {
   return (
