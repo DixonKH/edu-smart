@@ -1,4 +1,11 @@
-export const serverApi: string = import.meta.env.REACT_APP_API_URL || '';
+export const serverApi: string = import.meta.env.VITE_API_URL || 'http://localhost:3007';
+
+export const getApiUrl = (path: string): string => {
+   return `${serverApi}${path.startsWith("/") ? path : `/${path}`}`;
+  // const fullUrl = `${serverApi}${path.startsWith("/") ? path : `/${path}`}`;
+  // console.log("getApiUrl output:", fullUrl); // Debug log
+  // return fullUrl;
+};
 
 export const Messages = {
     error1: "Something went wrong!",

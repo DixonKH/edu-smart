@@ -1,3 +1,4 @@
+import { Direction } from "../enums/common.enum";
 import { MemberAuthType, MemberCategory, MemberStatus, MemberType } from "../enums/member.enum";
 
 
@@ -67,6 +68,16 @@ export interface TotalCounter {
 export interface Members {
 	list: Member[];
 	metaCounter: TotalCounter[];
+}
+
+export interface MemberInquery {
+	page: number;
+	limit: number;
+	sort?: string;
+	search?: {
+		text?: string;
+	};
+	direction?: Direction;
 }
 
 

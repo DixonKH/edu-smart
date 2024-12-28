@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import { IoSearchCircleSharp } from "react-icons/io5";
 import {
@@ -11,33 +11,59 @@ import {
 } from "@/components/ui/select";
 import { useTranslation } from "react-i18next";
 import { useMemberStore } from "./model/store";
+import { MemberInquery } from "@/shared/types/member";
 
-export default function Teachers(props: any) {
+
+export default function Teachers() {
   const { t } = useTranslation();
-  const { teachers } = props;
-  const [search, setSearch] = useState("");
-  const data = useMemberStore((state) => state.members);
+  const getTeachers = useMemberStore((state) => state.getTeachers);
+  const members = useMemberStore((state) => state.members);
+  const [searchText, setSearchText] = useState<string>("");
+  const [searchTeachers, setSearchTeachers] = useState<MemberInquery>({
+    page: 1,
+    limit: 8,
+    sort: 'createdAt',
+    search: { text: searchText },
+  });
 
-  
-  const filteredTeachers = teachers.filter((item: any) => {
-    const matchSearch =item.name.toLowerCase().includes(search.toLowerCase())
-    return matchSearch;
-  }
-  );
+  useEffect(() => {
+    const teacher = getTeachers(searchTeachers);
+    teacher.then(() => {
+      const members = useMemberStore.getState().members;
+      console.log("Members in store:", members);
+    });
+  }, [searchTeachers]);
+
+  useEffect(() => {
+    if(searchText === "") {
+      searchTeachers.search = undefined;
+      setSearchTeachers(searchTeachers);
+    }
+  }, [searchText]);
+
+  // Handlers
+
+  const handleSearchText = () => {
+    searchTeachers.search = { text: searchText };
+    setSearchTeachers(searchTeachers);
+  };
 
   return (
     <div className="container mt-8">
       <h1 className="text-center lg:text-3xl md:text-2xl text-xl lg:text-left mb-4">
         - {t("teacher_p1")} -
       </h1>
-      <p className="text-gray-600 text-center lg:text-left text-lg">{t("teacher_p2")}</p>
+      <p className="text-gray-600 text-center lg:text-left text-lg">
+        {t("teacher_p2")}
+      </p>
       <div className="flex flex-row sm:flex-row-reverse items-center justify-between my-3 mt-6">
         <div className="sm:hidden md:block relative">
           <input
             type="text"
             placeholder="Search"
             className="w-full p-2 px-4 outline-none rounded-3xl border border-gray-300"
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => setSearchText(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSearchText()}
           />
           <IoSearchCircleSharp className="absolute right-[0.5px] top-[0.5px] size-10 cursor-pointer text-green" />
         </div>
@@ -57,7 +83,7 @@ export default function Teachers(props: any) {
         </div>
       </div>
       <div className="grid w-full h-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        {data.map((teacher: any) => (
+        {members.map((teacher: any) => (
           <div
             key={teacher.id}
             className="flex flex-col items-center justify-start pb-3 h-auto border-2 bg-green text-white rounded-xl hover:shadow-2xl cursor-pointer"
@@ -66,24 +92,24 @@ export default function Teachers(props: any) {
               <img
                 className="h-full w-full object-cover rounded-xl"
                 src={teacher.image}
-                alt={teacher.name}
+                alt={teacher.memberNick}
               />
               <p className="flex items-center gap-1 text-md text-white absolute bottom-6 bg-green p-2 rounded-r-lg">
                 <FaStar className="text-yellow" />
-                {teacher.experience} {t("team_exp")}
+                {teacher.memberExperience} {t("team_exp")}
               </p>
             </div>
             <div className="flex flex-col items-center justify-center w-full h-auto">
-              <h1 className="text-2xl font-bold">{teacher.name}</h1>
+              <h1 className="text-2xl font-bold">{teacher.memberNick}</h1>
               <p className="text-md text-white">
-                {teacher.teachCategory} {t("team_teacher")}
+                {teacher.memberCategory} {t("team_teacher")}
               </p>
             </div>
           </div>
         ))}
       </div>
       <div className="text-center text-md text-lg mb-8">
-        Total 6 teachers available
+        Total {members.length} teachers available
       </div>
     </div>
   );

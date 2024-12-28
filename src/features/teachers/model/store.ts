@@ -1,16 +1,21 @@
-import { serverApi } from "@/shared/lib/config";
-import { Member } from "@/shared/types/member";
+import {
+  Member,
+  MemberInput,
+  MemberInquery,
+  TotalCounter,
+} from "@/shared/types/member";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-
-const path = serverApi;
+import axios from "axios";
+import { getApiUrl } from "@/shared/lib/config";
 
 interface MemberStore {
   members: Member[];
   currentMember: Member | null;
+  metaCounter: TotalCounter[];
 
   // Actions
-  fetchMembers: () => Promise<void>;
+  getTeachers: (input: MemberInquery) => Promise<void>;
   fetchMemberById: (id: string) => Promise<void>;
   createMember: (member: Partial<Member>) => Promise<void>;
   updateMember: (id: string, updates: Partial<Member>) => Promise<void>;
@@ -22,20 +27,60 @@ export const useMemberStore = create<MemberStore>()(
     (set) => ({
       members: [],
       currentMember: null,
+      metaCounter: [],
 
-      fetchMembers: async () => {
+      //   signUp: async (member: MemberInput) => {
+      //     try {
+      //       const url = "http://localhost:3007/member/signup";
+      //       console.log("Fetching from URL:", url); // Log URL
+      //       const result = await axios.post<Member>(url, member, {
+      //         withCredentials: true,
+      //       });
+      //       const data = result.data;
+
+      //       console.log("Fetched members:", data);
+      //       set((state) => ({ members: [...state.members, data] }));
+      //     } catch (error) {
+      //       console.log("Error fetching members:", error);
+      //       if (axios.isAxiosError(error)) {
+      //         console.error(
+      //           "AxiosError details:",
+      //           error.response?.data || error.message
+      //         );
+      //       }
+      //       throw error;
+      //     }
+      //   },
+
+      getTeachers: async (input: MemberInquery): Promise<void> => {
         try {
-          const url = "http://localhost:3007/member/getTeachers";
-          console.log("Fetching from URL:", url); // Log URL
-          const result = await fetch(url);
-          if (!result.ok) {
-            throw new Error(`HTTP error! status: ${result.status}`);
+          let url = getApiUrl(`/member/getTeachers?page=${input.page}&limit=${input.limit}`);
+          if (input.sort) {
+            url += `&sort=${encodeURIComponent(input.sort)}`;
           }
-          const data = await result.json();
-          console.log("Fetched members:", data);
-          set({ members: data });
+          if (input.search?.text) {
+            url += `&search=${encodeURIComponent(input.search.text)}`;
+          }
+          if (input.direction) {
+            url += `&direction=${encodeURIComponent(input.direction)}`;
+          }
+
+          console.log("Final API URL:", url);
+
+          const result = await axios.get(url);
+          const data = result.data;
+
+          console.log("getTeachers:", data);
+          set({ members: result.data.list });
+          set({ metaCounter: result.data.metaCounter });
         } catch (error) {
           console.log("Error fetching members:", error);
+          if (axios.isAxiosError(error)) {
+            console.error(
+              "AxiosError details:",
+              error.response?.data || error.message
+            );
+          }
           throw error;
         }
       },
@@ -50,5 +95,5 @@ export const useMemberStore = create<MemberStore>()(
 
 // Expose the store in the browser for testing
 if (typeof window !== "undefined") {
-    (window as any).useMemberStore = useMemberStore;
-  }
+  (window as any).useMemberStore = useMemberStore;
+}
