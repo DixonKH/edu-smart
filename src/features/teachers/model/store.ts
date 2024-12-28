@@ -54,20 +54,18 @@ export const useMemberStore = create<MemberStore>()(
 
       getTeachers: async (input: MemberInquery): Promise<void> => {
         try {
-          let url = getApiUrl(`/member/getTeachers?page=${input.page}&limit=${input.limit}`);
-          if (input.sort) {
-            url += `&sort=${encodeURIComponent(input.sort)}`;
-          }
-          if (input.search?.text) {
-            url += `&search=${encodeURIComponent(input.search.text)}`;
-          }
-          if (input.direction) {
-            url += `&direction=${encodeURIComponent(input.direction)}`;
-          }
+          let url = getApiUrl(`/member/getTeachers`);
 
-          console.log("Final API URL:", url);
-
-          const result = await axios.get(url);
+          const result = await axios.get(url, {
+            params: {
+              page: input.page,
+              limit: input.limit,
+              sort: input.sort,
+              ...(input.search?.text
+                ? { "search[text]": input.search.text }
+                : {}),
+            },
+          });
           const data = result.data;
 
           console.log("getTeachers:", data);

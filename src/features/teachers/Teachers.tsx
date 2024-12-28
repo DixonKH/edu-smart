@@ -13,7 +13,6 @@ import { useTranslation } from "react-i18next";
 import { useMemberStore } from "./model/store";
 import { MemberInquery } from "@/shared/types/member";
 
-
 export default function Teachers() {
   const { t } = useTranslation();
   const getTeachers = useMemberStore((state) => state.getTeachers);
@@ -22,31 +21,35 @@ export default function Teachers() {
   const [searchTeachers, setSearchTeachers] = useState<MemberInquery>({
     page: 1,
     limit: 8,
-    sort: 'createdAt',
-    search: { text: searchText },
+    sort: "createdAt",
+    search: {},
   });
 
   useEffect(() => {
-    const teacher = getTeachers(searchTeachers);
-    teacher.then(() => {
-      const members = useMemberStore.getState().members;
-      console.log("Members in store:", members);
-    });
+    const fetchTeachers = async () => {
+      await getTeachers(searchTeachers);
+    };
+    fetchTeachers();
   }, [searchTeachers]);
 
   useEffect(() => {
-    if(searchText === "") {
-      searchTeachers.search = undefined;
-      setSearchTeachers(searchTeachers);
+    console.log("Updated members:", members);
+   // Log members
+  }, [members]);
+
+  useEffect(() => {
+    if (searchText === "") {
+      setSearchTeachers((prev) => ({
+        ...prev,
+        search: { text: "" },
+      }));
     }
   }, [searchText]);
 
-  // Handlers
 
-  const handleSearchText = () => {
-    searchTeachers.search = { text: searchText };
-    setSearchTeachers(searchTeachers);
-  };
+  console.log("searchTeachers:", searchText);
+  console.log("searchTeachers:", searchTeachers);
+  
 
   return (
     <div className="container mt-8">
@@ -60,10 +63,18 @@ export default function Teachers() {
         <div className="sm:hidden md:block relative">
           <input
             type="text"
+            value={searchText}
             placeholder="Search"
             className="w-full p-2 px-4 outline-none rounded-3xl border border-gray-300"
-            onChange={(e) => setSearchText(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSearchText()}
+            onChange={(e: any) => setSearchText(e.target.value)}
+            onKeyDown={(e: any) => {
+              if (e.key === "Enter") {
+                console.log(
+                  "Enter key pressed, searchTextHandler called!"
+                );
+                setSearchTeachers({ ...searchTeachers, search: { text: searchText }} )
+              }
+            }}
           />
           <IoSearchCircleSharp className="absolute right-[0.5px] top-[0.5px] size-10 cursor-pointer text-green" />
         </div>
