@@ -1,7 +1,7 @@
 import React from "react";
 import Teaching from "/public/images/Teaching.jpg";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import Line from "../../features/home/Line";
 import { useTranslation } from "react-i18next";
 

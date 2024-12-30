@@ -2,7 +2,7 @@ import React from "react";
 import { SiApple } from "react-icons/si";
 import { FcGoogle, FcAddressBook } from "react-icons/fc";
 import { MdCastForEducation } from "react-icons/md";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 type Props = {};
 

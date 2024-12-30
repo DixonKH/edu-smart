@@ -1,10 +1,9 @@
-import React, { useState } from "react";
 import { BsChatRightQuoteFill } from "react-icons/bs";
 import { SlLike } from "react-icons/sl";
-import Teaching from "/public/images/Teaching.jpg";
+
 import { FaEye } from "react-icons/fa6";
 import Community from "./Community.json";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 type Props = {
   showComponent: Number;

@@ -1,5 +1,5 @@
 import NavbarItems from "./Navbar.json";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { MdCastForEducation } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";

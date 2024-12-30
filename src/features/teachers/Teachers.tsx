@@ -12,6 +12,9 @@ import {
 import { useTranslation } from "react-i18next";
 import { useMemberStore } from "./model/store";
 import { MemberInquery } from "@/shared/types/member";
+import { Direction } from "@/shared/enums/common.enum";
+import userImgBg from "/public/images/user-bg.jpg";
+import { Link } from "react-router-dom";
 
 export default function Teachers() {
   const { t } = useTranslation();
@@ -23,6 +26,7 @@ export default function Teachers() {
     limit: 8,
     sort: "createdAt",
     search: {},
+    direction: Direction.DESC,
   });
 
   useEffect(() => {
@@ -33,11 +37,6 @@ export default function Teachers() {
   }, [searchTeachers]);
 
   useEffect(() => {
-    console.log("Updated members:", members);
-   // Log members
-  }, [members]);
-
-  useEffect(() => {
     if (searchText === "") {
       setSearchTeachers((prev) => ({
         ...prev,
@@ -46,10 +45,22 @@ export default function Teachers() {
     }
   }, [searchText]);
 
-
-  console.log("searchTeachers:", searchText);
-  console.log("searchTeachers:", searchTeachers);
-  
+  const sortingHandler = (value: string) => {
+    switch (value) {
+      case "recent":
+        setSearchTeachers((prev) => {
+          return { ...prev, sort: "createdAt", direction: Direction.DESC };
+        });
+        break;
+      case "old":
+        setSearchTeachers((prev) => {
+          return { ...prev, sort: "updatedAt", direction: Direction.ASC };
+        });
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <div className="container mt-8">
@@ -69,10 +80,11 @@ export default function Teachers() {
             onChange={(e: any) => setSearchText(e.target.value)}
             onKeyDown={(e: any) => {
               if (e.key === "Enter") {
-                console.log(
-                  "Enter key pressed, searchTextHandler called!"
-                );
-                setSearchTeachers({ ...searchTeachers, search: { text: searchText }} )
+                console.log("Enter key pressed, searchTextHandler called!");
+                setSearchTeachers({
+                  ...searchTeachers,
+                  search: { text: searchText },
+                });
               }
             }}
           />
@@ -80,7 +92,13 @@ export default function Teachers() {
         </div>
         <div className="flex flex-row items-center gap-2">
           <p className="text-md text-gray-600">Sort by:</p>
-          <Select defaultValue="recent">
+          <Select
+            defaultValue="recent"
+            onValueChange={(value) => {
+              console.log("Selected value:", value);
+              sortingHandler(value);
+            }}
+          >
             <SelectTrigger className="w-[100px] outline-none rounded-2xl p-3">
               <SelectValue placeholder="recent" />
             </SelectTrigger>
@@ -96,15 +114,19 @@ export default function Teachers() {
       <div className="grid w-full h-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
         {members.map((teacher: any) => (
           <div
-            key={teacher.id}
+            key={teacher._id}
             className="flex flex-col items-center justify-start pb-3 h-auto border-2 bg-green text-white rounded-xl hover:shadow-2xl cursor-pointer"
           >
             <div className="w-full h-80 mb-2 relative">
-              <img
-                className="h-full w-full object-cover rounded-xl"
-                src={teacher.image}
-                alt={teacher.memberNick}
-              />
+              <Link to={`/ourteachers/${teacher._id}`}>
+                <img
+                  className="h-full w-full object-cover rounded-xl"
+                  src={
+                    teacher.memberImage === "" ? userImgBg : teacher.memberImage
+                  }
+                  alt={teacher.memberNick}
+                />
+              </Link>
               <p className="flex items-center gap-1 text-md text-white absolute bottom-6 bg-green p-2 rounded-r-lg">
                 <FaStar className="text-yellow" />
                 {teacher.memberExperience} {t("team_exp")}

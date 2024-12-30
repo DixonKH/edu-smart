@@ -1,8 +1,7 @@
 import MainPage from "../pages/MainPage";
-import OurTeachers from "../pages/OurTeachers";
 import Community from "../pages/Community";
 import MyPage from "../pages/MyPage";
-import { Route, Routes } from "react-router";
+import { Route, Routes } from "react-router-dom";
 import LessonsPage from "../pages/LessonsPage";
 import AdminLayout from "./layouts/AdminLayout";
 import MainLayout from "./layouts/MainLayout";
@@ -12,6 +11,9 @@ import Login from "../features/SignupLogin/Login";
 import Signup from "../features/SignupLogin/Signup";
 import ChoosenLesson from "@/features/lessons/ChoosenLesson";
 import CommunityDetail from "@/features/community/CommunityDetail";
+import Teachers from "@/features/teachers/Teachers";
+import Lessons from "@/features/lessons/Lessons";
+import TeachersPage from "../pages/OurTeachers";
 import TeacherDetail from "@/features/teachers/TeacherDetail";
 
 function App() {
@@ -21,14 +23,18 @@ function App() {
         {/* Main Routes */}
         <Route path="/" element={<MainLayout />}>
           <Route path="/" index element={<MainPage />} />
-          <Route path="/lessons" element={<LessonsPage />} />
-          <Route path="/ourteachers" element={<OurTeachers />} />
+          <Route path="/lessons" element={<LessonsPage />}>
+            <Route index element={<Lessons />} />
+            <Route path=":lessonId" element={<ChoosenLesson />} />
+          </Route>
+          <Route path="/ourteachers" element={<TeachersPage />}>
+            <Route index element={<Teachers />} />
+            <Route path=":teacherId" element={<TeacherDetail />} />
+          </Route>
           <Route path="/community" element={<Community />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/lessons/:lessonId" element={<ChoosenLesson />} />
-          <Route path="/ourteachers/:teacherId" element={<TeacherDetail />} />
           <Route path="/community/:communityId" element={<CommunityDetail />} />
         </Route>
 

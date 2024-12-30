@@ -60,7 +60,8 @@ export const useMemberStore = create<MemberStore>()(
             params: {
               page: input.page,
               limit: input.limit,
-              sort: input.sort,
+              sort: input?.sort,
+              direction: input?.direction,
               ...(input.search?.text
                 ? { "search[text]": input.search.text }
                 : {}),
@@ -69,6 +70,7 @@ export const useMemberStore = create<MemberStore>()(
           const data = result.data;
 
           console.log("getTeachers:", data);
+          console.log('Received direction:', typeof input.direction, input.direction);
           set({ members: result.data.list });
           set({ metaCounter: result.data.metaCounter });
         } catch (error) {

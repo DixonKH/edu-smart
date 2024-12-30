@@ -1,4 +1,4 @@
-import React from "react";
+import { useParams } from "react-router-dom";
 import TeacherCard from "../../entities/TeacherCard";
 import LessonCard from "../../features/lessons/LessonCard";
 import {
@@ -10,18 +10,126 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "../../components/ui/pagination";
+import { useState } from "react";
 
-export default function TeacherDetail() {
+interface Lesson {
+  id: number;
+  title: string;
+  category: "BEGINNER" | "ELEMENTRY" | "INTERMADIATE" | "ADVANCED";
+  desc: string;
+  create: string;
+  owner: string;
+  view: string;
+  like: string;
+}
+
+const initialLessons: any = [
+  {
+    id: 1,
+    title: "Koreys Alifbosi va ularning qollanish usullari",
+    category: "BEGINNER",
+    desc: "This is the Desc",
+    create: "12/07/2024",
+    owner: "Meloboyev A",
+    view: "2",
+    like: "true",
+  },
+  {
+    id: 2,
+    title: "Lesson 2",
+    category: "ELEMENTRY",
+    desc: "This is the Desc",
+    create: "13/07/2024",
+    owner: "Abdurakhmonov B",
+    view: "3",
+    like: "true",
+  },
+  {
+    id: 3,
+    category: "INTERMEDIATE",
+    title: "Lesson 3",
+    desc: "This is the Desc",
+    create: "12/06/2024",
+    owner: "Xasanov D",
+    view: "5",
+    like: "false",
+  },
+  {
+    id: 4,
+    title: "Lesson 4",
+    category: "ADVANCED",
+    desc: "This is the Desc",
+    create: "1/07/2024",
+    owner: "Abdurakhmonov B",
+    view: "3",
+    like: "true",
+  },
+  {
+    id: 5,
+    title: "Lesson 5",
+    category: "ELEMENTRY",
+    desc: "This is the Desc",
+    create: "12/03/2024",
+    owner: "Abdurakhmonov B",
+    view: "1",
+    like: "false",
+  },
+  {
+    id: 6,
+    title: "Lesson 3",
+    category: "BEGINNER",
+    desc: "This is the Desc",
+    create: "11/07/2024",
+    owner: "Xasanov D",
+    view: "5",
+    like: "false",
+  },
+  {
+    id: 7,
+    title: "Lesson 4",
+    category: "BEGINNER",
+    desc: "This is the Desc",
+    create: "1/07/2024",
+    owner: "Abdurakhmonov B",
+    view: "3",
+    like: "true",
+  },
+  {
+    id: 8,
+    title: "Lesson 5",
+    category: "BEGINNER",
+    desc: "This is the Desc",
+    create: "2/07/2024",
+    owner: "Abdurakhmonov B",
+    view: "1",
+    like: "false",
+  },
+];
+
+export default function TeacherDetail() { 
+  const [lessons, setLessons] = useState(initialLessons);
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("all");
+  
+  const filteredLessons = lessons.filter((item: any) => {
+    const matchSearch = item.title.toLowerCase().includes(search.toLowerCase());
+    const matchCategory =
+      category === "all" || item.category.toLowerCase() === category;
+
+    return matchSearch && matchCategory;
+  });
+  const { teacherId } = useParams();
   return (
     <div className="container">
       <h1 className="text-center lg:text-left text-2xl lg:text-3xl my-4">
         - Teacher Detail -
+        <p>Viewing details for teacher ID: {teacherId}</p>
       </h1>
       <div className="flex flex-col lg:flex-row items-start  lg:justify-between mb-10 gap-6">
         <TeacherCard />
         <div className="w-full">
           <div className="w-full grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5">
-            <LessonCard />
+            <LessonCard lessons={filteredLessons} />
           </div>
           <div className="my-3">
             <Pagination>
