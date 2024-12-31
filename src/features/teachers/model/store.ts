@@ -13,9 +13,10 @@ interface MemberStore {
   members: Member[];
   currentMember: Member | null;
   metaCounter: TotalCounter[];
-
+  
   // Actions
   getTeachers: (input: MemberInquery) => Promise<void>;
+  getMemberById: (id: string) => Member | undefined;
   fetchMemberById: (id: string) => Promise<void>;
   createMember: (member: Partial<Member>) => Promise<void>;
   updateMember: (id: string, updates: Partial<Member>) => Promise<void>;
@@ -24,7 +25,7 @@ interface MemberStore {
 
 export const useMemberStore = create<MemberStore>()(
   devtools(
-    (set) => ({
+    (set, get) => ({
       members: [],
       currentMember: null,
       metaCounter: [],
@@ -84,7 +85,7 @@ export const useMemberStore = create<MemberStore>()(
           throw error;
         }
       },
-      fetchMemberById: async (id) => {},
+      getMemberById: (id: any) => get().members.find((member: Member) => member._id === id),
       createMember: async (member) => {},
       updateMember: async (id, updates) => {},
       deleteMember: async (id) => {},

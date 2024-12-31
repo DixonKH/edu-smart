@@ -10,7 +10,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "../../components/ui/pagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useMemberStore } from "./model/store";
 
 interface Lesson {
   id: number;
@@ -109,8 +110,19 @@ const initialLessons: any = [
 export default function TeacherDetail() { 
   const [lessons, setLessons] = useState(initialLessons);
   const [search, setSearch] = useState("");
+  const { teacherId } = useParams();
   const [category, setCategory] = useState("all");
-  
+  const members = useMemberStore((state) => state.members);
+  const getMemberById = useMemberStore((state) => state.getMemberById);
+  const getTeachers = useMemberStore((state) => state.getTeachers);
+  const teacher = getMemberById(teacherId!);
+
+  useEffect(() => {
+    if(!teacher) {
+      getTeachers({ page: 1, limit: 8, search: { text: "" } });
+    }
+  }, [teacherId, members]);
+
   const filteredLessons = lessons.filter((item: any) => {
     const matchSearch = item.title.toLowerCase().includes(search.toLowerCase());
     const matchCategory =
@@ -118,15 +130,14 @@ export default function TeacherDetail() {
 
     return matchSearch && matchCategory;
   });
-  const { teacherId } = useParams();
+ 
   return (
     <div className="container">
-      <h1 className="text-center lg:text-left text-2xl lg:text-3xl my-4">
+      <h1 className="text-center lg:text-left text-2xl lg:text-3xl my-8 mt-10">
         - Teacher Detail -
-        <p>Viewing details for teacher ID: {teacherId}</p>
       </h1>
       <div className="flex flex-col lg:flex-row items-start  lg:justify-between mb-10 gap-6">
-        <TeacherCard />
+        <TeacherCard teacher={teacher} />
         <div className="w-full">
           <div className="w-full grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5">
             <LessonCard lessons={filteredLessons} />

@@ -126,7 +126,7 @@ export default function Lessons() {
     const matchSearch = item.title.toLowerCase().includes(search.toLowerCase());
     const matchCategory =
       category === "all" || item.category.toLowerCase() === category;
-
+ 
     return matchSearch && matchCategory;
   });
 
@@ -142,27 +142,10 @@ export default function Lessons() {
         <div className="flex flex-col-reverse md:flex md:flex-row mt-4 gap-4 items-center justify-between w-full h-auto mb-5">
           <div className="flex items-center justify-between md:justify-start md:gap-5 w-full">
             <LessonFilter />
-            <div className="sm:hidden lg:flex fex-row gap-4 hidden items-center">
-              <p>Category:</p>
-              <Select defaultValue={category} onValueChange={setCategory}>
-                <SelectTrigger className="w-[150px] text-lg h-[45px]">
-                  <SelectValue placeholder="Select a fruit" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectItem value="all">All</SelectItem>
-                    <SelectItem value="beginner">Beginner</SelectItem>
-                    <SelectItem value="elementry">Elementry</SelectItem>
-                    <SelectItem value="intermediate">Intermediate</SelectItem>
-                    <SelectItem value="advanced">Advanced</SelectItem>
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
-            </div>
             <div className="flex items-center gap-2">
               <p>Sort by:</p>
               <Select defaultValue="Recently">
-                <SelectTrigger className="w-[130px] text-lg h-[45px]">
+                <SelectTrigger className="w-[130px] text-lg h-[45px] border-green3 rounded-3xl">
                   <SelectValue placeholder="Recently" />
                 </SelectTrigger>
                 <SelectContent>
@@ -172,18 +155,50 @@ export default function Lessons() {
                 </SelectContent>
               </Select>
             </div>
+            <div className="sm:hidden lg:flex fex-row gap-4 hidden items-center">
+              <Select defaultValue={category} onValueChange={setCategory}>
+                <SelectTrigger className="w-[140px] text-lg h-[45px] rounded-3xl border-green3">
+                  <SelectValue placeholder="Select a fruit" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value="all">All Classes</SelectItem>
+                    <SelectItem value="beginner">English</SelectItem>
+                    <SelectItem value="elementry">Korean</SelectItem>
+                    <SelectItem value="intermediate">Russian</SelectItem>
+                    <SelectItem value="advanced">Japanese</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="sm:hidden lg:flex fex-row gap-4 hidden items-center">
+              <Select defaultValue={category} onValueChange={setCategory}>
+                <SelectTrigger className="w-[150px] text-lg h-[45px] rounded-3xl border-green3">
+                  <SelectValue placeholder="Select a fruit" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value="all">All Levels</SelectItem>
+                    <SelectItem value="beginner">Beginner</SelectItem>
+                    <SelectItem value="elementry">Elementry</SelectItem>
+                    <SelectItem value="intermediate">Intermediate</SelectItem>
+                    <SelectItem value="advanced">Advanced</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           <form className="flex sm:flex w-full items-center justify-end">
             <input
               type="text"
               placeholder="Search"
-              className="border rounded-lg text-lg p-2 w-5/6 outline-none "
+              className="border rounded-3xl border-green3 text-lg p-2 pl-4 w-5/6 outline-none "
               onChange={(e) => setSearch(e.target.value)}
             />
             <button
               type="submit"
-              className="flex items-center justify-center bg-green lg:gap-2 lg:text-lg text-white p-2 rounded-lg ml-2 w-wull"
+              className="flex items-center justify-center bg-green lg:gap-2 lg:text-lg text-white p-2 px-4 rounded-3xl ml-2 w-wull cursor-pointer"
               onClick={(e) => e.preventDefault()}
               disabled={search.trim() === ""}
             >

@@ -28,7 +28,7 @@ export default function Teachers() {
     search: {},
     direction: Direction.DESC,
   });
-
+  
   useEffect(() => {
     const fetchTeachers = async () => {
       await getTeachers(searchTeachers);
