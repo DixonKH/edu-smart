@@ -9,10 +9,12 @@ import {
   sweetErrorHandling,
   sweetTopSuccessAlert,
 } from "@/shared/lib/sweetAlert";
+import { getApiUrl } from "@/shared/lib/config";
 
 const Login = () => {
   const login = useMemberStore((state) => state.login);
   const navigate = useNavigate();
+  const url = getApiUrl("/auth/google");
 
   const formik = useFormik({
     initialValues: {
@@ -31,13 +33,13 @@ const Login = () => {
       } catch (error: any) {
         sweetErrorHandling(error);
       }
-    }, 
+    },
   });
   return (
     <div className="lg:container mt-[110px] mb-4 md:px-10 sm:px-5 px-1">
       <div className="  rounded-xl border-black">
-        <div className="h-full w-full flex items-center justify-center">
-          <div className="flex flex-col items-center justify-center w-2/4 h-[800px] border rounded-l-xl border-green">
+        <div className="h-full w-full flex flex-col-reverse lg:flex-row items-center justify-center">
+          <div className="flex flex-col items-center justify-center w-full lg:w-2/4 lg:h-[800px] border rounded-b-xl lg:rounded-l-xl border-green">
             <p className="flex py-5 items-center justify-center text-6xl font-bold text-slate-700">
               Sign in
             </p>
@@ -54,7 +56,7 @@ const Login = () => {
                   value={formik.values.memberNick}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className=" border-green p-3 w-96 text-black rounded-full border"
+                  className=" border-green p-3 w-64 md:w-96 text-black rounded-full border"
                 />
                 {formik.touched.memberNick && formik.errors.memberNick ? (
                   <div className="text-red">{formik.errors.memberNick}</div>
@@ -69,7 +71,7 @@ const Login = () => {
                   value={formik.values.memberPassword}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className=" border-green p-3 w-96 text-black rounded-full border"
+                  className=" border-green p-3 w-64  md:w-96 text-black rounded-full border"
                 />
                 {formik.touched.memberPassword &&
                 formik.errors.memberPassword ? (
@@ -79,16 +81,18 @@ const Login = () => {
 
               <button
                 type="submit"
-                className="border-green py-3 w-96 text-xl text-white bg-green1 rounded-full border  my-2 mt-8 cursor-pointer"
+                className="border-green py-3 md:w-96 w-64 text-xl text-white bg-green1 rounded-full border  my-2 mt-8 cursor-pointer"
               >
                 Sign in
               </button>
             </form>
             <div className="flex py-3 items-center justify-center">
-              <button className="border-green p-3 w-64 text-black rounded-full border gap-2 flex items-center justify-center">
-                <FcGoogle />
-                <span> Continue with Google </span>
-              </button>
+              <Link to={url}>
+                <button className="border-green p-3 w-64 text-black rounded-full border gap-2 flex items-center justify-center">
+                  <FcGoogle />
+                  <span> Continue with Google </span>
+                </button>
+              </Link>
             </div>
             <div>
               <div className="flex py-3 items-center justify-center">
@@ -99,7 +103,7 @@ const Login = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-center  justify-center w-2/4 h-[800px] bg-green1 rounded-r-xl">
+          <div className="flex flex-col items-center  justify-center w-full lg:w-2/4 lg:h-[800px] bg-green1 rounded-t-xl lg:rounded-r-xl">
             <div className="flex flex-col items-center justify-center mb-32">
               <div className="flex items-center py-8 justify-center">
                 <div className="bg-yellow text-green1  rounded-full">
@@ -113,7 +117,7 @@ const Login = () => {
               <div className="border-white border w-48 py-2 rounded-3xl text-center mt-8 cursor-pointer">
                 <Link
                   to={"/signup"}
-                  className="text-3xl text-white p-3 w-96 mb-2"
+                  className="md:text-3xl text-2xl text-white p-3 w-96 mb-2"
                 >
                   Signup
                 </Link>

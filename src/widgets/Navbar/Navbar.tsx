@@ -26,6 +26,7 @@ import userAd from "/public/images/user.jpeg";
 import MiniNavbar from "./MiniNavbar";
 import { LANGUAGES } from "@/shared/constants";
 import { useMemberStore } from "@/features/teachers/model/store";
+import MyPage from "@/pages/MyPage";
 
 type Props = {};
 
@@ -122,7 +123,7 @@ const Navbar = (props: Props) => {
                     )}
                   </div>
                 </div>
-                <div className="flex items-center justify-center">
+                <div className="hidden md:flex items-center justify-center">
                   {currentUser ? (
                     <div className="relative mr-2 ml-4 rounded-full h-10 w-10 text-center pt-2 bg-green2 text-xl font-medium text-white">
                       {currentUser?.memberImage === "" ? (
@@ -157,39 +158,39 @@ const Navbar = (props: Props) => {
                       <FaUser className="lg:text-xl text-md md:text-green text-white cursor-pointer" />
                     </Link>
                   )}
-                  <Select
-                    defaultValue={i18n.language}
-                    onValueChange={(value) => i18n.changeLanguage(value)}
-                  >
-                    <SelectTrigger className="flex items-center p-0 lg:px-2 justify-between w-18 outline-none md:text-black text-white border-none bg-transparent font-bold">
-                      <SelectValue placeholder={LANGUAGES[0].label} />
-                    </SelectTrigger>
-                    <SelectContent className="w-14">
-                      <SelectGroup>
-                        {LANGUAGES.map((item) => (
-                          <SelectItem value={item.code} key={item.code}>
-                            {" "}
-                            <img
-                              src={
-                                item.code === "uz"
-                                  ? uzbFlag
-                                  : item.code === "kr"
-                                  ? koreanFlag
-                                  : englishFlag
-                              }
-                              alt={item.code}
-                              className="lg:size-5 size-4 inline-block mr-2"
-                            />
-                            {item.label}
-                          </SelectItem>
-                        ))}
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
                 </div>
+                <Select
+                  defaultValue={i18n.language}
+                  onValueChange={(value) => i18n.changeLanguage(value)}
+                >
+                  <SelectTrigger className="flex items-center p-0 lg:px-2 justify-between w-18 outline-none md:text-black text-white border-none bg-transparent font-bold">
+                    <SelectValue placeholder={LANGUAGES[0].label} />
+                  </SelectTrigger>
+                  <SelectContent className="w-14">
+                    <SelectGroup>
+                      {LANGUAGES.map((item) => (
+                        <SelectItem value={item.code} key={item.code}>
+                          {" "}
+                          <img
+                            src={
+                              item.code === "uz"
+                                ? uzbFlag
+                                : item.code === "kr"
+                                ? koreanFlag
+                                : englishFlag
+                            }
+                            alt={item.code}
+                            className="lg:size-5 size-4 inline-block mr-2"
+                          />
+                          {item.label}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
-            <div className="flex relative items-center md:hidden justify-end h-16">
+            <div className="flex relative items-center md:hidden justify-end h-16 ml-1">
               <div
                 className="drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover text-white cursor-pointer ml-2"
@@ -211,38 +212,43 @@ const Navbar = (props: Props) => {
               }
             >
               <div className="flex flex-col items-center text-center justify-center h-96">
-                <ul className="flex flex-col items-center justify-center px-8 w-[80%]  text-white bg-bgGreen font-bold-100 rounded-2xl h-72">
+                <ul className="flex flex-col items-center justify-center px-8 w-[80%]  text-white bg-bgGreen font-bold-100 rounded-2xl pb-6">
                   {NavbarItems.map((item) => (
                     <li
                       key={item?.id}
                       onClick={handleNav}
-                      className="p-4 border-b border-white w-full rounded-2xl"
+                      className="p-4 border-b border-white text-xl w-full rounded-2xl"
                     >
                       <Link to={item.link}>{t(`${item.name}`)}</Link>
                     </li>
                   ))}
+                  {currentUser && (
+                    <li
+                      onClick={handleNav}
+                      className="p-4 border-b border-white text-xl w-full rounded-2xl"
+                    >
+                      <Link to="mypage">My Page</Link>
+                    </li>
+                  )}
                 </ul>
               </div>
-              <div className="w-full mb-8">
-                <div className="flex justify-center items-center">
-                  <div className="flex justify-evenly items-center gap-4 py-2 px-4">
-                    <div className="flex items-center  justify-center rounded-full p-2 bg-bgGreen hover:scale-110 hover:bg-yellow hover:transition-all hover:duration-300">
-                      <FaFacebook className="text-xl text-white size-7" />
-                    </div>
-                    <div className="flex items-center justify-center rounded-full p-2 bg-bgGreen hover:scale-110 hover:bg-yellow hover:transition-all hover:duration-300">
-                      <FaTwitter className="text-xl text-white size-7" />
-                    </div>
-                    <div className="flex items-center justify-center rounded-full p-2 bg-bgGreen hover:scale-110 hover:bg-yellow hover:transition-all hover:duration-300">
-                      <FaPinterest className="text-xl text-white size-6" />
-                    </div>
-                    <div className="flex items-center justify-center rounded-full p-2 bg-bgGreen hover:scale-110 hover:bg-yellow hover:transition-all hover:duration-300">
-                      <FaInstagramSquare className="text-xl text-white size-6" />
-                    </div>
-                    <div className="flex items-center justify-center rounded-full p-2 bg-bgGreen hover:scale-110 hover:bg-yellow hover:transition-all hover:duration-300">
-                      <FaYoutube className="text-xl text-white size-6" />
-                    </div>
-                  </div>
-                </div>
+              <div className="w-full flex flex-col items-center justify-cente h-16 mb-6">
+                {currentUser ? (
+                  <button
+                    onClick={handleLogout}
+                    className="w-[80%] h-16 flex items-center justify-center text-xl text-white bg-bgGreen rounded-xl"
+                  >
+                    <Link onClick={handleNav} to={"/login"}>
+                      Log Out
+                    </Link>
+                  </button>
+                ) : (
+                  <button className="w-[80%] h-16 flex items-center justify-center text-xl text-white bg-bgGreen rounded-xl">
+                    <Link onClick={handleNav} to={"/login"}>
+                      Sign in
+                    </Link>
+                  </button>
+                )}
               </div>
             </div>
           </div>
