@@ -43,7 +43,7 @@ export interface MemberInput {
 }
 
 export interface LoginInput {
-    memberPhone: string;
+    memberNick: string;
     memberPassword: string;
 }
 

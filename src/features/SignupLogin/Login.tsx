@@ -1,94 +1,122 @@
-import React from "react";
 import { SiApple } from "react-icons/si";
-import { FcGoogle, FcAddressBook } from "react-icons/fc";
+import { FcGoogle } from "react-icons/fc";
 import { MdCastForEducation } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useMemberStore } from "../teachers/model/store";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import {
+  sweetErrorHandling,
+  sweetTopSuccessAlert,
+} from "@/shared/lib/sweetAlert";
 
-type Props = {};
+const Login = () => {
+  const login = useMemberStore((state) => state.login);
+  const navigate = useNavigate();
 
-const Login = (props: Props) => {
+  const formik = useFormik({
+    initialValues: {
+      memberNick: "",
+      memberPassword: "",
+    },
+    validationSchema: Yup.object({
+      memberNick: Yup.string().required("Required"),
+      memberPassword: Yup.string().required("Required"),
+    }),
+    onSubmit: async (values) => {
+      try {
+        await login(values);
+        sweetTopSuccessAlert("Signup Success!");
+        navigate("/");
+      } catch (error: any) {
+        sweetErrorHandling(error);
+      }
+    }, 
+  });
   return (
-    <div className="lg:container mt-[90px] md:px-10 sm:px-5 px-1">
+    <div className="lg:container mt-[110px] mb-4 md:px-10 sm:px-5 px-1">
       <div className="  rounded-xl border-black">
-        <div className="h-full w-full">
-          <div className=" items-center justify-center">
-            <div className="flex items-center py-8 justify-center">
-              <div className="bg-yellow text-green  rounded-full">
-                <MdCastForEducation className="p-3 text-8xl" />
-              </div>
-            </div>
-            <p className="flex py-5 items-center justify-center text-3xl">
-              Login
+        <div className="h-full w-full flex items-center justify-center">
+          <div className="flex flex-col items-center justify-center w-2/4 h-[800px] border rounded-l-xl border-green">
+            <p className="flex py-5 items-center justify-center text-6xl font-bold text-slate-700">
+              Sign in
             </p>
-            <form>
-              <div data-aos="fade-up" className="container p-4">
-                <div className="">
-                  <div className="flex justify-center">
-                    <input
-                      id="username"
-                      type="text"
-                      //   value={emailState.value}
-                      //   onChange={emailChangeHandler}
-                      //   onBlur={validateEmailHandler}
-                      placeholder="Username"
-                      className=" border-green  p-3 w-full lg:w-[50%] text-black rounded-full border  mb-4"
-                    />
-                  </div>
-                  <div className="flex justify-center">
-                    <input
-                      id="password"
-                      type="password"
-                      //   value={passwordState.value}
-                      //   onChange={passwordChangeHandler}
-                      //   onBlur={validatePasswordHandler}
-                      placeholder="Password"
-                      className=" border-green  p-3 w-full lg:w-[50%] text-black rounded-full border  mb-4"
-                    />
-                  </div>
-                </div>
-                <div className="flex justify-center gap-10">
-                  <button className="flex items-center justify-between shadow-xl border lg:py-2 lg:px-5 md:px-5 py-1 px-2 text-lg hover:bg-bgGreen hover:text-white bg-yellow rounded-3xl">
-                    Login
-                  </button>
-                </div>
-                <div className="flex justify-center text-center items-center py-2">
-                  <Link
-                    to={"/signup"}
-                    className="flex items-center justify-between shadow-xl border lg:py-2 lg:px-5 md:px-5 py-1 px-2 text-lg hover:bg-bgGreen hover:text-white bg-yellow rounded-3xl"
-                  >
-                    Signup
-                  </Link>
-                  
-                </div>
+            <form
+              onSubmit={formik.handleSubmit}
+              className="flex flex-col w-full items-center justify-center"
+            >
+              <div className="flex flex-col mb-4">
+                <input
+                  placeholder="Username"
+                  id="memberNick"
+                  name="memberNick"
+                  type="text"
+                  value={formik.values.memberNick}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className=" border-green p-3 w-96 text-black rounded-full border"
+                />
+                {formik.touched.memberNick && formik.errors.memberNick ? (
+                  <div className="text-red">{formik.errors.memberNick}</div>
+                ) : null}
               </div>
-            </form>
+              <div className="flex flex-col mb-3">
+                <input
+                  placeholder="Password"
+                  id="memberPassword"
+                  name="memberPassword"
+                  type="text"
+                  value={formik.values.memberPassword}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  className=" border-green p-3 w-96 text-black rounded-full border"
+                />
+                {formik.touched.memberPassword &&
+                formik.errors.memberPassword ? (
+                  <div className="text-red">{formik.errors.memberPassword}</div>
+                ) : null}
+              </div>
 
-            <div className="flex py-3 items-center justify-center">
               <button
-                className="border-black flex items-center justify-around border hover:bg-slate-100 text-center text-xs sm:text-sm font-bold 
-          sm:w-4/5 md:w-2/5 base:w-3/5 lg:w-1/5 cursor-pointer bg-white text-black
-                    py-1 p-5 rounded-full"
+                type="submit"
+                className="border-green py-3 w-96 text-xl text-white bg-green1 rounded-full border  my-2 mt-8 cursor-pointer"
               >
+                Sign in
+              </button>
+            </form>
+            <div className="flex py-3 items-center justify-center">
+              <button className="border-green p-3 w-64 text-black rounded-full border gap-2 flex items-center justify-center">
                 <FcGoogle />
                 <span> Continue with Google </span>
               </button>
             </div>
             <div>
               <div className="flex py-3 items-center justify-center">
-                <button
-                  className="border-black flex justify-around items-center border hover:bg-slate-100 text-center text-xs sm:text-sm font-bold 
-            sm:w-4/5 md:w-2/5 base:w-3/5 lg:w-1/5 hover:text-black cursor-pointer bg-black text-white
-                    py-1 p-5 rounded-full"
-                >
+                <button className="p-3 w-64 text-white bg-black rounded-full border gap-2  mb-2 flex items-center justify-center">
                   <SiApple />
                   <span>Continue with Apple</span>
                 </button>
               </div>
-              <div className="flex py-7 items-center justify-center">
-                <span>________________or________________</span>
+            </div>
+          </div>
+          <div className="flex flex-col items-center  justify-center w-2/4 h-[800px] bg-green1 rounded-r-xl">
+            <div className="flex flex-col items-center justify-center mb-32">
+              <div className="flex items-center py-8 justify-center">
+                <div className="bg-yellow text-green1  rounded-full">
+                  <MdCastForEducation className="p-3 text-8xl" />
+                </div>
               </div>
-              <div className="flex py-3 items-center justify-center">
-                <button className="text-sky-800"> Continue with email</button>
+              <h1 className="text-4xl text-white">Welcome Back!</h1>
+              <p className="text-white text-xl text-center p-4">
+                To keep connected with us please login with your personal info
+              </p>
+              <div className="border-white border w-48 py-2 rounded-3xl text-center mt-8 cursor-pointer">
+                <Link
+                  to={"/signup"}
+                  className="text-3xl text-white p-3 w-96 mb-2"
+                >
+                  Signup
+                </Link>
               </div>
             </div>
           </div>

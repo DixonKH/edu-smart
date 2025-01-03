@@ -1,7 +1,7 @@
 import NavbarItems from "./Navbar.json";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdCastForEducation } from "react-icons/md";
-import { FaUser } from "react-icons/fa";
+import { FaSignOutAlt, FaUser } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
@@ -9,7 +9,7 @@ import { FaInstagramSquare } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
-import uzbFlag from "../../../public/icons/world.png"
+import uzbFlag from "../../../public/icons/world.png";
 import koreanFlag from "../../../public/icons/south-korea.png";
 import englishFlag from "../../../public/icons/united-kingdom.png";
 import {
@@ -21,17 +21,33 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useTranslation } from "react-i18next";
-
+import userNavbar from "/public/images/userNavbar.png";
+import userAd from "/public/images/user.jpeg";
 import MiniNavbar from "./MiniNavbar";
 import { LANGUAGES } from "@/shared/constants";
+import { useMemberStore } from "@/features/teachers/model/store";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
+  const currentUser = useMemberStore((state) => state.currentMember);
+  const logout = useMemberStore((state) => state.logout);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
   const [nav, setNav] = useState(true);
   const [header, setHeader] = useState(1);
   const [user, setUser] = useState(true);
   const { i18n, t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    setDropdownVisible(false);
+    navigate("/login");
+  };
+
+  const toggleDropdown = () => {
+    setDropdownVisible((prev) => !prev);
+  };
 
   const onChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const lang_code = e.target.value;
@@ -39,6 +55,7 @@ const Navbar = (props: Props) => {
   };
 
   const handleNav = () => setNav(!nav);
+  console.log("currentUser", currentUser);
 
   return (
     <div className="w-full">
@@ -90,7 +107,7 @@ const Navbar = (props: Props) => {
                         </li>
                       ))}
                     </ul>
-                    {user && (
+                    {currentUser && (
                       <Link
                         to="mypage"
                         className="flex items-center justify-between gap-2 py-1 px-3 rounded-xl"
@@ -106,12 +123,40 @@ const Navbar = (props: Props) => {
                   </div>
                 </div>
                 <div className="flex items-center justify-center">
-                  <Link
-                    to="login"
-                    className="flex items-center justify-between gap-2 py-1 px-3 rounded-xl"
-                  >
-                    <FaUser className="lg:text-xl text-md md:text-green text-white cursor-pointer" />
-                  </Link>
+                  {currentUser ? (
+                    <div className="relative mr-2 ml-4 rounded-full h-10 w-10 text-center pt-2 bg-green2 text-xl font-medium text-white">
+                      {currentUser?.memberImage === "" ? (
+                        <p onClick={toggleDropdown} className="cursor-pointer">
+                          {currentUser.memberNick[0]}
+                        </p>
+                      ) : (
+                        <img
+                          src={currentUser.memberImage}
+                          alt="user"
+                          className="rounded-full h-10 w-10 cursor-pointer"
+                          onClick={toggleDropdown}
+                        />
+                      )}
+                      {dropdownVisible && (
+                        <div className="absolute left-2 right-0 mt-2 w-32 bg-white border border-gray-200 rounded-lg shadow-md">
+                          <button
+                            onClick={handleLogout}
+                            className="flex items-center gap-2 px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 w-full"
+                          >
+                            <FaSignOutAlt className="text-green2" />
+                            Logout
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      to="login"
+                      className="flex items-center justify-between gap-2 py-1 px-3 rounded-xl"
+                    >
+                      <FaUser className="lg:text-xl text-md md:text-green text-white cursor-pointer" />
+                    </Link>
+                  )}
                   <Select
                     defaultValue={i18n.language}
                     onValueChange={(value) => i18n.changeLanguage(value)}
