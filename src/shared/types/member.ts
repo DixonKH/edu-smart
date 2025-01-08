@@ -47,10 +47,12 @@ export interface LoginInput {
     memberPassword: string;
 }
 
-export interface MemberUpdateInput {
+export interface MemberUpdate {
 	memberNick?: string;
+	memberCategory?: MemberCategory;
 	memberPhone?: string;
 	memberPassword?: string;
+	memberFullName?: string;
 	memberAddress?: string;
 	memberDesc?: string;
 	memberImage?: string;

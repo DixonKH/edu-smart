@@ -86,6 +86,7 @@ export default {
         xl: "rgba(0, 0, 0, 0.25) 0px 5px 15px 0px",
         xl2: "rgba(0, 0, 0, 0.35) 0px 5px 15px 0px",
       },
+      
     },
   },
   plugins: [require("tailwindcss-animate")],

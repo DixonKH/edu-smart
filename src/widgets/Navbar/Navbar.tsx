@@ -27,6 +27,7 @@ import MiniNavbar from "./MiniNavbar";
 import { LANGUAGES } from "@/shared/constants";
 import { useMemberStore } from "@/features/teachers/model/store";
 import MyPage from "@/pages/MyPage";
+import { serverApi } from "@/shared/lib/config";
 
 type Props = {};
 
@@ -125,21 +126,21 @@ const Navbar = (props: Props) => {
                 </div>
                 <div className="hidden md:flex items-center justify-center">
                   {currentUser ? (
-                    <div className="relative mr-2 ml-4 rounded-full h-10 w-10 text-center pt-2 bg-green2 text-xl font-medium text-white">
+                    <div className="relative flex items-center justify-center mr-2 ml-4 rounded-full h-10 w-10 text-center bg-green2 text-xl font-medium text-white">
                       {currentUser?.memberImage === "" ? (
                         <p onClick={toggleDropdown} className="cursor-pointer">
                           {currentUser.memberNick[0]}
                         </p>
                       ) : (
                         <img
-                          src={currentUser.memberImage}
+                           src={`${serverApi}/${currentUser?.memberImage}`}
                           alt="user"
                           className="rounded-full h-10 w-10 cursor-pointer"
                           onClick={toggleDropdown}
                         />
                       )}
                       {dropdownVisible && (
-                        <div className="absolute left-2 right-0 mt-2 w-32 bg-white border border-gray-200 rounded-lg shadow-md">
+                        <div className="absolute left-2 right-0 mt-24 w-32 bg-white border border-gray-200 rounded-lg shadow-md">
                           <button
                             onClick={handleLogout}
                             className="flex items-center gap-2 px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 w-full"

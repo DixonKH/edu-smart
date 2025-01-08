@@ -8,9 +8,9 @@ type Props = {};
 
 const MyFavourites = (props: Props) => {
   return (
-    <div>
+    <div className="p-3 px-4 h-[820px]">
       <div className="flex justify-center items-center">
-        <h1 className="text-lg italic underline">My Favourites</h1>
+        <h1 className="text-2xl font-medium mt-2">My Favourites</h1>
       </div>
       <div className="m-2 grid base:grid-cols-1  lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         <div className="flex justify-center items-center">

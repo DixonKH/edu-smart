@@ -5,6 +5,7 @@ import { BsTelephoneFill } from "react-icons/bs";
 import { FaTelegram } from "react-icons/fa";
 import { Member } from "@/shared/types/member";
 import userImgBg from "/public/images/user-bg.jpg";
+import { serverApi } from "@/shared/lib/config";
 
 interface TeacherDetailProps {
   teacher: Member | undefined;
@@ -22,7 +23,7 @@ export default function TeacherCard(props: TeacherDetailProps) {
         <div className="w-32 h-32 my-2 rounded-full overflow-hidden">
           <img
             className="object-cover w-full h-full"
-            src={teacher?.memberImage === "" ? userImgBg : teacher?.memberImage}
+            src={teacher?.memberImage === "" ? userImgBg : `${serverApi}/${teacher?.memberImage}`}
             alt="Person"
           />
         </div>
@@ -39,7 +40,7 @@ export default function TeacherCard(props: TeacherDetailProps) {
         </p>
         <p className="flex flex-row items-center justify-start gap-2 text-slate-600">
           <FaLocationDot className="text-green text-lg" />
-          Location: {teacher?.memberLocation}
+          Location: {teacher?.memberAddress}
         </p>
         <p className="flex flex-row items-center justify-start gap-2 text-slate-600">
           <BsTelephoneFill className="text-green text-lg" />

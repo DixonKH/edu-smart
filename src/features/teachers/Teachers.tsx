@@ -15,11 +15,24 @@ import { MemberInquery } from "@/shared/types/member";
 import { Direction } from "@/shared/enums/common.enum";
 import userImgBg from "/public/images/user-bg.jpg";
 import { Link } from "react-router-dom";
+import { serverApi } from "@/shared/lib/config";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 export default function Teachers() {
   const { t } = useTranslation();
   const getTeachers = useMemberStore((state) => state.getTeachers);
   const members = useMemberStore((state) => state.members);
+  const total = useMemberStore((state) =>
+    state.metaCounter.length > 0 ? state.metaCounter[0].total : 0
+  );
   const [searchText, setSearchText] = useState<string>("");
   const [searchTeachers, setSearchTeachers] = useState<MemberInquery>({
     page: 1,
@@ -28,7 +41,7 @@ export default function Teachers() {
     search: {},
     direction: Direction.DESC,
   });
-  
+
   useEffect(() => {
     const fetchTeachers = async () => {
       await getTeachers(searchTeachers);
@@ -61,6 +74,15 @@ export default function Teachers() {
         break;
     }
   };
+
+  const handlePageChange = (newPage: number) => {
+    setSearchTeachers((prev) => ({
+      ...prev,
+      page: newPage,
+    }));
+  };
+
+  const totalPages = Math.ceil(total / searchTeachers.limit);
 
   return (
     <div className="container mt-8">
@@ -112,37 +134,82 @@ export default function Teachers() {
         </div>
       </div>
       <div className="grid w-full h-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
-        {members.map((teacher: any) => (
-          <div
-            key={teacher._id}
-            className="flex flex-col items-center justify-start pb-3 h-auto border-2 bg-green text-white rounded-xl hover:shadow-2xl cursor-pointer"
-          >
-            <div className="w-full h-80 mb-2 relative">
-              <Link to={`/ourteachers/${teacher._id}`}>
-                <img
-                  className="h-full w-full object-cover rounded-xl"
-                  src={
-                    teacher.memberImage === "" ? userImgBg : teacher.memberImage
-                  }
-                  alt={teacher.memberNick}
-                />
-              </Link>
-              <p className="flex items-center gap-1 text-md text-white absolute bottom-6 bg-green p-2 rounded-r-lg">
-                <FaStar className="text-yellow" />
-                {teacher.memberExperience} {t("team_exp")}
-              </p>
+        {members.map((teacher: any) => {
+          const imgPath = `${serverApi}/${teacher?.memberImage}`;
+          return (
+            <div
+              key={teacher._id}
+              className="flex flex-col items-center justify-start pb-3 h-auto border-2 bg-green text-white rounded-xl hover:shadow-2xl cursor-pointer"
+            >
+              <div className="w-full h-80 mb-2 relative">
+                <Link to={`/ourteachers/${teacher._id}`}>
+                  <img
+                    className="h-full w-full object-cover rounded-xl"
+                    src={teacher.memberImage === "" ? userImgBg : imgPath}
+                    alt={teacher.memberNick}
+                  />
+                </Link>
+                <p className="flex items-center gap-1 text-md text-white absolute bottom-6 bg-green p-2 rounded-r-lg">
+                  <FaStar className="text-yellow" />
+                  {teacher.memberExperience} {t("team_exp")}
+                </p>
+              </div>
+              <div className="flex flex-col items-center justify-center w-full h-auto">
+                <h1 className="text-2xl font-bold">{teacher.memberNick}</h1>
+                <p className="text-md text-white">
+                  {teacher.memberCategory} {t("team_teacher")}
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col items-center justify-center w-full h-auto">
-              <h1 className="text-2xl font-bold">{teacher.memberNick}</h1>
-              <p className="text-md text-white">
-                {teacher.memberCategory} {t("team_teacher")}
-              </p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
       <div className="text-center text-md text-lg mb-8">
-        Total {members.length} teachers available
+        Total {total} teachers available
+      </div>
+      <div className="text-center text-md text-lg mb-8">
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (searchTeachers.page > 1) {
+                    handlePageChange(searchTeachers.page - 1);
+                  }
+                }}
+              />
+            </PaginationItem>
+            {[...Array(totalPages)].map((_, i) => (
+              <PaginationItem key={i}>
+                <PaginationLink
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handlePageChange(i + 1);
+                  }}
+                  isActive={searchTeachers.page === i + 1}
+                >
+                  {i + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (searchTeachers.page < totalPages) {
+                    handlePageChange(searchTeachers.page + 1);
+                  }
+                }}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </div>
     </div>
   );

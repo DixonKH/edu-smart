@@ -7,7 +7,7 @@ export enum MemberCategory {
 	KOREAN = 'KOREAN',
 	ENGLISH = 'ENGLISH',
 	RUSSIAN = 'RUSSIAN',
-}
+} 
 
 
 export enum MemberStatus {
