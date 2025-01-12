@@ -143,6 +143,7 @@ export const useMemberStore = create<MemberStore>()(
             if (!accessToken) {
               throw new Error("Access token is missing.");
             }
+            
             formData.append("_id", _id);
             formData.append("memberNick", input.memberNick || "");
             formData.append("memberFullName", input.memberFullName || "");
@@ -153,7 +154,7 @@ export const useMemberStore = create<MemberStore>()(
             formData.append("memberLinks", input.memberLinks || "");
             formData.append("memberImage", input.memberImage || "");
             if (input.memberCategory) {
-              formData.append("memberCategory", input.memberCategory); // Ensure it's added conditionally
+              formData.append("memberCategory", input.memberCategory);
             }
             
 
