@@ -48,7 +48,7 @@ export default function TeacherCard(props: TeacherDetailProps) {
         </p>
         <div className="w-full flex flex-row items-center justify-center gap-6 mt-3">
           <p>
-            <a href="https://t.me/example">
+            <a href={teacher?.memberLinks}>
               <FaTelegram className="text-green size-6 lg:size-8 hover:text-yellow" />
             </a>
           </p>
