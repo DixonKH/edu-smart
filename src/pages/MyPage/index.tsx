@@ -17,11 +17,10 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useNavigate } from "react-router-dom";
 import { serverApi } from "@/shared/lib/config";
+import MyArticles from "@/features/myPage/myArticles";
 
 type Props = {};
 
@@ -45,7 +44,7 @@ const MyPage = (props: Props) => {
         return <MyFavourites />;
         break;
       case 4:
-        return <MyFavourites />;
+        return <MyArticles />;
         break;
       case 5:
         return <WriteArticle />;

@@ -261,7 +261,7 @@ const MyProfile = (props: Props) => {
               </Select>
             </div>
             <div className="lg:p-3 p-1 w-full md:w-3/6">
-              <p className="font-semibold mb-1">User link*</p>
+              <p className="font-semibold mb-1">Telegram Link*</p>
               <input
                 type="text"
                 name="memberLinks"
