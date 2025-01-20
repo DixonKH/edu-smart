@@ -2,7 +2,6 @@ import React from "react";
 import { FaEye } from "react-icons/fa6";
 import { SlLike } from "react-icons/sl";
 import { IoIosArrowRoundForward } from "react-icons/io";
-import Community from "./Community.json";
 import { useParams } from "react-router";
 import CommunityHeader from "./CommunityHeader";
 import Line from "../home/Line";
@@ -12,24 +11,6 @@ type Props = {};
 
 const CommunityDetail = () => {
   const { communityId } = useParams<{ communityId: string }>();
-
-  let cName = "";
-  let image = "";
-  let comments = "";
-  let seen = 0;
-  let date = "";
-  let likes = 0;
-
-  Community.filter((item) => item.id === Number(communityId)).forEach(
-    (item, index) => {
-      cName = item.name;
-      image = item.image;
-      comments = item.comments;
-      seen = item.seen;
-      date = item.date;
-      likes = item.likes;
-    }
-  );
 
   return (
     <div className="">
@@ -41,7 +22,7 @@ const CommunityDetail = () => {
             <div>
               <p className="lg:p-1 md:p-0 p-1 text-xs md:text-sm  px-1 italic bold">
                 <span>" </span>
-                {comments}
+                <span>{communityId}</span>
                 <span> "</span>
               </p>
             </div>
@@ -49,23 +30,23 @@ const CommunityDetail = () => {
               <div className="flex items-center justify-between gap-2">
                 <div>
                   <img
-                    src={image}
+                    src={""}
                     alt="UserImage"
                     className="rounded-full w-10 h-10"
                   />
                   <p className="lg:p-1 md:p-0 p-1 text-xs md:text-sm  px-1 bold">
-                    {cName}
+                    {communityId}
                   </p>
                 </div>
                 <p className="lg:p-2 border-l-2 border-black p-2 text-[10px]  text-center italic">
-                  {date}
+                  
                 </p>
               </div>
               <div className="flex  justify-start items-start gap-1">
                 <div className="w-10 h-8">
                   <div className="absolute border rounded-full ">
                     <p className="text-[8px] text-center  border  px-2 rounded-full">
-                      {seen}
+                     
                     </p>
                   </div>
                   <div
@@ -79,7 +60,7 @@ const CommunityDetail = () => {
                 <div className="w-10 h-8">
                   <div className="absolute border rounded-full ">
                     <p className="text-[8px] text-center  border  px-2 rounded-full">
-                      {likes}
+                      
                     </p>
                   </div>
                   <div

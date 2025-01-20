@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdOutlinePlayLesson } from "react-icons/md";
 import { MdPlayLesson } from "react-icons/md";
 import { FaHeart } from "react-icons/fa6";
@@ -18,12 +18,11 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { serverApi } from "@/shared/lib/config";
 import MyArticles from "@/features/myPage/myArticles";
 
 type Props = {};
-
 
 const MyPage = (props: Props) => {
   const [showComponent, setShowComponent] = useState(6);
@@ -31,6 +30,14 @@ const MyPage = (props: Props) => {
   const currentUser = useMemberStore((state) => state.currentMember);
   const logout = useMemberStore((state) => state.logout);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { component } = location.state || {};
+
+  useEffect(() => {
+    if (component === "WriteArticle") {
+      setShowComponent(5);
+    }
+  }, [component]);
 
   const RenderComponent = () => {
     switch (showComponent) {
@@ -58,7 +65,7 @@ const MyPage = (props: Props) => {
   const handleLogOut = () => {
     logout();
     navigate("/login");
-  }
+  };
 
   return (
     <div className="lg:container md:px-10 sm:px-5 px-1 pt-[120px]">
@@ -74,7 +81,7 @@ const MyPage = (props: Props) => {
                     </p>
                   ) : (
                     <img
-                       src={`${serverApi}/${currentUser?.memberImage}`}
+                      src={`${serverApi}/${currentUser?.memberImage}`}
                       alt="User Avatar"
                       className=" border-2 m-3 border-green rounded-full w-24 h-24"
                     />

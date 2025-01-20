@@ -1,13 +1,8 @@
+import { Link } from "react-router-dom";
 import { FaComments } from "react-icons/fa";
+import { BoardArticle, BoardArticleInquiry } from "@/shared/types/article";
 import { IoEye } from "react-icons/io5";
-import { useTranslation } from "react-i18next";
-import { useArticleStore } from "../community/model/store";
-import { useMemberStore } from "../teachers/model/store";
 import { serverApi } from "@/shared/lib/config";
-import { useEffect, useState } from "react";
-import { BoardArticleInquiry } from "@/shared/types/article";
-import { Direction } from "@/shared/enums/common.enum";
-import { BoardArticleCategory } from "@/shared/enums/article.enum";
 import {
   Pagination,
   PaginationContent,
@@ -17,54 +12,23 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { Link } from "react-router-dom";
 
-export default function myArticles() {
-  const { t } = useTranslation();
-  const getArticles = useArticleStore((state) => state.getArticles);
-  const articlesData = useArticleStore((state) => state.articles);
-  const currentUser = useMemberStore((state) => state.currentMember);
-   const [articles, setArticles] = useState<BoardArticleInquiry>({
-      page: 1,
-      limit: 6,
-      sort: "createdAt",
-      direction: Direction.DESC,
-      search: {
-        articlecategory: BoardArticleCategory.FREE,
-        text: "",
-      },
-    });
+type ArticleProps = {
+  articlesData: BoardArticle[];
+  articles: BoardArticleInquiry;
+  total: number;
+  totalPages: number;
+  handlePageChange(newPage: number): void;
+};
 
-  useEffect(() => {
-    const fetchArticles = async () => {
-      await getArticles(articles)
-    };
-    fetchArticles();
-  }, [articles]);
-
-  const myArticles = articlesData.filter((articles) => {
-    return articles.memberId === currentUser?._id;
-  });
-
-  const handlePageChange = (newPage: number) => {
-    setArticles((prev) => ({
-      ...prev,
-      page: newPage,
-    }));
-  };
-
-  const totalPages = Math.ceil(myArticles.length / articles.limit);
-
+const Articles = (props: ArticleProps) => {
+  const { articlesData, articles, total, totalPages, handlePageChange } = props;
   return (
-    <div className="p-3 px-4">
-      <div className="flex justify-center items-center">
-        <h1 className="text-2xl font-medium mt-2">My Articles</h1>
-      </div>
-      <div>
-      {myArticles.length !== 0 ? (
+    <div className="w-full">
+      {articlesData.length !== 0 ? (
         <>
           <div className="flex items-center justify-start flex-wrap">
-            {myArticles.map((article: any) => {
+            {articlesData.map((article: any) => {
               const imgPath = `${serverApi}/${article?.articleImage}`;
               const date = article?.createdAt;
               const now = new Date();
@@ -137,13 +101,14 @@ export default function myArticles() {
             })}
           </div>
           <div className="text-center text-md text-lg mb-6 mt-4">
-            Total <span className="bg-red text-white rounded-full p-1 px-3">{myArticles.length}</span> articles available
+            Total {total} articles available
           </div>
-          <div className="text-center text-md text-lg mb-8 cursor-pointer">
+          <div className="text-center text-md text-lg mb-8 cursor-pointer flex">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>
                   <PaginationPrevious
+                    href="#"
                     onClick={(e) => {
                       e.preventDefault();
                       if (articles.page > 1) {
@@ -155,6 +120,7 @@ export default function myArticles() {
                 {[...Array(totalPages)].map((_, i) => (
                   <PaginationItem key={i}>
                     <PaginationLink
+                      className="hidden md:flex"
                       onClick={(e) => {
                         e.preventDefault();
                         handlePageChange(i + 1);
@@ -170,6 +136,7 @@ export default function myArticles() {
                 </PaginationItem>
                 <PaginationItem>
                   <PaginationNext
+                    href="#"
                     onClick={(e) => {
                       e.preventDefault();
                       if (articles.page < totalPages) {
@@ -191,6 +158,7 @@ export default function myArticles() {
         </div>
       )}
     </div>
-    </div>
   );
-}
+};
+
+export default Articles;

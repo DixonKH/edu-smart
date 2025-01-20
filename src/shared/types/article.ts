@@ -1,6 +1,6 @@
 import { BoardArticleCategory, BoardArticleStatus } from "../enums/article.enum";
 import { Direction } from "../enums/common.enum";
-import { TotalCounter } from "./member";
+import { Member, TotalCounter } from "./member";
 
 export interface BoardArticle {
 	_id: string;
@@ -18,8 +18,8 @@ export interface BoardArticle {
 
 	/** from aggregation **/
 	
-	// meLiked?: MeLiked[];
-	// memberData?: Member;
+	meLiked?: [];
+	memberData?: Member;
 }
 
 export interface BoardArticles {
@@ -39,7 +39,7 @@ export interface BoardArticleInput {
 }
 
 export interface BAISearch {
-    articlecategory: BoardArticleCategory;
+    articleCategory?: BoardArticleCategory;
     text?: string;
 
 }

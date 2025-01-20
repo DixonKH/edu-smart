@@ -5,12 +5,13 @@ import { getApiUrl } from "@/shared/lib/config";
 import { TotalCounter } from "@/shared/types/member";
 import {
   AllBoardArticleAdminInquiry,
+  BoardArticle,
   BoardArticleInput,
   BoardArticleInquiry,
   BoardArticleUpdate,
 } from "@/shared/types/article";
 
-interface BoardArticle {
+interface BoardArticles {
   articles: BoardArticle[];
   newArticle: BoardArticle | null;
   metaCounter: TotalCounter[];
@@ -29,7 +30,7 @@ interface BoardArticle {
   deleteArticleByAdmin: (id: string) => Promise<void>;
 }
 
-export const useArticleStore = create<BoardArticle>()(
+export const useArticleStore = create<BoardArticles>()(
   devtools((set, get) => ({
     articles: [],
     newArticle: null,
@@ -85,8 +86,8 @@ export const useArticleStore = create<BoardArticle>()(
     // },
     getArticles: async (input: BoardArticleInquiry) => {
       try {
-        const url = getApiUrl("/article/getArticles");
-        const result = await axios.get<BoardArticle[]>(url, {
+        const url = getApiUrl("/article/getBoardArticles");
+        const result = await axios.get(url, {
           params: {
             page: input.page,
             limit: input.limit,
@@ -95,11 +96,14 @@ export const useArticleStore = create<BoardArticle>()(
             ...(input.search?.text
               ? { "search[text]": input.search.text }
               : {}),
+            ...(input.search?.articleCategory
+              ? { "search[articleCategory]": input.search.articleCategory } : {})
           },
         });
-        const data = result.data;
-        console.log("Fetched articles:", data);
-        set({ articles: data });
+        const articleData = result.data.list;
+        console.log("Fetched articles:", articleData);
+        set({ articles: articleData });
+        set({ metaCounter: result.data.metaCounter });
       } catch (error) {
         console.log("Error fetching articles:", error);
         if (axios.isAxiosError(error)) {

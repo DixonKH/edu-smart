@@ -104,15 +104,11 @@ export const useMemberStore = create<MemberStore>()(
                   : {}),
               },
             });
-            const data = result.data;
+            const teachers = result.data.list;
 
-            console.log("getTeachers:", data);
-            console.log(
-              "Received direction:",
-              typeof input.direction,
-              input.direction
-            );
-            set({ members: result.data.list });
+            console.log("getTeachers:", teachers);
+  
+            set({ members: teachers });
             set({ metaCounter: result.data.metaCounter });
           } catch (error) {
             console.log("Error fetching members:", error);

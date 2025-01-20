@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import { IoSearchCircleSharp } from "react-icons/io5";
+import { useTranslation } from "react-i18next";
+import { useMemberStore } from "./model/store";
+import { MemberInquery } from "@/shared/types/member";
+import { Direction } from "@/shared/enums/common.enum";
+import userImgBg from "/public/images/user-bg.jpg";
+import { Link } from "react-router-dom";
+import { serverApi } from "@/shared/lib/config";
 import {
   Select,
   SelectContent,
@@ -9,13 +16,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useTranslation } from "react-i18next";
-import { useMemberStore } from "./model/store";
-import { MemberInquery } from "@/shared/types/member";
-import { Direction } from "@/shared/enums/common.enum";
-import userImgBg from "/public/images/user-bg.jpg";
-import { Link } from "react-router-dom";
-import { serverApi } from "@/shared/lib/config";
 import {
   Pagination,
   PaginationContent,
@@ -56,7 +56,7 @@ export default function Teachers() {
         search: { text: "" },
       }));
     }
-  }, [searchText]);
+  }, [searchText]); 
 
   const sortingHandler = (value: string) => {
     switch (value) {
