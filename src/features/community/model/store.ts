@@ -18,7 +18,7 @@ interface BoardArticles {
 
   // Actions
   createArticle: (id: string, input: BoardArticleInput) => Promise<void>;
-  getArticleById: (id: string) => BoardArticle | undefined;
+  getArticle: (memberId: string, _id: string) => BoardArticle | undefined;
   getArticles: (input: BoardArticleInquiry) => Promise<void>;
   updateArticle: (
     id: string,
@@ -44,8 +44,8 @@ export const useArticleStore = create<BoardArticles>()(
         formData.append("articleContent", input.articleContent);
         formData.append("articleCategory", input.articleCategory);
         if (input.articleImage) {
-            formData.append("articleImage", input.articleImage);
-          }
+          formData.append("articleImage", input.articleImage);
+        }
         const storedData = localStorage.getItem("member-store");
         if (!storedData) {
           throw new Error("No stored member data found.");
@@ -78,12 +78,6 @@ export const useArticleStore = create<BoardArticles>()(
         throw error;
       }
     },
-    // getArticleById: (id: string) => {
-    //     const article = get().articles.find(
-    //         (article) => article._id === id
-    //     );
-    //     return article;
-    // },
     getArticles: async (input: BoardArticleInquiry) => {
       try {
         const url = getApiUrl("/article/getBoardArticles");
@@ -97,7 +91,8 @@ export const useArticleStore = create<BoardArticles>()(
               ? { "search[text]": input.search.text }
               : {}),
             ...(input.search?.articleCategory
-              ? { "search[articleCategory]": input.search.articleCategory } : {})
+              ? { "search[articleCategory]": input.search.articleCategory }
+              : {}),
           },
         });
         const articleData = result.data.list;
@@ -115,6 +110,45 @@ export const useArticleStore = create<BoardArticles>()(
         throw error;
       }
     },
+    getArticle: async (memberId: string, _id: string) => {
+      try {
+        const url = getApiUrl(`/article/getBoardArticle`);
+        const storedData = localStorage.getItem("member-store");
+        if (!storedData) {
+          throw new Error("No stored member data found.");
+        }
+        const parsedData = JSON.parse(storedData);
+        const { accessToken } = parsedData.state;
+
+        if (!accessToken) {
+          throw new Error("Access token is missing.");
+        }
+
+        const result = await axios.get(url, {
+          params: {
+            _id,
+          },
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          withCredentials: true,
+        });
+
+        const articleData = result.data;
+        console.log("Fetched article:", articleData);
+        set({ newArticle: articleData });
+      } catch (error) {
+        console.log("Error fetching article:", error);
+        if (axios.isAxiosError(error)) {
+          console.error(
+            "AxiosError details:",
+            error.response?.data || error.message
+          );
+        }
+        throw error;
+      }
+    },
+
     updateArticle: async (id: string, input: Partial<BoardArticleUpdate>) => {
       try {
         const url = getApiUrl(`/article/updateArticle/${id}`);
@@ -133,10 +167,32 @@ export const useArticleStore = create<BoardArticles>()(
         throw error;
       }
     },
-    likeTargetArticle: async (id: string, likeRefId: string) => {
+    likeTargetArticle: async (id: string, articleId: string) => {
       try {
-        const url = getApiUrl(`/article/likeTargetArticle/${id}/${likeRefId}`);
-        const result = await axios.put<BoardArticle>(url);
+        const url = getApiUrl(`/article/likeTargetBoardArticle`);
+        const storedData = localStorage.getItem("member-store");
+        if (!storedData) {
+          throw new Error("No stored member data found.");
+        }
+        const parsedData = JSON.parse(storedData);
+        const { accessToken } = parsedData.state;
+
+        if (!accessToken) {
+          throw new Error("Access token is missing.");
+        }
+
+        const result = await axios.post<BoardArticle>(
+          url,
+          {
+            articleId,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+            withCredentials: true,
+          }
+        );
         const data = result.data;
         console.log("Fetched articles:", data);
         set({ newArticle: data });
@@ -217,3 +273,8 @@ export const useArticleStore = create<BoardArticles>()(
     },
   }))
 );
+
+// Expose the store in the browser for testing
+if (typeof window !== "undefined") {
+  (window as any).useArticleStore = useArticleStore;
+}

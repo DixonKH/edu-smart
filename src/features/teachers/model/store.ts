@@ -95,7 +95,7 @@ export const useMemberStore = create<MemberStore>()(
 
             const result = await axios.get(url, {
               params: {
-                page: input.page,
+                page: input.page, 
                 limit: input.limit,
                 sort: input?.sort,
                 direction: input?.direction,
@@ -127,9 +127,9 @@ export const useMemberStore = create<MemberStore>()(
         updateMember: async (_id: string, input: MemberUpdate) => {
           try {
             const url = getApiUrl(`/member/updateMember`);
-            const storedData = localStorage.getItem("member-store");
             const formData = new FormData();
-
+            
+            const storedData = localStorage.getItem("member-store");
             if (!storedData) {
               throw new Error("No stored member data found.");
             }
@@ -152,7 +152,6 @@ export const useMemberStore = create<MemberStore>()(
             if (input.memberCategory) {
               formData.append("memberCategory", input.memberCategory);
             }
-            
 
             const result = await axios.post<Member>(
               url,
