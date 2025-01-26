@@ -3,6 +3,7 @@ import { FaComments } from "react-icons/fa";
 import { BoardArticle, BoardArticleInquiry } from "@/shared/types/article";
 import { IoEye } from "react-icons/io5";
 import { serverApi } from "@/shared/lib/config";
+import { formatTimeAgo } from "@/shared/lib/config";
 import {
   Pagination,
   PaginationContent,
@@ -23,6 +24,7 @@ type ArticleProps = {
 
 const Articles = (props: ArticleProps) => {
   const { articlesData, articles, total, totalPages, handlePageChange } = props;
+
   return (
     <div className="w-full">
       {articlesData.length !== 0 ? (
@@ -31,13 +33,7 @@ const Articles = (props: ArticleProps) => {
             {articlesData.map((article: any) => {
               const imgPath = `${serverApi}/${article?.articleImage}`;
               const date = article?.createdAt;
-              const now = new Date();
-              const dayLeft = date
-                ? Math.ceil(
-                    (now.getTime() - new Date(date).getTime()) /
-                      (1000 * 60 * 60 * 24)
-                  )
-                : "N/A";
+              const timeAgo = formatTimeAgo(date);
               const dayOfMonth = date ? new Date(date).getDate() : "N/A";
               const monthName = date
                 ? new Date(date).toLocaleString("en-US", { month: "long" })
@@ -73,11 +69,11 @@ const Articles = (props: ArticleProps) => {
                         </div>
                       </div>
                       <div className="flex flex-col px-3 pb-1">
-                        <p className="px-2 my-1 text-xl font-nunito font-bold text-center text-slate-600">
+                        <p className="px-2 my-1 text-xl font-nunito font-bold text-center text-slate-600 h-12 overflow-hidden">
                           {article.articleTitle}
                         </p>
                         <p
-                          className="text-sm w-full h-[37px] font-nunito text-center text-slate-500 overflow-hidden"
+                          className="text-sm w-full h-[38px] font-nunito text-center text-slate-500 overflow-hidden"
                           dangerouslySetInnerHTML={{
                             __html: article.articleContent,
                           }}
@@ -90,7 +86,7 @@ const Articles = (props: ArticleProps) => {
                             {article.articleComments} comments
                           </div>
                           <p className="text-sm font-nunito text-center text-slate-500">
-                            {dayLeft} days ago
+                            {timeAgo}
                           </p>
                         </div>
                       </div>
