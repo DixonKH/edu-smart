@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Select,
   SelectContent,
@@ -6,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import DOMPurify from "dompurify";
 import { BoardArticleCategory } from "@/shared/enums/article.enum";
 import { BoardArticleInput } from "@/shared/types/article";
 import { useArticleStore } from "../community/model/store";
@@ -16,17 +18,20 @@ import {
   sweetTopSmallSuccessAlert,
 } from "@/shared/lib/sweetAlert";
 import { useMemberStore } from "../teachers/model/store";
+import Editor from "react-froala-wysiwyg";
 import "froala-editor/js/plugins.pkgd.min.js"; // Import Froala plugins
 import "froala-editor/js/froala_editor.pkgd.min.js"; // Froala editor
 import "froala-editor/css/froala_editor.pkgd.min.css";
 import "froala-editor/js/plugins/image.min.js";
 import "froala-editor/css/froala_editor.pkgd.min.css";
 import "froala-editor/css/froala_style.min.css";
-import Editor from "react-froala-wysiwyg";
 
 export default function WriteArticle() {
+  const location = useLocation();
+  const articleToEdit = location.state ? location.state?.article : null;
   const currentMember = useMemberStore((state) => state.currentMember);
   const createArticle = useArticleStore((state) => state.createArticle);
+  const updateArticle = useArticleStore((state) => state.updateArticle);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [article, setArticle] = useState<BoardArticleInput>({
     articleCategory: BoardArticleCategory.NEWS || undefined,
@@ -35,6 +40,22 @@ export default function WriteArticle() {
     articleImage: "",
     memberId: "",
   });
+  
+  useEffect(() => {
+    if (articleToEdit) {
+      setArticle({
+        _id: articleToEdit._id || "",
+        articleCategory: articleToEdit.articleCategory || BoardArticleCategory.NEWS,
+        articleTitle: articleToEdit.articleTitle || "",
+        articleContent: articleToEdit.articleContent || "",
+        articleImage: articleToEdit.articleImage || "",
+        memberId: articleToEdit.memberId || "",
+      })
+      if(articleToEdit.articleImage) {
+        setImagePreview(`${serverApi}/${articleToEdit.articleImage}`);
+      }
+    }
+  }, [articleToEdit]);
 
   const config = {
     placeholderText: "Write your article here...",
@@ -97,7 +118,9 @@ export default function WriteArticle() {
       }
 
       let uploadedImageUrl = null;
+
       const memberId = currentMember?._id || "";
+
       if (article.articleImage && typeof article.articleImage !== "string") {
         uploadedImageUrl = await uploadImage(article.articleImage); // Upload image
       }
@@ -105,9 +128,18 @@ export default function WriteArticle() {
         ...article,
         articleImage: uploadedImageUrl || article.articleImage, // Use the uploaded image URL if available
       };
-      await createArticle(memberId, articleData);
-
-      await sweetTopSmallSuccessAlert("Article successfully submitted!", 800);
+      if(articleToEdit) {
+        // Update article
+        await updateArticle(memberId, {
+          ...articleData,
+          articleImage: uploadedImageUrl || (typeof article.articleImage === "string" ? article.articleImage : ""),
+        });
+        await sweetTopSmallSuccessAlert("Article successfully updated!", 800);
+      } else {
+        // Create article
+        await createArticle(memberId, articleData);
+        await sweetTopSmallSuccessAlert("Article successfully submitted!", 800);
+      }
       setArticle({
         articleCategory: BoardArticleCategory.NEWS || undefined,
         articleTitle: "",
@@ -185,12 +217,14 @@ export default function WriteArticle() {
           </div>
         </div>
         <div className="my-2">
-          <Editor
+          {article.articleContent && (
+            <Editor
             tag="textarea"
             model={article.articleContent}
             config={config}
             onModelChange={handleEditorChange}
           />
+          )}
         </div>
         <div className="my-3">
           <p className="font-semibold text-xl">Upload Image</p>
@@ -207,7 +241,6 @@ export default function WriteArticle() {
             <div className="w-full flex items-center justify-center my-3">
               <img
                 src={imagePreview}
-                alt="Image preview"
                 className="w-[50%] object-cover"
               />
             </div>
@@ -218,7 +251,7 @@ export default function WriteArticle() {
             onClick={submitArticle}
             className="mt-4 px-4 w-48 border bg-green py-2 flex items-center justify-center text-white text-lg rounded-xl"
           >
-            Submit Article
+            {articleToEdit ? "Update Article" : "Submit Article"}
           </button>
         </div>
       </div>

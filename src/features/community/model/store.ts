@@ -149,10 +149,35 @@ export const useArticleStore = create<BoardArticles>()(
       }
     },
 
-    updateArticle: async (id: string, input: Partial<BoardArticleUpdate>) => {
+    updateArticle: async (id: string, input: BoardArticleUpdate) => {
       try {
-        const url = getApiUrl(`/article/updateArticle/${id}`);
-        const result = await axios.put<BoardArticle>(url, input);
+        const url = getApiUrl(`/article/updateBoardArticle`);
+        const formData = new FormData();
+        formData.append("_id", input._id || "");
+        formData.append("articleTitle", input.articleTitle || "");
+        formData.append("articleContent", input.articleContent || "");
+        formData.append("articleCategory", input.articleCategory || "");
+        if (input.articleImage) {
+          formData.append("articleImage", input.articleImage || "");
+        }
+       
+        const storedData = localStorage.getItem("member-store");
+        if(!storedData) {
+          throw new Error("No stored member data found.");
+        }
+        const parsedData = JSON.parse(storedData);
+        const { accessToken } = parsedData.state;
+
+        if (!accessToken) {
+          throw new Error("Access token is missing.");
+        }
+
+        const result = await axios.post<BoardArticle>(url, formData, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "multipart/form-data",
+          },
+        });
         const data = result.data;
         console.log("Fetched articles:", data);
         set({ newArticle: data });

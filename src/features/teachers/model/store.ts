@@ -60,7 +60,7 @@ export const useMemberStore = create<MemberStore>()(
               );
             }
             throw error;
-          }
+          } 
         },
 
         login: async (input: LoginInput) => {

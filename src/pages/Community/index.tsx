@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import { MdCastForEducation } from "react-icons/md";
 import Articles from "../../features/community/Articles";
 import { TfiWrite } from "react-icons/tfi";

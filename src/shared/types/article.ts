@@ -28,6 +28,7 @@ export interface BoardArticles {
 }
 
 export interface BoardArticleInput {
+    _id?: string;
     articleCategory: BoardArticleCategory;
     articleTitle: string;
     articleContent: string;
