@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Select,
   SelectContent,
@@ -28,7 +28,8 @@ import "froala-editor/css/froala_style.min.css";
 
 export default function WriteArticle() {
   const location = useLocation();
-  const articleToEdit = location.state ? location.state?.article : null;
+   const navigate = useNavigate();
+   const articleToEdit = location.state ? location.state?.article : null;
   const currentMember = useMemberStore((state) => state.currentMember);
   const createArticle = useArticleStore((state) => state.createArticle);
   const updateArticle = useArticleStore((state) => state.updateArticle);
@@ -40,18 +41,19 @@ export default function WriteArticle() {
     articleImage: "",
     memberId: "",
   });
-  
+
   useEffect(() => {
     if (articleToEdit) {
       setArticle({
         _id: articleToEdit._id || "",
-        articleCategory: articleToEdit.articleCategory || BoardArticleCategory.NEWS,
+        articleCategory:
+          articleToEdit.articleCategory || BoardArticleCategory.NEWS,
         articleTitle: articleToEdit.articleTitle || "",
         articleContent: articleToEdit.articleContent || "",
         articleImage: articleToEdit.articleImage || "",
         memberId: articleToEdit.memberId || "",
-      })
-      if(articleToEdit.articleImage) {
+      });
+      if (articleToEdit.articleImage) {
         setImagePreview(`${serverApi}/${articleToEdit.articleImage}`);
       }
     }
@@ -128,18 +130,21 @@ export default function WriteArticle() {
         ...article,
         articleImage: uploadedImageUrl || article.articleImage, // Use the uploaded image URL if available
       };
-      if(articleToEdit) {
+      if (articleToEdit) {
         // Update article
         await updateArticle(memberId, {
           ...articleData,
-          articleImage: uploadedImageUrl || (typeof article.articleImage === "string" ? article.articleImage : ""),
+          articleImage:
+            uploadedImageUrl || article.articleImage || articleToEdit.articleImage,
         });
         await sweetTopSmallSuccessAlert("Article successfully updated!", 800);
+        navigate(location.pathname, { replace: true });
       } else {
         // Create article
         await createArticle(memberId, articleData);
         await sweetTopSmallSuccessAlert("Article successfully submitted!", 800);
       }
+      
       setArticle({
         articleCategory: BoardArticleCategory.NEWS || undefined,
         articleTitle: "",
@@ -220,7 +225,15 @@ export default function WriteArticle() {
           {article.articleContent && (
             <Editor
             tag="textarea"
-            model={article.articleContent}
+            model={article.articleContent || ""}
+            config={config}
+            onModelChange={handleEditorChange}
+          />
+          )}
+            {!article.articleContent && (
+            <Editor
+            tag="textarea"
+            model={article.articleContent || ""}
             config={config}
             onModelChange={handleEditorChange}
           />
@@ -239,10 +252,7 @@ export default function WriteArticle() {
         <>
           {imagePreview && (
             <div className="w-full flex items-center justify-center my-3">
-              <img
-                src={imagePreview}
-                className="w-[50%] object-cover"
-              />
+              <img src={imagePreview} className="w-[50%] object-cover" />
             </div>
           )}
         </>

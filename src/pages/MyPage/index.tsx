@@ -22,22 +22,37 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { serverApi } from "@/shared/lib/config";
 import MyArticles from "@/features/myPage/myArticles";
 
-type Props = {};
-
-const MyPage = (props: Props) => {
+const MyPage = () => {
   const [showComponent, setShowComponent] = useState(6);
-  const [nav, setNav] = useState(true);
   const currentUser = useMemberStore((state) => state.currentMember);
   const logout = useMemberStore((state) => state.logout);
   const navigate = useNavigate();
   const location = useLocation();
-  const { component } = location.state || {};
+  const { component, article } = location.state || {};
 
   useEffect(() => {
-    if (component === "WriteArticle") {
-      setShowComponent(5);
+    if (component) {
+      switch (component) {
+        case "WriteArticle":
+          setShowComponent(5);
+          break;
+        case "AddLesson":
+          setShowComponent(1);
+          break;
+        case "MyLesson":
+          setShowComponent(2);
+          break;
+        case "MyFavourites":
+          setShowComponent(3);
+          break;
+        case "MyArticles":
+          setShowComponent(4);
+          break;
+        default:
+          setShowComponent(6); // Default to MyProfile
+      }
     }
-  }, [component]);
+  }, [component, article]);
 
   const RenderComponent = () => {
     switch (showComponent) {
@@ -59,6 +74,8 @@ const MyPage = (props: Props) => {
       case 6:
         return <MyProfile />;
         break;
+      default:
+        return null;
     }
   };
 

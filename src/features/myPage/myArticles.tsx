@@ -9,7 +9,6 @@ import { BoardArticleInquiry } from "@/shared/types/article";
 import { useNavigate } from "react-router-dom";
 import { formatTimeAgo } from "@/shared/lib/config";
 import { Direction } from "@/shared/enums/common.enum";
-import { BoardArticleCategory } from "@/shared/enums/article.enum";
 import {
   Pagination,
   PaginationContent,
@@ -33,7 +32,6 @@ export default function myArticles() {
     sort: "createdAt",
     direction: Direction.DESC,
     search: {
-      articleCategory: BoardArticleCategory.NEWS,
       text: "",
     },
   });
@@ -51,9 +49,9 @@ export default function myArticles() {
 
   const handleNavigate = (article: any) => {
     navigate("/mypage", {
-      state: { component: "WriteArticle", article },
+      state: { component: "WriteArticle", article},
     });
-  };
+  };  
 
   const handlePageChange = (newPage: number) => {
     setArticles((prev) => ({
