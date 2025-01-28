@@ -13,6 +13,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import React from "react";
 
 type ArticleProps = {
   articlesData: BoardArticle[];
@@ -156,5 +157,6 @@ const Articles = (props: ArticleProps) => {
     </div>
   );
 };
+
 
 export default Articles;

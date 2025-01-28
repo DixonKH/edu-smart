@@ -1,8 +1,8 @@
 import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
-import axios from "axios";
+import { devtools } from "zustand/middleware";
 import { getApiUrl } from "@/shared/lib/config";
 import { TotalCounter } from "@/shared/types/member";
+import axios from "axios";
 import {
   AllBoardArticleAdminInquiry,
   BoardArticle,

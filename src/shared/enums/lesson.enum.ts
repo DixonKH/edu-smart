@@ -8,11 +8,10 @@ export enum LessonLevel {
 export enum LessonStatus {
 	ACTIVE = 'ACTIVE',
 	DELETE = 'DELETE',
-    PENDING = 'PENDING',
 }
 
 export enum LessonCategory {
-    ENGLISH = 'ENGLISH',
     KOREAN = 'KOREAN',
+    ENGLISH = 'ENGLISH',
     RUSSIAN = 'RUSSIAN',
 }

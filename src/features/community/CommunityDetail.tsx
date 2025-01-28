@@ -64,16 +64,16 @@ const CommunityDetail = () => {
                 {newArticle?.articleLikes ? (
                   <IoMdHeart
                     onClick={(e) => handleLike(e)}
-                    className="text-red text-3xl"
+                    className="text-red text-3xl cursor-pointer"
                   />
                 ) : (
                   <CiHeart
                     onClick={(e) => handleLike(e)}
-                    className="text-red text-3xl"
+                    className="text-red text-3xl cursor-pointer"
                   />
                 )}
               </div>
-              <div className="text-slate-600 text-2xl p-2 overflow-y-scroll h-[360px]"  dangerouslySetInnerHTML={{
+              <div className="text-slate-600 text-2xl p-2 overflow-auto h-[360px]"  dangerouslySetInnerHTML={{
                             __html: newArticle?.articleContent || "",
                           }} > 
               </div>
