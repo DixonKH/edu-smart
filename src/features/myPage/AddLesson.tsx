@@ -138,7 +138,7 @@ export default function AddLesson() {
           </div>
         </div>
         <div className="flex md:flex-row md:gap-6 gap-2 flex-col items-center justify-between">
-        <div className="w-full">
+          <div className="w-full">
             <p className="font-semibold mb-1">Category</p>
             <Select
               defaultValue={lesson.lessonCategory}
@@ -194,30 +194,32 @@ export default function AddLesson() {
             className="border rounded-2xl w-full outline-none p-3 text-lg"
           />
         </div>
-        <div className="w-full flex items-center justify-center my-3 border rounded-xl h-56">
-          <button
-            type="button"
-            className=""
-            onClick={() => inputRef.current?.click()}
-          >
-            <p className="font-semibold mb-1 text-slate-400">
-              <FiUpload className="text-8xl text-slate-300" />
-              Upload File
-            </p>
-            <input
-              type="file"
-              ref={inputRef}
-              hidden
-              id="fileInput"
-              onChange={handleFileSelection}
-            />
-          </button>
+        <div className="w-full flex items-center justify-center my-3 border rounded-xl h-80">
+          {!videoPreview ? (
+            <button
+              type="button"
+              className=" cursor-pointer"
+              onClick={() => inputRef.current?.click()}
+            >
+              <p className="font-semibold mb-1 text-slate-400">
+                <FiUpload className="text-8xl text-slate-300" />
+                Upload File
+              </p>
+              <input
+                type="file"
+                ref={inputRef}
+                hidden
+                id="fileInput"
+                accept="video/*"
+                onChange={handleFileSelection}
+              />
+            </button>
+          ) : (
+            <div className="w-[520px] flex items-center justify-center my-2">
+              <video src={videoPreview} controls  width="100%" muted={false} className="rounded-lg" />
+            </div>
+          )}
         </div>
-        {videoPreview && (
-          <div className="w-full flex items-center justify-center my-3">
-            <video src={videoPreview} controls width="100%" />
-          </div>
-        )}
         <div className="flex items-center justify-end lg:p-3 md:p-2 text-xs md:text-base mt-4">
           <button
             type="button"

@@ -1,5 +1,6 @@
 import { BoardArticleCategory, BoardArticleStatus } from "../enums/article.enum";
 import { Direction } from "../enums/common.enum";
+import { MeLiked } from "./like";
 import { Member, TotalCounter } from "./member";
 
 export interface BoardArticle {
@@ -18,7 +19,7 @@ export interface BoardArticle {
 
 	/** from aggregation **/
 	
-	meLiked?: [];
+	meLiked?: MeLiked[];
 	memberData?: Member;
 }
 

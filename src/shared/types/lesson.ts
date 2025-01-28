@@ -1,6 +1,7 @@
 import { Direction } from "../enums/common.enum";
 import { LessonCategory, LessonLevel, LessonStatus } from "../enums/lesson.enum";
-import { TotalCounter } from "./member";
+import { MeLiked } from "./like";
+import { Member, TotalCounter } from "./member";
 
 export interface Lesson {
 	lessonCategory: LessonCategory;
@@ -16,8 +17,8 @@ export interface Lesson {
 	updatedAt: Date;
 
 	/** from aggregation **/
-	// meLiked?: MeLiked[];
-	// memberData?: Member;
+	meLiked?: MeLiked[];
+	memberData?: Member;
 }
 
 export interface Lessons {
