@@ -19,7 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const Community = () => {
+const Community = () => { 
   const navigate = useNavigate();
   const getArticles = useArticleStore((state) => state.getArticles);
   const articlesData = useArticleStore((state) => state.articles);

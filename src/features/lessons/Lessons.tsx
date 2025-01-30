@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LessonCard from "../../features/lessons/LessonCard";
 import LessonFilter from "../../features/lessons/LessonFilter";
 import { FaSearch } from "react-icons/fa";
@@ -20,118 +20,105 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { useTranslation } from "react-i18next";
-
-interface Lesson {
-  id: number;
-  title: string;
-  category: "BEGINNER" | "ELEMENTRY" | "INTERMADIATE" | "ADVANCED";
-  desc: string;
-  create: string;
-  owner: string;
-  view: string;
-  like: string;
-}
-
-const initialLessons: any = [
-  {
-    id: 1,
-    title: "Koreys Alifbosi va ularning qollanish usullari",
-    category: "BEGINNER",
-    desc: "This is the Desc",
-    create: "12/07/2024",
-    owner: "Meloboyev A",
-    view: "2",
-    like: "true",
-  },
-  {
-    id: 2,
-    title: "Lesson 2",
-    category: "ELEMENTRY",
-    desc: "This is the Desc",
-    create: "13/07/2024",
-    owner: "Abdurakhmonov B",
-    view: "3",
-    like: "true",
-  },
-  {
-    id: 3,
-    category: "INTERMEDIATE",
-    title: "Lesson 3",
-    desc: "This is the Desc",
-    create: "12/06/2024",
-    owner: "Xasanov D",
-    view: "5",
-    like: "false",
-  },
-  {
-    id: 4,
-    title: "Lesson 4",
-    category: "ADVANCED",
-    desc: "This is the Desc",
-    create: "1/07/2024",
-    owner: "Abdurakhmonov B",
-    view: "3",
-    like: "true",
-  },
-  {
-    id: 5,
-    title: "Lesson 5",
-    category: "ELEMENTRY",
-    desc: "This is the Desc",
-    create: "12/03/2024",
-    owner: "Abdurakhmonov B",
-    view: "1",
-    like: "false",
-  },
-  {
-    id: 6,
-    title: "Lesson 3",
-    category: "BEGINNER",
-    desc: "This is the Desc",
-    create: "11/07/2024",
-    owner: "Xasanov D",
-    view: "5",
-    like: "false",
-  },
-  {
-    id: 7,
-    title: "Lesson 4",
-    category: "BEGINNER",
-    desc: "This is the Desc",
-    create: "1/07/2024",
-    owner: "Abdurakhmonov B",
-    view: "3",
-    like: "true",
-  },
-  {
-    id: 8,
-    title: "Lesson 5",
-    category: "BEGINNER",
-    desc: "This is the Desc",
-    create: "2/07/2024",
-    owner: "Abdurakhmonov B",
-    view: "1",
-    like: "false",
-  },
-];
+import { useLessonStore } from "./model/store";
+import { LessonInquiry } from "@/shared/types/lesson";
+import { Direction } from "@/shared/enums/common.enum";
+import { LessonCategory, LessonLevel } from "@/shared/enums/lesson.enum";
+import LessonHeader from "./LessonHeader";
 
 export default function Lessons() {
   const { t } = useTranslation();
-  const [category, setCategory] = useState("all");
-  const [search, setSearch] = useState("");
-  const [sortType, setSortType] = useState("recently");
-  const [lessons, setLessons] = useState(initialLessons);
-
-  const filteredLessons = lessons.filter((item: any) => {
-    const matchSearch = item.title.toLowerCase().includes(search.toLowerCase());
-    const matchCategory =
-      category === "all" || item.category.toLowerCase() === category;
- 
-    return matchSearch && matchCategory;
+  const getLessons = useLessonStore((state) => state.getLessons);
+  const lessonsData = useLessonStore((state) => state.lessons);
+  const [searchText, setSearchText] = useState("");
+  const total = useLessonStore((state) =>
+    state.metaCounter.length > 0 ? state.metaCounter[0].total : 0
+  );
+  const [lessons, setLessons] = useState<LessonInquiry>({
+    page: 1,
+    limit: 12,
+    sort: "createdAt",
+    direction: Direction.DESC,
+    search: {
+      lessonLevel: undefined,
+      lessonCategory: undefined,
+      text: "",
+    },
   });
 
+  useEffect(() => {
+    const fetchLessons = async () => {
+      await getLessons(lessons);
+    };
+    fetchLessons();
+  }, [lessons]);
+
+  useEffect(() => {
+    if (searchText.length === 0) {
+      setLessons((prev) => ({ ...prev, search: { text: "" } }));
+      setLessons((prev) => ({ ...prev, search: { lessonLevel: undefined } }));
+    }
+  }, [searchText]);
+
+  const sortingHandler = (value: string) => {
+    switch (value) {
+      case "recent":
+        setLessons((prev) => {
+          return { ...prev, sort: "createdAt", direction: Direction.DESC };
+        });
+        break;
+      case "old":
+        setLessons((prev) => {
+          return { ...prev, sort: "updatedAt", direction: Direction.ASC };
+        });
+        break;
+      case "view":
+        setLessons((prev) => {
+          return { ...prev, sort: "lessonViews", direction: Direction.DESC };
+        });
+        break;
+      case "like":
+        setLessons((prev) => {
+          return { ...prev, sort: "lessonLikes", direction: Direction.DESC };
+        });
+        break;
+      default:
+        break;
+    }
+  };
+
+  const categoryChangeHandler = (value: LessonCategory) => {
+    setLessons((prev) => ({
+      ...prev,
+      page: 1,
+      search: { ...prev.search, lessonCategory: value },
+    }));
+  };
+
+  const levelChangeHandler = (value: any) => {
+    setLessons((prev) => ({
+      ...prev,
+      page: 1,
+      search: {
+        ...prev.search,
+        lessonLevel: value === "ALL" ? undefined : value,
+      },
+    }));
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setLessons((prev) => ({
+      ...prev,
+      page: newPage,
+    }));
+  };
+
+  const totalPages = Math.ceil(total / lessons.limit);
+
   return (
-    <div className="container mt-10">
+    <>
+     <LessonHeader /> 
+    <div className="lg:container mt-10 px-16 lg:px-0">
       <div>
         <h1 className="text-xl text-center sm:text-center sm:text-2xl lg:text-left lg:text-3xl my-5">
           - {t("lesson_h1")} -
@@ -141,93 +128,150 @@ export default function Lessons() {
         </h1>
         <div className="flex flex-col-reverse md:flex md:flex-row mt-4 gap-4 items-center justify-between w-full h-auto mb-5">
           <div className="flex items-center justify-between md:justify-start md:gap-5 w-full">
-            <LessonFilter />
+            <LessonFilter
+              lessons={lessons}
+              levelChangeHandler={levelChangeHandler}
+            />
             <div className="flex items-center gap-2">
               <p>Sort by:</p>
-              <Select defaultValue="Recently">
+              <Select
+                defaultValue="recent"
+                onValueChange={(value) => {
+                  sortingHandler(value);
+                }}
+              >
                 <SelectTrigger className="w-[130px] text-lg h-[45px] border-green3 rounded-3xl">
                   <SelectValue placeholder="Recently" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Recently">Recently</SelectItem>
-                  <SelectItem value="Old">Old</SelectItem>
-                  <SelectItem value="Views">Views</SelectItem>
+                  <SelectItem value="recent">Recently</SelectItem>
+                  <SelectItem value="old">Old</SelectItem>
+                  <SelectItem value="view">Views</SelectItem>
+                  <SelectItem value="like">Likes</SelectItem>
                 </SelectContent>
               </Select>
             </div>
-            <div className="sm:hidden lg:flex fex-row gap-4 hidden items-center">
-              <Select defaultValue={category} onValueChange={setCategory}>
+            <div className="sm:hidden lg:hidden fex-row gap-4 hidden items-center">
+              <Select
+                defaultValue={lessons.search?.lessonCategory}
+                onValueChange={categoryChangeHandler}
+              >
                 <SelectTrigger className="w-[140px] text-lg h-[45px] rounded-3xl border-green3">
-                  <SelectValue placeholder="Select a fruit" />
+                  <SelectValue placeholder="All Classes" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectItem value="all">All Classes</SelectItem>
-                    <SelectItem value="beginner">English</SelectItem>
-                    <SelectItem value="elementry">Korean</SelectItem>
-                    <SelectItem value="intermediate">Russian</SelectItem>
-                    <SelectItem value="advanced">Japanese</SelectItem>
+                    <SelectItem value="ALL">All Classes</SelectItem>
+                    <SelectItem value="ENGLISH">English</SelectItem>
+                    <SelectItem value="KOREAN">Korean</SelectItem>
+                    <SelectItem value="RUSSIAN">Russian</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
             </div>
             <div className="sm:hidden lg:flex fex-row gap-4 hidden items-center">
-              <Select defaultValue={category} onValueChange={setCategory}>
+              <Select
+                defaultValue={lessons.search?.lessonLevel}
+                onValueChange={levelChangeHandler}
+              >
                 <SelectTrigger className="w-[150px] text-lg h-[45px] rounded-3xl border-green3">
-                  <SelectValue placeholder="Select a fruit" />
+                  <SelectValue placeholder="All Levels" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectItem value="all">All Levels</SelectItem>
-                    <SelectItem value="beginner">Beginner</SelectItem>
-                    <SelectItem value="elementry">Elementry</SelectItem>
-                    <SelectItem value="intermediate">Intermediate</SelectItem>
-                    <SelectItem value="advanced">Advanced</SelectItem>
+                    <SelectItem value="ALL">All Levels</SelectItem>
+                    <SelectItem value="BEGINNER">Beginner</SelectItem>
+                    <SelectItem value="ELEMENTRY">Elementry</SelectItem>
+                    <SelectItem value="INTERMEDIATE">Intermediate</SelectItem>
+                    <SelectItem value="ADVANCED">Advanced</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
             </div>
           </div>
 
-          <form className="flex sm:flex w-full items-center justify-end">
+          <div className="flex sm:flex w-full items-center justify-end">
             <input
               type="text"
-              placeholder="Search"
+              value={searchText}
+              placeholder="Search..."
               className="border rounded-3xl border-green3 text-lg p-2 pl-4 w-5/6 outline-none "
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => setSearchText(e.target.value)}
+              onKeyDown={(e: any) => {
+                if (e.key === "Enter") {
+                  setLessons((prev) => ({
+                    ...prev,
+                    search: { text: searchText },
+                  }));
+                }
+              }}
             />
             <button
-              type="submit"
+              type="button"
               className="flex items-center justify-center bg-green lg:gap-2 lg:text-lg text-white p-2 px-4 rounded-3xl ml-2 w-wull cursor-pointer"
               onClick={(e) => e.preventDefault()}
-              disabled={search.trim() === ""}
             >
               <FaSearch /> Search
             </button>
-          </form>
+          </div>
         </div>
-        <div className="grid justify-center ms:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 grid-flow-row gap-4 mt-4 w-full  h-auto mb-5">
-          <LessonCard lessons={filteredLessons} />;
+        <div className="grid justify-center grid-cols-1 md:grid-cols-3 lg:grid-cols-4 grid-flow-row gap-4 mt-4 w-full  h-auto mb-5">
+          <LessonCard lessons={lessonsData} />;
         </div>
-        <div className="my-3">
+        <div className="text-center text-lg mb-6 mt-4">
+          Total{" "}
+          <span className="bg-slate-400 text-white font-medium p-1 px-2 rounded-full">
+            {total}
+          </span>{" "}
+          lessons available
+        </div>
+        <div className="my-10">
           <Pagination>
             <PaginationContent>
               <PaginationItem>
-                <PaginationPrevious href="#" />
+                <PaginationPrevious
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (lessons.page > 1) {
+                      handlePageChange(lessons.page - 1);
+                    }
+                  }}
+                />
               </PaginationItem>
-              <PaginationItem>
-                <PaginationLink href="#">1</PaginationLink>
-              </PaginationItem>
+              {[...Array(totalPages)].map((_, i) => (
+                <PaginationItem key={i}>
+                  <PaginationLink
+                    className="hidden md:flex"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageChange(i + 1);
+                    }}
+                    isActive={lessons.page === i + 1}
+                  >
+                    {i + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
               <PaginationItem>
                 <PaginationEllipsis />
               </PaginationItem>
               <PaginationItem>
-                <PaginationNext href="#" />
+                <PaginationNext
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (lessons.page < totalPages) {
+                      handlePageChange(lessons.page + 1);
+                    }
+                  }}
+                />
               </PaginationItem>
             </PaginationContent>
           </Pagination>
         </div>
       </div>
     </div>
+    </>
   );
 }

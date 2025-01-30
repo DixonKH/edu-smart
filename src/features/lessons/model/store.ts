@@ -65,7 +65,7 @@ export const useLessonStore = create<Lessons>()(
         });
 
         const data = result.data;
-        console.log("Fetched lessons:", data);
+        console.log("Created lessons:", data);
         set({ currentLesson: data });
       } catch (error) {
         console.error("Failed to create lessons", error);
@@ -78,6 +78,105 @@ export const useLessonStore = create<Lessons>()(
         throw error;
       }
     },
+
+    getLessons: async (input: LessonInquiry) => {
+      try {
+        const url = getApiUrl("/lessons/getLessons")
+        const result = await axios.get(url, {
+          params: {
+            page: input.page,
+            limit: input.limit,
+            sort: input?.sort,
+            direction: input?.direction,
+            ...(input.search?.text ? {"search[text]": input.search?.text} : {}),
+           ...(input.search?.lessonLevel ? {"search[lessonLevel]": input.search?.lessonLevel} : {}), 
+          },
+        });
+        const lessonData = result.data.list;
+        console.log("Fetched lessons:", lessonData);
+        set({ lessons: lessonData });
+        set({ metaCounter: result.data.metaCounter });
+      } catch (error) {
+        console.error("Failed to get lessons", error);
+        if (axios.isAxiosError(error)) {
+          console.error(
+            "AxiosError details:",
+            error.response?.data || error.message
+          );
+        }
+        throw error;
+      }
+    },
+
+    getLesson: async (memberId: string, _id: string) => {
+      try {
+        const url = getApiUrl(`/lessons/getLesson`);
+        const storedData = localStorage.getItem("member-store");
+        if (!storedData) {
+          throw new Error("No stored member data found.");
+        }
+        const parsedData = JSON.parse(storedData);
+        const { accessToken } = parsedData.state;
+
+        if (!accessToken) {
+          throw new Error("Access token is missing.");
+        }
+
+        const result = await axios.get(url, {
+          params: {_id},
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          withCredentials: true,
+        });
+
+        const lessonData = result.data;
+        console.log("Fetched lesson:", lessonData);
+        set({ currentLesson: lessonData });
+      } catch (err) {
+        console.error("Failed to get lesson", err);
+        if (axios.isAxiosError(err)) {
+          console.error(
+            "AxiosError details:",
+            err.response?.data || err.message
+          );
+        }
+        throw err;
+      }
+    },
+
+    likeTargetLesson: async (id: string, lessonId: string) => {
+         try {
+            const url = getApiUrl(`/lessons/likeTargetLesson`);
+            const storedData = localStorage.getItem("member-store");
+            if (!storedData) {
+              throw new Error("No stored member data found.");
+            }
+            const parsedData = JSON.parse(storedData);
+            const { accessToken } = parsedData.state;
+            if (!accessToken) {
+              throw new Error("Access token is missing.");
+            }
+            const result = await axios.post<Lesson>(url, {lessonId}, {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+              withCredentials: true,
+            });
+            const lessonData = result.data;
+            console.log("Fetched lesson:", lessonData);
+            set({ currentLesson: lessonData });
+         } catch(err) {
+            console.error("Failed to get lesson", err);
+            if (axios.isAxiosError(err)) {
+              console.error(
+                "AxiosError details:",
+                err.response?.data || err.message
+              );
+            }
+            throw err;
+         }
+    }
   }))
 );
 

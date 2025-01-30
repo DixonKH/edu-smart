@@ -32,10 +32,10 @@ function App() {
             <Route path=":teacherId" element={<TeacherDetail />} />
           </Route>
           <Route path="/community" element={<Community />} />
+          <Route path="/community/:communityId" element={<CommunityDetail />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/community/:communityId" element={<CommunityDetail />} />
         </Route>
 
         {/* Admin Routes */}

@@ -4,11 +4,13 @@ import { MeLiked } from "./like";
 import { Member, TotalCounter } from "./member";
 
 export interface Lesson {
+	_id?: string;
 	lessonCategory: LessonCategory;
 	lessonLevel: LessonLevel;
 	lessonStatus: LessonStatus;
 	lessonTitle: string;
 	lessonDesc: string;
+	lessonVideo: string;
 	lessonViews: number;
 	lessonLikes: number;
 	lessonComments: number;
@@ -50,6 +52,8 @@ export interface Lessons {
 
 export interface LessonSearch {
     text?: string;
+	lessonLevel?: LessonLevel;
+	lessonCategory?: LessonCategory;
 }
 
 export interface LessonInquiry {

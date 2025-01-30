@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import TeacherCard from "../../entities/TeacherCard";
+import TeacherCard from "./TeacherCard";
 import LessonCard from "../../features/lessons/LessonCard";
 import {
   Pagination,
@@ -107,7 +107,7 @@ const initialLessons: any = [
   },
 ];
 
-export default function TeacherDetail() { 
+export default function TeacherDetail() {
   const [lessons, setLessons] = useState(initialLessons);
   const [search, setSearch] = useState("");
   const { teacherId } = useParams();
@@ -118,7 +118,7 @@ export default function TeacherDetail() {
   const teacher = getMemberById(teacherId!);
 
   useEffect(() => {
-    if(!teacher) {
+    if (!teacher) {
       getTeachers({ page: 1, limit: 8, search: { text: "" } });
     }
   }, [teacherId, members]);
@@ -130,7 +130,7 @@ export default function TeacherDetail() {
 
     return matchSearch && matchCategory;
   });
- 
+
   return (
     <div className="container">
       <h1 className="text-center lg:text-left text-2xl lg:text-3xl my-8 mt-10">
@@ -140,7 +140,7 @@ export default function TeacherDetail() {
         <TeacherCard teacher={teacher} />
         <div className="w-full">
           <div className="w-full grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5">
-            <LessonCard lessons={filteredLessons} />
+            {/* <LessonCard /> */}
           </div>
           <div className="my-3">
             <Pagination>

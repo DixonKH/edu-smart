@@ -97,8 +97,8 @@ const Articles = (props: ArticleProps) => {
               );
             })}
           </div>
-          <div className="text-center text-md text-lg mb-6 mt-4">
-            Total {total} articles available
+          <div className="text-center text-lg mb-6 mt-4">
+            Total <span className="bg-slate-400 text-white font-medium p-1 px-2 rounded-full">{total}</span> lessons available
           </div>
           <div className="text-center text-md text-lg mb-8 cursor-pointer flex">
             <Pagination>

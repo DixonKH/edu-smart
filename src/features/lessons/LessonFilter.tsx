@@ -7,9 +7,16 @@ import {
   MenubarSeparator,
   MenubarTrigger,
 } from "@/components/ui/menubar";
+import { LessonLevel } from "@/shared/enums/lesson.enum";
 import { LuSettings2 } from "react-icons/lu";
 
-export default function LessonFilter() {
+
+interface LessonFilterProps {
+  lessons: any;
+  levelChangeHandler: (value: LessonLevel) => void;
+}
+
+export default function LessonFilter(props: LessonFilterProps) {
   return (
     <>
       <Menubar className="lg:hidden h-11">
@@ -20,13 +27,13 @@ export default function LessonFilter() {
           />
           </MenubarTrigger>
           <MenubarContent>
-            <MenubarItem>Beginner</MenubarItem>
+            <MenubarItem onClick={() => props.levelChangeHandler(LessonLevel.BEGINNER)} >Beginner</MenubarItem>
             <MenubarSeparator />
-            <MenubarItem>Elementary</MenubarItem>
+            <MenubarItem onClick={() => props.levelChangeHandler(LessonLevel.ELEMENTRY)} >Elementary</MenubarItem>
             <MenubarSeparator />
-            <MenubarItem>Intermediate</MenubarItem>
+            <MenubarItem onClick={() => props.levelChangeHandler(LessonLevel.INTERMEDIATE)}>Intermediate</MenubarItem>
             <MenubarSeparator />
-            <MenubarItem>Advanced</MenubarItem>
+            <MenubarItem onClick={() => props.levelChangeHandler(LessonLevel.ADVANCED)}>Advanced</MenubarItem>
           </MenubarContent>
         </MenubarMenu>
       </Menubar>

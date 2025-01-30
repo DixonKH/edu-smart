@@ -1,14 +1,9 @@
-import LessonHeader from "@/features/lessons/LessonHeader"
-import {  Outlet } from "react-router-dom"
+import LessonHeader from "@/features/lessons/LessonHeader";
+import { Outlet } from "react-router-dom";
 export default function LessonsPage() {
-    
   return (
     <div>
-      <LessonHeader /> 
-      <>
-       <Outlet /> 
-      </>
-      
+      <Outlet />
     </div>
-  )
+  );
 }
