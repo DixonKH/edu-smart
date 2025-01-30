@@ -6,14 +6,9 @@ import { serverApi } from "@/shared/lib/config";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import Jeonbuk from "/public/images/jeonbuk.png";
-import { useLessonStore } from "./model/store";
-import { useMemberStore } from "../teachers/model/store";
-import { useEffect } from "react";
-import { sweetTopSmallSuccessAlert } from "@/shared/lib/sweetAlert";
 
 export default function LessonCard(props: any) {
 
-  console.log(props.lessons);
   return (
     <>
       {props.lessons.map((lesson: any) => {
@@ -27,7 +22,7 @@ export default function LessonCard(props: any) {
           >
             <Link 
             to={`/lessons/${lesson._id}`}
-            
+
             className="relative w-full h-52">
               {lesson?.lessonVideo ? (
                 <video

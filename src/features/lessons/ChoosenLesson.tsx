@@ -1,4 +1,4 @@
-import { IoMdCloudUpload, IoMdEye, IoMdHeart } from "react-icons/io";
+import { IoMdEye, IoMdHeart } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import { BsPatchExclamationFill } from "react-icons/bs";
 import video from "/videos/lesson.mp4";
@@ -6,16 +6,24 @@ import { IoReaderOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
 import { FaBookReader } from "react-icons/fa";
 import LessonReview from "@/entities/LessonReview";
-import TeacherCard from "@/features/teachers/TeacherCard";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useMemberStore } from "../teachers/model/store";
 import { useLessonStore } from "./model/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { serverApi } from "@/shared/lib/config";
 import moment from "moment";
 import Jeonbuk from "/public/images/jeonbuk.png";
 import LessonOwner from "./LessonOwner";
 import { sweetTopSmallSuccessAlert } from "@/shared/lib/sweetAlert";
+import { Direction } from "@/shared/enums/common.enum";
+import { LessonInquiry } from "@/shared/types/lesson";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function ChoosenLesson() {
   const { lessonId } = useParams();
@@ -23,12 +31,63 @@ export default function ChoosenLesson() {
   const getLesson = useLessonStore((state) => state.getLesson);
   const currentLesson = useLessonStore((state) => state.currentLesson);
   const likeTargetLesson = useLessonStore((state) => state.likeTargetLesson);
+  const getLessons = useLessonStore((state) => state.getLessons);
+  const lessons = useLessonStore((state) => state.lessons);
+  const [lessonsData, setLessonsData] = useState<LessonInquiry>({
+    page: 1,
+    limit: 12,
+    sort: "createdAt",
+    direction: Direction.DESC,
+  });
 
   useEffect(() => {
     if (lessonId && currentMember) {
       getLesson(currentMember._id, lessonId);
     }
-  }, [lessonId, currentMember]);
+  }, [lessonId, currentMember, getLesson]);
+
+  useEffect(() => {
+    const fetchLessons = async () => {
+      await getLessons(lessonsData);
+    };
+    fetchLessons();
+  }, [lessonId, currentMember, getLessons]);
+
+  console.log("Lessons fetched:", lessons);
+
+  const relatedLessons = lessons.filter((lesson) => {
+    const lessonTitle = lesson.lessonTitle;
+    const splitedTitle = lessonTitle?.toLowerCase().split(" ");
+
+    const currentLessonTitle = currentLesson?.lessonTitle
+      ?.toLowerCase()
+      .split(" ");
+
+    if (currentLessonTitle?.length !== undefined) {
+      const result =
+        currentLessonTitle[0] === splitedTitle[0] ||
+        currentLessonTitle[0] === splitedTitle[1] ||
+        currentLessonTitle[0] === splitedTitle[2] ||
+        currentLessonTitle[0] === splitedTitle[3] ||
+        currentLessonTitle[1] === splitedTitle[0] ||
+        currentLessonTitle[1] === splitedTitle[1] ||
+        currentLessonTitle[1] === splitedTitle[2] ||
+        currentLessonTitle[1] === splitedTitle[3] ||
+        currentLessonTitle[2] === splitedTitle[0] ||
+        currentLessonTitle[2] === splitedTitle[1] ||
+        currentLessonTitle[2] === splitedTitle[2] ||
+        currentLessonTitle[2] === splitedTitle[3];
+
+      return result;
+    }
+    return false;
+  });
+
+  const finalResult = relatedLessons.filter((lesson) => {
+    return lesson._id !== currentLesson?._id;
+  });
+
+  console.log("finalResult", finalResult);
 
   const handleLikeToggle = async (e: any) => {
     e.preventDefault();
@@ -41,8 +100,6 @@ export default function ChoosenLesson() {
       console.log("Error liking lesson:", err);
     }
   };
-
-  console.log("Lesson", currentLesson);
 
   const videoPath = `${serverApi}/${currentLesson?.lessonVideo}`;
   const date = currentLesson?.updatedAt;
@@ -106,20 +163,20 @@ export default function ChoosenLesson() {
               {currentLesson?.lessonDesc}
             </p>
             <span
-                  className={`leading-4 md:text-xl overflow-hidden p-1 px-2 rounded ${
-                    currentLesson?.lessonLevel === "BEGINNER"
-                      ? "bg-red text-white"
-                      : currentLesson?.lessonLevel === "ELEMENTRY"
-                      ? "bg-green text-white"
-                      : currentLesson?.lessonLevel === "INTERMEDIATE"
-                      ? "bg-blue text-white"
-                      : currentLesson?.lessonLevel === "ADVANCED"
-                      ? "bg-bgGreen text-white"
-                      : "bg-orange text-white"
-                  }`}
-                >
-                  {currentLesson?.lessonLevel}
-                </span>
+              className={`leading-4 md:text-xl overflow-hidden p-1 px-2 rounded ${
+                currentLesson?.lessonLevel === "BEGINNER"
+                  ? "bg-red text-white"
+                  : currentLesson?.lessonLevel === "ELEMENTRY"
+                  ? "bg-orange text-white"
+                  : currentLesson?.lessonLevel === "INTERMEDIATE"
+                  ? "bg-blue text-white"
+                  : currentLesson?.lessonLevel === "ADVANCED"
+                  ? "bg-bgGreen text-white"
+                  : "bg-orange text-white"
+              }`}
+            >
+              {currentLesson?.lessonLevel}
+            </span>
             <div className="flex flex-col md:flex-row items-center justify-between gap-2 mt-5">
               <p className="flex flex-row items-center justify-start gap-1">
                 <FaStar className="text-yellow text-lg" />
@@ -150,45 +207,85 @@ export default function ChoosenLesson() {
       <div>
         <h1 className="text-3xl font-bold mb-4 mt-10">Related Videos</h1>
       </div>
-      <div className="flex flex-row gap-x-9 gap-y-4 pl-1 mt-4 flex-wrap items-center justify-items-start w-full h-auto mb-5">
-        <div className="flex flex-col align-middle justify-items-start w-64 h-auto border-solid border rounded-lg">
-          <div>
-            <video width="320" height="240" className="rounded-md" controls>
-              <source src={video} type="video/mp4" />
-            </video>
-          </div>
-          <div className="p-1 mt-1">
-            <div className="flex flex-row items-center justify-between gap-4 w-full h-8 py-1 ">
-              <div className="leading-5">
-                <span className="inline-block text-green1">
-                  <IoReaderOutline />
-                </span>
-                Koareyscha ranglar
-              </div>
-              <div>
-                <IoMdEye className="text-slate-500 size-5" />
-              </div>
-            </div>
-            <div className="flex flex-row items-center justify-between gap-4 w-full h-8 py-1 ">
-              <div
-                className={`leading-4 text-sm overflow-hidden p-1 px-2 rounded ${
-                  "Beginner" === "Beginner" ? "bg-yellow" : "bg-green"
-                }`}
+      <Carousel className="w-full flex my-4">
+        <CarouselContent className="flex items-center justify-start gap-4 w-full pl-6">
+          {finalResult.map((lesson) => {
+            const videoPath = `${serverApi}/${lesson?.lessonVideo}`,
+              date = lesson?.createdAt,
+              formattedDate = date ? moment(date).format("DD/MM/YYYY") : "N/A";
+            return (
+              <CarouselItem
+                key={lesson._id}
+                className={`flex flex-col items-between pl-0 basis-1/5 border rounded-md`}
               >
-                Elementry
-              </div>
-              <div className="text-[12px] text-slate-600">24/05/24</div>
-            </div>
-            <div className="flex items-center justify-between mt-2">
-              <div className="flex flex-row items-center justify-start gap-1 text-slate-600 text-sm">
-                <FaBookReader className="text-green1" />
-                Teacher: Jahongir B.
-              </div>
-              <CiHeart className="size-5" />
-            </div>
-          </div>
-        </div>
-      </div>
+                <div className="">
+                  <Link to={`/lessons/${lesson._id}`} className="full">
+                    {lesson?.lessonVideo ? (
+                      <video width="100%" className="rounded-md" controls>
+                        <source src={videoPath} type="video/mp4" />
+                      </video>
+                    ) : (
+                      <div className="w-full flex items-center justify-center h-40 border bg-slate-200 rounded-md">
+                        <img
+                          src={Jeonbuk}
+                          alt=""
+                          className="w-20 mx-44 filter grayscale"
+                        />
+                      </div>
+                    )}
+                  </Link>
+                  <div className="px-2 mt-1">
+                    <div className="flex flex-row items-center justify-between gap-4 h-8 py-1 ">
+                      <div className="leading-5">
+                        <span className="inline-block text-green1">
+                          <IoReaderOutline />
+                        </span>
+                        {lesson.lessonTitle}
+                      </div>
+                      <div>
+                        <IoMdEye className="text-slate-500 size-5" />
+                      </div>
+                    </div>
+                    <div className="flex flex-row items-center justify-between gap-4 w-full h-8 py-1 ">
+                      <div
+                        className={`leading-4 text-sm overflow-hidden p-1 px-2 rounded ${
+                          lesson.lessonLevel === "BEGINNER"
+                            ? "bg-red text-white"
+                            : lesson.lessonLevel === "ELEMENTRY"
+                            ? "bg-orange text-white"
+                            : lesson.lessonLevel === "INTERMEDIATE"
+                            ? "bg-blue text-white"
+                            : lesson.lessonLevel === "ADVANCED"
+                            ? "bg-bgGreen text-white"
+                            : "bg-orange text-white"
+                        }`}
+                      >
+                        {lesson.lessonLevel}
+                      </div>
+                      <div className="text-[12px] text-slate-600">
+                        {formattedDate}
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between mt-2 pb-2">
+                      <div className="flex flex-row items-center justify-start gap-1 text-slate-600 text-sm">
+                        <FaBookReader className="text-bgGreen" />
+                        Teacher: {lesson?.memberData?.memberNick}
+                      </div>
+                      {lesson?.lessonLikes ? (
+                        <IoMdHeart className="text-red text-xl cursor-pointer" />
+                      ) : (
+                        <CiHeart className="text-red text-xl cursor-pointer" />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </CarouselItem>
+            );
+          })}
+        </CarouselContent>
+        <CarouselPrevious className="hidden lg:flex" />
+        <CarouselNext className="hidden lg:flex" />
+      </Carousel>
     </div>
   );
 }
