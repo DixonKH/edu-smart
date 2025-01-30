@@ -107,7 +107,7 @@ export default function ChoosenLesson() {
 
   return (
     <div className="lg:container mt-28 md:mt-40 md:px-16 px-8">
-      <div className="lg:flex flex-col lg:flex-row items-start justify-between gap-3">
+      <div className="lg:flex flex-col lg:flex-row items-start justify-between gap-3 mb-8">
         <div className="lg:w-3/4 flex flex-col items-start justify-start">
           <div className="w-full flex flex-row items-center mb-4">
             <div className="text-2xl text-center md:text-left md:text-3xl font-medium">
@@ -204,88 +204,98 @@ export default function ChoosenLesson() {
           {currentLesson && <LessonOwner currentLesson={currentLesson} />}
         </div>
       </div>
-      <div>
-        <h1 className="text-3xl font-bold mb-4 mt-10">Related Videos</h1>
-      </div>
-      <Carousel className="w-full flex my-4">
-        <CarouselContent className="flex items-center justify-start gap-4 w-full pl-6">
-          {finalResult.map((lesson) => {
-            const videoPath = `${serverApi}/${lesson?.lessonVideo}`,
-              date = lesson?.createdAt,
-              formattedDate = date ? moment(date).format("DD/MM/YYYY") : "N/A";
-            return (
-              <CarouselItem
-                key={lesson._id}
-                className={`flex flex-col items-between pl-0 basis-1/5 border rounded-md`}
-              >
-                <div className="">
-                  <Link to={`/lessons/${lesson._id}`} className="full">
-                    {lesson?.lessonVideo ? (
-                      <video width="100%" className="rounded-md" controls>
-                        <source src={videoPath} type="video/mp4" />
-                      </video>
-                    ) : (
-                      <div className="w-full flex items-center justify-center h-40 border bg-slate-200 rounded-md">
-                        <img
-                          src={Jeonbuk}
-                          alt=""
-                          className="w-20 mx-44 filter grayscale"
-                        />
-                      </div>
-                    )}
-                  </Link>
-                  <div className="px-2 mt-1">
-                    <div className="flex flex-row items-center justify-between gap-4 h-8 py-1 ">
-                      <div className="leading-5">
-                        <span className="inline-block text-green1">
-                          <IoReaderOutline />
-                        </span>
-                        {lesson.lessonTitle}
-                      </div>
-                      <div>
-                        <IoMdEye className="text-slate-500 size-5" />
-                      </div>
-                    </div>
-                    <div className="flex flex-row items-center justify-between gap-4 w-full h-8 py-1 ">
-                      <div
-                        className={`leading-4 text-sm overflow-hidden p-1 px-2 rounded ${
-                          lesson.lessonLevel === "BEGINNER"
-                            ? "bg-red text-white"
-                            : lesson.lessonLevel === "ELEMENTRY"
-                            ? "bg-orange text-white"
-                            : lesson.lessonLevel === "INTERMEDIATE"
-                            ? "bg-blue text-white"
-                            : lesson.lessonLevel === "ADVANCED"
-                            ? "bg-bgGreen text-white"
-                            : "bg-orange text-white"
-                        }`}
-                      >
-                        {lesson.lessonLevel}
-                      </div>
-                      <div className="text-[12px] text-slate-600">
-                        {formattedDate}
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between mt-2 pb-2">
-                      <div className="flex flex-row items-center justify-start gap-1 text-slate-600 text-sm">
-                        <FaBookReader className="text-bgGreen" />
-                        Teacher: {lesson?.memberData?.memberNick}
-                      </div>
-                      {lesson?.lessonLikes ? (
-                        <IoMdHeart className="text-red text-xl cursor-pointer" />
+      {finalResult.length > 0 && (
+        <div>
+          <h1 className="text-3xl font-bold mb-4 mt-10">Related Videos</h1>
+        </div>
+      )}
+      {finalResult.length > 0 && (
+        <Carousel className="w-full flex my-4">
+          <CarouselContent className="flex items-center justify-start gap-4 w-full pl-6">
+            {finalResult.map((lesson) => {
+              const videoPath = `${serverApi}/${lesson?.lessonVideo}`,
+                date = lesson?.createdAt,
+                formattedDate = date
+                  ? moment(date).format("DD/MM/YYYY")
+                  : "N/A";
+              return (
+                <CarouselItem
+                  key={lesson._id}
+                  className={`flex flex-col items-between pl-0 h-68 md:basis-1/3 lg:basis-1/4 border rounded-md`}
+                >
+                  <div className="">
+                    <Link to={`/lessons/${lesson._id}`} className="full">
+                      {lesson?.lessonVideo ? (
+                        <video className="h-40 w-[980px]  rounded-md" controls>
+                          <source
+                            src={videoPath}
+                            type="video/mp4"
+                            className="w-full object-cover"
+                          />
+                        </video>
                       ) : (
-                        <CiHeart className="text-red text-xl cursor-pointer" />
+                        <div className="w-full flex items-center justify-center h-40 border bg-slate-200 rounded-md">
+                          <img
+                            src={Jeonbuk}
+                            alt=""
+                            className="w-20 mx-44 filter grayscale"
+                          />
+                        </div>
                       )}
+                    </Link>
+                    <div className="px-2 mt-1">
+                      <div className="flex flex-row items-center justify-between gap-4 h-8 py-1 ">
+                        <div className="leading-5">
+                          <span className="inline-block text-green1">
+                            <IoReaderOutline />
+                          </span>
+                          {lesson.lessonTitle}
+                        </div>
+                        <div>
+                          <IoMdEye className="text-slate-500 size-5" />
+                        </div>
+                      </div>
+                      <div className="flex flex-row items-center justify-between gap-4 w-full h-8 py-1 ">
+                        <div
+                          className={`leading-4 text-sm overflow-hidden p-1 px-2 rounded ${
+                            lesson.lessonLevel === "BEGINNER"
+                              ? "bg-red text-white"
+                              : lesson.lessonLevel === "ELEMENTRY"
+                              ? "bg-orange text-white"
+                              : lesson.lessonLevel === "INTERMEDIATE"
+                              ? "bg-blue text-white"
+                              : lesson.lessonLevel === "ADVANCED"
+                              ? "bg-bgGreen text-white"
+                              : "bg-orange text-white"
+                          }`}
+                        >
+                          {lesson.lessonLevel}
+                        </div>
+                        <div className="text-[12px] text-slate-600">
+                          {formattedDate}
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between mt-2 pb-2">
+                        <div className="flex flex-row items-center justify-start gap-1 text-slate-600 text-sm">
+                          <FaBookReader className="text-bgGreen" />
+                          Teacher: {lesson?.memberData?.memberNick}
+                        </div>
+                        {lesson?.lessonLikes ? (
+                          <IoMdHeart className="text-red text-xl cursor-pointer" />
+                        ) : (
+                          <CiHeart className="text-red text-xl cursor-pointer" />
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </CarouselItem>
-            );
-          })}
-        </CarouselContent>
-        <CarouselPrevious className="hidden lg:flex" />
-        <CarouselNext className="hidden lg:flex" />
-      </Carousel>
+                </CarouselItem>
+              );
+            })}
+          </CarouselContent>
+          <CarouselPrevious className="hidden lg:flex" />
+          <CarouselNext className="hidden lg:flex" />
+        </Carousel>
+      )}
     </div>
   );
 }

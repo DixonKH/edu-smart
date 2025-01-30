@@ -3,7 +3,6 @@ import { FaBookReader } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { BsTelephoneFill } from "react-icons/bs";
 import { FaTelegram } from "react-icons/fa";
-import { Member } from "@/shared/types/member";
 import userImgBg from "/public/images/user-bg.jpg";
 import { serverApi } from "@/shared/lib/config";
 import { Lesson } from "@/shared/types/lesson";
@@ -27,12 +26,11 @@ export default function LessonOwner(props: LessonOwnerProps) {
           />
         </div>
         <p className="text-lg text-slate-800">About me</p>
-        <p className="lg:w-72 text-md text-slate-500 text-center">
+        <p className="w-84 md:w-72 mb-6 md:mb-0 text-md md:text-xl text-slate-500 text-center">
           {teacher?.memberDesc}
-          
         </p>
       </div>
-      <div className="lg:mt-4 flex flex-col items-start justify-start gap-2 text-xl">
+      <div className="lg:mt-4 flex flex-col items-start justify-start gap-2 md:text-xl">
         <p className="flex flex-row items-center justify-start gap-2 text-slate-600">
           <FaBookReader className="text-green text-xl" />
           Experience: {teacher?.memberExperience} years
