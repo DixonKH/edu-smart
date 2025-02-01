@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import TeacherCard from "./TeacherCard";
-import LessonCard from "../../features/lessons/LessonCard";
 import {
   Pagination,
   PaginationContent,
@@ -12,110 +11,21 @@ import {
 } from "../../components/ui/pagination";
 import { useEffect, useState } from "react";
 import { useMemberStore } from "./model/store";
-
-interface Lesson {
-  id: number;
-  title: string;
-  category: "BEGINNER" | "ELEMENTRY" | "INTERMADIATE" | "ADVANCED";
-  desc: string;
-  create: string;
-  owner: string;
-  view: string;
-  like: string;
-}
-
-const initialLessons: any = [
-  {
-    id: 1,
-    title: "Koreys Alifbosi va ularning qollanish usullari",
-    category: "BEGINNER",
-    desc: "This is the Desc",
-    create: "12/07/2024",
-    owner: "Meloboyev A",
-    view: "2",
-    like: "true",
-  },
-  {
-    id: 2,
-    title: "Lesson 2",
-    category: "ELEMENTRY",
-    desc: "This is the Desc",
-    create: "13/07/2024",
-    owner: "Abdurakhmonov B",
-    view: "3",
-    like: "true",
-  },
-  {
-    id: 3,
-    category: "INTERMEDIATE",
-    title: "Lesson 3",
-    desc: "This is the Desc",
-    create: "12/06/2024",
-    owner: "Xasanov D",
-    view: "5",
-    like: "false",
-  },
-  {
-    id: 4,
-    title: "Lesson 4",
-    category: "ADVANCED",
-    desc: "This is the Desc",
-    create: "1/07/2024",
-    owner: "Abdurakhmonov B",
-    view: "3",
-    like: "true",
-  },
-  {
-    id: 5,
-    title: "Lesson 5",
-    category: "ELEMENTRY",
-    desc: "This is the Desc",
-    create: "12/03/2024",
-    owner: "Abdurakhmonov B",
-    view: "1",
-    like: "false",
-  },
-  {
-    id: 6,
-    title: "Lesson 3",
-    category: "BEGINNER",
-    desc: "This is the Desc",
-    create: "11/07/2024",
-    owner: "Xasanov D",
-    view: "5",
-    like: "false",
-  },
-  {
-    id: 7,
-    title: "Lesson 4",
-    category: "BEGINNER",
-    desc: "This is the Desc",
-    create: "1/07/2024",
-    owner: "Abdurakhmonov B",
-    view: "3",
-    like: "true",
-  },
-  {
-    id: 8,
-    title: "Lesson 5",
-    category: "BEGINNER",
-    desc: "This is the Desc",
-    create: "2/07/2024",
-    owner: "Abdurakhmonov B",
-    view: "1",
-    like: "false",
-  },
-];
+import { useLessonStore } from "../lessons/model/store";
+import { LessonInquiry } from "@/shared/types/lesson";
+import TeacherLessons from "./TeacherLessons";
+import { Direction } from "@/shared/enums/common.enum";
 
 export default function TeacherDetail() {
-  const [lessons, setLessons] = useState(initialLessons);
-  const [search, setSearch] = useState("");
   const { teacherId } = useParams();
-  const [category, setCategory] = useState("all");
   const members = useMemberStore((state) => state.members);
   const getMemberById = useMemberStore((state) => state.getMemberById);
   const getTeachers = useMemberStore((state) => state.getTeachers);
   const teacher = getMemberById(teacherId!);
+  const allLessons = useLessonStore((state) => state.allLessons);
+  const getAllLessons = useLessonStore((state) => state.getAllLessons);
+  const [currentPage, setCurrentPage] = useState(1);
+  const lessonsPerPage = 6; 
 
   useEffect(() => {
     if (!teacher) {
@@ -123,13 +33,31 @@ export default function TeacherDetail() {
     }
   }, [teacherId, members]);
 
-  const filteredLessons = lessons.filter((item: any) => {
-    const matchSearch = item.title.toLowerCase().includes(search.toLowerCase());
-    const matchCategory =
-      category === "all" || item.category.toLowerCase() === category;
+  useEffect(() => {
+    if (teacher) {
+      getAllLessons();
+    }
+  }, [teacher, getAllLessons]);
 
-    return matchSearch && matchCategory;
+  console.log("allLessons", allLessons);
+  
+
+  const teacherLessons = allLessons.filter((lesson) => {
+    return lesson.memberId === teacher?._id;
   });
+  
+  const totalLessons = teacherLessons.length;
+  const totalPages = Math.ceil(totalLessons / lessonsPerPage);
+  const startIdx = (currentPage - 1) * lessonsPerPage;
+  const endIdx = startIdx + lessonsPerPage;
+  const paginatedLessons = teacherLessons.slice(startIdx, endIdx);
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
+
 
   return (
     <div className="container">
@@ -140,26 +68,49 @@ export default function TeacherDetail() {
         <TeacherCard teacher={teacher} />
         <div className="w-full">
           <div className="w-full grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5">
-            {/* <LessonCard /> */}
+            <TeacherLessons teacherLessons={paginatedLessons} />
           </div>
-          <div className="my-3">
+          {totalPages > 1 && (
+            <div className="my-3">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>
-                  <PaginationPrevious href="#" />
+                  <PaginationPrevious href="#" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                      handlePageChange(currentPage - 1);
+                  }} />
                 </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">1</PaginationLink>
+                {[...Array(totalPages)].map((_, i) => (
+                <PaginationItem key={i}>
+                  <PaginationLink
+                    className={`hidden md:flex ${
+                      currentPage === i + 1 ? "bg-gray-300" : ""
+                    }`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageChange(i + 1);
+                    }}
+                  >
+                    {i + 1}
+                  </PaginationLink>
                 </PaginationItem>
+              ))}
                 <PaginationItem>
                   <PaginationEllipsis />
                 </PaginationItem>
                 <PaginationItem>
-                  <PaginationNext href="#" />
+                  <PaginationNext href="#" onClick={(e) => {
+                    e.preventDefault();
+                    if (currentPage < totalPages) {
+                      handlePageChange(currentPage + 1);
+                    }
+                  }} />
                 </PaginationItem>
               </PaginationContent>
             </Pagination>
           </div>
+          )}
         </div>
       </div>
     </div>

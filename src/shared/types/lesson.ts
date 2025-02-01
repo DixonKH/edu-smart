@@ -50,6 +50,10 @@ export interface Lessons {
 	metaCounter: TotalCounter[];
 }
 
+export interface AllLessons {
+	lessons: Lesson[];
+}
+
 export interface LessonSearch {
     text?: string;
 	lessonLevel?: LessonLevel;

@@ -1,17 +1,23 @@
-import { IoMdEye, IoMdHeart } from "react-icons/io";
-import { CiHeart } from "react-icons/ci";
-import { FaBookReader } from "react-icons/fa";
-import { IoReaderOutline } from "react-icons/io5";
+import { Lesson } from '@/shared/types/lesson';
+import React from 'react';
+import { CiHeart } from 'react-icons/ci';
+import { FaBookReader } from 'react-icons/fa';
+import { IoMdEye, IoMdHeart } from 'react-icons/io';
+import { IoReaderOutline } from 'react-icons/io5';
 import { serverApi } from "@/shared/lib/config";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import Jeonbuk from "/public/images/jeonbuk.png";
 
-export default function LessonCard(props: any) {
+interface TeacherLessonsProps {
+    teacherLessons: Lesson[];
+  
+}
 
+export default function TeacherLessons(props: TeacherLessonsProps) {
   return (
-    <> 
-      {props.lessons.map((lesson: any) => {
+    <>
+         {props.teacherLessons.map((lesson: any) => {
         const videoPath = `${serverApi}/${lesson?.lessonVideo}`;
         const date = lesson?.createdAt;
         const formattedDate = date ? moment(date).format("MMM d, yyyy") : "N/A";
@@ -75,7 +81,7 @@ export default function LessonCard(props: any) {
               <div className="flex items-center justify-between mt-2">
                 <div className="flex flex-row items-center justify-start gap-1 text-slate-500 text-md font-medium">
                   <FaBookReader className="text-green" />
-                  Teacher: {lesson.memberData.memberNick}
+                  Teacher: {lesson.memberData?.memberNick}
                 </div>
                 <div className="flex flex-row items-center justify-start gap-1">
                   {lesson?.lessonLikes ? (
@@ -91,5 +97,5 @@ export default function LessonCard(props: any) {
         );
       })}
     </>
-  );
+  )
 }

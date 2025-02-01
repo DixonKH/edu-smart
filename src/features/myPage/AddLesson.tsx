@@ -1,5 +1,4 @@
 import { LessonCategory, LessonLevel } from "@/shared/enums/lesson.enum";
-import AddFiles from "../../features/myPage/AddFiles";
 import {
   Select,
   SelectContent,

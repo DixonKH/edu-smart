@@ -1,10 +1,8 @@
-import React from "react";
 import { IoIosPricetags } from "react-icons/io";
 import { BiLogoMicrosoftTeams } from "react-icons/bi";
 import { FaBagShopping } from "react-icons/fa6";
 import { BsAwardFill } from "react-icons/bs";
 import Line from "../../features/home/Line";
-import Teaching from "/public/images/Teaching.jpg";
 import { useTranslation } from "react-i18next";
 import lessonVideo from "/public/videos/lesson1.mp4";
 

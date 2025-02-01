@@ -106,7 +106,7 @@ export default function ChoosenLesson() {
   const formattedDate = date ? moment(date).format("YYYY-MM-DD") : "N/A";
 
   return (
-    <div className="lg:container mt-28 md:mt-40 md:px-16 px-8">
+    <div className="lg:container mt-28 md:mt-40 md:px-16 px-8 mb-16">
       <div className="lg:flex flex-col lg:flex-row items-start justify-between gap-3 mb-8">
         <div className="lg:w-3/4 flex flex-col items-start justify-start">
           <div className="w-full flex flex-row items-center mb-4">

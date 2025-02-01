@@ -1,6 +1,7 @@
 import { getApiUrl } from "@/shared/lib/config";
 import {
   AllLessonAdminInquiry,
+  AllLessons,
   Lesson,
   LessonInput,
   LessonInquiry,
@@ -13,6 +14,7 @@ import { devtools } from "zustand/middleware";
 
 interface Lessons {
   lessons: Lesson[];
+  allLessons: Lesson[];
   currentLesson: Lesson | null;
   metaCounter: TotalCounter[];
 
@@ -20,6 +22,7 @@ interface Lessons {
   createLesson: (id: string, input: LessonInput) => Promise<void>;
   getLesson: (memberId: string, id: string) => Lesson | null;
   getLessons: (input: LessonInquiry) => Promise<void>;
+  getAllLessons: () => Promise<AllLessons>;
   updateLesson: (id: string, input: LessonUpdate) => Promise<void>;
   likeTargetLesson: (id: string, likeRefId: string) => Promise<void>;
   getLessonsByAdmin: (input: AllLessonAdminInquiry) => Promise<void>;
@@ -30,6 +33,7 @@ interface Lessons {
 export const useLessonStore = create<Lessons>()(
   devtools((set) => ({
     lessons: [],
+    allLessons: [],
     currentLesson: null,
     metaCounter: [],    
 
@@ -98,6 +102,25 @@ export const useLessonStore = create<Lessons>()(
         set({ metaCounter: result.data.metaCounter });
       } catch (error) {
         console.error("Failed to get lessons", error);
+        if (axios.isAxiosError(error)) {
+          console.error(
+            "AxiosError details:",
+            error.response?.data || error.message
+          );
+        }
+        throw error;
+      }
+    },
+
+    getAllLessons: async () => {
+      try {
+        const url = getApiUrl("/lessons/getAllLessons");
+        const result = await axios.get(url);
+        const allLessonData = result.data;
+        console.log("Fetched all lessons:", allLessonData);
+        set({ allLessons: allLessonData });
+      } catch (error) {
+        console.error("Failed to get all lessons", error);
         if (axios.isAxiosError(error)) {
           console.error(
             "AxiosError details:",
