@@ -1,130 +1,90 @@
-import React from "react";
 import { FaInstagramSquare } from "react-icons/fa";
 import {
   FaFacebook,
   FaPinterest,
-  FaStar,
   FaTwitter,
   FaYoutube,
+  FaTelegram,
 } from "react-icons/fa6";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import Line from "./Line";
 import { useTranslation } from "react-i18next";
 
-type Props = {};
-
-function ContactUs({}: Props) {
+function ContactUs() {
   const { t } = useTranslation();
   return (
     <div>
-      <div className="grid my-20 lg:container md:px-10 sm:px-5 px-1 md:grid-cols-2 gap-5">
-        <div className="w-full flex flex-col">
-          <div className="text-center md:text-left">
-            <div className=" flex justify-start items-center pt-1  md:pt-5 lg:pb-6">
-              <p className="lg:text-2xl md:text-xl text-base text-center md:text-left w-full sm:text-xl text-black">
-                - {t("contact")} -
+      <div className="w-full flex my-20 lg:container md:px-10 sm:px-5 px-1">
+        <div className="w-full flex flex-col md:flex-row items-center md:items-start justify-around pt-6 lg:pt-0 bg-green1 border rounded-3xl text-white text-lg">
+          <div className="flex flex-col justifty-center text-center md:text-left mb-8 lg:mb-2">
+            <div className="lg:m-8 lg:mb-0">
+              <p className="p-5 text-2xl md:text-3xl">{t("contact_address")}:</p>
+              <p className="px-5 text-md text-slate-300">
+                Toshkent Shaxar Mirzo Ulugbek ko'chasi. <br />
+                Hilton mehmonxona ro'parasi
               </p>
             </div>
-            <div className="g:flex items-center justify-cente">
-              <p className=" lg:text-4xl md:text-3xl sm:text-2xl text-xl lg:p-5 md:p-2 p-1 font-medium">
-                <span className="text-green1"> {t("contact_h1")} </span>
+            <div className="lg:m-8 lg:mb-0">
+              <p className="p-5 text-2xl md:text-3xl">{t("contact_Contact")}:</p>
+              <p className="px-5 text-md text-slate-300">
+                Phone: +82101234567 <br />
+                Email: example@example.com
+              </p>
+            </div>
+            <div className="lg:m-8">
+              <p className="p-5 text-2xl md:text-3xl">{t("contact_time")}:</p>
+              <p className="px-5 text-md text-slate-300">
+                Monday-Friday: 9:00 - 20:00 <br />
+                Saturday: 10:00 - 16:00 <br />
+                Sunday: Closed
               </p>
             </div>
           </div>
-          <div className="w-full flex md:flex-row flex-col justify-between ">
-            <div className="lg:p-3 p-1 w-full">
-              <p className="">{t("contact_label1")}*</p>
-              <input
-                type="text"
-                className="border px-3 py-1 rounded-2xl w-full p-2 h-14 text-lg outline-none"
-                placeholder="Ex.John Doe"
-              />
-            </div>
-            <div className="lg:p-3 p-1 w-full">
-              <p>{t("contact_label2")}*</p>
-              <input
-                type="text"
-                className="border px-3 py-1 rounded-2xl w-full p-2 h-14 text-lg outline-none"
-                placeholder="+82101234567"
-              />
-            </div>
-          </div>
-          <div className="lg:p-3 p-1">
-            <p>{t("contact_label3")}*</p>
-            <input
-              type="text"
-              className="border px-3 py-1 rounded-2xl w-full outline-none p-2 h-14 text-lg"
-              placeholder="Example@example.com"
-            />
-          </div>
-          <div className="lg:p-3 p-1">
-            <p>{t("contact_label4")}*</p>
-            <textarea className="border px-3 py-1 rounded-2xl w-full outline-none p-2 h-48 text-lg" />
-          </div>
-          <div className="  flex justify-start lg:p-5 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
-            <button
-              className="flex items-center justify-between shadow-xl border p-2 px-3 text-lg hover:bg-bgGreen hover:text-white bg-yellow rounded-3xl"
-            >
-              {t("our_process_booking_btn")}
-              <IoIosArrowRoundForward />
-            </button>
-          </div>
-        </div>
-        <div className="bg-green1 border rounded-3xl text-white text-lg">
           <div className="lg:m-8">
-            <p className="p-5 text-2xl">{t("contact_address")}</p>
-            <p className="px-5 text-md text-slate-300">
-              4517, Washington Ave. <br />
-              Manchester, Kentucky
+            <p className="lg:p-5 p-3 text-2xl md:text-3xl font-medium">
+              {t("contact_stay")}:
             </p>
-          </div>
-          <div className="lg:m-8">
-            <p className="p-5 text-2xl">{t("contact_Contact")}</p>
-            <p className="px-5 text-md text-slate-300">
-              Phone: +82101234567 <br />
-              Email: example@example.com
-            </p>
-          </div>
-          <div className="lg:m-8">
-            <p className="p-5 text-2xl">{t("contact_time")}</p>
-            <p className="px-5 text-md text-slate-300">
-              Monday-Friday: 12:00 - 18:00 <br /> Saturday: 10:00 - 16:00
-              Sunday: Closed
-            </p>
-          </div>
-          <div className="lg:m-8">
-            <p className="lg:p-5 p-3 text-2xl font-medium">{t("contact_stay")}</p>
-            <div className="p-5 text-md">
-              <div className="flex  justify-center lg:gap-8 md:gap-5 sm:gap-3 gap-3 items-center">
-                <div
-                  className="flex items-center justify-center drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+            <div className=" p-5 text-md">
+              <div className="w-full flex flex-col justify-start lg:gap-12 md:gap-5 sm:gap-3 gap-3 items-start">
+                <div className="flex items-center gap-4">
+                  <a
+                    href="https://www.telegram.com/example"
+                    className="flex items-center justify-center drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover rounded-full w-10 h-10 bg-yellow"
-                >
-                  <FaFacebook className="text-xl text-black" />
+                  >
+                    <FaTelegram className="text-xl text-black" />
+                  </a>
+                  <p className="text-2xl">Telegram</p>
                 </div>
-                <div
-                  className="flex items-center justify-center drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                <div className="flex items-center gap-4">
+                  <a
+                    href="https://www.facebook.com/example"
+                    className="flex items-center justify-center drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover rounded-full w-10 h-10 bg-yellow"
-                >
-                  <FaTwitter className="text-xl text-black" />
+                  >
+                    <FaFacebook className="text-xl text-black" />
+                  </a>
+                  <p className="text-2xl">Facebook</p>
                 </div>
-                <div
-                  className="flex items-center justify-center drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                <div className="flex items-center gap-4">
+                  <a
+                    href="https://www.instagram.com/example"
+                    className="flex items-center justify-center drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover rounded-full w-10 h-10 bg-yellow"
-                >
-                  <FaPinterest className="text-xl text-black" />
+                  >
+                    <FaInstagramSquare className="text-xl text-black" />
+                  </a>
+                  <p className="text-2xl">Instagram</p>
                 </div>
-                <div
-                  className="flex items-center justify-center drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                <div className="flex items-center gap-4">
+                  <a
+                    href="https://www.youtube.com/example"
+                    className="flex items-center justify-center drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
                     object-cover rounded-full w-10 h-10 bg-yellow"
-                >
-                  <FaInstagramSquare className="text-xl text-black" />
-                </div>
-                <div
-                  className="flex items-center justify-center drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover rounded-full w-10 h-10 bg-yellow"
-                >
-                  <FaYoutube className="text-xl text-black" />
+                  >
+                    <FaYoutube className="text-xl text-black" />
+                  </a>
+                  <p className="text-2xl">Youtube</p>
                 </div>
               </div>
             </div>

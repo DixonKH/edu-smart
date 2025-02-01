@@ -3,7 +3,6 @@ import AboutUs from "../../features/home/AboutUs";
 import OurProcess from "../../features/home/OurProcess";
 import Testimonial from "../../features/home/Testimonial";
 import OurTeam from "../../features/home/OurTeam";
-import PricingTable from "../../features/home/PricingTable";
 import OurNewsletter from "../../features/home/OurNewsletter";
 import Header1 from "../../features/home/Header1";
 import Line from "../../features/home/Line";
@@ -24,7 +23,6 @@ const MainPage = () => {
       <ContactUs />
       <Testimonial />
       <OurTeam />
-      <PricingTable />
       <NewsAndBlog />
       <OurNewsletter />
     </div>

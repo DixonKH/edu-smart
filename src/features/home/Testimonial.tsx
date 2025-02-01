@@ -54,7 +54,7 @@ const Testimonial = (props: Props) => {
         </p>
       </div>
       <Carousel className=" lg:-mt-5">
-        <CarouselContent className="flex items-center justify-start gap-5 w-full p-3 pb-6">
+        <CarouselContent className="flex items-center justify-start gap-5 w-full p-3 pb-6 pl-6">
           {testimonalData.map((item) => (
             <CarouselItem
               key={item.id}

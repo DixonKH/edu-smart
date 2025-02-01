@@ -6,6 +6,7 @@ import { BsAwardFill } from "react-icons/bs";
 import Line from "../../features/home/Line";
 import Teaching from "/public/images/Teaching.jpg";
 import { useTranslation } from "react-i18next";
+import lessonVideo from "/public/videos/lesson1.mp4";
 
 const WhyChooseUs = () => {
   const { t } = useTranslation();
@@ -25,11 +26,9 @@ const WhyChooseUs = () => {
         <div className="grid md:grid-cols-1 base:grid-cols-1 lg:grid-cols-2 gap-5 cursor-pointer">
           <div className="w-full md:flex base:flex justify-center items-center">
             <div className="realtive w-full flex items-end justify-center p-2">
-              <img
-                src={Teaching}
-                alt="VideContent"
-                className="border-black object-cover rounded-xl"
-              />
+              <video controls  autoPlay={true} loop muted={true} className="rounded-xl border w-full">
+                <source src={lessonVideo} type="video/mp4" />
+              </video>
               <div className="absolute sm:hidden hidden base:hidden md:hidden lg:block gap-2 mb-3">
                 <div className="md:flex items-center justify-between gap-2">
                   <div className="gap-2 p-1 text-white">

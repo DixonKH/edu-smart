@@ -4,6 +4,7 @@ import { BiLogoMicrosoftTeams } from "react-icons/bi";
 import { FaSmile } from "react-icons/fa";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 type Props = {};
 
@@ -119,14 +120,14 @@ function OurProcess({}: Props) {
                 {t("our_process_booking_h1")}
               </p>
             </div>
-            <div className=" lg:mt-[200px] flex justify-start lg:p-5 md:p-2 p-1 text-xs md:text-base  items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
-              <button
-                className="flex items-center justify-between drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
-                    object-cover border px-3 py-1 hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl"
+            <div className=" lg:mt-[200px] flex justify-start lg:p-5 items-center lg:gap-5 md:gap-2 sm:gap-2 gap-1">
+              <Link to="/lessons"
+                className="flex items-center justify-between text-xl drop-shadow-[-10px_10px_12px_rgba(0,0,0,1)]
+                    object-cover border px-4 py-2 hover:bg-bgGreen hover:text-white bg-yellow rounded-2xl"
               >
                 <p>{t("our_process_booking_btn")}</p>
                 <IoIosArrowRoundForward />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
