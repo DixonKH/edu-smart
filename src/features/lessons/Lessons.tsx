@@ -113,7 +113,7 @@ export default function Lessons() {
     }));
   };
 
-  const totalPages = Math.ceil(total / (lessons?.limit));
+  const totalPages = Math.ceil(total / (lessons.limit));
 
   return (
     <>

@@ -45,13 +45,18 @@ export interface LessonUpdate {
     lessonVideo?: string;
 }
 
-export interface Lessons {
+export interface LessonsData {
 	list: Lesson[];
 	metaCounter: TotalCounter[];
 }
 
 export interface AllLessons {
 	lessons: Lesson[];
+}
+
+export interface OrdinaryInquiry {
+	page: number;
+	limit: number;
 }
 
 export interface LessonSearch {

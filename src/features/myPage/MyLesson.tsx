@@ -2,15 +2,13 @@ import { IoReaderOutline } from "react-icons/io5";
 import { IoMdEye, IoMdHeart } from "react-icons/io";
 import { FaBookReader } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
-import Video from "../../../public/videos/lesson.mp4";
 import { useMemberStore } from "../teachers/model/store";
 import { useLessonStore } from "../lessons/model/store";
 import { useEffect, useState } from "react";
-import { LessonInquiry } from "@/shared/types/lesson";
 import { serverApi } from "@/shared/lib/config";
-import Jeonbuk from "/public/images/jeonbuk.png";
 import { Link } from "react-router-dom";
 import moment from "moment";
+import Jeonbuk from "/public/images/jeonbuk.png";
 import {
   Pagination,
   PaginationContent,

@@ -2,10 +2,12 @@ import { getApiUrl } from "@/shared/lib/config";
 import {
   AllLessonAdminInquiry,
   AllLessons,
+  LessonsData,
   Lesson,
   LessonInput,
   LessonInquiry,
   LessonUpdate,
+  OrdinaryInquiry,
 } from "@/shared/types/lesson";
 import { TotalCounter } from "@/shared/types/member";
 import axios from "axios";
@@ -15,6 +17,7 @@ import { devtools } from "zustand/middleware";
 interface Lessons {
   lessons: Lesson[];
   allLessons: Lesson[];
+  favoriteLessons: Lesson[];
   currentLesson: Lesson | null;
   metaCounter: TotalCounter[];
 
@@ -23,6 +26,7 @@ interface Lessons {
   getLesson: (memberId: string, id: string) => Lesson | null;
   getLessons: (input: LessonInquiry) => Promise<void>;
   getAllLessons: () => Promise<AllLessons>;
+  getFavoriteLessons: (memberId: string, input: OrdinaryInquiry) => Promise<void>;
   updateLesson: (id: string, input: LessonUpdate) => Promise<void>;
   likeTargetLesson: (id: string, likeRefId: string) => Promise<void>;
   getLessonsByAdmin: (input: AllLessonAdminInquiry) => Promise<void>;
@@ -34,6 +38,7 @@ export const useLessonStore = create<Lessons>()(
   devtools((set) => ({
     lessons: [],
     allLessons: [],
+    favoriteLessons: [],
     currentLesson: null,
     metaCounter: [],    
 
@@ -199,7 +204,45 @@ export const useLessonStore = create<Lessons>()(
             }
             throw err;
          }
-    }
+    },
+
+    getFavoriteLessons: async (memberId: string, input: OrdinaryInquiry) => {
+      try {
+        const url = getApiUrl(`/lessons/getFavoriteLessons`);
+        const storedData = localStorage.getItem("member-store");
+        if (!storedData) {
+          throw new Error("No stored member data found.");
+        }
+        const parsedData = JSON.parse(storedData);
+        const { accessToken } = parsedData.state;
+        if (!accessToken) {
+          throw new Error("Access token is missing.");
+        }
+        const result = await axios.get(url, {
+          params: {
+            page: input.page,
+            limit: input.limit,
+          },
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          withCredentials: true,
+        });
+        const lessonData = result.data.list;
+        console.log("Fetched favorite lessons:", lessonData);
+        set({ favoriteLessons: lessonData });
+        set({ metaCounter: result.data.metaCounter });
+      } catch (error) {
+        console.error("Failed to get favorite lessons", error);
+        if (axios.isAxiosError(error)) {
+          console.error(
+            "AxiosError details:",
+            error.response?.data || error.message
+          );
+        }
+        throw error;
+      }
+    },
   }))
 );
 
