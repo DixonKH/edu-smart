@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import TeacherCard from "./TeacherCard";
 import {
   Pagination,
@@ -19,6 +19,7 @@ import { Direction } from "@/shared/enums/common.enum";
 export default function TeacherDetail() {
   const { teacherId } = useParams();
   const members = useMemberStore((state) => state.members);
+  const currentMember = useMemberStore((state) => state.currentMember);
   const getMemberById = useMemberStore((state) => state.getMemberById);
   const getTeachers = useMemberStore((state) => state.getTeachers);
   const teacher = getMemberById(teacherId!);
@@ -26,6 +27,10 @@ export default function TeacherDetail() {
   const getAllLessons = useLessonStore((state) => state.getAllLessons);
   const [currentPage, setCurrentPage] = useState(1);
   const lessonsPerPage = 6; 
+
+  if (!currentMember) {
+    return <Navigate to="/login" replace />; // Redirect to login if not authenticated
+  }
 
   useEffect(() => {
     if (!teacher) {

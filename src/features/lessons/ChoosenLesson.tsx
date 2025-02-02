@@ -6,7 +6,7 @@ import { IoReaderOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
 import { FaBookReader } from "react-icons/fa";
 import LessonReview from "@/entities/LessonReview";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { useMemberStore } from "../teachers/model/store";
 import { useLessonStore } from "./model/store";
 import { useEffect, useState } from "react";
@@ -28,8 +28,8 @@ import {
 export default function ChoosenLesson() {
   const { lessonId } = useParams();
   const currentMember = useMemberStore((state) => state.currentMember);
-  const getLesson = useLessonStore((state) => state.getLesson);
   const currentLesson = useLessonStore((state) => state.currentLesson);
+  const getLesson = useLessonStore((state) => state.getLesson);
   const likeTargetLesson = useLessonStore((state) => state.likeTargetLesson);
   const getLessons = useLessonStore((state) => state.getLessons);
   const lessons = useLessonStore((state) => state.lessons);
@@ -39,6 +39,10 @@ export default function ChoosenLesson() {
     sort: "createdAt",
     direction: Direction.DESC,
   });
+
+  if (!currentMember) {
+    return <Navigate to="/login" replace />; // Redirect to login if not authenticated
+  }
 
   useEffect(() => {
     if (lessonId && currentMember) {
@@ -53,7 +57,7 @@ export default function ChoosenLesson() {
     fetchLessons();
   }, [lessonId, currentMember, getLessons]);
 
-  console.log("Lessons fetched:", lessons);
+  console.log("currentLesson:", currentLesson);
 
   const relatedLessons = lessons.filter((lesson) => {
     const lessonTitle = lesson.lessonTitle;
@@ -86,8 +90,6 @@ export default function ChoosenLesson() {
   const finalResult = relatedLessons.filter((lesson) => {
     return lesson._id !== currentLesson?._id;
   });
-
-  console.log("finalResult", finalResult);
 
   const handleLikeToggle = async (e: any) => {
     e.preventDefault();

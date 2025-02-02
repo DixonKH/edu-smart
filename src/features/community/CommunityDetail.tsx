@@ -3,7 +3,7 @@ import { IoEye } from "react-icons/io5";
 import { CiHeart } from "react-icons/ci";
 import { IoMdHeart } from "react-icons/io";
 import { FaComments } from "react-icons/fa";
-import { useParams } from "react-router";
+import { Navigate, useParams } from "react-router";
 import moment from "moment";
 import { useArticleStore } from "./model/store";
 import { serverApi } from "@/shared/lib/config";
@@ -36,6 +36,10 @@ const CommunityDetail = () => {
   }
 
   console.log("newArticle", newArticle);
+  
+  if (!currentMember) {
+      return <Navigate to="/login" replace />; // Redirect to login if not authenticated
+    }
   
 
   const imgPath = `${serverApi}/${newArticle?.articleImage}`;

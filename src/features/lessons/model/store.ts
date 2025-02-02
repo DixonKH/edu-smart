@@ -2,7 +2,6 @@ import { getApiUrl } from "@/shared/lib/config";
 import {
   AllLessonAdminInquiry,
   AllLessons,
-  LessonsData,
   Lesson,
   LessonInput,
   LessonInquiry,

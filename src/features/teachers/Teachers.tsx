@@ -6,7 +6,7 @@ import { useMemberStore } from "./model/store";
 import { MemberInquery } from "@/shared/types/member";
 import { Direction } from "@/shared/enums/common.enum";
 import userImgBg from "/public/images/user-bg.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { serverApi } from "@/shared/lib/config";
 import {
   Select,
@@ -56,7 +56,7 @@ export default function Teachers() {
         search: { text: "" },
       }));
     }
-  }, [searchText]); 
+  }, [searchText]);
 
   const sortingHandler = (value: string) => {
     switch (value) {
@@ -142,7 +142,9 @@ export default function Teachers() {
               className="flex flex-col items-center justify-start pb-3 h-auto border-2 bg-green text-white rounded-xl hover:shadow-2xl cursor-pointer"
             >
               <div className="w-full h-80 mb-2 relative">
-                <Link to={`/ourteachers/${teacher._id}`}>
+                <Link
+                  to={`/ourteachers/${teacher._id}`}
+                >
                   <img
                     className="h-full w-full object-cover rounded-xl"
                     src={teacher.memberImage === "" ? userImgBg : imgPath}

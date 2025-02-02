@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaComments } from "react-icons/fa";
 import { BoardArticle, BoardArticleInquiry } from "@/shared/types/article";
 import { IoEye } from "react-icons/io5";
@@ -13,7 +13,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import React from "react";
+import { useMemberStore } from "../teachers/model/store";
 
 type ArticleProps = {
   articlesData: BoardArticle[];
@@ -24,6 +24,8 @@ type ArticleProps = {
 };
 
 const Articles = (props: ArticleProps) => {
+  const navigate = useNavigate();
+  const currentMember = useMemberStore((state) => state.currentMember);
   const { articlesData, articles, total, totalPages, handlePageChange } = props;
 
   return (
@@ -98,7 +100,11 @@ const Articles = (props: ArticleProps) => {
             })}
           </div>
           <div className="text-center text-lg mb-6 mt-4">
-            Total <span className="bg-slate-400 text-white font-medium p-1 px-2 rounded-full">{total}</span> lessons available
+            Total{" "}
+            <span className="bg-slate-400 text-white font-medium p-1 px-2 rounded-full">
+              {total}
+            </span>{" "}
+            lessons available
           </div>
           <div className="text-center text-md text-lg mb-8 cursor-pointer flex">
             <Pagination>
@@ -157,6 +163,5 @@ const Articles = (props: ArticleProps) => {
     </div>
   );
 };
-
 
 export default Articles;

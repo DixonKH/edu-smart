@@ -10,7 +10,7 @@ import Jeonbuk from "/public/images/jeonbuk.png";
 export default function LessonCard(props: any) {
 
   return (
-    <> 
+    <>
       {props.lessons.map((lesson: any) => {
         const videoPath = `${serverApi}/${lesson?.lessonVideo}`;
         const date = lesson?.createdAt;
@@ -20,10 +20,10 @@ export default function LessonCard(props: any) {
             key={lesson._id}
             className="flex flex-col items-between justify-start w-full border-solid border rounded-lg cursor-pointer"
           >
-            <Link 
-            to={`/lessons/${lesson._id}`}
-
-            className="relative w-full h-52">
+            <Link
+              to={`/lessons/${lesson._id}`}
+              className="relative w-full h-52"
+            >
               {lesson?.lessonVideo ? (
                 <video
                   key={lesson._id}

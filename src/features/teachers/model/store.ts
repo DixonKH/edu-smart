@@ -31,7 +31,7 @@ export const useMemberStore = create<MemberStore>()(
     persist(
       (set, get) => ({
         members: [],
-        currentMember: null,
+        currentMember: null as Member | null,
         accessToken: null,
         metaCounter: [],
 
@@ -139,7 +139,7 @@ export const useMemberStore = create<MemberStore>()(
             if (!accessToken) {
               throw new Error("Access token is missing.");
             }
-            
+             
             formData.append("_id", _id);
             formData.append("memberNick", input.memberNick || "");
             formData.append("memberFullName", input.memberFullName || "");
