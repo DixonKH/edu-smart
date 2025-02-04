@@ -25,6 +25,13 @@ import "froala-editor/css/froala_editor.pkgd.min.css";
 import "froala-editor/js/plugins/image.min.js";
 import "froala-editor/css/froala_editor.pkgd.min.css";
 import "froala-editor/css/froala_style.min.css";
+import "froala-editor/js/plugins/emoticons.min.js"; // Emoticons plugin
+import "froala-editor/css/plugins/emoticons.min.css"; 
+import "froala-editor/js/plugins/fullscreen.min.js"; // Fullscreen plugin
+import "froala-editor/js/plugins/print.min.js"; // Print plugin
+import "froala-editor/js/plugins/word_paste.min.js"; // Word Paste plugin
+import "froala-editor/css/plugins/fullscreen.min.css"; // Fullscreen CSS
+
 
 export default function WriteArticle() {
   const location = useLocation();
@@ -65,7 +72,10 @@ export default function WriteArticle() {
       ["bold", "italic", "underline"],
       ["fontFamily", "fontSize", "textColor", "backgroundColor"],
       ["align", "formatOL", "formatUL"],
+      ["emoticons"],
       ["undo", "redo"],
+      ["fullscreen"], // Fullscreen button
+      ["print"], // Print button
     ],
     fontSizeDefaultSelection: "18",
     height: 250,
