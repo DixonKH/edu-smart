@@ -14,6 +14,9 @@ interface TeacherDetailProps {
 export default function TeacherCard(props: TeacherDetailProps) {
   const { teacher } = props;
 
+  console.log("teacherLink", teacher?.memberLinks?.telegram);
+  
+
   
   return (
     <div className=" flex flex-col justify-start border rounded-md border-green px-4 py-6 gap-1">

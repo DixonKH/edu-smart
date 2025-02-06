@@ -14,6 +14,7 @@ import { getApiUrl } from "@/shared/lib/config";
 interface MemberStore {
   members: Member[];
   currentMember: Member | null;
+  teachOwner: Member | null;
   accessToken: string | null;
   metaCounter: TotalCounter[];
 
@@ -21,7 +22,7 @@ interface MemberStore {
   signUp: (member: MemberInput) => Promise<void>;
   login: (member: LoginInput) => Promise<void>;
   getTeachers: (input: MemberInquery) => Promise<void>;
-  getMemberById: (_id: string) => Promise<Member | undefined>;
+  getMemberById: (_id: string) => Promise<void>;
   updateMember: (id: string, input: Partial<MemberUpdate>) => Promise<void>;
   logout: () => void;
 }
@@ -32,6 +33,7 @@ export const useMemberStore = create<MemberStore>()(
       (set, get) => ({
         members: [],
         currentMember: null as Member | null,
+        teachOwner: null as Member | null,
         accessToken: null,
         metaCounter: [],
 
@@ -119,13 +121,13 @@ export const useMemberStore = create<MemberStore>()(
             throw error;
           }
         },
-        getMemberById: async (_id: string): Promise<Member | undefined> => {
+        getMemberById: async (_id: string): Promise<void> => {
           try {
             const url = getApiUrl("/member/getMember");
             const result = await axios.get<Member>(url, {params: {_id}});
             const data = result.data; 
             console.log("Fetched member by ID:", data);
-            return data;
+            set({ teachOwner: data });
           } catch (error) {
             console.log("Error fetching member by ID:", error);
             if (axios.isAxiosError(error)) {
