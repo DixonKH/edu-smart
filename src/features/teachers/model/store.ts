@@ -21,7 +21,7 @@ interface MemberStore {
   signUp: (member: MemberInput) => Promise<void>;
   login: (member: LoginInput) => Promise<void>;
   getTeachers: (input: MemberInquery) => Promise<void>;
-  getMemberById: (id: string) => Member | undefined;
+  getMemberById: (_id: string) => Promise<Member | undefined>;
   updateMember: (id: string, input: Partial<MemberUpdate>) => Promise<void>;
   logout: () => void;
 }
@@ -60,13 +60,11 @@ export const useMemberStore = create<MemberStore>()(
               );
             }
             throw error;
-          } 
+          }
         },
-
         login: async (input: LoginInput) => {
           try {
             const url = getApiUrl("/member/login");
-            console.log("Fetching from URL:", url); // Log URL
             const result = await axios.post(url, input, {
               withCredentials: true,
             });
@@ -95,7 +93,7 @@ export const useMemberStore = create<MemberStore>()(
 
             const result = await axios.get(url, {
               params: {
-                page: input.page, 
+                page: input.page,
                 limit: input.limit,
                 sort: input?.sort,
                 direction: input?.direction,
@@ -107,7 +105,7 @@ export const useMemberStore = create<MemberStore>()(
             const teachers = result.data.list;
 
             console.log("getTeachers:", teachers);
-  
+
             set({ members: teachers });
             set({ metaCounter: result.data.metaCounter });
           } catch (error) {
@@ -121,14 +119,30 @@ export const useMemberStore = create<MemberStore>()(
             throw error;
           }
         },
-        getMemberById: (id: any) =>
-          get().members.find((member: Member) => member._id === id),
+        getMemberById: async (_id: string): Promise<Member | undefined> => {
+          try {
+            const url = getApiUrl("/member/getMember");
+            const result = await axios.get<Member>(url, {params: {_id}});
+            const data = result.data; 
+            console.log("Fetched member by ID:", data);
+            return data;
+          } catch (error) {
+            console.log("Error fetching member by ID:", error);
+            if (axios.isAxiosError(error)) {
+              console.error(
+                "AxiosError details:",
+                error.response?.data || error.message
+              );
+            }
+            throw error;
+          }
+        },
 
         updateMember: async (_id: string, input: MemberUpdate) => {
           try {
             const url = getApiUrl(`/member/updateMember`);
             const formData = new FormData();
-            
+
             const storedData = localStorage.getItem("member-store");
             if (!storedData) {
               throw new Error("No stored member data found.");
@@ -139,7 +153,7 @@ export const useMemberStore = create<MemberStore>()(
             if (!accessToken) {
               throw new Error("Access token is missing.");
             }
-             
+
             formData.append("_id", _id);
             formData.append("memberNick", input.memberNick || "");
             formData.append("memberFullName", input.memberFullName || "");
@@ -147,29 +161,28 @@ export const useMemberStore = create<MemberStore>()(
             formData.append("memberAddress", input.memberAddress || "");
             formData.append("memberDesc", input.memberDesc || "");
             formData.append("memberExperience", input.memberExperience || "");
-            formData.append("memberLinks", input.memberLinks || "");
             formData.append("memberImage", input.memberImage || "");
             if (input.memberCategory) {
               formData.append("memberCategory", input.memberCategory);
             }
+            const memberLinks = {
+              telegram: input.memberLinks?.telegram || "",
+              instagram: input.memberLinks?.instagram || "",
+              youtube: input.memberLinks?.youtube || "",
+            };
+            formData.append("memberLinks", JSON.stringify(memberLinks));
 
-            const result = await axios.post<Member>(
-              url,
-              formData,
-              {
-                headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                  "Content-Type": "multipart/form-data",
-                },
-                withCredentials: true,
-              }
-            );
+            const result = await axios.post<Member>(url, formData, {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "Content-Type": "multipart/form-data",
+              },
+              withCredentials: true,
+            });
             const data = result.data;
 
             console.log("Update members:", data);
-            set({
-              currentMember: data, // Save the member data
-            });
+            set({ currentMember: data });
           } catch (error) {
             console.log("Error fetching members:", error);
             if (axios.isAxiosError(error)) {

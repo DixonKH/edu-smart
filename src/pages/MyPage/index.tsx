@@ -18,7 +18,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { serverApi } from "@/shared/lib/config";
 import MyArticles from "@/features/myPage/myArticles";
 
@@ -29,6 +29,8 @@ const MyPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { component, article } = location.state || {};
+
+  console.log("cuurentuser", currentUser);
 
   useEffect(() => {
     if (component) {
@@ -104,13 +106,17 @@ const MyPage = () => {
                     />
                   )}
                 </div>
-                <div>
+                <div className="flex flex-col justify-center items-center">
                   <p className="flex justify-center text-xs md:text-xl font-bold">
                     {currentUser?.memberNick}
                   </p>
-                  <p className="flex justify-center text-xs md:text-base">
+                 {currentUser?.memberType === MemberType.ADMIN ? (
+                    <Link to={"/admin"} type="button" className="flex justify-center text-xs md:text-base text-green font-bold underline">
                     {currentUser?.memberType}
-                  </p>
+                  </Link>
+                 ) : (<p className="flex justify-center text-xs md:text-base">
+                    {currentUser?.memberType}
+                 </p>)}
                   <p className="hidden lg:flex justify-center text-xs md:text-base underline">
                     {currentUser?.memberPhone}
                   </p>
@@ -121,7 +127,8 @@ const MyPage = () => {
               <Carousel className="w-full">
                 <CarouselContent>
                   <CarouselItem className="mx-auto basis-1/7 text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2 ">
-                    {currentUser?.memberType === MemberType.TEACHER && (
+                    {(currentUser?.memberType === MemberType.ADMIN ||
+                      currentUser?.memberType === MemberType.TEACHER) && (
                       <div className=" mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2 ">
                         <button
                           onClick={() => setShowComponent(1)}
@@ -134,7 +141,8 @@ const MyPage = () => {
                     )}
                   </CarouselItem>
                   <CarouselItem className=" mx-auto basis-1/7 text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2 ">
-                    {currentUser?.memberType === MemberType.TEACHER && (
+                    {(currentUser?.memberType === MemberType.ADMIN ||
+                      currentUser?.memberType === MemberType.TEACHER) && (
                       <button
                         onClick={() => setShowComponent(2)}
                         className=" lg:w-64 md:w-28 w-20 rounded-2xl lg:h-12 border border-green px-3 py-2 flex flex-col lg:flex-row md:text-xl items-center justify-center gap-2 hover:bg-green hover:text-white  lg:rounded-lg group"
@@ -196,7 +204,8 @@ const MyPage = () => {
               <p className="flex pt-4 pl-2 text-left sm:text-xl md:text-lg font-bold">
                 Manage Listing:
               </p>
-              {currentUser?.memberType === MemberType.TEACHER && (
+              {(currentUser?.memberType === MemberType.ADMIN ||
+                currentUser?.memberType === MemberType.TEACHER) && (
                 <div className=" mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1">
                   <button
                     onClick={() => setShowComponent(1)}
@@ -207,7 +216,8 @@ const MyPage = () => {
                   </button>
                 </div>
               )}
-              {currentUser?.memberType === MemberType.TEACHER && (
+              {(currentUser?.memberType === MemberType.ADMIN ||
+                currentUser?.memberType === MemberType.TEACHER) && (
                 <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2">
                   <button
                     onClick={() => setShowComponent(2)}

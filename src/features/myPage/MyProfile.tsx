@@ -33,7 +33,11 @@ const MyProfile = (props: Props) => {
     memberFullName: currentUser?.memberFullName || "",
     memberDesc: currentUser?.memberDesc || "",
     memberExperience: currentUser?.memberExperience || "",
-    memberLinks: currentUser?.memberLinks || "",
+    memberLinks: {
+      telegram: currentUser?.memberLinks?.telegram || "",
+      instagram: currentUser?.memberLinks?.instagram || "",
+      youtube: currentUser?.memberLinks?.youtube || "",
+    },
     memberImage: currentUser?.memberImage || "",
     memberCategory: currentUser?.memberCategory || undefined,
   });
@@ -49,7 +53,11 @@ const MyProfile = (props: Props) => {
         memberFullName: currentUser.memberFullName || "",
         memberDesc: currentUser.memberDesc || "",
         memberExperience: currentUser.memberExperience || "",
-        memberLinks: currentUser.memberLinks || "",
+        memberLinks: {
+          telegram: currentUser.memberLinks?.telegram || "",
+          instagram: currentUser.memberLinks?.instagram || "",
+          youtube: currentUser.memberLinks?.youtube || "",
+        },
         memberImage: currentUser.memberImage || "",
         memberCategory: currentUser.memberCategory || undefined,
       });
@@ -91,21 +99,41 @@ const MyProfile = (props: Props) => {
       isTeacher &&
       (memberData.memberDesc === "" ||
         memberData.memberExperience === "" ||
-        memberData.memberLinks === "" ||
         memberData.memberCategory === undefined)
     ) {
       throw new Error(Messages.error4);
     }
     console.log("User for update:", currentUser);
+    const updatedMemberLinks = {
+      telegram: memberData.memberLinks?.telegram || "",  // Empty string if missing
+      instagram: memberData.memberLinks?.instagram || "", // Empty string if missing
+      youtube: memberData.memberLinks?.youtube || ""      // Empty string if missing
+    };
+
+    const updateData = {
+      ...memberData,
+      memberLinks: updatedMemberLinks, // Send memberLinks as an object
+    };
     try {
-      await updateMember(currentUser._id, memberData);
+      await updateMember(currentUser._id, updateData);
       setPreviewImage("");
-      console.log("Member data updated:", memberData);
+      console.log("Member data updated:", updateData);
       await sweetTopSmallSuccessAlert("Modified Successfully", 800);
     } catch (error) {
       console.error("Error updating profile:", error);
       sweetErrorHandling(error).then();
     }
+  };
+
+  const handleLinksChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setMemberData((prev) => ({
+      ...prev,
+      memberLinks: {
+        ...prev.memberLinks,
+        [name]: value,
+      },
+    }));
   };
 
   const handleImageChange = async (e: T) => {
@@ -120,21 +148,25 @@ const MyProfile = (props: Props) => {
         setPreviewImage(previewUrl);
         const formData = new FormData();
         formData.append("memberImage", file);
-        try { 
+        try {
           const storedData: any = localStorage.getItem("member-store");
           const parsedData = JSON.parse(storedData);
-            const { accessToken } = parsedData.state;
+          const { accessToken } = parsedData.state;
 
-          const response = await axios.post(`${serverApi}/member/updateMember`, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-              Authorization: `Bearer ${accessToken}`,
-            },
-          });
+          const response = await axios.post(
+            `${serverApi}/member/updateMember`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          );
           const updateMemberImage = response.data.memberImage;
           setMemberData((prev) => {
             return {
-             ...prev,
+              ...prev,
               memberImage: updateMemberImage,
             };
           });
@@ -148,7 +180,7 @@ const MyProfile = (props: Props) => {
   };
 
   return (
-    <div className="md:px-10 sm:px-5 px-1 pb-4 rounded-xl h-[810px]">
+    <div className="md:px-10 sm:px-5 px-1 pb-4 rounded-xl">
       <div className="flex justify-center items-center mt-2 p-3">
         <div className="flex flex-col items-center justify-center">
           <div className="flex justify-center items-center rounded-full w-24 h-24 bg-green mb-2">
@@ -241,7 +273,44 @@ const MyProfile = (props: Props) => {
           </div>
         </div>
         {isTeacher && (
+          <div className="w-full flex flex-col md:flex-row justify-between ">
+            <div className="lg:p-3 p-1 w-full md:w-3/6">
+              <p className="font-semibold mb-1">Telegram Link*</p>
+              <input
+                type="text"
+                name="telegram"
+                value={memberData.memberLinks?.telegram}
+                onChange={handleLinksChange}
+                className="border px-3 py-1 rounded-2xl w-full outline-none p-2 h-14 text-lg"
+                placeholder="https://www.telegram.com/abduvohidov"
+              />
+            </div>
+            <div className="lg:p-3 p-1 w-full md:w-3/6">
+              <p className="font-semibold mb-1">Instagram Link*</p>
+              <input
+                type="text"
+                name="instagram"
+                value={memberData.memberLinks?.instagram}
+                onChange={handleLinksChange}
+                className="border px-3 py-1 rounded-2xl w-full outline-none p-2 h-14 text-lg"
+                placeholder="https://www.instagram.com/abduvohidov"
+              />
+            </div>
+          </div>
+        )}
+        {isTeacher && (
           <div className="w-full flex md:flex-row flex-col justify-between">
+            <div className="lg:p-3 p-1 w-full md:w-3/6">
+              <p className="font-semibold mb-1">YouTube Link*</p>
+              <input
+                type="text"
+                name="youtube"
+                value={memberData.memberLinks?.youtube}
+                onChange={handleLinksChange}
+                className="border px-3 py-1 rounded-2xl w-full outline-none p-2 h-14 text-lg"
+                placeholder="https://www.youtube.com/abduvohidov"
+              />
+            </div>
             <div className="lg:p-3 p-1 w-full md:w-2/6">
               <p className="font-semibold mb-1">Teacher type*</p>
               <Select
@@ -259,17 +328,6 @@ const MyProfile = (props: Props) => {
                   ))}
                 </SelectContent>
               </Select>
-            </div>
-            <div className="lg:p-3 p-1 w-full md:w-3/6">
-              <p className="font-semibold mb-1">Telegram Link*</p>
-              <input
-                type="text"
-                name="memberLinks"
-                value={memberData.memberLinks}
-                onChange={handleChange}
-                className="border px-3 py-1 rounded-2xl w-full outline-none p-2 h-14 text-lg"
-                placeholder="https://www.telegram.com/abduvohidov"
-              />
             </div>
             <div className="lg:p-3 p-1 w-full md:w-1/6">
               <p className="font-semibold mb-1">Experience*</p>

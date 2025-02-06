@@ -1,4 +1,3 @@
-
 import { FcGoogle } from "react-icons/fc";
 import { MdCastForEducation } from "react-icons/md";
 import { SiApple } from "react-icons/si";
@@ -8,7 +7,10 @@ import { useFormik } from "formik";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link, useNavigate } from "react-router-dom";
 import { MemberType } from "@/shared/enums/member.enum";
-import { sweetErrorHandling, sweetTopSuccessAlert } from "@/shared/lib/sweetAlert";
+import {
+  sweetErrorHandling,
+  sweetTopSuccessAlert,
+} from "@/shared/lib/sweetAlert";
 import * as Yup from "yup";
 import { getApiUrl } from "@/shared/lib/config";
 
@@ -32,13 +34,6 @@ const validate = (values: MemberInput) => {
   } else if (values.memberPhone.length > 20) {
     errors.memberPhone = "Must be 20 characters or less";
   }
-
-  // if (!values.email) {
-  //   errors.email = 'Required';
-  // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-  //   errors.email = 'Invalid email address';
-  // }
-
   return errors;
 };
 const Signup = () => {
@@ -57,15 +52,21 @@ const Signup = () => {
       memberNick: Yup.string().required("Required"),
       memberPassword: Yup.string().required("Required"),
       memberPhone: Yup.string().required("Required"),
-
     }),
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        await signup(values);
-        sweetTopSuccessAlert("Signup Success!");
+        const updatedValues = {
+          ...values,
+          memberType:
+            values.memberNick.toLocaleLowerCase() === "admin"
+              ? MemberType.ADMIN
+              : values.memberType,
+        };
+        await signup(updatedValues);
+        sweetTopSuccessAlert("Signup Success!", 700);
         navigate("/");
-      } catch (error: any) {     
-        sweetErrorHandling(error)
+      } catch (error: any) {
+        sweetErrorHandling(error);
       } finally {
         setSubmitting(false);
       }
@@ -136,7 +137,9 @@ const Signup = () => {
                     />
                     {formik.touched.memberPassword &&
                     formik.errors.memberPassword ? (
-                      <div className="text-red">{formik.errors.memberPassword}</div>
+                      <div className="text-red">
+                        {formik.errors.memberPassword}
+                      </div>
                     ) : null}
                   </div>
                   <div className="flex flex-col mb-3">
@@ -151,7 +154,9 @@ const Signup = () => {
                       className=" border-green p-3 w-64 md:w-96 text-black rounded-full border"
                     />
                     {formik.touched.memberPhone && formik.errors.memberPhone ? (
-                      <div className="text-red">{formik.errors.memberPhone}</div>
+                      <div className="text-red">
+                        {formik.errors.memberPhone}
+                      </div>
                     ) : null}
                   </div>
 
@@ -165,7 +170,10 @@ const Signup = () => {
                             formik.values.memberType === MemberType.STUDENT
                           }
                           onCheckedChange={(checked) =>
-                            formik.setFieldValue("memberType", checked ? MemberType.STUDENT : "")
+                            formik.setFieldValue(
+                              "memberType",
+                              checked ? MemberType.STUDENT : ""
+                            )
                           }
                         />
                         <span>Student</span>
@@ -177,7 +185,10 @@ const Signup = () => {
                             formik.values.memberType === MemberType.TEACHER
                           }
                           onCheckedChange={(checked) =>
-                            formik.setFieldValue("memberType", checked ? MemberType.TEACHER : "")
+                            formik.setFieldValue(
+                              "memberType",
+                              checked ? MemberType.TEACHER : ""
+                            )
                           }
                         />
                         <span>Teacher</span>
@@ -195,13 +206,13 @@ const Signup = () => {
                 </form>
                 <div className="flex w-full py-3 items-center justify-center">
                   <Link to={url}>
-                  <button
-                    type="submit"
-                    className="border-green p-3 w-64 text-black rounded-full border gap-2 flex items-center justify-center"
-                  >
-                    <FcGoogle className="text-2xl" />
-                    <span> Continue with Google </span>
-                  </button>
+                    <button
+                      type="button"
+                      className="border-green p-3 w-64 text-black rounded-full border gap-2 flex items-center justify-center"
+                    >
+                      <FcGoogle className="text-2xl" />
+                      <span> Continue with Google </span>
+                    </button>
                   </Link>
                 </div>
                 <div>

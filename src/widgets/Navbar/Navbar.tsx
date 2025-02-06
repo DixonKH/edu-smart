@@ -2,13 +2,8 @@ import NavbarItems from "./Navbar.json";
 import { Link, useNavigate } from "react-router-dom";
 import { MdCastForEducation } from "react-icons/md";
 import { FaSignOutAlt, FaUser } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
-import { FaPinterest } from "react-icons/fa";
-import { FaInstagramSquare } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import uzbFlag from "../../../public/icons/world.png";
 import koreanFlag from "../../../public/icons/south-korea.png";
 import englishFlag from "../../../public/icons/united-kingdom.png";
@@ -21,12 +16,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useTranslation } from "react-i18next";
-import userNavbar from "/public/images/userNavbar.png";
-import userAd from "/public/images/user.jpeg";
 import MiniNavbar from "./MiniNavbar";
 import { LANGUAGES } from "@/shared/constants";
 import { useMemberStore } from "@/features/teachers/model/store";
-import MyPage from "@/pages/MyPage";
 import { serverApi } from "@/shared/lib/config";
 
 type Props = {};
@@ -37,7 +29,6 @@ const Navbar = (props: Props) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [nav, setNav] = useState(true);
   const [header, setHeader] = useState(1);
-  const [user, setUser] = useState(true);
   const { i18n, t } = useTranslation();
   const navigate = useNavigate();
 
@@ -47,17 +38,13 @@ const Navbar = (props: Props) => {
     navigate("/login");
   };
 
-  const toggleDropdown = () => {
+  const toggleDropdown = useCallback((e: any) => {
+    e.preventDefault();
     setDropdownVisible((prev) => !prev);
-  };
+  }, []);
 
-  const onChangeLang = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const lang_code = e.target.value;
-    i18n.changeLanguage(lang_code);
-  };
-
-  const handleNav = () => setNav(!nav);
-  console.log("currentUser", currentUser);
+  //const handleNav = () => setNav(!nav);
+  const handleNav = useCallback(() => setNav((prevNav) => !prevNav), []);
 
   return (
     <div className="w-full">
@@ -133,7 +120,7 @@ const Navbar = (props: Props) => {
                         </p>
                       ) : (
                         <img
-                           src={`${serverApi}/${currentUser?.memberImage}`}
+                          src={`${serverApi}/${currentUser?.memberImage}`}
                           alt="user"
                           className="rounded-full h-10 w-10 cursor-pointer"
                           onClick={toggleDropdown}

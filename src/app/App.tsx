@@ -15,6 +15,7 @@ import Teachers from "@/features/teachers/Teachers";
 import Lessons from "@/features/lessons/Lessons";
 import TeachersPage from "../pages/OurTeachers";
 import TeacherDetail from "@/features/teachers/TeacherDetail";
+import GoogleCallbackHandler from "@/features/SignupLogin/GoogleAuthHandler";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="google-callback" element={<GoogleCallbackHandler />} />
         </Route>
 
         {/* Admin Routes */}

@@ -200,7 +200,7 @@ export default function myArticles() {
           <div className="flex items-center justify-center w-full">
             <img
               src={"/icons/noimage-list.svg"}
-              style={{ width: 300, height: 300 }}
+              className="w-[300px] h-[300px] my-10 lg:my-56"
             />
           </div>
         )}
