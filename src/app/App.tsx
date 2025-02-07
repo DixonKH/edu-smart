@@ -6,7 +6,7 @@ import LessonsPage from "../pages/LessonsPage";
 import AdminLayout from "./layouts/AdminLayout";
 import MainLayout from "./layouts/MainLayout";
 import AdminPage from "./admin";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import Login from "../features/SignupLogin/Login";
 import Signup from "../features/SignupLogin/Signup";
 import ChoosenLesson from "@/features/lessons/ChoosenLesson";
@@ -16,8 +16,19 @@ import Lessons from "@/features/lessons/Lessons";
 import TeachersPage from "../pages/OurTeachers";
 import TeacherDetail from "@/features/teachers/TeacherDetail";
 import GoogleCallbackHandler from "@/features/SignupLogin/GoogleAuthHandler";
+import { useMemberStore } from "@/features/teachers/model/store";
+
 
 function App() {
+  const currentMember = useMemberStore((state) => state.currentMember);
+  const getCurrentMember = useMemberStore((state) => state.getCurrentMember);
+
+  useEffect(() => {
+    if (!currentMember) {
+      getCurrentMember();
+    }
+  }, [currentMember, getCurrentMember]);
+  
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>

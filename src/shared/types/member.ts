@@ -62,10 +62,11 @@ export interface LoginInput {
 }
 
 export interface MemberUpdate {
+  _id?: string;
   memberNick?: string;
   memberCategory?: MemberCategory;
+  memberStatus?: MemberStatus;
   memberPhone?: string;
-  memberPassword?: string;
   memberFullName?: string;
   memberAddress?: string;
   memberDesc?: string;
@@ -96,6 +97,8 @@ export interface MemberInquery {
   sort?: string;
   search?: {
     text?: string;
+    memberType?: MemberType;
+    memberStatus?: MemberStatus;
   };
   direction?: Direction;
 }

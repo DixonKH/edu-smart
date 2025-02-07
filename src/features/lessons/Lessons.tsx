@@ -23,7 +23,7 @@ import { useTranslation } from "react-i18next";
 import { useLessonStore } from "./model/store";
 import { LessonInquiry } from "@/shared/types/lesson";
 import { Direction } from "@/shared/enums/common.enum";
-import { LessonCategory, LessonLevel } from "@/shared/enums/lesson.enum";
+import { LessonCategory } from "@/shared/enums/lesson.enum";
 import LessonHeader from "./LessonHeader";
 
 export default function Lessons() {

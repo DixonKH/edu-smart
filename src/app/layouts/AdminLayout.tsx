@@ -16,9 +16,6 @@ export default function AdminLayout() {
           <MdCastForEducation className="text-5xl text-green bg-yellow rounded-full p-2" />
           Admin Page
         </div>
-        <div>
-          <img src={person1} alt="admin" className="w-12 h-12 rounded-full border-2 border-white" />
-        </div>
       </nav>
       <main className="">
         <Outlet />

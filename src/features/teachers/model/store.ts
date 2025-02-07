@@ -14,6 +14,7 @@ import { getApiUrl } from "@/shared/lib/config";
 interface MemberStore {
   members: Member[];
   currentMember: Member | null;
+  updatedMember: Member | null;
   teachOwner: Member | null;
   accessToken: string | null;
   metaCounter: TotalCounter[];
@@ -21,18 +22,22 @@ interface MemberStore {
   // Actions
   signUp: (member: MemberInput) => Promise<void>;
   login: (member: LoginInput) => Promise<void>;
+  getCurrentMember: () => Promise<void>;
   getTeachers: (input: MemberInquery) => Promise<void>;
   getMemberById: (_id: string) => Promise<void>;
   updateMember: (id: string, input: Partial<MemberUpdate>) => Promise<void>;
+  getAllMembersByAdmin: (input: MemberInquery) => Promise<void>;
+  updateMemberbyAdmin: (input: Partial<MemberUpdate>) => Promise<void>;
   logout: () => void;
 }
 
 export const useMemberStore = create<MemberStore>()(
   devtools(
     persist(
-      (set, get) => ({
+      (set) => ({
         members: [],
         currentMember: null as Member | null,
+        updatedMember: null as Member | null,
         teachOwner: null as Member | null,
         accessToken: null,
         metaCounter: [],
@@ -47,7 +52,6 @@ export const useMemberStore = create<MemberStore>()(
               withCredentials: true,
             });
             const data = result.data;
-
             console.log("Fetched members:", data);
             set({
               currentMember: data, // Save the member data
@@ -72,7 +76,6 @@ export const useMemberStore = create<MemberStore>()(
             });
             const data: Member = result.data;
             console.log("Fetched members:", data);
-
             set({
               currentMember: data, // Save the member data
               accessToken: data.accessToken || null, // Save the access token
@@ -87,6 +90,29 @@ export const useMemberStore = create<MemberStore>()(
             }
             throw error;
           }
+        },
+
+        getCurrentMember: async (): Promise<void> => {
+           const url = getApiUrl("/member/checkAuth");
+
+           const storedData = localStorage.getItem("member-store");
+            if (!storedData) {
+              throw new Error("No stored member data found.");
+            }
+            const parsedData = JSON.parse(storedData);
+            const { accessToken } = parsedData.state;
+            if (!accessToken) {
+              throw new Error("Access token is missing.");
+            }
+            
+           const result = await axios.get<Member>(url, {
+             headers: {
+               Authorization: `Bearer ${accessToken}`,
+             },
+           });
+           const data = result.data;
+           console.log("Fetched currentMember:", data);
+           set({ currentMember: data });
         },
 
         getTeachers: async (input: MemberInquery): Promise<void> => {
@@ -139,7 +165,6 @@ export const useMemberStore = create<MemberStore>()(
             throw error;
           }
         },
-
         updateMember: async (_id: string, input: MemberUpdate) => {
           try {
             const url = getApiUrl(`/member/updateMember`);
@@ -183,9 +208,95 @@ export const useMemberStore = create<MemberStore>()(
             });
             const data = result.data;
 
-            console.log("Update members:", data);
+            console.log("Update member:", data);
             set({ currentMember: data });
           } catch (error) {
+            console.log("Error fetching members:", error);
+            if (axios.isAxiosError(error)) {
+              console.error(
+                "AxiosError details:",
+                error.response?.data || error.message
+              );
+            }
+            throw error;
+          }
+        },
+        getAllMembersByAdmin: async (input: MemberInquery): Promise<void> => {
+          try {
+            const url = getApiUrl(`/member/getAllMembersAdmin`);
+
+            const storedData = localStorage.getItem("member-store");
+            if (!storedData) {
+              throw new Error("No stored member data found.");
+            }
+            const parsedData = JSON.parse(storedData);
+            const { accessToken } = parsedData.state;
+
+            if (!accessToken) {
+              throw new Error("Access token is missing.");
+            }
+
+            const result = await axios.get(url, {
+              params: {
+                page: input.page,
+                limit: input.limit,
+                sort: input?.sort,
+                direction: input?.direction,
+                ...(input.search?.text
+                  ? { "search[text]": input.search.text }
+                  : {}),
+                ...(input.search?.memberType
+                  ? { "search[memberType]": input.search?.memberType }
+                  : {}),
+                ...(input.search?.memberStatus
+                  ? { "search[memberStatus]": input.search?.memberStatus }
+                  : {}),
+              },
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+              withCredentials: true,
+            });
+            const members = result.data.list;
+            console.log("getAllMembers:", members);
+            set({ members: members });
+            set({ metaCounter: result.data.metaCounter });
+          } catch (error) {
+            if (axios.isAxiosError(error)) {
+              console.error(
+                "AxiosError details:",
+                error.response?.data || error.message
+              );
+            }
+            throw error;
+          }
+        },
+        updateMemberbyAdmin: async (input: Partial<MemberUpdate>): Promise<void> => {
+          try {
+            const url = getApiUrl(`/member/updateMembersAdmin`);
+            const storedData = localStorage.getItem("member-store");
+            if (!storedData) {
+              throw new Error("No stored member data found.");
+            }
+            const parsedData = JSON.parse(storedData);
+            const { accessToken } = parsedData.state;
+
+            if (!accessToken) {
+              throw new Error("Access token is missing.");
+            }
+            
+            const result = await axios.post(url, input, {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+              withCredentials: true,
+            });
+            const data = result.data;
+
+            console.log("Update member by admin:", data);
+            set({ updatedMember: data });
+
+          } catch(error) {
             console.log("Error fetching members:", error);
             if (axios.isAxiosError(error)) {
               console.error(
@@ -204,7 +315,6 @@ export const useMemberStore = create<MemberStore>()(
       {
         name: "member-store", // The name to store the data in localStorage
         partialize: (state) => ({
-          currentMember: state.currentMember,
           accessToken: state.accessToken,
         }),
       }
