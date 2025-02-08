@@ -94,7 +94,6 @@ export default function LessonManagement() {
         ...updatedLesson,
         lessonStatus: newState,
       }
-      console.log("Updated lesson data:", updatedLessonData);
       
      await updateLesson(updatedLessonData);
     }

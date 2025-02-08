@@ -4,14 +4,17 @@ import Lessons from "./lessons/Lessons";
 import Articles from "./community/Articles";
 import { useMemberStore } from "@/features/teachers/model/store";
 import { serverApi } from "@/shared/lib/config";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 export default function AdminPage() {
   const [showComponent, setShowComponent] = useState(0);
-  const currenMember = useMemberStore((state) => state.currentMember);
+  const currentMember = useMemberStore((state) => state.currentMember);
   const location = useLocation();
   const { component } = location.state || {};
-  const imgPath = `${serverApi}/${currenMember?.memberImage}`;
+  const imgPath = `${serverApi}/${currentMember?.memberImage}`;
+  //  if (!currentMember) {
+  //     return <Navigate to="/" replace />; // Redirect to login if not authenticated
+  //   }
 
   useEffect(() => {
     if(component) {
@@ -67,8 +70,8 @@ export default function AdminPage() {
             className="w-20 h-20 rounded-full border-4 border-green"
           />
           <div className="ml-2">
-            <p className="text-2xl font-bold text-green">{currenMember?.memberNick}</p>
-            <p className="text-xl">{currenMember?.memberPhone}</p>
+            <p className="text-2xl font-bold text-green">{currentMember?.memberNick}</p>
+            <p className="text-xl">{currentMember?.memberPhone}</p>
           </div>
         </div>
         <div>

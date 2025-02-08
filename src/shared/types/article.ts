@@ -55,16 +55,17 @@ export interface BoardArticleInquiry {
 }
 
 export interface ABAISearch {
+    text?: string;
     articleStatus?: BoardArticleStatus;
-    articlecategory?: BoardArticleCategory;
+    articleCategory?: BoardArticleCategory;
 }
 
 export interface AllBoardArticleAdminInquiry {
     page: number;
     limit: number;
     sort?: string;
-    search?: ABAISearch;
     direction?: Direction;
+    search?: ABAISearch;
 }
 
 export interface BoardArticleUpdate {

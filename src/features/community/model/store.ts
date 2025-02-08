@@ -234,21 +234,35 @@ export const useArticleStore = create<BoardArticles>()(
     },
     getArticlesByAdmin: async (input: AllBoardArticleAdminInquiry) => {
       try {
-        const url = getApiUrl("/article/getArticlesByAdmin");
-        const result = await axios.get<BoardArticle[]>(url, {
-          // params: {
-          //     page: input.page,
-          //     limit: input.limit,
-          //     sort: input?.sort,
-          //     direction: input?.direction,
-          //     ...(input.search?.text
-          //         ? { "search[text]": input.search.text }
-          //         : {}),
-          // },
+        const url = getApiUrl("/article/getAllBoardArticlesAdmin");
+        const storedData = localStorage.getItem("member-store");
+        if (!storedData) {
+          throw new Error("No stored member data found.");
+        }
+        const parsedData = JSON.parse(storedData);
+        const { accessToken } = parsedData.state;
+        if (!accessToken) {
+          throw new Error("Access token is missing.");
+        }
+        const result = await axios.get(url, {
+          params: {
+              page: input.page,
+              limit: input.limit,
+              sort: input?.sort,
+              direction: input?.direction,
+              ...(input.search?.text ? { "search[text]": input.search.text } : {}),
+              ...(input.search?.articleStatus ? { "search[articleStatus]": input.search.articleStatus } : {}),
+              ...(input.search?.articleCategory ? { "search[articleCategory]": input.search.articleCategory } : {}),
+          },
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          withCredentials: true,
         });
-        const data = result.data;
+        const data = result.data.list;
         console.log("Fetched articles:", data);
         set({ articles: data });
+        set({ metaCounter: result.data.metaCounter });
       } catch (error) {
         console.log("Error fetching articles:", error);
         if (axios.isAxiosError(error)) {
@@ -262,8 +276,23 @@ export const useArticleStore = create<BoardArticles>()(
     },
     updateArticleByAdmin: async (input: Partial<BoardArticleUpdate>) => {
       try {
-        const url = getApiUrl("/article/updateArticleByAdmin");
-        const result = await axios.put<BoardArticle>(url, input);
+        const url = getApiUrl("/article/updateBoardArticleAdmin");
+        const storedData = localStorage.getItem("member-store");
+        if (!storedData) {
+          throw new Error("No stored member data found.");
+        }
+        const parsedData = JSON.parse(storedData);
+        const { accessToken } = parsedData.state;
+        if (!accessToken) {
+          throw new Error("Access token is missing.");
+        }
+
+        const result = await axios.post<BoardArticle>(url, input, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          withCredentials: true,
+        });
         const data = result.data;
         console.log("Fetched articles:", data);
         set({ newArticle: data });

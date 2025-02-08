@@ -1,5 +1,3 @@
-import React from 'react'
-import UserManagement from '../user/UserManagement';
 import ArticleManagement from './ArticleManagement';
 
 interface ArticlesProps {

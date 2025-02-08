@@ -93,6 +93,7 @@ const MyProfile = (props: Props) => {
       memberData.memberAddress === "" ||
       memberData.memberFullName === ""
     ) {
+      sweetErrorHandling(Messages.error3) 
       throw new Error(Messages.error3);
     }
     if (
@@ -282,7 +283,7 @@ const MyProfile = (props: Props) => {
                 value={memberData.memberLinks?.telegram}
                 onChange={handleLinksChange}
                 className="border px-3 py-1 rounded-2xl w-full outline-none p-2 h-14 text-lg"
-                placeholder="https://www.telegram.com/abduvohidov"
+                placeholder="https://www.t.me/@Khalil_Atamurotov"
               />
             </div>
             <div className="lg:p-3 p-1 w-full md:w-3/6">
