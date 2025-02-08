@@ -8,6 +8,7 @@ export enum LessonLevel {
 export enum LessonStatus {
 	ACTIVE = 'ACTIVE',
 	DELETE = 'DELETE',
+	BLOCKED = 'BLOCKED',
 }
 
 export enum LessonCategory {

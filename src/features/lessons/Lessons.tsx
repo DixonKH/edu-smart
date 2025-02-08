@@ -56,7 +56,6 @@ export default function Lessons() {
   useEffect(() => {
     if (searchText.length === 0) {
       setLessons((prev) => ({ ...prev, search: { text: "" } }));
-      setLessons((prev) => ({ ...prev, search: { lessonLevel: undefined } }));
     }
   }, [searchText]);
 

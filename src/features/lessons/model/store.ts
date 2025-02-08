@@ -19,6 +19,7 @@ interface Lessons {
   favoriteLessons: Lesson[];
   currentLesson: Lesson | null;
   metaCounter: TotalCounter[];
+  updatedLessons: Lesson | null;
 
   // Actions
   createLesson: (id: string, input: LessonInput) => Promise<void>;
@@ -30,7 +31,6 @@ interface Lessons {
   likeTargetLesson: (id: string, likeRefId: string) => Promise<void>;
   getLessonsByAdmin: (input: AllLessonAdminInquiry) => Promise<void>;
   updateLessonByAdmin: (input: LessonUpdate) => Promise<void>;
-  deleteLessonByAdmin: (input: string) => Promise<void>;
 }
 
 export const useLessonStore = create<Lessons>()(
@@ -39,7 +39,9 @@ export const useLessonStore = create<Lessons>()(
     allLessons: [],
     favoriteLessons: [],
     currentLesson: null,
-    metaCounter: [],    
+    updatedLessons: null,
+    metaCounter: [],
+
 
     createLesson: async (id: string, input: LessonInput) => {
       try {
@@ -242,6 +244,86 @@ export const useLessonStore = create<Lessons>()(
         throw error;
       }
     },
+
+    getLessonsByAdmin: async (input: AllLessonAdminInquiry) => {
+      try {
+        const url = getApiUrl(`/lessons/getAllLessonsByAdmin`);
+        const storedData = localStorage.getItem("member-store");
+        if (!storedData) {
+          throw new Error("No stored member data found.");
+        }
+        const parsedData = JSON.parse(storedData);
+        const { accessToken } = parsedData.state;
+        if (!accessToken) {
+          throw new Error("Access token is missing.");
+        }
+        const result = await axios.get(url, {
+          params: {
+            page: input.page,
+            limit: input.limit,
+            sort: input?.sort,
+            direction: input?.direction,
+            ...(input.search?.text ? {"search[text]": input.search?.text} : {}),
+           ...(input.search?.lessonLevel ? {"search[lessonLevel]": input.search?.lessonLevel} : {}), 
+           ...(input.search?.lessonStatus ? {"search[lessonStatus]": input.search?.lessonStatus} : {}),
+           ...(input.search?.lessonCategory ? {"search[lessonCategory]": input.search?.lessonCategory} : {}),
+          },
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          withCredentials: true,
+        });
+        const lessonData = result.data.list;
+        console.log("Fetched lessons by admin:", lessonData);
+        set({ lessons: lessonData });
+        set({ metaCounter: result.data.metaCounter });
+
+      } catch(error) {
+        console.error("Failed to get lessons by admin", error);
+        if (axios.isAxiosError(error)) {
+          console.error(
+            "AxiosError details:",
+            error.response?.data || error.message
+          );
+        }
+        throw error;
+      }
+
+    },
+
+    updateLessonByAdmin: async (input: LessonUpdate) => {
+      try {
+        const url = getApiUrl(`/lessons/updateLessonByAdmin`);
+        const storedData = localStorage.getItem("member-store");
+        if (!storedData) {
+          throw new Error("No stored member data found.");
+        }
+        const parsedData = JSON.parse(storedData);
+        const { accessToken } = parsedData.state;
+        if (!accessToken) {
+          throw new Error("Access token is missing.");
+        }
+        const result = await axios.post<Lesson>(url, input, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          withCredentials: true,
+        });
+        const lessonData = result.data;
+        console.log("Updated lesson by admin:", lessonData);
+        set({ updatedLessons: lessonData });
+
+      } catch(error) {
+        console.error("Failed to update lesson by admin", error);
+        if (axios.isAxiosError(error)) {
+          console.error(
+            "AxiosError details:",
+            error.response?.data || error.message
+          );
+        }
+        throw error;
+      }
+    }
   }))
 );
 

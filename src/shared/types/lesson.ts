@@ -76,6 +76,7 @@ export interface LessonInquiry {
 export interface ABLSSearch {
 	text?: string;
     lessonStatus?: LessonStatus;
+	lessonLevel?: LessonLevel;
     lessonCategory?: LessonCategory;
 }
 
@@ -83,7 +84,7 @@ export interface AllLessonAdminInquiry {
 	page: number;
 	limit: number;
 	sort?: string;
-	search?: ABLSSearch;
 	direction?: Direction;
+	search?: ABLSSearch;
 }
 

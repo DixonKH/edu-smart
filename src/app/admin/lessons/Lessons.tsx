@@ -1,4 +1,3 @@
-import React from 'react'
 import LessonManagement from './LessonManagement';
 
 interface LessonsProps {

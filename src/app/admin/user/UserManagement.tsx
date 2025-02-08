@@ -80,17 +80,14 @@ export default function UserManagement() {
         (u) => u.memberStatus === statusFilter
       );
     }
-
     if (statusFilter === "all") {
       updatedUsers = allMembers;
     }
-
     if (searchQuery) {
       updatedUsers = updatedUsers.filter((user) =>
         user.memberNick.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
-
     setUsers(updatedUsers);
   }, [allMembers, statusFilter, searchQuery]);
 
@@ -112,7 +109,7 @@ export default function UserManagement() {
       const updatedUserData: MemberUpdate = {
         ...updatedUser,
         memberStatus: newState,
-      };
+      };  
 
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
