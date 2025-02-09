@@ -1,0 +1,72 @@
+image: node:18 # Use the latest stable Node.js version
+
+stages:
+  - install
+  - build
+  - test
+  - dockerize
+  - deploy
+
+# Cache node_modules for faster installs
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+# Install dependencies
+install_dependencies:
+  stage: install
+  script:
+    - npm ci # Ensures clean install of dependencies
+  only:
+    - main
+
+# Run tests (Optional, include if you have tests)
+run_tests:
+  stage: test
+  script:
+    - npm test
+  only:
+    - main
+
+# Build the Vite project
+build_project:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist/ # Store build output as an artifact
+  only:
+    - main
+
+# Dockerize and push to GitLab Container Registry
+docker_build_push:
+  stage: dockerize
+  image: docker:latest
+  services:
+    - docker:dind
+  variables:
+    IMAGE_NAME: "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+    - docker build -t $IMAGE_NAME .
+    - docker push $IMAGE_NAME
+  only:
+    - main
+
+# Deploy to Hostinger using SSH
+deploy_to_hostinger:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache openssh-client
+  script:
+    - ssh -o StrictHostKeyChecking=no $HOSTINGER_USER@$HOSTINGER_IP "
+      docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG &&
+      docker stop my_app || true &&
+      docker rm my_app || true &&
+      docker run -d --name my_app -p 3000:3000 $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+      "
+  only:
+    - main
