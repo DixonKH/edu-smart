@@ -70,3 +70,10 @@ deploy_to_hostinger:
       "
   only:
     - main
+  deploy:
+  script:
+    - echo "Deploying to Hostinger..."
+    - ssh user@hostinger-ip "docker pull registry.gitlab.com/your-repo:latest && docker restart your-container"
+  only:
+    - develop  # Deploy only when pushing to develop
+

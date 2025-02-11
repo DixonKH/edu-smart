@@ -1,0 +1,23 @@
+
+[
+    {
+      "id": 1,
+      "name": "home",
+      "link": "/"
+    },
+    {
+      "id": 2,
+      "name": "lessons",
+      "link": "lessons"
+    },
+    {
+      "id": 3,
+      "name": "teachers",
+      "link": "ourteachers" 
+    },
+    {
+      "id": 4,
+      "name": "community",
+      "link": "community"
+    }
+  ]
