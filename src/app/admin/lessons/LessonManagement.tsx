@@ -31,6 +31,15 @@ import { Direction } from "@/shared/enums/common.enum";
 import { LessonLevel, LessonStatus } from "@/shared/enums/lesson.enum";
 import { AllLessonAdminInquiry, LessonUpdate } from "@/shared/types/lesson";
 import { serverApi } from "@/shared/lib/config";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 export default function LessonManagement() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -38,6 +47,9 @@ export default function LessonManagement() {
   const allLessons = useLessonStore((state) => state.lessons);
   const getAllLessons = useLessonStore((state) => state.getLessonsByAdmin);
   const updateLesson = useLessonStore((state) => state.updateLessonByAdmin);
+  const total = useLessonStore((state) =>
+    state.metaCounter.length > 0 ? state.metaCounter[0].total : 0
+  );
   const [lessonInquiry, setLessonInquiry] = useState<AllLessonAdminInquiry>({
     page: 1,
     limit: 10,
@@ -64,15 +76,15 @@ export default function LessonManagement() {
   }, [searchQuery]);
 
   const lessonStatusHandler = async (value: any) => {
-    const updateInquiry = {
-      ...lessonInquiry,
+    setLessonInquiry((prev) => ({
+      ...prev,
       page: 1,
       search: {
-        ...lessonInquiry?.search,
+        ...prev.search,
         lessonStatus: value === "ALL" ? undefined : value,
+        lessonLevel: prev.search?.lessonLevel,
       },
-    };
-    await getAllLessons(updateInquiry);
+    }));
   };
 
   const LessonLevelChangeHandler = (value: any) => {
@@ -82,6 +94,7 @@ export default function LessonManagement() {
       search: {
         ...prev.search,
         lessonLevel: value === "ALL" ? undefined : value,
+        lessonStatus: prev.search?.lessonStatus,
       },
     }));
   };
@@ -99,6 +112,15 @@ export default function LessonManagement() {
     }
     await getAllLessons(lessonInquiry);
   };
+
+  const handlePageChange = (newPage: number) => {
+    setLessonInquiry((prev) => ({
+      ...prev,
+      page: newPage,
+    }));
+  };
+
+  const totalPages = Math.ceil(total / lessonInquiry.limit);
 
   return (
     <div className="container mx-auto py-6">
@@ -325,6 +347,53 @@ export default function LessonManagement() {
           </TableBody>
         </Table>
       </div>
+      {totalPages > 1 && (
+            <div className="my-10">
+              <Pagination>
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (lessonInquiry.page > 1) {
+                          handlePageChange(lessonInquiry.page - 1);
+                        }
+                      }}
+                    />
+                  </PaginationItem>
+                  {[...Array(totalPages)].map((_, i) => (
+                    <PaginationItem key={i}>
+                      <PaginationLink
+                        className="hidden md:flex"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handlePageChange(i + 1);
+                        }}
+                        isActive={lessonInquiry.page === i + 1}
+                      >
+                        {i + 1}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  <PaginationItem>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (lessonInquiry.page < totalPages) {
+                          handlePageChange(lessonInquiry.page + 1);
+                        }
+                      }}
+                    />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </div>
+          )}
     </div>
   );
 }

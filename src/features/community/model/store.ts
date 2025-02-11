@@ -27,7 +27,7 @@ interface BoardArticles {
   likeTargetArticle: (id: string, likeRefId: string) => Promise<void>;
   getArticlesByAdmin: (input: AllBoardArticleAdminInquiry) => Promise<void>;
   updateArticleByAdmin: (input: Partial<BoardArticleUpdate>) => Promise<void>;
-  deleteArticleByAdmin: (id: string) => Promise<void>;
+  removeArticleByAdmin: (id: string) => Promise<void>;
 }
 
 export const useArticleStore = create<BoardArticles>()(
@@ -160,9 +160,9 @@ export const useArticleStore = create<BoardArticles>()(
         if (input.articleImage) {
           formData.append("articleImage", input.articleImage || "");
         }
-       
+
         const storedData = localStorage.getItem("member-store");
-        if(!storedData) {
+        if (!storedData) {
           throw new Error("No stored member data found.");
         }
         const parsedData = JSON.parse(storedData);
@@ -246,13 +246,19 @@ export const useArticleStore = create<BoardArticles>()(
         }
         const result = await axios.get(url, {
           params: {
-              page: input.page,
-              limit: input.limit,
-              sort: input?.sort,
-              direction: input?.direction,
-              ...(input.search?.text ? { "search[text]": input.search.text } : {}),
-              ...(input.search?.articleStatus ? { "search[articleStatus]": input.search.articleStatus } : {}),
-              ...(input.search?.articleCategory ? { "search[articleCategory]": input.search.articleCategory } : {}),
+            page: input.page,
+            limit: input.limit,
+            sort: input?.sort,
+            direction: input?.direction,
+            ...(input.search?.text
+              ? { "search[text]": input.search.text }
+              : {}),
+            ...(input.search?.articleStatus
+              ? { "search[articleStatus]": input.search.articleStatus }
+              : {}),
+            ...(input.search?.articleCategory
+              ? { "search[articleCategory]": input.search.articleCategory }
+              : {}),
           },
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -307,13 +313,32 @@ export const useArticleStore = create<BoardArticles>()(
         throw error;
       }
     },
-    deleteArticleByAdmin: async (id: string) => {
+    removeArticleByAdmin: async (id: string) => {
       try {
-        const url = getApiUrl(`/article/deleteArticleByAdmin/${id}`);
-        const result = await axios.delete<BoardArticle>(url);
+        const url = getApiUrl(`/article/removeBoardArticleAdmin`);
+        const storedData = localStorage.getItem("member-store");
+        if (!storedData) {
+          throw new Error("No stored member data found.");
+        }
+        const parsedData = JSON.parse(storedData);
+        const { accessToken } = parsedData.state;
+        if (!accessToken) {
+          throw new Error("Access token is missing.");
+        }
+        const result = await axios.post<BoardArticle>(
+          url,
+          {
+            _id: id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+            withCredentials: true,
+          }
+        );
         const data = result.data;
         console.log("Fetched articles:", data);
-        set({ newArticle: data });
       } catch (error) {
         console.log("Error fetching articles:", error);
         if (axios.isAxiosError(error)) {

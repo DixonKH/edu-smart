@@ -115,7 +115,7 @@ export default function UserManagement() {
         prevUsers.map((user) =>
           user._id === userId ? { ...user, memberStatus: newState } : user
         )
-      );
+      ); 
 
       await updateMemberByAdmin(updatedUserData);
       await getAllMembers(allUsers);

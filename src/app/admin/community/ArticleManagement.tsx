@@ -37,6 +37,15 @@ import {
   BoardArticleCategory,
   BoardArticleStatus,
 } from "@/shared/enums/article.enum";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
 export default function ArticleManagement() {
   const [active, setActive] = useState("all");
@@ -47,6 +56,12 @@ export default function ArticleManagement() {
   );
   const getArticlesByAdmin = useArticleStore(
     (state) => state.getArticlesByAdmin
+  );
+  const removeArticleByAdmin = useArticleStore(
+    (state) => state.removeArticleByAdmin
+  );
+  const total = useArticleStore((state) =>
+    state.metaCounter.length > 0 ? state.metaCounter[0].total : 0
   );
   const [articleQuery, setArticleQuery] = useState<AllBoardArticleAdminInquiry>(
     {
@@ -76,15 +91,15 @@ export default function ArticleManagement() {
   }, [searchQuery]);
 
   const articleStatusHandler = async (value: any) => {
-    const updateInquiry = {
-      ...articleQuery,
+    setArticleQuery((prev) => ({
+      ...prev,
       page: 1,
       search: {
-        ...articleQuery?.search,
+        ...prev.search,
         articleStatus: value === "ALL" ? undefined : value,
+        articleCategory: prev.search?.articleCategory,
       },
-    };
-    await getArticlesByAdmin(updateInquiry);
+    }));
   };
 
   const articleCategoryHandler = (value: any) => {
@@ -94,6 +109,7 @@ export default function ArticleManagement() {
       search: {
         ...prev.search,
         articleCategory: value === "ALL" ? undefined : value,
+        articleStatus: prev.search?.articleStatus,
       },
     }));
   };
@@ -108,11 +124,24 @@ export default function ArticleManagement() {
         ...updatedArticle,
         articleStatus: newState,
       };
-      console.log("Updated article data:", updatedArticleData);
-       await updateArticleByAdmin(updatedArticleData);
+      await updateArticleByAdmin(updatedArticleData);
     }
     await getArticlesByAdmin(articleQuery);
   };
+
+  const handleRemoveArticle = async (articleId: string) => {
+    await removeArticleByAdmin(articleId);
+    await getArticlesByAdmin(articleQuery);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    setArticleQuery((prev) => ({
+      ...prev,
+      page: newPage,
+    }));
+  };
+
+  const totalPages = Math.ceil(total / articleQuery.limit);
 
   return (
     <div className="container mx-auto py-6">
@@ -186,12 +215,15 @@ export default function ArticleManagement() {
                 setArticleQuery((prev) => ({
                   ...prev,
                   search: { text: searchQuery },
-                }))
+                }));
               }
             }}
           />
         </div>
-        <Select defaultValue={articleQuery?.search?.articleCategory} onValueChange={articleCategoryHandler}>
+        <Select
+          defaultValue={articleQuery?.search?.articleCategory}
+          onValueChange={articleCategoryHandler}
+        >
           <SelectTrigger className="w-42 h-12 text-lg">
             <SelectValue placeholder="All Categories" />
           </SelectTrigger>
@@ -202,7 +234,10 @@ export default function ArticleManagement() {
             <SelectItem value={BoardArticleCategory.FREE} className="text-lg">
               Free
             </SelectItem>
-            <SelectItem value={BoardArticleCategory.RECOMMEND} className="text-lg">
+            <SelectItem
+              value={BoardArticleCategory.RECOMMEND}
+              className="text-lg"
+            >
               Recommended
             </SelectItem>
             <SelectItem value={BoardArticleCategory.NEWS} className="text-lg">
@@ -337,12 +372,69 @@ export default function ArticleManagement() {
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </TableCell>
+                  <TableCell className="text-right">
+                    {active === BoardArticleStatus.DELETE && (
+                      <Button
+                        onClick={() => handleRemoveArticle(article._id)}
+                        className="text-lg"
+                      >
+                        Remove
+                      </Button>
+                    )}
+                  </TableCell>
                 </TableRow>
               );
             })}
           </TableBody>
         </Table>
       </div>
+      {totalPages > 1 && (
+        <div className="my-10">
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (articleQuery.page > 1) {
+                      handlePageChange(articleQuery.page - 1);
+                    }
+                  }}
+                />
+              </PaginationItem>
+              {[...Array(totalPages)].map((_, i) => (
+                <PaginationItem key={i}>
+                  <PaginationLink
+                    className="hidden md:flex"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageChange(i + 1);
+                    }}
+                    isActive={articleQuery.page === i + 1}
+                  >
+                    {i + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (articleQuery.page < totalPages) {
+                      handlePageChange(articleQuery.page + 1);
+                    }
+                  }}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
+      )}
     </div>
   );
 }
