@@ -167,7 +167,7 @@ const MyPage = () => {
                       className=" lg:w-64 md:w-28 w-20 h-24 md:h-28 rounded-2xl border border-green px-3 py-2 flex flex-col lg:flex-row md:text-xl items-center justify-center gap-2 hover:bg-green hover:text-white  lg:rounded-lg group"
                     >
                       <MdArticle className="md:text-3xl lg:text-2xl text-green group-hover:text-white transition-colors" />
-                      Articles
+                      My Articles
                     </button>
                   </CarouselItem>
                   <CarouselItem className="mx-auto basis-1/7 text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2">
@@ -176,7 +176,7 @@ const MyPage = () => {
                       className=" lg:w-64 md:w-28 w-20 rounded-2xl border border-green px-3 py-2 flex flex-col lg:flex-row md:text-xl items-center justify-center gap-2 hover:bg-green hover:text-white  lg:rounded-lg group"
                     >
                       <PiArticleNyTimes className="md:text-3xl lg:text-2xl text-2xl text-green group-hover:text-white transition-colors" />
-                      Write Articles
+                      Write Article
                     </button>
                   </CarouselItem>
                   <CarouselItem className="mx-auto basis-1/7 text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2">
@@ -247,7 +247,7 @@ const MyPage = () => {
                   className="w-64 h-12 border border-green px-3 py-2 flex text-xl items-center justify-center gap-2 hover:bg-green hover:text-white rounded-lg group"
                 >
                   <MdArticle className="text-3xl lg:text-2xl text-green group-hover:text-white transition-colors" />
-                  Articles
+                  My Articles
                 </button>
               </div>
               <div className="mx-auto text-center sm:py-1 py-1 flex items-center justify-center  lg:p-1 md:p-2   ">
@@ -256,7 +256,7 @@ const MyPage = () => {
                   className="w-64 h-12 border border-green px-3 py-2 flex text-xl items-center justify-center gap-2 hover:bg-green hover:text-white rounded-lg group"
                 >
                   <PiArticleNyTimes className="text-3xl lg:text-2xl text-green group-hover:text-white transition-colors" />
-                  Write Articles
+                  Write Article
                 </button>
               </div>
 

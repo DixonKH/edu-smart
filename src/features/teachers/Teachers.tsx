@@ -175,7 +175,11 @@ export default function Teachers() {
       )}
       {total >= 1 && (
         <div className="text-center text-md text-lg mb-8">
-          Total {total} teachers available
+          Total{" "}
+            <span className="bg-slate-400 text-white font-medium p-1 px-2 rounded-full">
+              {total}
+            </span>{" "}
+          teachers available
         </div>
       )}
       {totalPages > 1 && (
