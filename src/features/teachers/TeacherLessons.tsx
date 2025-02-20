@@ -1,5 +1,4 @@
 import { Lesson } from '@/shared/types/lesson';
-import React from 'react';
 import { CiHeart } from 'react-icons/ci';
 import { FaBookReader } from 'react-icons/fa';
 import { IoMdEye, IoMdHeart } from 'react-icons/io';

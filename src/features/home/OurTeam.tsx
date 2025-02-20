@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import {
   Carousel,
@@ -16,9 +16,6 @@ const OurTeam = () => {
   const { t } = useTranslation();
   const teachers = useMemberStore((state) => state.members);
   const getTeachers = useMemberStore((state) => state.getTeachers);
-  const total = useMemberStore((state) =>
-    state.metaCounter.length > 0 ? state.metaCounter[0].total : 0
-  );
   const [teachersData, setTeachersData] = useState<MemberInquery>({
     page: 1,
     limit: 99,

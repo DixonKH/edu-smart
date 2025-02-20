@@ -1,10 +1,7 @@
-import React from 'react'
 import { FaStar } from 'react-icons/fa6';
 import { useTranslation } from 'react-i18next';
 
-type Props = {}
-
-const Line = (props: Props) => {
+const Line = () => {
   const { t } = useTranslation();
   return (
     <div>

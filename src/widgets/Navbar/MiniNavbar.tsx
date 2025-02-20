@@ -1,4 +1,3 @@
-import React from 'react'
 import { FaInstagramSquare } from 'react-icons/fa'
 import { FaFacebook, FaMessage, FaPinterest, FaTwitter, FaYoutube } from 'react-icons/fa6'
 import { IoIosCall } from 'react-icons/io'

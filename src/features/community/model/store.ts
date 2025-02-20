@@ -31,7 +31,7 @@ interface BoardArticles {
 }
 
 export const useArticleStore = create<BoardArticles>()(
-  devtools((set, get) => ({
+  devtools((set) => ({
     articles: [],
     newArticle: null,
     metaCounter: [],

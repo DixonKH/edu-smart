@@ -7,8 +7,6 @@ import graphic from "../../../public/images/graph.png";
 
 interface MainHeaderImageProps {}
 
-type Props = {};
-
 const Header: React.FC<MainHeaderImageProps> = ({}) => {
   const { t } = useTranslation();
   return (

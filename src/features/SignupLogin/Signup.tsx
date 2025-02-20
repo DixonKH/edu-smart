@@ -14,28 +14,28 @@ import {
 import * as Yup from "yup";
 import { getApiUrl } from "@/shared/lib/config";
 
-const validate = (values: MemberInput) => {
-  const errors: Partial<MemberInput> = {};
+// const validate = (values: MemberInput) => {
+//   const errors: Partial<MemberInput> = {};
 
-  if (!values.memberNick) {
-    errors.memberNick = "Required";
-  } else if (values.memberNick.length > 15) {
-    errors.memberNick = "Must be 15 characters or less";
-  }
+//   if (!values.memberNick) {
+//     errors.memberNick = "Required";
+//   } else if (values.memberNick.length > 15) {
+//     errors.memberNick = "Must be 15 characters or less";
+//   }
 
-  if (!values.memberPassword) {
-    errors.memberPassword = "Required";
-  } else if (values.memberPassword.length > 20) {
-    errors.memberPassword = "Must be 20 characters or less";
-  }
+//   if (!values.memberPassword) {
+//     errors.memberPassword = "Required";
+//   } else if (values.memberPassword.length > 20) {
+//     errors.memberPassword = "Must be 20 characters or less";
+//   }
 
-  if (!values.memberPhone) {
-    errors.memberPhone = "Required";
-  } else if (values.memberPhone.length > 20) {
-    errors.memberPhone = "Must be 20 characters or less";
-  }
-  return errors;
-};
+//   if (!values.memberPhone) {
+//     errors.memberPhone = "Required";
+//   } else if (values.memberPhone.length > 20) {
+//     errors.memberPhone = "Must be 20 characters or less";
+//   }
+//   return errors;
+// };
 const Signup = () => {
   const signup = useMemberStore((state) => state.signUp);
   const navigate = useNavigate();

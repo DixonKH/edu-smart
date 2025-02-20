@@ -1,9 +1,8 @@
+import React from "react";
 import Teacher from "/public/images/teacher.png";
 import { useTranslation } from "react-i18next";
 
-type Props = {};
-
-const AboutUs = (props: Props) => {
+const AboutUs = () => {
   const { t } = useTranslation();
   return (
     <div className="md:container md:px-10 sm:px-5 my-32">

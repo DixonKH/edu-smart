@@ -41,7 +41,7 @@ const testimonalData = [
   },
 ];
 
-const Testimonial = (props: Props) => {
+const Testimonial = () => {
   const { t } = useTranslation();
   return (
     <div className="lg:container">

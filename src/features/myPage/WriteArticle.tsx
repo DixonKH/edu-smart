@@ -7,7 +7,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import DOMPurify from "dompurify";
 import { BoardArticleCategory } from "@/shared/enums/article.enum";
 import { BoardArticleInput } from "@/shared/types/article";
 import { useArticleStore } from "../community/model/store";

@@ -45,17 +45,17 @@ export default function LessonOwner(props: LessonOwnerProps) {
         </p>
         <div className="w-full flex flex-row items-center justify-center gap-6 mt-3">
           <p>
-            <a href={teacher?.memberLinks}>
+            <a href={teacher?.memberLinks?.instagram}>
               <FaTelegram className="text-green size-6 lg:size-8 hover:text-yellow" />
             </a>
           </p>
           <p>
-            <a href="https://www.instagram.com/example">
+            <a href={teacher?.memberLinks?.instagram}>
               <FaInstagram className="text-green size-6 lg:size-8 hover:text-yellow" />
             </a>
           </p>
           <p>
-            <a href="https://www.youtube.com/example">
+            <a href={teacher?.memberLinks?.youtube}>
               <FaYoutube className="text-green size-6 lg:size-8 hover:text-yellow" />
             </a>
           </p>

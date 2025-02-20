@@ -1,7 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { IoIosArrowRoundForward } from "react-icons/io";
-import Teaching from "/public/images/Teaching.jpg";
-import { MdGrade } from "react-icons/md";
+import { useEffect, useState } from "react";
 import {
   Carousel,
   CarouselContent,

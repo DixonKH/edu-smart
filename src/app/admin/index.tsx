@@ -4,7 +4,7 @@ import Lessons from "./lessons/Lessons";
 import Articles from "./community/Articles";
 import { useMemberStore } from "@/features/teachers/model/store";
 import { serverApi } from "@/shared/lib/config";
-import { Navigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function AdminPage() {
   const [showComponent, setShowComponent] = useState(0);

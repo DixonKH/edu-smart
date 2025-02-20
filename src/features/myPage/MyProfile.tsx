@@ -19,9 +19,7 @@ import { MemberCategory, MemberType } from "@/shared/enums/member.enum";
 import { T } from "@/shared/types/common";
 import axios from "axios";
 
-type Props = {};
-
-const MyProfile = (props: Props) => {
+const MyProfile = () => {
   const { t } = useTranslation();
   const currentUser = useMemberStore((state) => state.currentMember);
   const updateMember = useMemberStore((state) => state.updateMember);

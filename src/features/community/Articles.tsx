@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaComments } from "react-icons/fa";
 import { BoardArticle, BoardArticleInquiry } from "@/shared/types/article";
 import { IoEye } from "react-icons/io5";
@@ -13,7 +13,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useMemberStore } from "../teachers/model/store";
 
 type ArticleProps = {
   articlesData: BoardArticle[];
@@ -24,8 +23,6 @@ type ArticleProps = {
 };
 
 const Articles = (props: ArticleProps) => {
-  const navigate = useNavigate();
-  const currentMember = useMemberStore((state) => state.currentMember);
   const { articlesData, articles, total, totalPages, handlePageChange } = props;
 
   return (

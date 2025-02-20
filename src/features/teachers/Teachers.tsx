@@ -6,7 +6,7 @@ import { useMemberStore } from "./model/store";
 import { MemberInquery } from "@/shared/types/member";
 import { Direction } from "@/shared/enums/common.enum";
 import userImgBg from "/public/images/user-bg.jpg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { serverApi } from "@/shared/lib/config";
 import {
   Select,

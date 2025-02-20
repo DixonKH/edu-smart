@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { MdCastForEducation } from "react-icons/md";
 import { Navigate, Outlet } from "react-router";
 import person1 from "../../../public/images/person1.jpg";

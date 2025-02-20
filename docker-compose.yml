@@ -1,0 +1,22 @@
+
+services:
+  edu-smart-react:
+    container_name: edu-smart-react
+    restart: always
+    image: node:20.10.0
+    environment:
+      - PORT=4006
+    ports:
+      - "4006:4006"
+    volumes:
+      - .:/usr/src/edusmart
+    working_dir: /usr/src/edusmart
+
+    networks:
+      - client-network
+    
+    command: bash -c "yarn && yarn run build && yarn run preview --host --port 4006"
+    
+networks:
+  client-network:
+    driver: bridge

@@ -5,8 +5,6 @@ import Graph from "../../../public/images/graph.png";
 
 interface MainHeaderImageProps {}
 
-type Props = {};
-
 const Header: React.FC<MainHeaderImageProps> = ({}) => {
   return (
     <div>

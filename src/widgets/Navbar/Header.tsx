@@ -7,11 +7,7 @@ interface MainHeaderImageProps {
   header: Number;
 }
 
-type Props = {
-  header: Number;
-};
-
-const Header: React.FC<MainHeaderImageProps> = ({ header }) => {
+const Header: React.FC<MainHeaderImageProps> = () => {
   
 
   return (

@@ -4,9 +4,8 @@ import { FaBagShopping } from "react-icons/fa6";
 import { BsAwardFill } from "react-icons/bs";
 import Line from "../../features/home/Line";
 import { useTranslation } from "react-i18next";
-import lessonVideo from "/public/videos/lesson1.mp4";
 
-const WhyChooseUs = () => {
+const WhyChooseUs = () => { 
   const { t } = useTranslation();
   return (
     <div className="">
@@ -25,7 +24,7 @@ const WhyChooseUs = () => {
           <div className="w-full md:flex base:flex justify-center items-center">
             <div className="realtive w-full flex items-end justify-center p-2">
               <video controls  autoPlay={true} loop muted={true} className="rounded-xl border w-full">
-                <source src={lessonVideo} type="video/mp4" />
+                <source src="/videos/lesson1.mp4" type="video/mp4" />
               </video>
               <div className="absolute sm:hidden hidden base:hidden md:hidden lg:block gap-2 mb-3">
                 <div className="md:flex items-center justify-between gap-2">

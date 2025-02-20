@@ -1,4 +1,3 @@
-import React from "react";
 import student from "/images/student.png";
 import { FaBook } from "react-icons/fa6";
 import graphic from "/public/images/graph.png";

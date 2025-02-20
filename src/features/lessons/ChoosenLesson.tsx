@@ -1,7 +1,6 @@
 import { IoMdEye, IoMdHeart } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import { BsPatchExclamationFill } from "react-icons/bs";
-import video from "/videos/lesson.mp4";
 import { IoReaderOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
 import { FaBookReader } from "react-icons/fa";

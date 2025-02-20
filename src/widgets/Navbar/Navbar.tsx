@@ -21,9 +21,7 @@ import { LANGUAGES } from "@/shared/constants";
 import { useMemberStore } from "@/features/teachers/model/store";
 import { serverApi } from "@/shared/lib/config";
 
-type Props = {};
-
-const Navbar = (props: Props) => {
+const Navbar = () => {
   const currentUser = useMemberStore((state) => state.currentMember);
   const logout = useMemberStore((state) => state.logout);
   const [dropdownVisible, setDropdownVisible] = useState(false);

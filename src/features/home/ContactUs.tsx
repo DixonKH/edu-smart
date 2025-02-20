@@ -1,12 +1,9 @@
 import { FaInstagramSquare } from "react-icons/fa";
 import {
   FaFacebook,
-  FaPinterest,
-  FaTwitter,
   FaYoutube,
   FaTelegram,
 } from "react-icons/fa6";
-import { IoIosArrowRoundForward } from "react-icons/io";
 import Line from "./Line";
 import { useTranslation } from "react-i18next";
 

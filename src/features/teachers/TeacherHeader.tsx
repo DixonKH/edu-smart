@@ -1,4 +1,3 @@
-import React from "react";
 import Line from "../../features/home/Line";
 import { FaBook } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";

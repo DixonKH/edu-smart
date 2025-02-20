@@ -1,11 +1,8 @@
-import React from "react";
 import { IoSend } from "react-icons/io5";
 import { FaEnvelope } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
-type Props = {};
-
-const OurNewsletter = (props: Props) => {
+const OurNewsletter = () => {
   const { t } = useTranslation();
   return (
     <div className="lg:container md:px-10 sm:px-5 px-1 mt-20">

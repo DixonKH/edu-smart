@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { IoEye } from "react-icons/io5";
 import { CiHeart } from "react-icons/ci";
 import { IoMdHeart } from "react-icons/io";
