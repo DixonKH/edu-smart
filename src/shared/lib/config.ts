@@ -1,4 +1,4 @@
-export const serverApi: string = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+export const serverApi: string = import.meta.env.VITE_API_URL || 'http://localhost:3007';
 
 export const getApiUrl = (path: string): string => {
    return `${serverApi}${path.startsWith("/") ? path : `/${path}`}`;
