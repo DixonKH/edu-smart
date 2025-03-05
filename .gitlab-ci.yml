@@ -1,9 +1,8 @@
-image: node:18 # Use the latest stable Node.js version
+image: node:22.11.0 # Use the latest stable Node.js version
 
 stages:
   - install
   - build
-  - test
   - dockerize
   - deploy
 
@@ -17,15 +16,7 @@ cache:
 install_dependencies:
   stage: install
   script:
-    - npm ci # Ensures clean install of dependencies
-  only:
-    - main
-
-# Run tests (Optional, include if you have tests)
-run_tests:
-  stage: test
-  script:
-    - npm test
+    - yarn install # Ensures clean install of dependencies
   only:
     - main
 
@@ -33,7 +24,7 @@ run_tests:
 build_project:
   stage: build
   script:
-    - npm run build
+    - yarn run build
   artifacts:
     paths:
       - dist/ # Store build output as an artifact
@@ -49,8 +40,8 @@ docker_build_push:
   variables:
     IMAGE_NAME: "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
   script:
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
-    - docker build -t $IMAGE_NAME .
+    - echo "$@blackstar9$" | docker login -u "$DixonKH" --password-stdin "$CI_REGISTRY"
+    - docker build -t $IMAGE_NAME -f Dockerfile.
     - docker push $IMAGE_NAME
   only:
     - main
@@ -63,10 +54,10 @@ deploy_to_hostinger:
     - apk add --no-cache openssh-client
   script:
     - ssh -o StrictHostKeyChecking=no $HOSTINGER_USER@$HOSTINGER_IP "
-      docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG &&
-      docker stop my_app || true &&
-      docker rm my_app || true &&
-      docker run -d --name my_app -p 3000:3000 $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+     cd /path/to/your/project &&
+      git pull &&
+      docker-compose down &&
+      docker-compose up --build -d
       "
   only:
     - main

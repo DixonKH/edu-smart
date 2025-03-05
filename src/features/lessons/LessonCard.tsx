@@ -27,7 +27,7 @@ export default function LessonCard(props: any) {
               {lesson?.lessonVideo ? (
                 <video
                   key={lesson._id}
-                  className="absolute top-0 left-0 rounded-md w-full h-full"
+                  className="absolute top-0 left-0 rounded-md w-full h-full pointer-events-none"
                   controls
                 >
                   <source src={videoPath} type="video/mp4" />
