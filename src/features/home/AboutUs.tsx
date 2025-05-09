@@ -22,7 +22,7 @@ const AboutUs = () => {
             </p>
             <div className="flex justify-center items-center md:gap-10 gap-8 lg:p-4 md:p-3 sm:p-2 p-2">
               <div className="flex flex-col justify-center items-center">
-                <p className="lg:text-5xl md:text-4xl text-3xl md:p-2 p-1 text-orange font-bold">
+                <p className="lg:text-5xl md:text-4xl text-3xl md:p-2 p-1 text-green font-bold">
                   1000+
                 </p>
                 <p className="md:p-2 text-xs md:text-lg lg:text-xl font-bold text-orange">
