@@ -29,7 +29,7 @@ build_project:
       - dist/ # Store build output as an artifact
 
 # Deploy to GitLab Pages
-deploy: 
+pages: 
   stage: deploy
   script:
     - mv dist public # GitLab Pages expects the output to be in a folder named 'public'
