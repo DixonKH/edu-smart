@@ -6,14 +6,12 @@ stages:
 # Deploy to GitLab Pages
 deploy_production:
   stage: deploy
-  before_script:
-    - apt-get update && apt-get install -y openssh-client
-    - mkdir -p ~/.ssh
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-    - chmod 600 ~/.ssh/id_rsa
-    - ssh-keyscan -p 22 156.67.219.177 >> ~/.ssh/known_hosts
   script:
-    - ssh -p 22 root@156.67.219.177 "cd /home/edusmart-project/edu-smart && git pull origin main && ./deploy.sh"
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh -o StrictHostKeyChecking=no -p 22 root@156.67.219.177 \
+        "cd /home/edusmart-project/edu-smart && git pull origin main && ./deploy.sh"
   only:
     - main
 
