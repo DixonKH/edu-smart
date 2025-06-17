@@ -25,7 +25,7 @@ const AboutUs = () => {
                 <p className="lg:text-5xl md:text-4xl text-3xl md:p-2 p-1 text-green font-bold">
                   1000+
                 </p>
-                <p className="md:p-2 text-xs md:text-lg lg:text-xl font-bold text-orange">
+                <p className="md:p-2 text-xs md:text-lg lg:text-xl font-bold text-green">
                   {" "}
                   {t("about_us_graduate")}
                 </p>
