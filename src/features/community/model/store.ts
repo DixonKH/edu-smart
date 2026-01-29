@@ -22,7 +22,7 @@ interface BoardArticles {
   getArticles: (input: BoardArticleInquiry) => Promise<void>;
   updateArticle: (
     id: string,
-    input: Partial<BoardArticleUpdate>
+    input: Partial<BoardArticleUpdate>,
   ) => Promise<void>;
   likeTargetArticle: (id: string, likeRefId: string) => Promise<void>;
   getArticlesByAdmin: (input: AllBoardArticleAdminInquiry) => Promise<void>;
@@ -43,7 +43,8 @@ export const useArticleStore = create<BoardArticles>()(
         formData.append("articleTitle", input.articleTitle);
         formData.append("articleContent", input.articleContent);
         formData.append("articleCategory", input.articleCategory);
-        if (input.articleImage) {
+
+        if (input.articleImage instanceof File) {
           formData.append("articleImage", input.articleImage);
         }
         const storedData = localStorage.getItem("member-store");
@@ -72,7 +73,7 @@ export const useArticleStore = create<BoardArticles>()(
         if (axios.isAxiosError(error)) {
           console.error(
             "AxiosError details:",
-            error.response?.data || error.message
+            error.response?.data || error.message,
           );
         }
         throw error;
@@ -104,7 +105,7 @@ export const useArticleStore = create<BoardArticles>()(
         if (axios.isAxiosError(error)) {
           console.error(
             "AxiosError details:",
-            error.response?.data || error.message
+            error.response?.data || error.message,
           );
         }
         throw error;
@@ -142,7 +143,7 @@ export const useArticleStore = create<BoardArticles>()(
         if (axios.isAxiosError(error)) {
           console.error(
             "AxiosError details:",
-            error.response?.data || error.message
+            error.response?.data || error.message,
           );
         }
         throw error;
@@ -157,8 +158,8 @@ export const useArticleStore = create<BoardArticles>()(
         formData.append("articleTitle", input.articleTitle || "");
         formData.append("articleContent", input.articleContent || "");
         formData.append("articleCategory", input.articleCategory || "");
-        if (input.articleImage) {
-          formData.append("articleImage", input.articleImage || "");
+        if (input.articleImage instanceof File) {
+          formData.append("articleImage", input.articleImage);
         }
 
         const storedData = localStorage.getItem("member-store");
@@ -186,7 +187,7 @@ export const useArticleStore = create<BoardArticles>()(
         if (axios.isAxiosError(error)) {
           console.error(
             "AxiosError details:",
-            error.response?.data || error.message
+            error.response?.data || error.message,
           );
         }
         throw error;
@@ -216,7 +217,7 @@ export const useArticleStore = create<BoardArticles>()(
               Authorization: `Bearer ${accessToken}`,
             },
             withCredentials: true,
-          }
+          },
         );
         const data = result.data;
         console.log("Fetched articles:", data);
@@ -226,7 +227,7 @@ export const useArticleStore = create<BoardArticles>()(
         if (axios.isAxiosError(error)) {
           console.error(
             "AxiosError details:",
-            error.response?.data || error.message
+            error.response?.data || error.message,
           );
         }
         throw error;
@@ -274,7 +275,7 @@ export const useArticleStore = create<BoardArticles>()(
         if (axios.isAxiosError(error)) {
           console.error(
             "AxiosError details:",
-            error.response?.data || error.message
+            error.response?.data || error.message,
           );
         }
         throw error;
@@ -307,7 +308,7 @@ export const useArticleStore = create<BoardArticles>()(
         if (axios.isAxiosError(error)) {
           console.error(
             "AxiosError details:",
-            error.response?.data || error.message
+            error.response?.data || error.message,
           );
         }
         throw error;
@@ -335,7 +336,7 @@ export const useArticleStore = create<BoardArticles>()(
               Authorization: `Bearer ${accessToken}`,
             },
             withCredentials: true,
-          }
+          },
         );
         const data = result.data;
         console.log("Fetched articles:", data);
@@ -344,13 +345,13 @@ export const useArticleStore = create<BoardArticles>()(
         if (axios.isAxiosError(error)) {
           console.error(
             "AxiosError details:",
-            error.response?.data || error.message
+            error.response?.data || error.message,
           );
         }
         throw error;
       }
     },
-  }))
+  })),
 );
 
 // Expose the store in the browser for testing

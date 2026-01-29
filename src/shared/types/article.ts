@@ -74,5 +74,5 @@ export interface BoardArticleUpdate {
     articleStatus?: BoardArticleStatus;
     articleTitle?: string;
     articleContent?: string;
-    articleImage?: string;
+    articleImage?: string | File;
 }

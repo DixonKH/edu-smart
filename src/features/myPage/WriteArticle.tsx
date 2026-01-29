@@ -8,7 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { BoardArticleCategory } from "@/shared/enums/article.enum";
-import { BoardArticleInput } from "@/shared/types/article";
+import { BoardArticleInput, BoardArticleUpdate } from "@/shared/types/article";
 import { useArticleStore } from "../community/model/store";
 import axios from "axios";
 import { Messages, serverApi } from "@/shared/lib/config";
@@ -25,17 +25,16 @@ import "froala-editor/js/plugins/image.min.js";
 import "froala-editor/css/froala_editor.pkgd.min.css";
 import "froala-editor/css/froala_style.min.css";
 import "froala-editor/js/plugins/emoticons.min.js"; // Emoticons plugin
-import "froala-editor/css/plugins/emoticons.min.css"; 
+import "froala-editor/css/plugins/emoticons.min.css";
 import "froala-editor/js/plugins/fullscreen.min.js"; // Fullscreen plugin
 import "froala-editor/js/plugins/print.min.js"; // Print plugin
 import "froala-editor/js/plugins/word_paste.min.js"; // Word Paste plugin
 import "froala-editor/css/plugins/fullscreen.min.css"; // Fullscreen CSS
 
-
 export default function WriteArticle() {
   const location = useLocation();
-   const navigate = useNavigate();
-   const articleToEdit = location.state ? location.state?.article : null;
+  const navigate = useNavigate();
+  const articleToEdit = location.state ? location.state?.article : null;
   const currentMember = useMemberStore((state) => state.currentMember);
   const createArticle = useArticleStore((state) => state.createArticle);
   const updateArticle = useArticleStore((state) => state.updateArticle);
@@ -48,6 +47,11 @@ export default function WriteArticle() {
     memberId: "",
   });
 
+  const resolveImageUrl = (url: string) => {
+    if (!url) return null;
+    return url.startsWith("http") ? url : `${serverApi}/${url}`;
+  };
+
   useEffect(() => {
     if (articleToEdit) {
       setArticle({
@@ -59,8 +63,9 @@ export default function WriteArticle() {
         articleImage: articleToEdit.articleImage || "",
         memberId: articleToEdit.memberId || "",
       });
+
       if (articleToEdit.articleImage) {
-        setImagePreview(`${serverApi}/${articleToEdit.articleImage}`);
+        setImagePreview(resolveImageUrl(articleToEdit.articleImage));
       }
     }
   }, [articleToEdit]);
@@ -88,36 +93,6 @@ export default function WriteArticle() {
     }));
   };
 
-  const uploadImage = async (image: File): Promise<string | null> => {
-    if (!image) {
-      console.error("No image file selected");
-      return null;
-    }
-    try {
-      const formData = new FormData();
-      formData.append("articleImage", image);
-
-      const response = await axios.post(
-        `${serverApi}/article/createBoardArticle`,
-        formData
-      );
-
-      const result = response.data.articleImage;
-      console.log("Image uploaded successfully:", result);
-
-      setArticle((prev) => {
-        return {
-          ...prev,
-          articleImage: "",
-        };
-      });
-      return result; // Adjust based on API response
-    } catch (err) {
-      console.error("Image upload failed in uploadImage:", err);
-      return null;
-    }
-  };
-
   const submitArticle = async () => {
     try {
       if (
@@ -128,66 +103,41 @@ export default function WriteArticle() {
         throw new Error(Messages.error3);
       }
 
-      let uploadedImageUrl = null;
+      const memberId = currentMember?._id;
+      if (!memberId) throw new Error("Member not found");
 
-      const memberId = currentMember?._id || "";
-
-      if (article.articleImage && typeof article.articleImage !== "string") {
-        uploadedImageUrl = await uploadImage(article.articleImage); // Upload image
-      }
-      const articleData = {
-        ...article,
-        articleImage: uploadedImageUrl || article.articleImage, // Use the uploaded image URL if available
-      };
       if (articleToEdit) {
-        // Update article
         await updateArticle(memberId, {
-          ...articleData,
-          articleImage:
-            uploadedImageUrl || article.articleImage || articleToEdit.articleImage,
+          _id: articleToEdit._id,
+          articleTitle: article.articleTitle,
+          articleContent: article.articleContent,
+          articleCategory: article.articleCategory,
+          articleImage: article.articleImage, // string yoki File
         });
-        await sweetTopSmallSuccessAlert("Article successfully updated!", 800);
-        navigate(location.pathname, { replace: true });
+        await sweetTopSmallSuccessAlert("Article updated!", 800);
       } else {
-        // Create article
-        await createArticle(memberId, articleData);
-        await sweetTopSmallSuccessAlert("Article successfully submitted!", 800);
+        await createArticle(memberId, article);
+        await sweetTopSmallSuccessAlert("Article created!", 800);
       }
-      
-      setArticle({
-        articleCategory: BoardArticleCategory.NEWS || undefined,
-        articleTitle: "",
-        articleContent: "",
-        articleImage: "",
-        memberId: "",
-      });
 
-      const fileInput = document.getElementById(
-        "file-input"
-      ) as HTMLInputElement;
-      if (fileInput) fileInput.value = "";
-      setImagePreview(null);
+      navigate(-1);
     } catch (error) {
-      console.error("Error submitting article:", error);
-      sweetErrorHandling(error).then();
+      console.error(error);
+      sweetErrorHandling(error);
     }
   };
 
-  const handleImageSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      const selectedFile = event.target.files[0];
-      setArticle((prev) => ({
-        ...prev,
-        articleImage: selectedFile, // Store the file object
-      }));
+  const handleImageSelection = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files?.length) return;
 
-      // Generate image preview
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-      };
-      reader.readAsDataURL(selectedFile);
-    }
+    const file = e.target.files[0];
+
+    setArticle((prev) => ({
+      ...prev,
+      articleImage: file, // 🔥 File object
+    }));
+
+    setImagePreview(URL.createObjectURL(file));
   };
 
   return (
@@ -233,19 +183,19 @@ export default function WriteArticle() {
         <div className="my-2">
           {article.articleContent && (
             <Editor
-            tag="textarea"
-            model={article.articleContent || ""}
-            config={config}
-            onModelChange={handleEditorChange}
-          />
+              tag="textarea"
+              model={article.articleContent || ""}
+              config={config}
+              onModelChange={handleEditorChange}
+            />
           )}
-            {!article.articleContent && (
+          {!article.articleContent && (
             <Editor
-            tag="textarea"
-            model={article.articleContent || ""}
-            config={config}
-            onModelChange={handleEditorChange}
-          />
+              tag="textarea"
+              model={article.articleContent || ""}
+              config={config}
+              onModelChange={handleEditorChange}
+            />
           )}
         </div>
         <div className="my-3">
