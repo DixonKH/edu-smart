@@ -70,7 +70,7 @@ export interface MemberUpdate {
   memberFullName?: string;
   memberAddress?: string;
   memberDesc?: string;
-  memberImage?: string;
+  memberImage?: string | File;
   memberExperience?: string;
   memberLinks?: {
     telegram?: string;

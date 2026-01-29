@@ -3,7 +3,7 @@ import { IoEye } from "react-icons/io5";
 import { CiHeart } from "react-icons/ci";
 import { IoMdHeart } from "react-icons/io";
 import { FaComments } from "react-icons/fa";
-import { Navigate, useParams } from "react-router";
+import { Navigate, useParams } from "react-router-dom";
 import moment from "moment";
 import { useArticleStore } from "./model/store";
 import { serverApi } from "@/shared/lib/config";
@@ -42,7 +42,7 @@ const CommunityDetail = () => {
     }
   
 
-  const imgPath = `${serverApi}/${newArticle?.articleImage}`;
+  const imgPath = newArticle?.articleImage;
   const date = newArticle?.createdAt;
   const formattedDate = date ? moment(date).format("DD/MM/YY") : "N/A";
 

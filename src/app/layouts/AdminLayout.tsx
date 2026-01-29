@@ -1,6 +1,6 @@
 import * as React from "react";
 import { MdCastForEducation } from "react-icons/md";
-import { Navigate, Outlet } from "react-router";
+import { Navigate, Outlet } from "react-router-dom";
 import person1 from "../../../public/images/person1.jpg";
 
 export default function AdminLayout() {

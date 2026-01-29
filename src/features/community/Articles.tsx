@@ -31,7 +31,7 @@ const Articles = (props: ArticleProps) => {
         <>
           <div className="flex items-center justify-start flex-wrap">
             {articlesData.map((article: any) => {
-              const imgPath = `${serverApi}/${article?.articleImage}`;
+              const imgPath = article?.articleImage;
               const date = article?.createdAt;
               const timeAgo = formatTimeAgo(date);
               const dayOfMonth = date ? new Date(date).getDate() : "N/A";

@@ -2,9 +2,6 @@ export const serverApi: string = import.meta.env.VITE_API_URL || 'http://localho
 
 export const getApiUrl = (path: string): string => {
    return `${serverApi}${path.startsWith("/") ? path : `/${path}`}`;
-  // const fullUrl = `${serverApi}${path.startsWith("/") ? path : `/${path}`}`;
-  // console.log("getApiUrl output:", fullUrl); // Debug log
-  // return fullUrl;
 };
  
 export const Messages = {

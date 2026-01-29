@@ -11,7 +11,7 @@ export default function AdminPage() {
   const currentMember = useMemberStore((state) => state.currentMember);
   const location = useLocation();
   const { component } = location.state || {};
-  const imgPath = `${serverApi}/${currentMember?.memberImage}`;
+  const imgPath = currentMember?.memberImage;
   //  if (!currentMember) {
   //     return <Navigate to="/" replace />; // Redirect to login if not authenticated
   //   }

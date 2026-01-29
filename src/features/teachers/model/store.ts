@@ -62,7 +62,7 @@ export const useMemberStore = create<MemberStore>()(
             if (axios.isAxiosError(error)) {
               console.error(
                 "AxiosError details:",
-                error.response?.data || error.message
+                error.response?.data || error.message,
               );
             }
             throw error;
@@ -85,7 +85,7 @@ export const useMemberStore = create<MemberStore>()(
             if (axios.isAxiosError(error)) {
               console.error(
                 "AxiosError details:",
-                error.response?.data || error.message
+                error.response?.data || error.message,
               );
             }
             throw error;
@@ -93,26 +93,26 @@ export const useMemberStore = create<MemberStore>()(
         },
 
         getCurrentMember: async (): Promise<void> => {
-           const url = getApiUrl("/member/checkAuth");
+          const url = getApiUrl("/member/checkAuth");
 
-           const storedData = localStorage.getItem("member-store");
-            if (!storedData) {
-              throw new Error("No stored member data found.");
-            }
-            const parsedData = JSON.parse(storedData);
-            const { accessToken } = parsedData.state;
-            if (!accessToken) {
-              throw new Error("Access token is missing.");
-            }
-            
-           const result = await axios.get<Member>(url, {
-             headers: {
-               Authorization: `Bearer ${accessToken}`,
-             },
-           });
-           const data = result.data;
-           console.log("Fetched currentMember:", data);
-           set({ currentMember: data });
+          const storedData = localStorage.getItem("member-store");
+          if (!storedData) {
+            throw new Error("No stored member data found.");
+          }
+          const parsedData = JSON.parse(storedData);
+          const { accessToken } = parsedData.state;
+          if (!accessToken) {
+            throw new Error("Access token is missing.");
+          }
+
+          const result = await axios.get<Member>(url, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+          const data = result.data;
+          console.log("Fetched currentMember:", data);
+          set({ currentMember: data });
         },
 
         getTeachers: async (input: MemberInquery): Promise<void> => {
@@ -141,7 +141,7 @@ export const useMemberStore = create<MemberStore>()(
             if (axios.isAxiosError(error)) {
               console.error(
                 "AxiosError details:",
-                error.response?.data || error.message
+                error.response?.data || error.message,
               );
             }
             throw error;
@@ -150,8 +150,8 @@ export const useMemberStore = create<MemberStore>()(
         getMemberById: async (_id: string): Promise<void> => {
           try {
             const url = getApiUrl("/member/getMember");
-            const result = await axios.get<Member>(url, {params: {_id}});
-            const data = result.data; 
+            const result = await axios.get<Member>(url, { params: { _id } });
+            const data = result.data;
             console.log("Fetched member by ID:", data);
             set({ teachOwner: data });
           } catch (error) {
@@ -159,7 +159,7 @@ export const useMemberStore = create<MemberStore>()(
             if (axios.isAxiosError(error)) {
               console.error(
                 "AxiosError details:",
-                error.response?.data || error.message
+                error.response?.data || error.message,
               );
             }
             throw error;
@@ -188,9 +188,11 @@ export const useMemberStore = create<MemberStore>()(
             formData.append("memberAddress", input.memberAddress || "");
             formData.append("memberDesc", input.memberDesc || "");
             formData.append("memberExperience", input.memberExperience || "");
-            formData.append("memberImage", input.memberImage || "");
             if (input.memberCategory) {
               formData.append("memberCategory", input.memberCategory);
+            }
+            if (input.memberImage instanceof File) {
+              formData.append("memberImage", input.memberImage);
             }
             const memberLinks = {
               telegram: input.memberLinks?.telegram || "",
@@ -215,7 +217,7 @@ export const useMemberStore = create<MemberStore>()(
             if (axios.isAxiosError(error)) {
               console.error(
                 "AxiosError details:",
-                error.response?.data || error.message
+                error.response?.data || error.message,
               );
             }
             throw error;
@@ -265,13 +267,15 @@ export const useMemberStore = create<MemberStore>()(
             if (axios.isAxiosError(error)) {
               console.error(
                 "AxiosError details:",
-                error.response?.data || error.message
+                error.response?.data || error.message,
               );
             }
             throw error;
           }
         },
-        updateMemberbyAdmin: async (input: Partial<MemberUpdate>): Promise<void> => {
+        updateMemberbyAdmin: async (
+          input: Partial<MemberUpdate>,
+        ): Promise<void> => {
           try {
             const url = getApiUrl(`/member/updateMembersAdmin`);
             const storedData = localStorage.getItem("member-store");
@@ -284,7 +288,7 @@ export const useMemberStore = create<MemberStore>()(
             if (!accessToken) {
               throw new Error("Access token is missing.");
             }
-            
+
             const result = await axios.post(url, input, {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
@@ -295,13 +299,12 @@ export const useMemberStore = create<MemberStore>()(
 
             console.log("Update member by admin:", data);
             set({ updatedMember: data });
-
-          } catch(error) {
+          } catch (error) {
             console.log("Error fetching members:", error);
             if (axios.isAxiosError(error)) {
               console.error(
                 "AxiosError details:",
-                error.response?.data || error.message
+                error.response?.data || error.message,
               );
             }
             throw error;
@@ -317,9 +320,9 @@ export const useMemberStore = create<MemberStore>()(
         partialize: (state) => ({
           accessToken: state.accessToken,
         }),
-      }
-    )
-  )
+      },
+    ),
+  ),
 );
 
 // Expose the store in the browser for testing

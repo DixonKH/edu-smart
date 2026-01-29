@@ -63,7 +63,7 @@ const MyProfile = () => {
   }, [currentUser]);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setMemberData((prev) => ({
@@ -91,7 +91,7 @@ const MyProfile = () => {
       memberData.memberAddress === "" ||
       memberData.memberFullName === ""
     ) {
-      sweetErrorHandling(Messages.error3) 
+      sweetErrorHandling(Messages.error3);
       throw new Error(Messages.error3);
     }
     if (
@@ -104,9 +104,9 @@ const MyProfile = () => {
     }
     console.log("User for update:", currentUser);
     const updatedMemberLinks = {
-      telegram: memberData.memberLinks?.telegram || "",  // Empty string if missing
+      telegram: memberData.memberLinks?.telegram || "", // Empty string if missing
       instagram: memberData.memberLinks?.instagram || "", // Empty string if missing
-      youtube: memberData.memberLinks?.youtube || ""      // Empty string if missing
+      youtube: memberData.memberLinks?.youtube || "", // Empty string if missing
     };
 
     const updateData = {
@@ -160,7 +160,7 @@ const MyProfile = () => {
                 "Content-Type": "multipart/form-data",
                 Authorization: `Bearer ${accessToken}`,
               },
-            }
+            },
           );
           const updateMemberImage = response.data.memberImage;
           setMemberData((prev) => {
@@ -169,6 +169,13 @@ const MyProfile = () => {
               memberImage: updateMemberImage,
             };
           });
+
+          // useMemberStore.setState((state) => ({
+          //   currentMember: {
+          //     ...state.currentMember!,
+          //     memberImage: updateMemberImage,
+          //   },
+          // }));
         } catch (error) {
           console.error("Error uploading image:", error);
           sweetErrorHandling(error).then();
@@ -191,7 +198,7 @@ const MyProfile = () => {
               />
             ) : currentUser?.memberImage ? (
               <img
-                src={`${serverApi}/${currentUser?.memberImage}`}
+                src={currentUser?.memberImage}
                 alt="User Avatar"
                 className=" border-2 m-3 border-green rounded-full w-24 h-24"
               />

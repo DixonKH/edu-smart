@@ -118,7 +118,7 @@ const Navbar = () => {
                         </p>
                       ) : (
                         <img
-                          src={`${serverApi}/${currentUser?.memberImage}`}
+                          src={currentUser?.memberImage}
                           alt="user"
                           className="rounded-full h-10 w-10 cursor-pointer"
                           onClick={toggleDropdown}

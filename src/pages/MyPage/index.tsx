@@ -100,7 +100,7 @@ const MyPage = () => {
                     </p>
                   ) : (
                     <img
-                      src={`${serverApi}/${currentUser?.memberImage}`}
+                      src={currentUser?.memberImage}
                       alt="User Avatar"
                       className=" border-2 m-3 border-green rounded-full w-24 h-24"
                     />
