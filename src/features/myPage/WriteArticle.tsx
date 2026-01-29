@@ -10,7 +10,6 @@ import {
 import { BoardArticleCategory } from "@/shared/enums/article.enum";
 import { BoardArticleInput, BoardArticleUpdate } from "@/shared/types/article";
 import { useArticleStore } from "../community/model/store";
-import axios from "axios";
 import { Messages, serverApi } from "@/shared/lib/config";
 import {
   sweetErrorHandling,
@@ -31,6 +30,18 @@ import "froala-editor/js/plugins/print.min.js"; // Print plugin
 import "froala-editor/js/plugins/word_paste.min.js"; // Word Paste plugin
 import "froala-editor/css/plugins/fullscreen.min.css"; // Fullscreen CSS
 
+export const resolveImageUrl = (url?: string) => {
+  if (!url) return "";
+
+  // Cloudinary URL
+  if (url.startsWith("http")) {
+    return url;
+  }
+
+  // eski local upload
+  return `${serverApi}/${url}`;
+};
+
 export default function WriteArticle() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -46,11 +57,6 @@ export default function WriteArticle() {
     articleImage: "",
     memberId: "",
   });
-
-  const resolveImageUrl = (url: string) => {
-    if (!url) return null;
-    return url.startsWith("http") ? url : `${serverApi}/${url}`;
-  };
 
   useEffect(() => {
     if (articleToEdit) {

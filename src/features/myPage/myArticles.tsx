@@ -19,6 +19,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Link } from "react-router-dom";
+import { resolveImageUrl } from "./WriteArticle";
 
 export default function myArticles() {
   const { t } = useTranslation();
@@ -72,7 +73,7 @@ export default function myArticles() {
           <>
             <div className="flex items-center justify-start flex-wrap">
               {myArticles.map((article: any) => {
-                const imgPath = `${serverApi}/${article?.articleImage}`;
+                const imgPath = resolveImageUrl(article?.articleImage);
                 const date = article?.createdAt;
                 const timeAgo = formatTimeAgo(date);
                 const dayOfMonth = date ? new Date(date).getDate() : "N/A";
